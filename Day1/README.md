@@ -29,6 +29,9 @@ public:
 
 ```
 
+![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/6b09cf8e-17e5-4bc1-8dd2-0a236dccb231)
+
+
 - [Palindrome Number](https://leetcode.com/problems/palindrome-number/description/)
 
 ```
@@ -50,4 +53,5 @@ public:
 };
 
 ```
+![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/55eb1e8c-efa9-4e32-a5ad-7a0de7c90aa2)
 
