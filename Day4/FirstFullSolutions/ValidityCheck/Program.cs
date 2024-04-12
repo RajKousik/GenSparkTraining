@@ -10,13 +10,32 @@ namespace ValidityCheck
 
             Console.Write("Enter a Number: ");
             string StrNum = Console.ReadLine()??"";
+
+            if(StrNum.Length != 16)
+            {
+                Console.WriteLine("Oops...Only 16 Digits Numbers are acceptable");
+                return;
+            }
+            if (StrNum[0] == '-')
+            {
+                Console.WriteLine("Oops...Negative Number is not a valid number");
+                return;
+            }
+
             string RevNum = ReverseString(StrNum);
+
+            
 
             int TotalSum= 0;
 
             for(int i = 0; i < RevNum.Length; i++)
             {
                 int Digit = RevNum[i] - '0';
+                if(Digit < 0 || Digit > 9)
+                {
+                    Console.WriteLine("Oops...Only Numbers should be present");
+                    return;
+                }
                 if (i%2 == 1)
                 {
                     Digit *= 2;
