@@ -82,11 +82,6 @@ namespace RequestTrackerApplication
         /// </summary>
         void PrintAllEmployees()
         {
-            if (employees[0] == null)
-            {
-                Console.WriteLine("No Employees available");
-                return;
-            }
             for (int i = 0; i < employees.Length; i++)
             {
                 if (employees[i] != null)

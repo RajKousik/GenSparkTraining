@@ -136,14 +136,14 @@
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            //Console.WriteLine("Hello, World!");
             Program program = new Program();
-            program.SequentialStatements();
-            program.SelectionStatements();
-            program.SwitchStatements();
-            program.IterativeForLoopStatement();
-            program.IterativeWhileLoopStatement();
-            program.IterativeDoWhileLoopStatement();
+            //program.SequentialStatements();
+            //program.SelectionStatements();
+            //program.SwitchStatements();
+            //program.IterativeForLoopStatement();
+            //program.IterativeWhileLoopStatement();
+            //program.IterativeDoWhileLoopStatement();
 
             program.FindRepeatedDigitsInThreeDigitNumbers();
 
