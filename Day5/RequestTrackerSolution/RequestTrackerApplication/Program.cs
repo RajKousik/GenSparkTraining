@@ -72,6 +72,8 @@ namespace RequestTrackerApplication
                 if (employees[i] == null)
                 {
                     employees[i] = CreateEmployee(i);
+                    Company company = new Company();
+                    company.EmployeeClientVisit(employees[i], employees[i]);
                 }
             }
 
@@ -97,6 +99,12 @@ namespace RequestTrackerApplication
         static Employee CreateEmployee(int id)
         {
             Employee employee = new Employee();
+            Console.WriteLine("Please enter the type of employee");
+            string type = Console.ReadLine();
+            if (type == "Permanent")
+                employee = new PermanentEmployee();
+            else if (type == "Contract")
+                employee = new ContractEmployee();
             employee.Id = 101 + id;
             employee.BuildEmployeeFromConsole();
             return employee;
@@ -239,8 +247,13 @@ namespace RequestTrackerApplication
         }
         static void Main(string[] args)
         {
-            Program program = new Program();
-            program.EmployeeInteraction();
+            //Program program = new Program();
+            //program.EmployeeInteraction();
+
+            Employee employee = new PermanentEmployee();
+            employee.BuildEmployeeFromConsole();
+            Console.WriteLine(employee);
+
         }
 
     }

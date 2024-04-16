@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace RequestTrackerModelLibrary
 {
-    public class Department
+    public interface IInternalCompanyWorking
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int Department_Head { get; set; }
+        void RaiseRequest();
+
+        void CloseRequest();
     }
 }
