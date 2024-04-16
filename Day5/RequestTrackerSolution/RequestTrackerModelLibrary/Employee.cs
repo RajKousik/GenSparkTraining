@@ -5,7 +5,7 @@
         int age;
         DateTime dob;
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         public int Age
         {
             get
@@ -24,6 +24,9 @@
         }
         public double Salary { get; set; }
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Employee()
         {
             Id = 0;
@@ -31,6 +34,14 @@
             Salary = 0.0;
             DateOfBirth = new DateTime();
         }
+
+        /// <summary>
+        /// Parameterised constructor
+        /// </summary>
+        /// <param name="id">Employee ID</param>
+        /// <param name="name">Employee name as string</param>
+        /// <param name="dateOfBirth">Employee DOB as DateTime</param>
+        /// <param name="salary">Employee Salary</param>
         public Employee(int id, string name, DateTime dateOfBirth, double salary)
         {
             Id = id;
@@ -39,6 +50,9 @@
             Salary = salary;
         }
 
+        /// <summary>
+        /// Creates new employee object from console
+        /// </summary>
         public void BuildEmployeeFromConsole()
         {
             Console.WriteLine("Please enter the Name");
@@ -49,6 +63,9 @@
             Salary = Convert.ToDouble(Console.ReadLine());
         }
 
+        /// <summary>
+        /// Prints details of an employee
+        /// </summary>
         public void PrintEmployeeDetails()
         {
             Console.WriteLine("Employee Id : " + Id);
@@ -57,5 +74,6 @@
             Console.WriteLine("Employee Age : " + Age);
             Console.WriteLine("Employee Salary : Rs." + Salary);
         }
+
     }
 }
