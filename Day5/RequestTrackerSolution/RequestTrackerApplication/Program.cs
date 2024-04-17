@@ -247,12 +247,12 @@ namespace RequestTrackerApplication
         }
         static void Main(string[] args)
         {
-            //Program program = new Program();
-            //program.EmployeeInteraction();
+            Program program = new Program();
+            program.EmployeeInteraction();
 
-            Employee employee = new PermanentEmployee();
-            employee.BuildEmployeeFromConsole();
-            Console.WriteLine(employee);
+            //Employee employee = new PermanentEmployee();
+            //employee.BuildEmployeeFromConsole();
+            //Console.WriteLine(employee);
 
         }
 
