@@ -14,5 +14,9 @@ namespace RequestTrackerBLLibrary
         Department GetDepartmentById(int id);
         Department GetDepartmentByName(string departmentName);
         int GetDepartmentHeadId(int departmentId);
+
+        List<Department> GetDepartmentList();
+
+        bool DeleteDepartment(int id);
     }
 }

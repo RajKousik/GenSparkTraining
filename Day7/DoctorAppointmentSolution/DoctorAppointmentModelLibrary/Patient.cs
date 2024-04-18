@@ -41,7 +41,7 @@
                 + "\nAge : " + age
                 + "\nDOB: " + dob
                 + "\nContact: " + Contact
-                + "\nAddress: " + Address;
+                + "\nAddress: " + Address + "\n";
 
         }
         public override bool Equals(object? obj)

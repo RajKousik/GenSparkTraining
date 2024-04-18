@@ -3,10 +3,10 @@
     public class Employee
     {
         public Department EmployeeDepartment { get; set; }
-        int age;
-        DateTime dob;
+        public int age;
+        public DateTime dob;
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
         public int Age
         {
             get
@@ -14,7 +14,7 @@
                 return age;
             }
         }
-        public DateTime DateOfBirth
+        public DateTime DateOfBirth 
         {
             get => dob;
             set
@@ -24,7 +24,6 @@
             }
         }
         public double Salary { get; set; }
-        public string Type { get; set; }
         public string Role { get; set; }
 
         public Employee()
@@ -33,15 +32,17 @@
             Name = string.Empty;
             Salary = 0.0;
             DateOfBirth = new DateTime();
-            Type = string.Empty;
             Role = "Employee";
+            EmployeeDepartment = new Department();
         }
-        public Employee(int id, string name, DateTime dateOfBirth, string role)
+        public Employee(string name, DateTime dateOfBirth, double salary, string role)
         {
-            Id = id;
+            //Id = id;
             Name = name;
             DateOfBirth = dateOfBirth;
             Role = role;
+            Salary = salary;
+            //EmployeeDepartment = employeeDepartment;
         }
 
         public virtual void BuildEmployeeFromConsole()
@@ -56,12 +57,11 @@
 
         public override string ToString()
         {
-            return "Employee Type : " + Type
-                + "\nEmployee Id : " + Id
+            return "\nEmployee Id : " + Id
                 + "\nEmployee Name " + Name
                 + "\nDate of birth : " + DateOfBirth
-                + "\nEmployee Age : " + Age
-                + "\nEmployee Role " + Role;
+                + "\nAge : " + Age
+                + "\nEmployee Role " + Role + "\n";
         }
         public override bool Equals(object? obj)
         {
@@ -71,14 +71,6 @@
             e2 = obj as Employee;//Casting in a more symanctic way
             return e1.Id.Equals(e2.Id);
         }
-        public static bool operator ==(Employee a, Employee b)
-        {
-            return a.Id == b.Id;
 
-        }
-        public static bool operator !=(Employee a, Employee b)
-        {
-            return a.Id != b.Id;
-        }
     }
 }

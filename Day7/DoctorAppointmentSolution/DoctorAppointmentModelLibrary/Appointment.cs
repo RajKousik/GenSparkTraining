@@ -27,7 +27,7 @@ namespace DoctorAppointmentModelLibrary
             return "Appointment ID : " + Id
                 + "\nDoctor : " + DoctorId
                 + "\nPatient : " + PatientId
-                + "\nAppointment Date  : " + DateTime;
+                + "\nAppointment Date  : " + DateTime + "\n";
 
         }
         public override bool Equals(object? obj)

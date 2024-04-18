@@ -32,7 +32,9 @@ namespace RequestTrackerDALLibrary
             {
                 return null;
             }
-            _departments.Add(GenerateId(), item);
+            int id = GenerateId();
+            item.Id = id;
+            _departments.Add(id, item);
             return item;
         }
 

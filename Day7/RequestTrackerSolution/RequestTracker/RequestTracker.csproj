@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RequestTrackerBLLibrary\RequestTrackerBLLibrary.csproj" />
     <ProjectReference Include="..\RequestTrackerModelLibrary\RequestTrackerModelLibrary.csproj" />
   </ItemGroup>
 

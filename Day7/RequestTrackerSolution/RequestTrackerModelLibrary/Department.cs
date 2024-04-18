@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,9 @@ namespace RequestTrackerModelLibrary
         }
         public override string ToString()
         {
-            return Id + " " + Name + " " + Department_Head;
+            return "\nDeaprtment Id : " + Id
+                + "\nDepartment Name " + Name
+                + "\nDepartment Head Id: " + Department_Head + "\n";
         }
     }
 }
