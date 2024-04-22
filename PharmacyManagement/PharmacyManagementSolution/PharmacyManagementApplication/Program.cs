@@ -15,15 +15,20 @@ namespace PharmacyManagementApplication
         public Program()
         {
             _drugService = new DrugBL();
-            _patientService = new PatientBL(); // New addition
-            _doctorService = new DoctorBL(); // New addition
+            _patientService = new PatientBL(); 
+            _doctorService = new DoctorBL(); 
             _saleService = new SaleBL();
             _prescriptionService = new PrescriptionBL(_drugService, _saleService); // New addition
-             // New addition
-             // New addition
+
+        }
+
+        public static void ClearConsole()
+        {
+            Console.Clear();
         }
         private void DisplayMenu()
         {
+            ClearConsole();
             Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Manage Patients");
             Console.WriteLine("2. Manage Doctors");
@@ -37,7 +42,7 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
-                Console.Clear();
+                
                 DisplayMenu();
 
                 switch (Console.ReadLine())
@@ -69,6 +74,7 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
+                ClearConsole();
                 Console.WriteLine("\nManage Sales:");
                 Console.WriteLine("1. View Sale Receipt By ID");
                 Console.WriteLine("2. View All Sales");
@@ -137,6 +143,7 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
+                ClearConsole();
                 Console.WriteLine("\nManage Drugs:");
                 Console.WriteLine("1. Add Drug");
                 Console.WriteLine("2. Update Drug");
@@ -290,6 +297,7 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
+                ClearConsole();
                 Console.WriteLine("\nManage Prescriptions:");
                 Console.WriteLine("1. Add Prescription");
                 Console.WriteLine("2. Get Prescription By ID");
@@ -441,6 +449,7 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(prescription);
                 }
+                Console.ReadKey();
             }
             catch (PrescriptionNotFoundException)
             {
@@ -451,9 +460,10 @@ namespace PharmacyManagementApplication
 
         private void ManageDoctors()
         {
-            Console.Clear();
+            
             while (true)
             {
+                ClearConsole();
                 Console.WriteLine("\nManage Doctors:");
                 Console.WriteLine("1. Add Doctor");
                 Console.WriteLine("2. Get Doctor By ID");
@@ -604,9 +614,9 @@ namespace PharmacyManagementApplication
 
         private void ManagePatients() // New addition
         {
-            Console.Clear();
             while (true)
             {
+                ClearConsole();
                 Console.WriteLine("\nManage Patients:");
                 Console.WriteLine("1. Add Patient");
                 Console.WriteLine("2. Get Patient By ID");

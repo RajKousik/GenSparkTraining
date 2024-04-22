@@ -11,7 +11,7 @@ namespace PharmacyManagementBLLibrary
 {
     public class PrescriptionBL : IPrescriptionService
     {
-        private const int LOW_STOCK_THRESHOLD = 2;
+        private const int LOW_STOCK_THRESHOLD = 4;
         private readonly IRepository<int, Prescription> _prescriptionRepository;
         private readonly IDrugService _drugService;
         private readonly ISaleService _saleService;
