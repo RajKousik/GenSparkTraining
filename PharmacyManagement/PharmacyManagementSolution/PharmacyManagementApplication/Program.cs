@@ -146,15 +146,15 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
-                ClearConsole();
+                //ClearConsole();
                 Console.WriteLine("\nManage Drugs:");
                 Console.WriteLine("1. Add Drug");
                 Console.WriteLine("2. Update Drug");
                 Console.WriteLine("3. Remove Drug");
                 Console.WriteLine("4. View All Drugs");
-                Console.WriteLine("4. Delete Expired Drugs");
-                Console.WriteLine("5. Delete Out Of stock Drugs");
-                Console.WriteLine("6. Back to Main Menu");
+                Console.WriteLine("5. Delete Expired Drugs");
+                Console.WriteLine("6. Delete Out Of stock Drugs");
+                Console.WriteLine("7. Back to Main Menu");
                 Console.Write("Choose an option: ");
 
                 switch (Console.ReadLine())
@@ -330,8 +330,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(drug);
                 }
-                Console.WriteLine("Press any key to continue");
-                Console.ReadKey();
+                //Console.WriteLine("Press any key to continue");
+                //Console.ReadKey();
             }
             catch (DrugNotFoundException)
             {
