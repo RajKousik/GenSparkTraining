@@ -14,11 +14,13 @@ namespace PharmacyManagementBLLibrary
         private const int LOW_STOCK_THRESHOLD = 2;
         private readonly IRepository<int, Prescription> _prescriptionRepository;
         private readonly IDrugService _drugService;
+        private readonly ISaleService _saleService;
 
-        public PrescriptionBL()
+        public PrescriptionBL(IDrugService drugService, ISaleService saleService)
         {
             _prescriptionRepository = new PrescriptionRepository();
-            _drugService = new DrugBL();
+            _drugService = drugService;
+            _saleService = saleService;
         }
 
         public int ProcessPrescription(Prescription prescription)
@@ -41,7 +43,6 @@ namespace PharmacyManagementBLLibrary
                     Console.WriteLine($"Warning: Low stock for drug '{drug.Name}'. Current stock level: {availableDrug.InStock}");
                 }
             }
-            
 
             // Process the prescription
             // ...
@@ -49,11 +50,28 @@ namespace PharmacyManagementBLLibrary
             // Save the prescription to the repository
             int prescriptionId = AddPrescription(prescription);
 
+
             return prescriptionId;
         }
 
         public int AddPrescription(Prescription prescription)
         {
+            double totalPrice = 0;
+            foreach (var drug in prescription.Drugs)
+            {
+                totalPrice += drug.Price;
+            }
+
+            // Create Sales object
+            Sales sale = new Sales
+            {
+                TransactionId = prescription.Id, // Assuming TransactionId is the same as Prescription Id
+                SalesType = "Prescription",
+                TotalPrice = totalPrice
+            };
+
+            // Add sale
+            _saleService.AddSale(sale);
             Prescription result = _prescriptionRepository.Add(prescription);
             if (result != null)
             {

@@ -25,10 +25,11 @@ namespace PharmacyManagementModelLibrary
 
         public override string ToString()
         {
-            return "\nPrescription Id" + Id
+            string drugsList = string.Join(", ", Drugs.Select(drug => drug.Name));
+            return "\nPrescription Id : " + Id
                 + "\nPatient Name : " + Patient.Name
                 + "\nDoctor Name : " + Doctor.Name
-                + "\nDrug : " + Drugs
+                + "\nDrugs : " + drugsList
                 + "\nDosage : " + Dosage + "\n";
         }
     }

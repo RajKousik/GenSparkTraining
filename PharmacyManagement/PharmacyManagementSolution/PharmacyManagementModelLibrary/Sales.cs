@@ -10,8 +10,10 @@ namespace PharmacyManagementModelLibrary
     {
         public int SaleId{ get; set; }
 
+        public int TransactionId { get; set; }
+
         public string SalesType { get; set; } = string.Empty;
 
-        public float TotalPrice { get; set;}
+        public double TotalPrice { get; set;}
     }
 }
