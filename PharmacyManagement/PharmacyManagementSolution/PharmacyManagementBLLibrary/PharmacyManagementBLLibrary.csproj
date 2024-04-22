@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PharmacyManagementDALLibrary\PharmacyManagementDALLibrary.csproj" />
+    <ProjectReference Include="..\PharmacyManagementModelLibrary\PharmacyManagementModelLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

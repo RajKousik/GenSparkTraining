@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementBLLibrary.Exceptions
 {
-    internal class DrugNotFoundException
+    public class DrugNotFoundException : Exception
     {
+        string msg;
+        public DrugNotFoundException()
+        {
+            msg = "Drug with these details does not exist";
+        }
+        public override string Message => msg;
+
     }
 }

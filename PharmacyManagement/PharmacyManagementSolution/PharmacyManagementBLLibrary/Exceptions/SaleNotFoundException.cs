@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementBLLibrary.Exceptions
 {
-    public class PrescriptionNotFoundException : Exception
+    public class SaleNotFoundException : Exception
     {
         string msg;
-        public PrescriptionNotFoundException()
+        public SaleNotFoundException()
         {
-            msg = "Prescription with these details does not exist";
+            msg = "Sale Transaction with these details does not exist";
         }
         public override string Message => msg;
 

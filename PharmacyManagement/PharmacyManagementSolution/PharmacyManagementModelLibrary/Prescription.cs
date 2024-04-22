@@ -9,20 +9,17 @@ namespace PharmacyManagementModelLibrary
 {
     public class Prescription
     {
-        public int Id{ get; set; }
-        public Patient Patient{ get; set; }
+        public int Id { get; set; }
+        public Patient Patient { get; set; }
+        public Doctor Doctor { get; set; }
+        public List<Drugs> Drugs { get; set; } // Change type to List<Drugs>
+        public int Dosage { get; set; }
 
-        public Doctor Doctor{ get; set; }
-
-        public Drugs Drug{ get; set; }
-
-        public int Dosage{ get; set; }
-
-        public Prescription(Patient patient, Doctor doctor, Drugs drug, int dosage)
+        public Prescription(Patient patient, Doctor doctor, List<Drugs> drugs, int dosage)
         {
             Patient = patient;
             Doctor = doctor;
-            Drug = drug;
+            Drugs = drugs;
             Dosage = dosage;
         }
 
@@ -31,7 +28,7 @@ namespace PharmacyManagementModelLibrary
             return "\nPrescription Id" + Id
                 + "\nPatient Name : " + Patient.Name
                 + "\nDoctor Name : " + Doctor.Name
-                + "\nDrug : " + Drug.Name
+                + "\nDrug : " + Drugs
                 + "\nDosage : " + Dosage + "\n";
         }
     }

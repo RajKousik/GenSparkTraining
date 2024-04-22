@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementBLLibrary.Exceptions
 {
-    internal class DuplicatePrescriptionException
+    public class DuplicatePrescriptionException : Exception
     {
+        string msg;
+        public DuplicatePrescriptionException()
+        {
+            msg = "Prescription already exists";
+        }
+        public override string Message => msg;
+
     }
 }
