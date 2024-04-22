@@ -160,5 +160,31 @@ namespace PharmacyManagementBLLibrary
 
             return drugsRemoved;
         }
+
+        /// <summary>
+        /// Reduces the quantity of a drug in stock after it's been sold.
+        /// </summary>
+        /// <param name="drugName">The name of the drug to reduce stock quantity.</param>
+        public void ReduceStockQuantity(string drugName)
+        {
+            var drug = _drugRepository.GetAll().FirstOrDefault(d => d.Name.Equals(drugName, StringComparison.OrdinalIgnoreCase));
+
+            if (drug != null)
+            {
+                if (drug.InStock > 0)
+                {
+                    drug.InStock--;
+                    _drugRepository.Update(drug);
+                }
+                else
+                {
+                    throw new OutOfStockException();
+                }
+            }
+            else
+            {
+                throw new DrugNotFoundException();
+            }
+        }
     }
 }

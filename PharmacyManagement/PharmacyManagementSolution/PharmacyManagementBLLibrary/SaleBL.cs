@@ -13,6 +13,9 @@ namespace PharmacyManagementBLLibrary
 {
     public class SaleBL : ISaleService
     {
+        private const int LOYALTY_POINTS_THRESHOLD = 100; 
+        private const float DISCOUNT_PERCENTAGE = 0.1f;
+
         private readonly IRepository<int, Sales> _saleRepository;
 
         /// <summary>
@@ -30,6 +33,11 @@ namespace PharmacyManagementBLLibrary
         /// <returns>Returns the ID of the newly added sale.</returns>
         public int AddSale(Sales sale)
         {
+            sale.LoyaltyPointsEarned = CalculateLoyaltyPoints(sale.TotalPrice);
+
+            // Apply discounts based on loyalty points
+            //sale.TotalPrice -= ApplyDiscount(sale.TotalPrice, sale.LoyaltyPointsEarned);
+
             Sales result = _saleRepository.Add(sale);
             if (result != null)
             {
@@ -65,6 +73,18 @@ namespace PharmacyManagementBLLibrary
                 return sales;
             }
             throw new SaleNotFoundException();
+        }
+
+        public double CalculateLoyaltyPoints(double totalPrice)
+        {
+            return 0.0;
+            //throw new NotImplementedException();
+        }
+
+        public double ApplyDiscount(double totalPrice, double loyaltyPoints)
+        {
+            return 0.0;
+            //throw new NotImplementedException();
         }
     }
 }

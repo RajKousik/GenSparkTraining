@@ -51,21 +51,18 @@ namespace PharmacyManagementBLLibrary
 
                 if (availableDrug.ExpiryDate <= DateTime.Today)
                 {
-                    throw new ExpiredDrugException(); // Assuming you have a custom exception for expired drugs
+                    throw new ExpiredDrugException(); 
                 }
 
-                //Console.WriteLine($"Here {availableDrug.InStock} {LOW_STOCK_THRESHOLD}");
+                
                 if (availableDrug.InStock < LOW_STOCK_THRESHOLD)
                 {
                     Console.WriteLine($"\n**Warning: Low stock for drug '{drug.Name}'. Current stock level: {availableDrug.InStock}**\n");
                 }
 
-                
+                _drugService.ReduceStockQuantity(drug.Name);
             }
-
-            // Process the prescription
-            // ...
-
+            
             // Save the prescription to the repository
             int prescriptionId = AddPrescription(prescription);
 

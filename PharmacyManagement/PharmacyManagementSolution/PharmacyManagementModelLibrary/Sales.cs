@@ -15,5 +15,12 @@ namespace PharmacyManagementModelLibrary
         public string SalesType { get; set; } = string.Empty;
 
         public double TotalPrice { get; set;}
+
+        public double LoyaltyPointsEarned { get; set; } 
+
+        public Sales()
+        {
+            LoyaltyPointsEarned = 0;
+        }
     }
 }

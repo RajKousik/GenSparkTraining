@@ -40,6 +40,9 @@ namespace PharmacyManagementApplication
         }
         private void Run()
         {
+            Console.WriteLine(" ** WELCOME TO PHARMACY MANAGEMENT SYSTEM ** ");
+           
+            Console.ReadKey();
             while (true)
             {
                 
@@ -190,11 +193,17 @@ namespace PharmacyManagementApplication
         {
             try
             {
+                var isDeleted = false;
                 var expiredDrugs = _drugService.GetDrugList().Where(drug => drug.ExpiryDate <= DateTime.Today).ToList();
                 foreach (var expiredDrug in expiredDrugs)
                 {
+                    isDeleted = true;
                     _drugService.DeleteDrug(expiredDrug.Id);
                     Console.WriteLine($"Expired drug '{expiredDrug.Name}' removed.");
+                }
+                if(!isDeleted)
+                {
+                    Console.WriteLine("No expired drugs found.");
                 }
             }
             catch (Exception e)
@@ -208,10 +217,17 @@ namespace PharmacyManagementApplication
             try
             {
                 var outOfStockDrugs = _drugService.GetDrugList().Where(drug => drug.InStock == 0).ToList();
-                foreach (var outOfStockDrug in outOfStockDrugs)
+                if (outOfStockDrugs.Count > 0)
                 {
-                    _drugService.DeleteDrug(outOfStockDrug.Id);
-                    Console.WriteLine($"Out of stock drug '{outOfStockDrug.Name}' removed.");
+                    foreach (var outOfStockDrug in outOfStockDrugs)
+                    {
+                        _drugService.DeleteDrug(outOfStockDrug.Id);
+                        Console.WriteLine($"Out of stock drug '{outOfStockDrug.Name}' removed.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No out of stock drugs found.");
                 }
             }
             catch (Exception e)
@@ -519,7 +535,7 @@ namespace PharmacyManagementApplication
             
             while (true)
             {
-                ClearConsole();
+                //ClearConsole();
                 Console.WriteLine("\nManage Doctors:");
                 Console.WriteLine("1. Add Doctor");
                 Console.WriteLine("2. Get Doctor By ID");
@@ -678,7 +694,7 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
-                ClearConsole();
+                //ClearConsole();
                 Console.WriteLine("\nManage Patients:");
                 Console.WriteLine("1. Add Patient");
                 Console.WriteLine("2. Get Patient By ID");

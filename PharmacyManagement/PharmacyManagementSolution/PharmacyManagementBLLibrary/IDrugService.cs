@@ -17,5 +17,7 @@ namespace PharmacyManagementBLLibrary
         bool DeleteDrug(int id);
         bool RemoveExpiredDrugs();
         bool RemoveOutOfStockDrugs();
+
+        void ReduceStockQuantity(string drugName);
     }
 }

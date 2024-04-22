@@ -12,5 +12,8 @@ namespace PharmacyManagementBLLibrary
         int AddSale(Sales sale);
         Sales GetSaleById(int id);
         List<Sales> GetAllSales();
+
+        double CalculateLoyaltyPoints(double totalPrice);
+        double ApplyDiscount(double totalPrice, double loyaltyPoints); 
     }
 }
