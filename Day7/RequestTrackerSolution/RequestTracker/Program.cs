@@ -33,7 +33,7 @@ namespace RequestTrackerApp
                 Console.WriteLine("2. Change Department Name");
                 Console.WriteLine("3. Get Department By ID");
                 Console.WriteLine("4. Get Department By Name");
-                Console.WriteLine("5. Delete Departmenr");
+                Console.WriteLine("5. Delete Department");
                 Console.WriteLine("6. View All Departments");
                 Console.WriteLine("7. Back to Main Menu");
                 Console.Write("Choose an option: ");

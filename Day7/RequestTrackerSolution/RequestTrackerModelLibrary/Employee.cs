@@ -58,10 +58,12 @@
         public override string ToString()
         {
             return "\nEmployee Id : " + Id
-                + "\nEmployee Name " + Name
+                + "\nEmployee Name : " + Name
                 + "\nDate of birth : " + DateOfBirth
                 + "\nAge : " + Age
-                + "\nEmployee Role " + Role + "\n";
+                + "\nDepartment : " + EmployeeDepartment.Name
+                + "\nSalary : " + Salary
+                + "\nEmployee Role : " + Role + "\n";
         }
         public override bool Equals(object? obj)
         {
