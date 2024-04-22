@@ -114,6 +114,7 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine("Sale not found.");
                 }
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -131,6 +132,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine($"Sale ID: {sale.SaleId}, Type: {sale.SalesType}, Total Price: {sale.TotalPrice}");
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -149,7 +152,9 @@ namespace PharmacyManagementApplication
                 Console.WriteLine("2. Update Drug");
                 Console.WriteLine("3. Remove Drug");
                 Console.WriteLine("4. View All Drugs");
-                Console.WriteLine("5. Back to Main Menu");
+                Console.WriteLine("4. Delete Expired Drugs");
+                Console.WriteLine("5. Delete Out Of stock Drugs");
+                Console.WriteLine("6. Back to Main Menu");
                 Console.Write("Choose an option: ");
 
                 switch (Console.ReadLine())
@@ -167,11 +172,51 @@ namespace PharmacyManagementApplication
                         ViewAllDrugs();
                         break;
                     case "5":
+                        DeleteExpiredDrugs();
+                        break;
+                    case "6":
+                        DeleteOutOfStockDrugs();
+                        break;
+                    case "7":
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
                 }
+            }
+        }
+
+        private void DeleteExpiredDrugs()
+        {
+            try
+            {
+                var expiredDrugs = _drugService.GetDrugList().Where(drug => drug.ExpiryDate <= DateTime.Today).ToList();
+                foreach (var expiredDrug in expiredDrugs)
+                {
+                    _drugService.DeleteDrug(expiredDrug.Id);
+                    Console.WriteLine($"Expired drug '{expiredDrug.Name}' removed.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"An error occurred while deleting expired drugs: {e.Message}");
+            }
+        }
+
+        private void DeleteOutOfStockDrugs()
+        {
+            try
+            {
+                var outOfStockDrugs = _drugService.GetDrugList().Where(drug => drug.InStock == 0).ToList();
+                foreach (var outOfStockDrug in outOfStockDrugs)
+                {
+                    _drugService.DeleteDrug(outOfStockDrug.Id);
+                    Console.WriteLine($"Out of stock drug '{outOfStockDrug.Name}' removed.");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"An error occurred while deleting out of stock drugs: {e.Message}");
             }
         }
 
@@ -285,6 +330,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(drug);
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
             catch (DrugNotFoundException)
             {
@@ -297,7 +344,6 @@ namespace PharmacyManagementApplication
         {
             while (true)
             {
-                ClearConsole();
                 Console.WriteLine("\nManage Prescriptions:");
                 Console.WriteLine("1. Add Prescription");
                 Console.WriteLine("2. Get Prescription By ID");
@@ -367,8 +413,11 @@ namespace PharmacyManagementApplication
                 
                 Prescription prescription = new Prescription(patient, doctor, drugsList, dosage);
                 int prescriptionId = _prescriptionService.ProcessPrescription(prescription);
+
                 Console.WriteLine($"Prescription added with ID: {prescriptionId}");
-                
+                Console.ReadKey();
+
+
             }
             catch (Exception e)
             {
@@ -392,6 +441,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine("Prescription not found.");
                 }
+                //Console.WriteLine("Press any key to continue");
+                //Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -412,6 +463,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(prescription);
                 }
+                //Console.WriteLine("Press any key to continue");
+                //Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -432,6 +485,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(prescription);
                 }
+                //Console.WriteLine("Press any key to continue");
+                //Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -449,7 +504,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(prescription);
                 }
-                Console.ReadKey();
+                //Console.WriteLine("Press any key to continue");
+                //Console.ReadKey();
             }
             catch (PrescriptionNotFoundException)
             {
@@ -542,6 +598,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine("Doctor not found.");
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -565,6 +623,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine("Doctor not found.");
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -605,6 +665,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine(doctor);
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -695,6 +757,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine("Patient not found.");
                 }
+                Console.WriteLine("Press any key to continue");
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -718,6 +782,7 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine("Patient not found.");
                 }
+                Console.ReadKey();
             }
             catch (Exception e)
             {
@@ -758,6 +823,8 @@ namespace PharmacyManagementApplication
                 {
                     Console.WriteLine($"ID: {patient.Id}, Name: {patient.Name}, DOB: {patient.DateOfBirth}, Contact: {patient.Contact}");
                 }
+                Console.ReadKey();
+                Console.WriteLine("Press any key to continue");
             }
             catch (Exception e)
             {

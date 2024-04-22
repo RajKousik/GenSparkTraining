@@ -16,12 +16,22 @@ namespace PharmacyManagementBLLibrary
         private readonly IDrugService _drugService;
         private readonly ISaleService _saleService;
 
+
+        /// <summary>
+        /// Provides operations related to prescriptions.
+        /// </summary>
         public PrescriptionBL(IDrugService drugService, ISaleService saleService)
         {
             _prescriptionRepository = new PrescriptionRepository();
             _drugService = drugService;
             _saleService = saleService;
         }
+
+        /// <summary>
+        /// Process the prescription and add it to the prescription list.
+        /// </summary>
+        /// <param name="prescription">The prescription object containing details of the prescribed drugs.</param>
+        /// <returns>Returns the Prescription ID.</returns>
 
         public int ProcessPrescription(Prescription prescription)
         {
@@ -38,10 +48,19 @@ namespace PharmacyManagementBLLibrary
                 {
                     throw new OutOfStockException();
                 }
-                else if (availableDrug.InStock < LOW_STOCK_THRESHOLD)
+
+                if (availableDrug.ExpiryDate <= DateTime.Today)
                 {
-                    Console.WriteLine($"Warning: Low stock for drug '{drug.Name}'. Current stock level: {availableDrug.InStock}");
+                    throw new ExpiredDrugException(); // Assuming you have a custom exception for expired drugs
                 }
+
+                //Console.WriteLine($"Here {availableDrug.InStock} {LOW_STOCK_THRESHOLD}");
+                if (availableDrug.InStock < LOW_STOCK_THRESHOLD)
+                {
+                    Console.WriteLine($"\n**Warning: Low stock for drug '{drug.Name}'. Current stock level: {availableDrug.InStock}**\n");
+                }
+
+                
             }
 
             // Process the prescription
@@ -54,6 +73,11 @@ namespace PharmacyManagementBLLibrary
             return prescriptionId;
         }
 
+        /// <summary>
+        /// Adds the prescription to the repository.
+        /// </summary>
+        /// <param name="prescription">The prescription object.</param>
+        /// <returns>Returns the Prescription ID.</returns>
         public int AddPrescription(Prescription prescription)
         {
             double totalPrice = 0;
@@ -80,6 +104,11 @@ namespace PharmacyManagementBLLibrary
             throw new DuplicatePrescriptionException();
         }
 
+        /// <summary>
+        /// Deletes the prescription from the repository.
+        /// </summary>
+        /// <param name="id">The ID of the prescription to delete.</param>
+        /// <returns>Returns true if the prescription is successfully deleted; otherwise, false.</returns>
         public bool DeletePrescription(int id)
         {
             Prescription deletedPrescription = _prescriptionRepository.Delete(id);
@@ -89,7 +118,11 @@ namespace PharmacyManagementBLLibrary
             }
             throw new PrescriptionNotFoundException();
         }
-
+        /// <summary>
+        /// Retrieves a prescription by its ID.
+        /// </summary>
+        /// <param name="id">The ID of the prescription to retrieve.</param>
+        /// <returns>Returns the prescription with the specified ID.</returns>
         public Prescription GetPrescriptionById(int id)
         {
             Prescription prescription = _prescriptionRepository.Get(id);
@@ -100,6 +133,11 @@ namespace PharmacyManagementBLLibrary
             throw new PrescriptionNotFoundException();
         }
 
+        /// <summary>
+        /// Retrieves all prescriptions associated with a specific patient.
+        /// </summary>
+        /// <param name="patientId">The ID of the patient.</param>
+        /// <returns>Returns a list of prescriptions associated with the specified patient.</returns>
         public List<Prescription> GetPrescriptionsByPatientId(int patientId)
         {
             // Implement logic to retrieve prescriptions by patient ID from the repository
@@ -111,6 +149,11 @@ namespace PharmacyManagementBLLibrary
             return prescriptions;
         }
 
+        /// <summary>
+        /// Retrieves all prescriptions associated with a specific doctor.
+        /// </summary>
+        /// <param name="doctorId">The ID of the doctor.</param>
+        /// <returns>Returns a list of prescriptions associated with the specified doctor.</returns>
         public List<Prescription> GetPrescriptionsByDoctorId(int doctorId)
         {
             // Implement logic to retrieve prescriptions by doctor ID from the repository
@@ -122,6 +165,10 @@ namespace PharmacyManagementBLLibrary
             return prescriptions;
         }
 
+        /// <summary>
+        /// Retrieves all prescriptions stored in the repository.
+        /// </summary>
+        /// <returns>Returns a list of all prescriptions.</returns>
         public List<Prescription> GetAllPrescriptions()
         {
             List<Prescription> prescriptions = _prescriptionRepository.GetAll();
