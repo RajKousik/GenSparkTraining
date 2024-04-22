@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PharmacyManagementModelLibrary
 {
-    internal class Sales
+    public class Sales
     {
+        public int SaleId{ get; set; }
+
+        public string SalesType { get; set; } = string.Empty;
+
+        public float TotalPrice { get; set;}
     }
 }

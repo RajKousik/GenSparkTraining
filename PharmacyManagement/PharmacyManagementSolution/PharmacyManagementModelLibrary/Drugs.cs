@@ -60,6 +60,5 @@ namespace PharmacyManagementModelLibrary
             return d1.Id.Equals(d2.Id);
         }
 
-
     }
 }

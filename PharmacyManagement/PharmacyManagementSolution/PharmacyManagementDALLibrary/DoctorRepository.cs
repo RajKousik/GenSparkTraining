@@ -1,6 +1,6 @@
 ﻿namespace PharmacyManagementDALLibrary
 {
-    public class Class1
+    public class Doctor
     {
 
     }
