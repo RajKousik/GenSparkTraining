@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentApplicatio
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentModelLibrary", "DoctorAppointmentModelLibrary\DoctorAppointmentModelLibrary.csproj", "{4B7F332D-9E0F-4B2A-AB3B-E9D55AF228BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorAppointmentDALLibrary", "DoctorAppointmentDALLibrary\DoctorAppointmentDALLibrary.csproj", "{28CD874E-491D-4934-941E-AC4072BCE2CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentDALLibrary", "DoctorAppointmentDALLibrary\DoctorAppointmentDALLibrary.csproj", "{28CD874E-491D-4934-941E-AC4072BCE2CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorAppointmentBLLibrary", "DoctorAppointmentBLLibrary\DoctorAppointmentBLLibrary.csproj", "{02DCCC1C-C757-4DDE-97FF-D4BE0B75BA4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentBLLibrary", "DoctorAppointmentBLLibrary\DoctorAppointmentBLLibrary.csproj", "{02DCCC1C-C757-4DDE-97FF-D4BE0B75BA4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorAppointmentBLTest", "DoctorAppointmentBLTest\DoctorAppointmentBLTest.csproj", "{2CB479CA-2645-4065-9DFB-4304B379F582}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{02DCCC1C-C757-4DDE-97FF-D4BE0B75BA4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02DCCC1C-C757-4DDE-97FF-D4BE0B75BA4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02DCCC1C-C757-4DDE-97FF-D4BE0B75BA4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB479CA-2645-4065-9DFB-4304B379F582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB479CA-2645-4065-9DFB-4304B379F582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB479CA-2645-4065-9DFB-4304B379F582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB479CA-2645-4065-9DFB-4304B379F582}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

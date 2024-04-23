@@ -22,6 +22,14 @@ namespace DoctorAppointmentModelLibrary
             Contact = contact;
         }
 
+        public Doctor()
+        {
+            Name = "";
+            Specialty = "";
+            Contact = "";
+        }
+
+
         public override string ToString()
         {
             return "Doctor ID : " + Id
