@@ -13,6 +13,10 @@ namespace DoctorAppointmentDALLibrary
 
         public Appointment Add(Appointment item)
         {
+            if (_appointments.ContainsValue(item))
+            {
+                return null!;
+            }
             int id = GenerateId();
             item.Id = id;
             _appointments.Add(id, item);

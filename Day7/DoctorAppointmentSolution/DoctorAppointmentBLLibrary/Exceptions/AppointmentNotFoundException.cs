@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DoctorAppointmentBLLibrary.Exceptions
 {
-    public class DuplicateDoctorException : Exception
+    public class AppointmentNotFoundException : Exception
     {
         string msg;
-        public DuplicateDoctorException()
+        public AppointmentNotFoundException()
         {
-            msg = "Doctor already exists";
+            msg = "Appointment with these details does not exist";
         }
 
         [ExcludeFromCodeCoverage]

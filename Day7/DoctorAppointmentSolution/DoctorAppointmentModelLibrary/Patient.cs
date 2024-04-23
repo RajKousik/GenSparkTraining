@@ -24,7 +24,12 @@
         public string? Contact { get; set; } = string.Empty;
         public string? Address { get; set; } = string.Empty;
 
-        
+        public string? PatientIllness { get; set; } = string.Empty;
+
+        public Patient()
+        {
+            Name = "";
+        }
 
         public Patient(string? name, DateTime dateOfBirth, string? contact, string? address)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,7 @@ namespace DoctorAppointmentBLLibrary.Exceptions
             msg = "Doctor with these details does not exist";
         }
 
-        public DoctorNotFoundException(string name)
-        {
-            msg = $"Doctor with these details {name} does not exist";
-        }
+        [ExcludeFromCodeCoverage]
         public override string Message => msg;
     }
 }

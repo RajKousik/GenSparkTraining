@@ -22,6 +22,11 @@ namespace DoctorAppointmentModelLibrary
             DateTime = dateTime;
         }
 
+        public Appointment()
+        {
+            DoctorId = 0; PatientId = 0; DateTime = DateTime.MinValue;
+        }
+
         public override string ToString()
         {
             return "Appointment ID : " + Id

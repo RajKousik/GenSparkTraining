@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DoctorAppointmentBLLibrary.Exceptions
 {
-    internal class PatientNotFoundException : Exception
+    public class PatientNotFoundException : Exception
     {
         string msg;
         public PatientNotFoundException()
@@ -14,10 +15,7 @@ namespace DoctorAppointmentBLLibrary.Exceptions
             msg = "Doctor with these details does not exist";
         }
 
-        public PatientNotFoundException(string name)
-        {
-            msg = $"Doctor with these details {name} does not exist";
-        }
+        [ExcludeFromCodeCoverage]
         public override string Message => msg;
     }
 }

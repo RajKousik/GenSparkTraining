@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,7 @@ namespace DoctorAppointmentBLLibrary.Exceptions
             msg = "Patient with these details already exists.";
         }
 
-        public DuplicatePatientException(string name)
-        {
-            msg = $"Doctor with these details {name} already exists.";
-        }
+        [ExcludeFromCodeCoverage]
         public override string Message => msg;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DoctorAppointmentBLLibrary.Exceptions;
 using DoctorAppointmentDALLibrary;
 using DoctorAppointmentModelLibrary;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DoctorAppointmentBLLibrary
 {
@@ -8,6 +9,7 @@ namespace DoctorAppointmentBLLibrary
     {
         private readonly IRepository<int, Doctor> _doctorRepository;
 
+        [ExcludeFromCodeCoverage]
         public DoctorService()
         {
             _doctorRepository = new DoctorRepository();
@@ -25,7 +27,7 @@ namespace DoctorAppointmentBLLibrary
             {
                 return result.Id;
             }
-            throw new DuplicateDoctorException(doctor.Name);
+            throw new DuplicateDoctorException();
         }
 
         public Doctor DeleteDoctor(int id)
@@ -41,7 +43,7 @@ namespace DoctorAppointmentBLLibrary
         public List<Doctor> GetAllDoctors()
         {
             var doctors = _doctorRepository.GetAll();
-            if (doctors == null)
+            if (doctors.Count == 0)
             {
                 throw new DoctorNotFoundException();
             }
@@ -67,6 +69,9 @@ namespace DoctorAppointmentBLLibrary
             }
             throw new DoctorNotFoundException();
         }
+
+
+
     }
 
 }
