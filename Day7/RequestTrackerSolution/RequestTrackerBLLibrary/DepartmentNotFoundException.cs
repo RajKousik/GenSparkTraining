@@ -13,6 +13,11 @@ namespace RequestTrackerBLLibrary
         {
             msg = "Department with these details does not exist";
         }
+
+        public DepartmentNotFoundException(string name)
+        {
+            msg = $"No Department with name {name}";
+        }
         public override string Message => msg;
 
     }

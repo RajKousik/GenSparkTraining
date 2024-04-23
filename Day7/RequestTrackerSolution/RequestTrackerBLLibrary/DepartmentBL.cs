@@ -1,5 +1,6 @@
 ﻿using RequestTrackerDALLibrary;
 using RequestTrackerModelLibrary;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection.Metadata.Ecma335;
 
 namespace RequestTrackerBLLibrary
@@ -11,6 +12,11 @@ namespace RequestTrackerBLLibrary
         public DepartmentBL()
         {
             _departmentRepository = new DepartmentRepository();
+        }
+
+        public DepartmentBL(IRepository<int, Department> departmentRepository)
+        {
+            _departmentRepository = departmentRepository;
         }
 
         public int AddDepartment(Department department)
@@ -75,6 +81,7 @@ namespace RequestTrackerBLLibrary
             return department;
         }
 
+        [ExcludeFromCodeCoverage]
         public int GetDepartmentHeadId(int departmentId)
         {
             var department = _departmentRepository.Get(departmentId);

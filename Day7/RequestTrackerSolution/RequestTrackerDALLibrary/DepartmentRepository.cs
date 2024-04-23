@@ -16,6 +16,7 @@ namespace RequestTrackerDALLibrary
             _departments = new Dictionary<int, Department>();
         }
 
+
         int GenerateId()
         {
             if(_departments.Count == 0)
