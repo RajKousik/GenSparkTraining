@@ -38,6 +38,7 @@ namespace ShoppingDALLibrary
             if (cart != null)
             {
                 cart = item;
+                return cart;
             }
             throw new NoCartWithGivenIdException();
         }
