@@ -22,12 +22,10 @@ namespace ShoppingDALLibrary
 
         public override Product GetByKey(int key)
         {
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (items[i].Id == key)
-                    return items[i];
-            }
-            throw new NoProductWithGivenIdException();
+            Predicate<Product> FindPredicate = (p) => p.Id == key;
+            //return items.ToList().Find(FindPredicate);
+            return items.ToList().Find((p) => p.Id == key);
+            //throw new NoProductWithGivenIdException();
         }
 
         public override Product Update(Product item)
