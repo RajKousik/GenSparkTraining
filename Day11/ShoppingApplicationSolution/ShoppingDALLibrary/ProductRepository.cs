@@ -16,16 +16,23 @@ namespace ShoppingDALLibrary
             if (product != null)
             {
                 items.Remove(product);
+                return product;
             }
-            return product;
+            throw new NoProductWithGivenIdException();
         }
 
         public override Product GetByKey(int key)
         {
-            Predicate<Product> FindPredicate = (p) => p.Id == key;
+            //Predicate<Product> FindPredicate = (p) => p.Id == key;
             //return items.ToList().Find(FindPredicate);
-            return items.ToList().Find((p) => p.Id == key);
-            //throw new NoProductWithGivenIdException();
+            //return items.ToList().Find((p) => p.Id == key);
+
+            Product product = items.ToList().Find((p) => p.Id == key);
+            if(product != null)
+            {
+                return product;
+            }
+            throw new NoProductWithGivenIdException();
         }
 
         public override Product Update(Product item)
@@ -34,8 +41,9 @@ namespace ShoppingDALLibrary
             if (product != null)
             {
                 product = item;
+                return product;
             }
-            return product;
+            throw new NoProductWithGivenIdException();
         }
     }
 }

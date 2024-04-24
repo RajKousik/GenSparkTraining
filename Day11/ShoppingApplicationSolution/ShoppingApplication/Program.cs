@@ -41,8 +41,25 @@
             //program.Calculate(c2);
             //program.Calculate(c3);
 
-            Func<int, int, int> c1 = (num1, num2) => (num1 + num2);
-            program.Calculate(c1);
+            //Func<int, int, int> c1 = (num1, num2) => (num1 + num2);
+            //program.Calculate(c1);
+
+
+            //int[] numbers = { 40, 56, 23, 54, 12, 32 };
+
+            //var anotherArray = from n in numbers where n > 30 select n;
+            //var another = numbers.Where((n) => n > 30);
+
+
+            //foreach (var item in anotherArray)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine("------");
+            //foreach (var item in another)
+            //{
+            //    Console.WriteLine(item);
+            //}
 
 
         }
