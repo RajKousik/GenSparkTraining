@@ -14,6 +14,6 @@ namespace PharmacyManagementBLLibrary
         Patient GetPatientByName(string name);
         List<Patient> GetAllPatients();
         Patient UpdatePatient(Patient patient);
-        bool DeletePatient(int id);
+        bool DeletePatient(int id); 
     }
 }
