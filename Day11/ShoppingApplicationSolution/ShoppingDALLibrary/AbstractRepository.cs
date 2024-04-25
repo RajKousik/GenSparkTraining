@@ -2,7 +2,7 @@
 {
     public abstract class AbstractRepository<K, T> : IRepository<K, T>
     {
-        protected IList<T> items = new List<T>();
+        protected List<T> items = new List<T>();
         public virtual T Add(T item)
         {
             items.Add(item);
@@ -10,7 +10,8 @@
         }
         public virtual ICollection<T> GetAll()
         {
-            return items.ToList<T>();
+            //items.Sort();
+            return items;
         }
 
         public abstract T Delete(K key);

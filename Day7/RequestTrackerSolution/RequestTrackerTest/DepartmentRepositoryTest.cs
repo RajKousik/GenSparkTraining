@@ -33,7 +33,6 @@ namespace RequestTrackerTest
             //Action
             var result = repository.Add(department);
             //Assert
-            Console.WriteLine(result);
             Assert.IsNull(result);
         }
 

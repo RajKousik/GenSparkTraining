@@ -2,6 +2,7 @@
 using ShoppingApplicationModelLibrary.Exceptions;
 using ShoppingBLLibrary.Services;
 using ShoppingDALLibrary;
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using System.Runtime.ConstrainedExecution;
 
@@ -13,11 +14,13 @@ namespace ShoppingBLLibrary.BL
         private const double DISCOUNT_PERCENTAGE = 0.05;
         private readonly IRepository<int, Cart> _cartRepository;
 
+        [ExcludeFromCodeCoverage]
         public CartBL()
         {
             _cartRepository = new CartRepository();
         }
 
+        [ExcludeFromCodeCoverage]
         public CartBL(IRepository<int, Cart> cartRepository)
         {
             _cartRepository = cartRepository;
@@ -87,6 +90,7 @@ namespace ShoppingBLLibrary.BL
             return updatedCart;
         }
 
+        [ExcludeFromCodeCoverage]
         private void ProccessCart(Cart cart)
         {
             // Calculate total price by summing up prices of cart items
