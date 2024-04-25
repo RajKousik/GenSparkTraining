@@ -8,6 +8,7 @@ namespace ShoppingApplicationModelLibrary
 {
     public class CartItem
     {
+        public int CartItemId { get; set; }
         public int CartId { get; set; }//Navigation property
         
         public int ProductId { get; set; }

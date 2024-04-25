@@ -36,6 +36,15 @@ namespace ShoppingBLLibrary.BL
             throw new NoCustomerWithGiveIdException();
         }
 
+        public Customer GetCustomerByName(string name)
+        {
+            var customer = _customerRepository.GetAll().ToList().Find(e => e.Name == name);
+            if (customer == null)
+            {
+                throw new NoCustomerWithGiveIdException();
+            }
+            return customer;
+        }
         public Customer DeleteCustomer(int id)
         {
             var result = _customerRepository.Delete(id);

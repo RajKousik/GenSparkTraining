@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShoppingApplicationModelLibrary\ShoppingApplicationModelLibrary.csproj" />
-    <ProjectReference Include="..\ShoppingDALLibrary\ShoppingDALLibrary.csproj" />
+    <ProjectReference Include="..\ShoppingBLLibrary\ShoppingBLLibrary.csproj" />
   </ItemGroup>
 
 </Project>

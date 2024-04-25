@@ -16,7 +16,7 @@ namespace ShoppingApplicationModelLibrary
         {
             return "Id : " + Id +
                 "\nName : " + Name +
-                "\nPrice : $" + Price +
+                "\nPrice : Rs." + Price +
                 "\nNos in Stock : " + QuantityInHand;
         }
         [ExcludeFromCodeCoverage]

@@ -13,32 +13,59 @@ namespace ShoppingBLLibrary.BL
 
         private const double SHIPPING_CHARGE = 100.00;
         private const double DISCOUNT_PERCENTAGE = 0.05;
-        private readonly IRepository<int, Cart> _cartRepository;
+        readonly IRepository<int, Cart> _cartRepository;
+        readonly IRepository<int, CartItem> _cartItemRepository;
+        readonly IRepository<int, Product> _productRepository;
+
+
+        private readonly IProductService _productService;
+        private readonly ICartItemService _cartItemService;
 
         [ExcludeFromCodeCoverage]
         public CartBL()
         {
             _cartRepository = new CartRepository();
         }
-
         [ExcludeFromCodeCoverage]
-        public CartBL(IRepository<int, Cart> cartRepository)
+        public CartBL(IRepository<int, Cart> cartRepository, IRepository<int, CartItem> cartItemRepository, IRepository<int, Product> productRepository)
         {
             _cartRepository = cartRepository;
+            _cartItemRepository = cartItemRepository;
+            _productRepository = productRepository;
+
         }
+
+        public CartBL(IProductService productService, ICartItemService cartItemService)
+        {
+            _productService = productService;
+            _cartItemService = cartItemService;
+        }
+
 
         public int AddCart(Cart cart)
         {
-            if (cart == null)
-            {
-                throw new ArgumentNullException(nameof(cart), "Cart cannot be null.");
-            }
+            //List<CartItem> cartItems = (List<CartItem>)_cartItemRepository.GetAll().Where(item => item.CartId == cart.Id);
+            //cart.CartItems = cartItems;
+
+
 
             // Apply shipping charges, discounts, and check maximum quantities
             ProccessCart(cart);
+            
 
             // Add the cart to the repository
             Cart addedCart = _cartRepository.Add(cart);
+
+            if (addedCart == null)
+            {
+                throw new NoCartWithGivenIdException();
+            }
+            foreach (var cartItem in cart.CartItems)
+            {
+                cartItem.Product.QuantityInHand -= cartItem.Quantity;
+                //_productService.UpdateProduct(cartItem.Product);
+            }
+
             return addedCart.Id;
         }
 
@@ -49,6 +76,10 @@ namespace ShoppingBLLibrary.BL
             {
                 throw new CartNotFoundException();
             }
+            //foreach (var item in deletedCart.CartItems)
+            //{
+            //    _cartItemRepository.Delete(item.CartItemId);
+            //}
             return deletedCart;
         }
 
@@ -98,7 +129,7 @@ namespace ShoppingBLLibrary.BL
             double totalPrice = 0;
             foreach (var item in cart.CartItems)
             {
-                totalPrice += item.Price * item.Quantity;
+                totalPrice += item.Price;
             }
 
             // Add shipping charge if total price is less than 100

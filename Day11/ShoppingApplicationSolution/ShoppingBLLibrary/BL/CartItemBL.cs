@@ -90,6 +90,8 @@ namespace ShoppingBLLibrary.BL
         [ExcludeFromCodeCoverage]
         public void ProcessCartItem(CartItem cartItem)
         {
+            cartItem.Price = cartItem.Quantity * cartItem.Product.Price;
+
             if (cartItem.Quantity > 5)
             {
                 throw new ArgumentException("Maximum quantity of product in cart should be less than 5");

@@ -10,6 +10,21 @@ namespace ShoppingDALLibrary
 {
     public class CustomerRepository : AbstractRepository<int, Customer>
     {
+        public int GenerateId()
+        {
+            if (items.Count == 0) return 1;
+
+            int id = items.Count();
+            return ++id;
+        }
+
+        public override Customer Add(Customer item)
+        {
+            item.Id = GenerateId();
+            return base.Add(item);
+        }
+
+
         public override Customer Delete(int key) 
         {
             Customer customer = GetByKey(key);

@@ -10,6 +10,20 @@ namespace ShoppingDALLibrary
 {
     public class ProductRepository : AbstractRepository<int, Product>
     {
+        public int GenerateId()
+        {
+            if (items.Count == 0) return 1;
+
+            int id = items.Count();
+            return ++id;
+        }
+
+        public override Product Add(Product item)
+        {
+            item.Id = GenerateId();
+            return base.Add(item);
+        }
+
         public override Product Delete(int key)
         {
             Product product = GetByKey(key);

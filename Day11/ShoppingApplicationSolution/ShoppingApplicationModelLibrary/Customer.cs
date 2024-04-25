@@ -13,6 +13,8 @@ namespace ShoppingApplicationModelLibrary
         public string Phone { get; set; } = String.Empty;
         public string Name { get; set; }
         public int Age { get; set; }
+        public int CartId { get; set; } = -1;
+
         [ExcludeFromCodeCoverage]
         public int CompareTo(Customer? other)
         {
