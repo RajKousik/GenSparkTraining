@@ -148,16 +148,36 @@ namespace ShoppingApplication
             //    Id = "CN" + c.Id
             //};
 
+            //Customer newCustomer = new Customer() { Id = 3, Name = "MARTHA" };
+            //bool isContains = customerList.Contains(newCustomer, new customSeperator());
+
+            //Console.WriteLine(isContains);
+
             //foreach(var customer in filteredResult)
             //{
             //    Console.WriteLine(customer.Name);
             //    Console.WriteLine(customer.Id);
             //}
-            Customer newCustomer = new Customer() { Id = 3, Name = "MARTHA" };
-            bool isContains = customerList.Contains(newCustomer, new customSeperator());
 
-            Console.WriteLine(isContains);
+            //AGGREGAE FUNCTIONS
+            //string commaSeperatedNames = customerList.Aggregate<Customer, String>("Customer Names: ", (str, s)=>  str = str + s.Name + ", ");
+            //Console.WriteLine(commaSeperatedNames);
 
+            //int totalAgeOfCustomers = customerList.Aggregate<Customer, int>(0, (totalAge,s)=> totalAge += s.Age);
+            //Console.WriteLine(totalAgeOfCustomers);
+
+            //string commaSeperatedNames = customerList.Aggregate<Customer, string, string>(
+            //                                                String.Empty, 
+            //                                                (str, s) => str += s.Name + ",", 
+            //                                                str => str.Substring(0, str.Length - 1)
+            //                                                );
+            //Console.WriteLine(commaSeperatedNames);
+
+
+            var averageAge = customerList.Average(c => c.Age);
+            Console.WriteLine(averageAge);
+
+            
         }
 
 
