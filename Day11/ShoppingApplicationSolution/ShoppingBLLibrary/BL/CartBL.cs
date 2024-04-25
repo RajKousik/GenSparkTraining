@@ -37,6 +37,7 @@ namespace ShoppingBLLibrary.BL
 
         public CartBL(IProductService productService, ICartItemService cartItemService)
         {
+            _cartRepository = new CartRepository();
             _productService = productService;
             _cartItemService = cartItemService;
         }
@@ -44,18 +45,11 @@ namespace ShoppingBLLibrary.BL
 
         public int AddCart(Cart cart)
         {
-            //List<CartItem> cartItems = (List<CartItem>)_cartItemRepository.GetAll().Where(item => item.CartId == cart.Id);
-            //cart.CartItems = cartItems;
-
-
 
             // Apply shipping charges, discounts, and check maximum quantities
             ProccessCart(cart);
-            
 
-            // Add the cart to the repository
             Cart addedCart = _cartRepository.Add(cart);
-
             if (addedCart == null)
             {
                 throw new NoCartWithGivenIdException();
@@ -63,7 +57,7 @@ namespace ShoppingBLLibrary.BL
             foreach (var cartItem in cart.CartItems)
             {
                 cartItem.Product.QuantityInHand -= cartItem.Quantity;
-                //_productService.UpdateProduct(cartItem.Product);
+                _productService.UpdateProduct(cartItem.Product);
             }
 
             return addedCart.Id;
@@ -71,15 +65,13 @@ namespace ShoppingBLLibrary.BL
 
         public Cart DeleteCart(int id)
         {
+
             Cart deletedCart = _cartRepository.Delete(id);
             if (deletedCart == null)
             {
                 throw new CartNotFoundException();
             }
-            //foreach (var item in deletedCart.CartItems)
-            //{
-            //    _cartItemRepository.Delete(item.CartItemId);
-            //}
+
             return deletedCart;
         }
 

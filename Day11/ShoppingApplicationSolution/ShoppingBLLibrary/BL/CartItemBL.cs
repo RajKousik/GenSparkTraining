@@ -44,10 +44,10 @@ namespace ShoppingBLLibrary.BL
 
         public CartItem DeleteCartItem(int id)
         {
-            var result = _cartItemRepository.Delete(id);
-            if (result != null)
+            var deletedCartItem = _cartItemRepository.Delete(id);
+            if (deletedCartItem != null)
             {
-                return result;
+                return deletedCartItem;
             }
             throw new NoCartItemWithGivenIdException();
         }

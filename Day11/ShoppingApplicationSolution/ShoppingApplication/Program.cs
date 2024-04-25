@@ -18,8 +18,7 @@ namespace ShoppingApplication
             _productService = new ProductBL();
             _customerService = new CustomerBL();
             _cartItemService = new CartItemBL();
-            _cartService = new CartBL();
-            
+            _cartService = new CartBL(_productService, _cartItemService); 
         }
         public static void Main(string[] args)
         {
@@ -111,7 +110,6 @@ namespace ShoppingApplication
                     Console.WriteLine("Customer with that ID does not exist");
                     ManageCart();
                 }
-
                 var result = _cartService.DeleteCart(customer.CartId);
                 if (result == null)
                 {

@@ -80,9 +80,7 @@ namespace ShoppingBLLibrary.BL
 
         public Product UpdateProduct(Product product)
         {
-            Console.WriteLine("Cheking");
             var result = _productRepository.Update(product);
-            Console.WriteLine("result" + result);
             if (result != null)
             {
                 return result;
