@@ -13,12 +13,14 @@ namespace ShoppingBLLibrary.BL
 {
     public class CartItemBL : ICartItemService
     {
+        
         readonly IRepository<int, CartItem> _cartItemRepository;
         [ExcludeFromCodeCoverage]
         public CartItemBL()
         {
             _cartItemRepository = new CartItemRepository();
         }
+
         [ExcludeFromCodeCoverage]
         public CartItemBL(IRepository<int, CartItem> cartItemRepository)
         {

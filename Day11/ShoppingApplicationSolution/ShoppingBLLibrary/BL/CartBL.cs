@@ -10,6 +10,7 @@ namespace ShoppingBLLibrary.BL
 {
     public class CartBL : ICartService
     {
+
         private const double SHIPPING_CHARGE = 100.00;
         private const double DISCOUNT_PERCENTAGE = 0.05;
         private readonly IRepository<int, Cart> _cartRepository;

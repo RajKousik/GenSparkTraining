@@ -80,17 +80,43 @@ namespace ShoppingApplication
             //}
 
 
-            int[] numbers = { 89, 78, 23, 546, 787, 98, 11, 3 };
+            //int[] numbers = { 89, 78, 23, 546, 787, 98, 11, 3 };
 
-            int[] evenNumebrs = numbers.EvenCatch();
-            foreach (int n in evenNumebrs)
-                Console.WriteLine(n);
-            string message = "Hello World";
-            message = message.Reverse();
-            Console.WriteLine(message);
+            //int[] evenNumebrs = numbers.EvenCatch();
+            //foreach (int n in evenNumebrs)
+            //    Console.WriteLine(n);
+            //string message = "Hello World";
+            //message = message.Reverse();
+            //Console.WriteLine(message);
+
+            UnderstandingLINQ();
 
         }
+
+        public static void UnderstandingLINQ()
+        {
+            IList<Customer> customerList = new List<Customer>() {
+                new Customer() { Id = 1, Name = "RAJ", Age = 13} ,
+                new Customer() { Id = 2, Name = "EMILIA",  Age = 21 } ,
+                new Customer() { Id = 3, Name = "MARTHA",  Age = 18 } ,
+                new Customer() { Id = 4, Name = "ADAM" , Age = 20} ,
+                new Customer() { Id = 5, Name = "EVE" , Age = 15 }
+            };
+
+            var filteredResult = from c in customerList
+                                 where c.Age > 12 && c.Age < 20
+                                 select c.Name;
+
+            foreach (var customer in customerList)
+            {
+                Console.WriteLine(customer);
+            }
+        }
+
+
     }
+
+    
 
     public static class StringMethods
     {
