@@ -1,5 +1,7 @@
 ﻿using ShoppingApplicationModelLibrary;
 using ShoppingDALLibrary;
+using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingApplication
 {
@@ -89,15 +91,94 @@ namespace ShoppingApplication
             //message = message.Reverse();
             //Console.WriteLine(message);
 
+            UnderstandingLINQ();
 
         }
 
-        
+        public static void UnderstandingLINQ()
+        {
+            IList<Customer> customerList = new List<Customer>() {
+                new Customer() { Id = 1, Name = "RAJ", Age = 18} ,
+                new Customer() { Id = 2, Name = "EMILIA",  Age =  19} ,
+                new Customer() { Id = 3, Name = "MARTHA",  Age = 18 } ,
+                new Customer() { Id = 4, Name = "ADAM" , Age = 25} ,
+                new Customer() { Id = 5, Name = "EVE" , Age = 19 },
+                new Customer() { Id = 6, Name = "KATHERINE" , Age = 19 }
+            };
+
+            //var filteredResult = from c in customerList
+            //                     where c.Age >= 15 && c.Age < 20
+            //                     select c.Name;
+
+
+            //var filteredResult = customerList.Where((s, i) => {
+            //    if (i % 2 == 0) // if it is even element
+            //        return true;
+
+            //    return false;
+            //});
+            //IList mixedList = new ArrayList();
+            //mixedList.Add("RAM");
+            //mixedList.Add(1);
+            //mixedList.Add("JANU");
+            //mixedList.Add(false);
+            //mixedList.Add(new Customer() { Id = 1, Age = 13, Name = "RAJ", Phone = "8972910123" });
+            //var filteredResult = from c in mixedList.OfType<Customer>() select c;
+
+
+            //var filteredResult = customerList.OrderByDescending(c => c.Name);
+
+            //var filteredResult = from c in customerList orderby c.Name descending select c;
+
+
+
+            //var filteredResult = from c in customerList group c by c.Age;
+
+            //foreach (var groupedObject in filteredResult)
+            //{
+            //    Console.WriteLine("Age of {0}:", groupedObject.Key);
+
+            //    foreach(var c in groupedObject)
+            //        Console.WriteLine(c);
+            //    Console.WriteLine();
+            //}
+
+            //var filteredResult = from c in customerList select new {
+            //    Name = "Mr/Mrs:" + c.Name,
+            //    Id = "CN" + c.Id
+            //};
+
+            //foreach(var customer in filteredResult)
+            //{
+            //    Console.WriteLine(customer.Name);
+            //    Console.WriteLine(customer.Id);
+            //}
+            Customer newCustomer = new Customer() { Id = 3, Name = "MARTHA" };
+            bool isContains = customerList.Contains(newCustomer, new customSeperator());
+
+            Console.WriteLine(isContains);
+
+        }
 
 
     }
 
-    
+    public class customSeperator : IEqualityComparer<Customer>
+    {
+
+        public bool Equals(Customer? x, Customer? y)
+        {
+            return (x.Id == y.Id && x.Name == y.Name);
+        }
+
+        public int GetHashCode([DisallowNull] Customer obj)
+        {
+            return obj.GetHashCode();
+        }
+    }
+
+
+
 
     public static class StringMethods
     {
