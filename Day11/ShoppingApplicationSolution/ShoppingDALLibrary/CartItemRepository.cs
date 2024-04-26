@@ -19,15 +19,15 @@ namespace ShoppingDALLibrary
             return ++id;
         }
 
-        public override CartItem Add(CartItem item)
+        public override async Task<CartItem> Add(CartItem item)
         {
             item.CartItemId = GenerateId();
-            return base.Add(item);
+            return base.Add(item).Result;
         }
 
-        public override CartItem Delete(int key)
+        public override async Task<CartItem> Delete(int key)
         {
-            CartItem cartItem = GetByKey(key);
+            CartItem cartItem = await GetByKey(key);
             if (cartItem != null)
             {
                 items.Remove(cartItem);
@@ -36,7 +36,7 @@ namespace ShoppingDALLibrary
             throw new NoCartItemWithGivenIdException();
         }
 
-        public override CartItem GetByKey(int key)
+        public override async Task<CartItem> GetByKey(int key)
         {
             CartItem cartItem = items.ToList().Find(p => p.CartId == key);
             if (cartItem != null)
@@ -46,9 +46,9 @@ namespace ShoppingDALLibrary
             throw new NoCartItemWithGivenIdException();
         }
 
-        public override CartItem Update(CartItem item)
+        public override async Task<CartItem> Update(CartItem item)
         {
-            CartItem cartItem = GetByKey(item.CartId);
+            CartItem cartItem = await GetByKey(item.CartId);
             if (cartItem != null)
             {
                 cartItem = item;

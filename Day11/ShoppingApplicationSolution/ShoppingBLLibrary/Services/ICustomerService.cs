@@ -9,10 +9,10 @@ namespace ShoppingBLLibrary.Services
 {
     public interface ICustomerService
     {
-        int AddCustomer(Customer customer);
-        Customer GetCustomerById(int id);
-        List<Customer> GetAllCustomers();
-        Customer UpdateCustomer(Customer customer);
-        Customer DeleteCustomer(int id);
+        Task<int> AddCustomer(Customer customer);
+        Task<Customer> GetCustomerById(int id);
+        Task<List<Customer>> GetAllCustomers();
+        Task<Customer> UpdateCustomer(Customer customer);
+        Task<Customer> DeleteCustomer(int id);
     }
 }

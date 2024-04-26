@@ -37,8 +37,7 @@ namespace ShoppingDALTest
         public void AddFailTest()
         {
             Customer customer = null;
-            var result = repository.Add(customer);
-            Assert.IsNull(result);
+            Assert.Throws<NullReferenceException>(() => repository.Add(customer));
         }
 
         // GET ALL
@@ -47,7 +46,7 @@ namespace ShoppingDALTest
         public void GetAllSuccessTest()
         {
             var result = repository.GetAll();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Result.Count);
         }
 
         [Test]
@@ -55,7 +54,7 @@ namespace ShoppingDALTest
         {
             repository.Delete(1);
             var result = repository.GetAll();
-            Assert.AreEqual(result.Count, 0);
+            Assert.AreEqual(result.Result.Count, 0);
         }
 
 

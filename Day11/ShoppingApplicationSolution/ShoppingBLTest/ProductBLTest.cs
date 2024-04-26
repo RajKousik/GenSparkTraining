@@ -28,8 +28,8 @@ namespace ShoppingBLTest
         [Test]
         public void GetByKeySuccessTest()
         {
-            var product = productService.GetProductById(10);
-            Assert.AreEqual(10, product.Id);
+            var product = productService.GetProductById(1);
+            Assert.AreEqual(1, product.Id);
         }
 
         [Test]
@@ -45,9 +45,9 @@ namespace ShoppingBLTest
             Product product = new Product() { Id = 2, Name = "Pen", Price = 20, QuantityInHand = 4 };
 
             // Action
-            int addedItemId = productService.AddProduct(product);
+            var addedItemId = productService.AddProduct(product);
 
-            Assert.AreEqual(2, addedItemId);
+            Assert.AreEqual(2, addedItemId.Result);
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace ShoppingBLTest
             Product product = null; // Provide invalid cart item data
 
             // Action and Assert
-            Assert.Throws<NoProductWithGivenIdException>(() => productService.AddProduct(product));
+            Assert.Throws<NullReferenceException>(() => productService.AddProduct(product));
         }
 
         [Test]
@@ -66,10 +66,10 @@ namespace ShoppingBLTest
             // Arrange
             Product product = new Product() { Id = 3, Name = "Eraser", Price = 5, QuantityInHand = 3 };
 
-            int addedItemId = productService.AddProduct(product);
+            var addedItemId = productService.AddProduct(product);
 
             // Action
-            var deletedItem = productService.DeleteProduct(addedItemId);
+            var deletedItem = productService.DeleteProduct(addedItemId.Result);
 
             // Assert
             Assert.IsNotNull(deletedItem);
@@ -90,7 +90,7 @@ namespace ShoppingBLTest
 
             // Assert
             Assert.IsNotNull(products);
-            Assert.IsNotEmpty(products);
+            Assert.IsNotEmpty(products.Result);
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace ShoppingBLTest
         {
             // Arrange
             // Clear existing cart items (if any)
-            productService.DeleteProduct(10);
+            productService.DeleteProduct(1);
 
             // Action and Assert
             Assert.Throws<NoProductWithGivenIdException>(()=> productService.GetAllProducts());
@@ -111,7 +111,7 @@ namespace ShoppingBLTest
             // Arrange
             Product product = new Product() { Id = 4, Name = "Scale", Price = 15.00, QuantityInHand = 20 };
 
-            int addedItemId = productService.AddProduct(product);
+            var addedItemId = productService.AddProduct(product);
 
             product.Price = 10.00; // Update quantity
 
@@ -119,7 +119,7 @@ namespace ShoppingBLTest
             var updatedItem = productService.UpdateProduct(product);
 
             // Assert
-            Assert.AreEqual(updatedItem.Price, 10.00);
+            Assert.AreEqual(updatedItem.Result.Price, 10.00);
         }
 
 

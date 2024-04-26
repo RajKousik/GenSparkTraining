@@ -21,7 +21,8 @@ namespace ShoppingDALTest
             //Action
             var result = repository.Add(cartItem);
             //Assert
-            Assert.AreEqual(1, result.ProductId);
+            
+            Assert.AreEqual(1, result.Result.ProductId);
         }
 
         [Test]
@@ -32,7 +33,7 @@ namespace ShoppingDALTest
             //Action
             var result = repository.Add(cartItem);
             //Assert
-            Assert.AreNotEqual(1, result.ProductId);
+            Assert.AreNotEqual(1, result.Result.ProductId);
         }
 
         [Test]
@@ -48,7 +49,7 @@ namespace ShoppingDALTest
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual(1, result.ProductId);
+            Assert.AreEqual(1, result.Result.ProductId);
         }
 
         [Test]
@@ -75,7 +76,7 @@ namespace ShoppingDALTest
 
             // Assert
             Assert.IsNotNull(updatedCartItem);
-            Assert.AreEqual(2, updatedCartItem.Quantity);
+            Assert.AreEqual(2, updatedCartItem.Result.Quantity);
         }
 
         [Test]
@@ -140,7 +141,7 @@ namespace ShoppingDALTest
             var cartItems = repository.GetAll();
 
             // Assert
-            Assert.IsEmpty(cartItems);
+            Assert.IsEmpty(cartItems.Result);
         }
     }
 }

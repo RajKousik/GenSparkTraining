@@ -23,11 +23,17 @@ namespace ShoppingApplication
         public static void Main(string[] args)
         {
             Program program = new Program();
+
+            //Async async = new Async();
+            //async.AsyncMain();
+
             program.Run();
         }
 
         private void Run()
         {
+            Console.WriteLine("------- WELCOME TO SHOPPING CART -------");
+
             while (true)
             {
                 DisplayMenu();
@@ -60,11 +66,9 @@ namespace ShoppingApplication
                 Console.WriteLine("1. Add to Cart");
                 Console.WriteLine("2. Get all items in Cart");
                 Console.WriteLine("3. Get Total price in cart");
-                Console.WriteLine("4. Update items in cart");
-                Console.WriteLine("5. Delete items from cart");
-                Console.WriteLine("6. View cart details");
-                Console.WriteLine("7. Delete cart");
-                Console.WriteLine("8. Back to Main Menu");
+                Console.WriteLine("4. View cart details");
+                Console.WriteLine("5. Delete cart");
+                Console.WriteLine("6. Back to Main Menu");
                 Console.Write("Choose an option: ");
 
                 switch (Console.ReadLine())
@@ -79,18 +83,12 @@ namespace ShoppingApplication
                         GetTotalPrice();
                         break;
                     case "4":
-                        //UpdateCartItems();
-                        break;
-                    case "5":
-                        //DeleteCartItems();
-                        break;
-                    case "6":
                         ViewAllCarts();
                         break;
-                    case "7":
+                    case "5":
                         DeleteCart();
                         break;
-                    case "8":
+                    case "6":
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
@@ -126,7 +124,7 @@ namespace ShoppingApplication
             }
         }
 
-        private void GetTotalPrice()
+        private async void  GetTotalPrice()
         {
             try
             {
@@ -137,7 +135,7 @@ namespace ShoppingApplication
                     Console.WriteLine("Customer with that ID does not exist");
                     ManageCart();
                 }
-                Cart cart = _cartService.GetCartById(customer.CartId);
+                var cart = await _cartService.GetCartById(customer.CartId);
 
                 Console.WriteLine("The total price of the cart is Rs. " + cart.TotalPrice);
             }
@@ -151,7 +149,7 @@ namespace ShoppingApplication
         {
             try
             {
-                var carts = _cartService.GetAllCarts();
+                var carts =  _cartService.GetAllCarts().Result;
                 foreach (var cart in carts)
                 {
                     Console.WriteLine(cart);
@@ -164,7 +162,7 @@ namespace ShoppingApplication
             }
         }
 
-        private void GetAllCartItems()
+        private async void GetAllCartItems()
         {
             try
             {
@@ -176,7 +174,7 @@ namespace ShoppingApplication
                     ManageCart();
                 }
 
-                Cart cart = _cartService.GetCartById(customer.CartId);
+                var cart = await _cartService.GetCartById(customer.CartId);
 
                 Console.WriteLine("Items in cart:");
                 foreach (var item in cart.CartItems)
@@ -203,7 +201,7 @@ namespace ShoppingApplication
                 {
                     int id = int.Parse(stringId);
 
-                    customer = _customerService.GetCustomerById(id);
+                    customer =  _customerService.GetCustomerById(id).Result;
 
                     if(customer != null)
                     {
@@ -271,7 +269,7 @@ namespace ShoppingApplication
                     Console.WriteLine("Enter the quantity of the product: ");
                     int quantity = GetUserChoice();
 
-                    Product product = _productService.GetProductById(pid);
+                    Product product = _productService.GetProductById(pid).Result;
                     if (product.QuantityInHand <= 0)
                     {
                         Console.WriteLine("Product is out of stock. Please choose another product!!");
@@ -305,7 +303,7 @@ namespace ShoppingApplication
 
                 cart.CartItems = cartItems;
 
-                int cartId = _cartService.AddCart(cart);
+                int cartId = _cartService.AddCart(cart).Result;
                 customer.CartId = cartId;
             }
             catch(Exception ex)
@@ -360,7 +358,7 @@ namespace ShoppingApplication
         private void ViewAllProducts()
         {
             Console.WriteLine("\nAll Products:");
-            var products = _productService.GetAllProducts();
+            var products = _productService.GetAllProducts().Result;
             foreach (var product in products)
             {
                 Console.WriteLine(product);
@@ -374,7 +372,7 @@ namespace ShoppingApplication
                 Console.WriteLine("Enter Product ID to be deleted: ");
                 int id = int.Parse(Console.ReadLine()!);
 
-                Product result = _productService.DeleteProduct(id);
+                Product result = _productService.DeleteProduct(id).Result;
                 Console.WriteLine($"Product {result.Name} with ID {result.Id} has been deleted");
             }
             catch (Exception e)
@@ -391,7 +389,7 @@ namespace ShoppingApplication
                 Console.Write("Enter Product ID: ");
                 int id = int.Parse(Console.ReadLine()!);
 
-                var product = _productService.GetProductById(id);
+                var product = _productService.GetProductById(id).Result;
 
                 if (product != null)
                 {
@@ -449,7 +447,7 @@ namespace ShoppingApplication
                 Console.Write("Enter Product name: ");
                 string name = Console.ReadLine()!;
 
-                Product product = _productService.GetProductByName(name);
+                Product product = _productService.GetProductByName(name).Result;
                 if (product != null)
                 {
                     Console.WriteLine(product);
@@ -472,7 +470,7 @@ namespace ShoppingApplication
                 Console.Write("Enter Product ID: ");
                 int id = int.Parse(Console.ReadLine()!);
 
-                Product product = _productService.GetProductById(id);
+                Product product = _productService.GetProductById(id).Result;
                 if (product != null)
                 {
                     Console.WriteLine(product);
@@ -508,7 +506,7 @@ namespace ShoppingApplication
                     Image = image,
                     QuantityInHand = quantityInHand
                 };
-                int productId = _productService.AddProduct(product);
+                int productId = _productService.AddProduct(product).Result;
                 Console.WriteLine($"Product added with ID: {productId}");
             }
             catch (Exception e)
@@ -520,6 +518,7 @@ namespace ShoppingApplication
 
         private void DisplayMenu()
         {
+            
             Console.WriteLine("\nMenu:");
             Console.WriteLine("1. Manage Customers");
             Console.WriteLine("2. Manage Products");
@@ -574,7 +573,7 @@ namespace ShoppingApplication
         private void ViewAllCustomers()
         {
             Console.WriteLine("\nAll Customers:");
-            var customers = _customerService.GetAllCustomers();
+            var customers = _customerService.GetAllCustomers().Result;
             foreach (var customer in customers)
             {
                 Console.WriteLine(customer);
@@ -588,7 +587,7 @@ namespace ShoppingApplication
                 Console.WriteLine("Enter Customer ID to be deleted: ");
                 int id = int.Parse(Console.ReadLine()!);
 
-                Customer result = _customerService.DeleteCustomer(id);
+                Customer result = _customerService.DeleteCustomer(id).Result;
                 Console.WriteLine($"Customer {result.Name} with ID {result.Id} has been deleted");
             }
             catch (Exception e)
@@ -605,7 +604,7 @@ namespace ShoppingApplication
                 Console.Write("Enter Customer ID: ");
                 int id = int.Parse(Console.ReadLine()!);
 
-                var customer = _customerService.GetCustomerById(id);
+                var customer = _customerService.GetCustomerById(id).Result;
 
                 if (customer != null)
                 {
@@ -656,7 +655,7 @@ namespace ShoppingApplication
                 Console.Write("Enter Customer name: ");
                 string name = Console.ReadLine()!;
 
-                Customer customer = _customerService.GetCustomerByName(name);
+                Customer customer = _customerService.GetCustomerByName(name).Result;
                 if (customer != null)
                 {
                     Console.WriteLine(customer);
@@ -679,7 +678,7 @@ namespace ShoppingApplication
                 Console.Write("Enter Customer ID: ");
                 int id = int.Parse(Console.ReadLine()!);
 
-                Customer customer = _customerService.GetCustomerById(id);
+                Customer customer = _customerService.GetCustomerById(id).Result;
                 if (customer != null)
                 {
                     Console.WriteLine(customer);
@@ -712,7 +711,7 @@ namespace ShoppingApplication
                     Age = age,
                     Phone = phone,
                 };
-                int customerId = _customerService.AddCustomer(customer);
+                int customerId = _customerService.AddCustomer(customer).Result;
                 Console.WriteLine($"Customer added with ID: {customerId}");
             }
             catch (Exception e)

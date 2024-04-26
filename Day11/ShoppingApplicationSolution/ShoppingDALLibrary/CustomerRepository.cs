@@ -18,16 +18,16 @@ namespace ShoppingDALLibrary
             return ++id;
         }
 
-        public override Customer Add(Customer item)
+        public override async Task<Customer> Add(Customer item)
         {
             item.Id = GenerateId();
-            return base.Add(item);
+            return base.Add(item).Result;
         }
 
 
-        public override Customer Delete(int key) 
+        public override async Task<Customer> Delete(int key) 
         {
-            Customer customer = GetByKey(key);
+            Customer customer = await GetByKey(key);
             if (customer != null)
             {
                 items.Remove(customer);
@@ -36,7 +36,7 @@ namespace ShoppingDALLibrary
             throw new NoCustomerWithGiveIdException();
         }
 
-        public override Customer GetByKey(int key)
+        public override async Task<Customer> GetByKey(int key)
         {
             Customer customer = items.ToList().Find((c) => c.Id == key);
             if (customer != null)
@@ -46,9 +46,9 @@ namespace ShoppingDALLibrary
             throw new NoCustomerWithGiveIdException();
         }
 
-        public override Customer Update(Customer item)
+        public override async Task<Customer> Update(Customer item)
         {
-            Customer customer = GetByKey(item.Id);
+            Customer customer = await GetByKey(item.Id);
             if (customer != null)
             {
                 customer = item;

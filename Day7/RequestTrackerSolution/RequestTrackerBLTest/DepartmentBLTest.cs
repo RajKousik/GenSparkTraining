@@ -31,6 +31,8 @@ namespace RequestTrackerBLTest
             var exception = Assert.Throws<DepartmentNotFoundException>(() => departmentService.GetDepartmentByName("Admin"));
             //Assert
             Assert.AreEqual("No Department with such name", exception.Message);
+
+            
         }
     }
 }

@@ -31,34 +31,36 @@ namespace ShoppingBLTest
         [Test]
         public void AddSuccessTest()
         {
-            Customer customer = new Customer() { Id = 102, Age = 25, Phone = "1234556789" };
-            CartItem cartItem = new CartItem() { CartId = 2 };
+            Customer customer = new Customer() { Age = 25, Phone = "1234556789" };
+            Product product = new Product() { Name = "Laptop", Price = 1000, QuantityInHand = 10 };
+            CartItem cartItem = new CartItem() { Price = 1000, Quantity=3, Product = product, ProductId=product.Id};
             List<CartItem> cartItems = new List<CartItem>() { cartItem };
-            Cart cart = new Cart() { Id = 2, Customer = customer, CustomerId = 102, TotalPrice = 100, CartItems = cartItems };
+            Cart cart = new Cart() {Customer = customer, CartItems = cartItems };
 
             var result = cartService.AddCart(cart);
 
-            Assert.AreEqual(2, result);
+            Assert.AreEqual(2, result.Result);
         }
 
         [Test]
         public void AddFailureTest()
         {
-            Customer customer = new Customer() { Id = 102, Age = 25, Phone = "1234556789" };
-            CartItem cartItem = new CartItem() { CartId = 2 };
+            Customer customer = new Customer() { Age = 25, Phone = "1234556789" };
+            Product product = new Product() { Name = "Laptop", Price = 1000, QuantityInHand = 10 };
+            CartItem cartItem = new CartItem() { Price = 1000, Quantity = 3, Product = product, ProductId = product.Id };
             List<CartItem> cartItems = new List<CartItem>() { cartItem };
-            Cart cart = new Cart() { Id = 2, Customer = customer, CustomerId = 111, TotalPrice = 100, CartItems = cartItems };
+            Cart cart = new Cart() { Customer = customer, CartItems = cartItems };
 
             var result = cartService.AddCart(cart);
 
-            Assert.AreNotEqual(102, result);
+            Assert.AreNotEqual(1, result.Result);
         }
 
         [Test]
         public void GetAllSuccessTest()
         {
             var result = cartService.GetAllCarts();
-            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Result.Count);
         }
         [Test]
         public void GetAllFailureTest()

@@ -46,8 +46,8 @@ namespace ShoppingBLTest
         {
             Customer customer = new Customer() { Id = 2, Name = "Ash", Age = 21, Phone = "1233456789" };
 
-            int addedItemId = customerService.AddCustomer(customer);
-            var addedItem = customerService.GetCustomerById(addedItemId);
+            var addedItemId = customerService.AddCustomer(customer);
+            var addedItem = customerService.GetCustomerById(addedItemId.Result);
 
             Assert.IsNotNull(addedItem);
         }
@@ -57,16 +57,16 @@ namespace ShoppingBLTest
         {
             Customer customer = null;
 
-            Assert.Throws<NoCustomerWithGiveIdException>(() => customerService.AddCustomer(customer));
+            Assert.Throws<ArgumentNullException>(() => customerService.AddCustomer(customer));
         }
 
         [Test]
         public void DeleteSuccessTest()
         {
             Customer customer = new Customer() { Id = 2, Name = "Blue", Age = 21, Phone = "1233456789" };
-            int addedItemId = customerService.AddCustomer(customer);
+            var addedItemId = customerService.AddCustomer(customer);
 
-            var deletedItem = customerService.DeleteCustomer(addedItemId);
+            var deletedItem = customerService.DeleteCustomer(addedItemId.Result);
 
             Assert.IsNotNull(deletedItem);
         }
@@ -83,7 +83,7 @@ namespace ShoppingBLTest
         {
             var customers = customerService.GetAllCustomers();
 
-            Assert.IsNotEmpty(customers);
+            Assert.IsNotEmpty(customers.Result);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace ShoppingBLTest
         {
             customerService.DeleteCustomer(1);
 
-            Assert.IsEmpty(customerService.GetAllCustomers());
+            Assert.IsEmpty(customerService.GetAllCustomers().Result);
         }
 
 
@@ -100,8 +100,8 @@ namespace ShoppingBLTest
         public void UpdateSuccessTest()
         {
             Customer customer = new Customer() { Id = 2, Name = "Blue", Phone = "999999999", Age = 22 };
-            int addedId = customerService.AddCustomer(customer);
-            customer.Id = addedId;
+            var addedId = customerService.AddCustomer(customer);
+            customer.Id = addedId.Result;
 
             var updated = customerService.UpdateCustomer(customer);
 

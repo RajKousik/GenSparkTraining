@@ -27,14 +27,14 @@ namespace ShoppingBLLibrary.BL
             _cartItemRepository = cartItemRepository;
         }
 
-        public int AddCartItem(CartItem cartItem)
+        public async Task<int> AddCartItem(CartItem cartItem)
         {
             if(cartItem == null)
             {
                 throw new NullReferenceException();
             }
             ProcessCartItem(cartItem);
-            CartItem result = _cartItemRepository.Add(cartItem);
+            CartItem result = await _cartItemRepository.Add(cartItem);
             if (result != null)
             {
                 return result.ProductId;
@@ -42,9 +42,9 @@ namespace ShoppingBLLibrary.BL
             throw new NoCartItemWithGivenIdException();
         }
 
-        public CartItem DeleteCartItem(int id)
+        public async Task<CartItem> DeleteCartItem(int id)
         {
-            var deletedCartItem = _cartItemRepository.Delete(id);
+            var deletedCartItem = await _cartItemRepository.Delete(id);
             if (deletedCartItem != null)
             {
                 return deletedCartItem;
@@ -52,9 +52,9 @@ namespace ShoppingBLLibrary.BL
             throw new NoCartItemWithGivenIdException();
         }
 
-        public List<CartItem> GetAllCartItems()
+        public async Task<List<CartItem>> GetAllCartItems()
         {
-            var result = _cartItemRepository.GetAll();
+            var result = await _cartItemRepository.GetAll();
             if (result.Count != 0)
             {
                 return (List<CartItem>)result;
@@ -62,9 +62,9 @@ namespace ShoppingBLLibrary.BL
             throw new NoCartItemWithGivenIdException();
         }
 
-        public CartItem GetCartItemById(int id)
+        public async Task<CartItem> GetCartItemById(int id)
         {
-            var result = _cartItemRepository.GetByKey(id);
+            var result = await _cartItemRepository.GetByKey(id);
             if (result != null)
             {
                 return result;
@@ -72,14 +72,14 @@ namespace ShoppingBLLibrary.BL
             throw new NoCartItemWithGivenIdException();
         }
 
-        public CartItem UpdateCartItem(CartItem cartItem)
+        public async Task<CartItem> UpdateCartItem(CartItem cartItem)
         {
             if (cartItem == null)
             {
                 throw new NullReferenceException();
             }
             ProcessCartItem(cartItem);
-            var result = _cartItemRepository.Update(cartItem);
+            var result = await _cartItemRepository.Update(cartItem);
             if (result != null)
             {
                 return result;
