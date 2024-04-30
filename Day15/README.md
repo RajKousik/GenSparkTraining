@@ -43,3 +43,5 @@ Create an ER model for a movie store with the following specifications:
 9. A member may have a number of dependents (with known names), each of whom is allowed to rent one movie at a time.
 
 ![MovieERD](https://github.com/RajKousik/GenSparkTraining/blob/master/Day15/ER%20Diagrams/ERD_Shop.png)
+
+Find the SQL Screenshot output [here](https://github.com/RajKousik/GenSparkTraining/blob/master/Day15/Output%20Screenshot/DAY%2015.pdf)
