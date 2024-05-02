@@ -143,4 +143,4 @@ COUNT(DISTINCT au_id) as 'Count of Authors'
 FROM authors 
 GROUP BY state;
 ```
-You can find the SQL file [here]()
+You can find the SQL file [here](https://github.com/RajKousik/GenSparkTraining/blob/master/Day15/SQL%20Queries/Day15%20Assignment%20SQL%20Query.sql)
