@@ -1,4 +1,4 @@
-# Database Design and ER Modelling 
+# SQL Queries 
 
 ## Topics Covered
 
