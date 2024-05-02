@@ -24,8 +24,99 @@
 
 Complete the tasks in the given [website_link](https://pgexercises.com/questions/basic)
 
-Completed SQL Screenshot output
-![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/f5c35ef1-c681-4690-b324-b7978e5aa7a6)
+1. Retrieve everything from a table
+```
+SELECT * FROM cd.facilities;
+```
+
+2. Retrieve specific columns from a table
+```
+SELECT name, membercost
+FROM cd.facilities;
+```
+
+3. Control which rows are retrieved
+```
+SELECT *
+FROM cd.facilities
+WHERE membercost > 0;
+```
+
+4. Control which rows are retrieved - part 2
+```
+SELECT facid, name, membercost, monthlymaintenance
+FROM cd.facilities
+WHERE
+membercost > 0 AND membercost < monthlymaintenance / 50;
+```
+
+5. Basic string searches
+```
+SELECT *
+FROM cd.facilities
+WHERE name LIKE '%Tennis%';
+```
+
+6. Matching against multiple possible values
+```
+SELECT *
+FROM cd.facilities
+WHERE facid IN (1, 5);
+```
+
+7. Classify results into buckets
+```
+SELECT
+name,
+CASE
+    WHEN monthlymaintenance > 100 THEN 'expensive'
+    ELSE 'cheap'
+END AS "cost"
+FROM
+cd.facilities;
+```
+
+8. Working with dates
+```
+SELECT memid, surname, firstname, joindate
+FROM cd.members
+WHERE joindate >= '2012-09-01';
+```
+
+9. Removing duplicates, and ordering results
+```
+SELECT DISTINCT surname
+FROM cd.members
+ORDER BY surname
+LIMIT 10;
+```
+
+10. Combining results from multiple queries
+```
+SELECT surname FROM cd.members
+UNION DISTINCT
+SELECT name FROM cd.facilities;
+```
+
+11. Simple aggregation
+```
+SELECT MAX(joindate) AS latest FROM cd.members;
+```
+
+12. More aggregation
+```
+SELECT firstname, surname, joindate
+FROM cd.members
+WHERE joindate = (
+  SELECT MAX(joindate)
+  FROM cd.members
+);
+```
+
+
+#### Completed SQL Screenshot output:
+
+![image](https://github.com/RajKousik/GenSparkTraining/blob/master/Day16/SQL%20Queries/Postgress%20SQL%20Assignment.png)
 
 ### 2. Exercise 2
 
@@ -143,4 +234,4 @@ COUNT(DISTINCT au_id) as 'Count of Authors'
 FROM authors 
 GROUP BY state;
 ```
-You can find the SQL file [here](https://github.com/RajKousik/GenSparkTraining/blob/master/Day15/SQL%20Queries/Day15%20Assignment%20SQL%20Query.sql)
+You can find the SQL file [here](https://github.com/RajKousik/GenSparkTraining/blob/master/Day16/SQL%20Queries/SQL%20Pubs%20DB%20-%20Assignment%20Day%2016.sql)
