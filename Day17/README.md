@@ -18,7 +18,7 @@
 
 This task requires crafting SQL queries to retrieve particular data from a database called 'pubs' Database. The database encompasses various tables such as 'sales', 'stores', 'titles', 'publishers', 'authors', and 'titleauthor'.
 
-
+Find the SQL file [here](./Day17-Assignment.sql)
 
 
 1) Print the storeid and number of orders for the store
@@ -156,4 +156,4 @@ JOIN employee e ON t.pub_id = e.pub_id
 WHERE e.fname = 'Paolo';
 ```
 
-Find the file [here]()
+
