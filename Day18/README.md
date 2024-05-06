@@ -30,4 +30,4 @@ ProductSupplier - Id(pk), ProductId(fk), SupplierId(fk)
 Order - OrderId, ProductId, QuantityOrdered, Price
 OrderMaster - OrderId,customerId, Date of Order, TotalAmount.
 
-Find the ERD [Here](./Shop ERD.png)
+Find the ERD [Here](./Shop_ERD.jpg)
