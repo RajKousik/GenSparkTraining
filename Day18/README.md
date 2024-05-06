@@ -2,7 +2,7 @@
 
 ## Topics Covered
 
-* DBMS
+* SQL
 
 * ERD Diagram
 
@@ -41,7 +41,9 @@ Order - OrderId, ProductId, QuantityOrdered, Price
 
 OrderMaster - OrderId,customerId, Date of Order, TotalAmount.
 
+![ERD](./Shop_ERD.jpg)
 
 
+## SQL QUeries
 
-Find the ERD Diagram [Here](./Shop_ERD.jpg)
+Worked on Outer join queries in SQL. The file for the same can be found [here](./OuterJoinQueries.sql)
