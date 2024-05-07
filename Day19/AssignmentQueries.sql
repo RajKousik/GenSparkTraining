@@ -65,3 +65,26 @@ AS
 
 
 SELECT TOP 5 * FROM OrderDataDetails_CTE ORDER BY [Total Cost] DESC;
+
+
+-- 5. GRANT AND REVOKE
+
+
+CREATE USER Emilia without login;
+GO
+CREATE ROLE Queens;
+GO
+ALTER ROLE Queens ADD MEMBER Emilia; 
+GO
+GRANT SELECT ON dbo.authors TO Queens;
+GO
+
+EXECUTE AS USER = 'Emilia'
+SELECT * FROM dbo.authors;
+
+REVOKE SELECT ON dbo.authors TO Queens;
+GO
+
+
+REVERT;
+
