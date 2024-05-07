@@ -23,7 +23,7 @@ Worked on Outer join queries in SQL. The file for the same can be found [here](.
 
 1) Create a stored procedure that will take the author firstname and print all the books polished by him with the publisher's name
 
-```
+```sql
 CREATE PROC proc_books_by_author(@author_fname VARCHAR(10))
 AS
 BEGIN
@@ -40,7 +40,7 @@ EXECUTE proc_books_by_author 'Michael'
 
 2) Create a sp that will take the employee's firtname and print all the titles sold by him/her, price, quantity and the cost.
 
-```
+```sql
 CREATE PROC proc_books_by_employee(@employee_fname VARCHAR(20))
 AS
 BEGIN
@@ -57,7 +57,7 @@ EXEC proc_books_by_employee 'Paolo'
 
 3) Create a query that will print all names from authors and employees
 
-```
+```sql
 SELECT CONCAT(fname, ' ', lname) AS fullname
 FROM Employee
 UNION 
@@ -68,7 +68,7 @@ FROM authors
 
 4) Create a  query that will float the data from sales, titles, publisher and authors table  to print title name, Publisher's name, author's full name with quantity ordered and price for the order for all orders print first 5 orders after sorting them based on the price of order
 
-```
+```sql
 WITH OrderDataDetails_CTE
 AS 
 (
@@ -87,7 +87,7 @@ SELECT TOP 5 * FROM OrderDataDetails_CTE ORDER BY [Total Cost] DESC;
 
 5) GRANT AND REVOKE
 
-```
+```sql
 CREATE USER Emilia without login;
 GO
 
