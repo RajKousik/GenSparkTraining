@@ -19,7 +19,7 @@ namespace RequestTrackerDALLibrary.Model
         public override string ToString()
         {
             return "\nDeaprtment Id : " + Id
-                + "\nDepartment Name " + Name
+                + "\nDepartment Name : " + Name
                 + "\nDepartment Head Id: " + DepartmentHead + "\n";
         }
     }

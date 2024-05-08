@@ -14,5 +14,16 @@ namespace RequestTrackerDALLibrary.Model
         public int? EmployeeDepartment { get; set; }
 
         public virtual Department? EmployeeDepartmentNavigation { get; set; }
+
+        public override string ToString()
+        {
+            return "\nEmployee Id : " + Id
+                + "\nEmployee Name : " + Name
+                + "\nDate of birth : " + Dob
+                + "\nAge : " + Age
+                + "\nDepartment : " + EmployeeDepartment
+                + "\nSalary : " + Salary
+                + "\nEmployee Role : " + Role + "\n";
+        }
     }
 }
