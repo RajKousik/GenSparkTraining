@@ -159,3 +159,12 @@ public class DepartmentRepository : IRepository<int, Department>
 
 ![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/62f2ae46-0945-48b6-8dbd-efdf09f7dfe9)
 
+![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/93984c62-94bb-486f-8c99-f409b2d313b3)
+
+![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/91cc0b59-3127-4b2b-b95a-a47935f4b5a5)
+
+
+All modifications made to the Department entity are also implemented to the Employee entity.
+
+You can find the work directory [here](https://github.com/RajKousik/GenSparkTraining/tree/master/Day7/RequestTrackerSolution)
+
