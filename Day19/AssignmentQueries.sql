@@ -30,12 +30,13 @@ EXECUTE proc_books_by_author 'Michael'
 ALTER PROC proc_books_by_employee(@employee_fname VARCHAR(20))
 AS
 BEGIN
-   SELECT t.title AS 'Book Title', sum(t.price) AS 'Price', sum(s.qty) AS 'Quantity'
+   SELECT t.title AS 'Book Title', sum(t.price) AS 'Price', sum(s.qty) AS 'Quantity', sum(t.price) * sum(s.qty) AS 'Total Cost' 
    FROM Employee e
    JOIN titles t ON t.pub_id = e.pub_id
    JOIN Sales s ON t.title_id = s.title_id
    WHERE e.fname = @employee_fname
    GROUP BY t.title
+   ORDER BY [Total Cost] DESC
 END
 
 EXEC proc_books_by_employee 'Paolo'
