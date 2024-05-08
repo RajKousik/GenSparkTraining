@@ -1,5 +1,6 @@
 ﻿using RequestTrackerDALLibrary;
-using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
+//using RequestTrackerModelLibrary;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection.Metadata.Ecma335;
 
@@ -19,7 +20,7 @@ namespace RequestTrackerBLLibrary
             _departmentRepository = departmentRepository;
         }
 
-        public int AddDepartment(Department department)
+        public int? AddDepartment(Department department)
         {
             var result = _departmentRepository.Add(department);
             if (result != null)
@@ -82,12 +83,12 @@ namespace RequestTrackerBLLibrary
         }
 
         [ExcludeFromCodeCoverage]
-        public int GetDepartmentHeadId(int departmentId)
+        public int? GetDepartmentHeadId(int departmentId)
         {
             var department = _departmentRepository.Get(departmentId);
             if (department != null)
             {
-                return department.Department_Head;
+                return department.DepartmentHead;
             }
             throw new DepartmentNotFoundException();
 

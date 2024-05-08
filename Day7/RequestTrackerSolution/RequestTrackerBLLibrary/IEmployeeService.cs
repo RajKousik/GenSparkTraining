@@ -1,4 +1,5 @@
-﻿using RequestTrackerModelLibrary;
+﻿//using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace RequestTrackerBLLibrary
 {
     public interface IEmployeeService
     {
-        int AddEmployee(Employee employee);
+        int? AddEmployee(Employee employee);
         Employee GetEmployeeById(int id);
 
         Employee GetEmployeeByName(string name);

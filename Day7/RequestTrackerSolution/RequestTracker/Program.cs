@@ -1,5 +1,6 @@
 ﻿using RequestTrackerBLLibrary;
-using RequestTrackerModelLibrary;
+//using RequestTrackerModelLibrary;
+using RequestTrackerDALLibrary.Model;
 
 namespace RequestTrackerApp
 {
@@ -138,9 +139,9 @@ namespace RequestTrackerApp
                     Console.WriteLine(employee);
                 }
             }
-            catch (DepartmentNotFoundException)
+            catch (EmployeeNotFoundException)
             {
-                Console.WriteLine("No departments found.");
+                Console.WriteLine("No Employees found.");
             }
         }
 
@@ -200,10 +201,10 @@ namespace RequestTrackerApp
                 Department department = new Department
                 {
                     Name = name,
-                    Department_Head = headId
+                    DepartmentHead = headId
                 };
 
-                int departmentId = _departmentService.AddDepartment(department);
+                int? departmentId = _departmentService.AddDepartment(department);
                 Console.WriteLine($"Department added with ID: {departmentId}");
             }
             catch (Exception e)
@@ -240,7 +241,7 @@ namespace RequestTrackerApp
                 Department department = _departmentService.GetDepartmentById(id);
                 if (department != null)
                 {
-                    Console.WriteLine($"Department ID: {department.Id}, Name: {department.Name}, Head ID: {department.Department_Head}");
+                    Console.WriteLine($"Department ID: {department.Id}, Name: {department.Name}, Head ID: {department.DepartmentHead}");
                 }
                 else
                 {
@@ -263,7 +264,7 @@ namespace RequestTrackerApp
                 Department department = _departmentService.GetDepartmentByName(name);
                 if (department != null)
                 {
-                    Console.WriteLine($"Department Name: {department.Name}, ID: {department.Id}, Head ID: {department.Department_Head}");
+                    Console.WriteLine($"Department Name: {department.Name}, ID: {department.Id}, Head ID: {department.DepartmentHead}");
                 }
                 else
                 {
@@ -299,17 +300,17 @@ namespace RequestTrackerApp
                 {
                     //Id = id,
                     Name = name,
-                    DateOfBirth = dob,
+                    Dob = dob,
                     Salary = salary,
                     Role = role,
-                    EmployeeDepartment = employeeDepartment
+                    EmployeeDepartment = departmentId
                 };
-                int employeeId = _employeeService.AddEmployee(employee);
+                int? employeeId = _employeeService.AddEmployee(employee);
                 Console.WriteLine($"Employee added with ID: {employeeId}");
             }
             catch (Exception e)
             {
-                
+
                 Console.WriteLine($"An error occurred while adding the employee: {e.Message}");
             }
         }
@@ -324,7 +325,7 @@ namespace RequestTrackerApp
                 Employee employee = _employeeService.GetEmployeeById(id);
                 if (employee != null)
                 {
-                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment?.Name}");
+                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment}");
                 }
                 else
                 {
@@ -347,7 +348,7 @@ namespace RequestTrackerApp
                 Employee employee = _employeeService.GetEmployeeByName(name);
                 if (employee != null)
                 {
-                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment?.Name}");
+                    Console.WriteLine($"Employee ID: {employee.Id}, Name: {employee.Name}, Role: {employee.Role}, Department: {employee.EmployeeDepartment}");
                 }
                 else
                 {
@@ -385,7 +386,7 @@ namespace RequestTrackerApp
                     string? dobInput = Console.ReadLine();
                     if (!string.IsNullOrEmpty(dobInput))
                     {
-                        employee.DateOfBirth = DateTime.Parse(dobInput);
+                        employee.Dob = DateTime.Parse(dobInput);
                     }
 
                     Console.Write("Enter new Salary (leave blank to keep current): ");
@@ -404,10 +405,12 @@ namespace RequestTrackerApp
 
                     Console.Write("Enter new Department ID (leave blank to keep current): ");
                     string? departmentIdInput = Console.ReadLine();
+
                     if (!string.IsNullOrEmpty(departmentIdInput))
                     {
                         int departmentId = int.Parse(departmentIdInput);
-                        employee.EmployeeDepartment = _departmentService.GetDepartmentById(departmentId);
+                        Department dept = _departmentService.GetDepartmentById(departmentId);
+                        employee.EmployeeDepartment = dept.Id;
                     }
 
                     _employeeService.UpdateEmployee(employee);
@@ -461,12 +464,12 @@ namespace RequestTrackerApp
                 }
                 else
                 {
-                    Console.WriteLine($"Employee with ID {id} not found.");
+                    Console.WriteLine($"Department with ID {id} not found.");
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"An error occurred while deleting the employee: {e.Message}");
+                Console.WriteLine($"An error occurred while deleting the Department: {e.Message}");
             }
         }
 

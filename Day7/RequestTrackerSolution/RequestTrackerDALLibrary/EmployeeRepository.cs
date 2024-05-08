@@ -1,4 +1,5 @@
-﻿using RequestTrackerModelLibrary;
+﻿using RequestTrackerDALLibrary.Model;
+//using RequestTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,69 +10,80 @@ namespace RequestTrackerDALLibrary
 {
     public class EmployeeRepository : IRepository<int, Employee>
     {
-        readonly Dictionary<int, Employee> _employees;
+        RequestTrackerAppContext context = new RequestTrackerAppContext();
+        private List<Employee> _employees;
+
 
         public EmployeeRepository()
         {
-            _employees = new Dictionary<int, Employee>();
+            _employees = context.Employees.ToList();
+
         }
 
-        int GenerateId()
-        {
-            if (_employees.Count == 0)
-            {
-                return 1;
-            }
-            int id = _employees.Keys.Max();
-            return ++id;
-        }
+        //int GenerateId()
+        //{
+        //    if (_employees.Count == 0)
+        //    {
+        //        return 1;
+        //    }
+        //    int id = _employees.Count;
+        //    return ++id;
+        //}
 
         public Employee Add(Employee item)
         {
-            if (_employees.ContainsValue(item))
-            {
-                return null;
-            }
-            int id = GenerateId();
-            item.Id = id;
-            _employees.Add(id, item);
-            return item;
-            
+            context.Employees.Add(item);
+            context.SaveChanges();
+            _employees = context.Employees.ToList();
+            if (_employees.Contains(item)) return item;
+            return null;
         }
 
         public Employee Delete(int key)
         {
-            if (_employees.ContainsKey(key))
+            _employees = context.Employees.ToList();
+            var employee = _employees.SingleOrDefault(d => d.Id == key);
+            if (employee != null)
             {
-                var employee = _employees[key];
-                _employees.Remove(key);
+                context.Employees.Remove(employee);
+                context.SaveChanges();
+                _employees = context.Employees.ToList();
                 return employee;
             }
             return null;
         }
 
-        public Employee Get(int key)
-        {
-            return _employees.ContainsKey(key) ? _employees[key] : null;
-        }
-
         public List<Employee> GetAll()
         {
             if (_employees.Count == 0)
-            {
                 return null;
+            return _employees;
+        }
+
+        public Employee Get(int key)
+        {
+            var employee = _employees.SingleOrDefault(d => d.Id == key);
+            if (employee != null)
+            {
+                return employee;
             }
-            return _employees.Values.ToList();
+            return null;
         }
 
         public Employee Update(Employee item)
         {
-            if (_employees.ContainsKey(item.Id))
+            _employees = context.Employees.ToList();
+            var employee = _employees.SingleOrDefault(d => d.Id == item.Id);
+            if (employee != null)
             {
-                _employees[item.Id] = item;
-                return item;
+                employee = item;
+                context.Employees.Update(employee);
+                context.SaveChanges();
+                _employees = context.Employees.ToList();
+                return employee;
             }
             return null;
         }
+
     }
 }
