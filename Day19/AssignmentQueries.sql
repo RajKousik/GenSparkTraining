@@ -27,14 +27,15 @@ EXECUTE proc_books_by_author 'Michael'
 -- 2. Create a sp that will take the employee's firtname and print all the titles
 -- sold by him/her, price, quantity and the cost.
 
-CREATE PROC proc_books_by_employee(@employee_fname VARCHAR(20))
+ALTER PROC proc_books_by_employee(@employee_fname VARCHAR(20))
 AS
 BEGIN
-   SELECT t.title AS 'Book Title', t.price AS 'Price', s.qty AS 'Quantity', (t.price * s.qty) AS 'Total Cost'
-   FROM Sales s
-   JOIN titles t ON s.title_id = t.title_id
-   JOIN employee e ON t.pub_id = e.pub_id
+   SELECT t.title AS 'Book Title', sum(t.price) AS 'Price', sum(s.qty) AS 'Quantity'
+   FROM Employee e
+   JOIN titles t ON t.pub_id = e.pub_id
+   JOIN Sales s ON t.title_id = s.title_id
    WHERE e.fname = @employee_fname
+   GROUP BY t.title
 END
 
 EXEC proc_books_by_employee 'Paolo'
