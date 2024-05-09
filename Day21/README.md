@@ -5,8 +5,8 @@
 **Questions**
 - Creating a ER Diagram for the Pharmacy Management System
 - Pair Programming with [Sugavanesh](https://github.com/sugan0tech-presidio)
-- Driver - [Sugavanesh](https://github.com/sugan0tech-presidio)
-- Navigator - [Kousik](https://github.com/RajKousik)
+- Driver - [Sugavanesh](https://github.com/sugan0tech-presidio/tasks)
+- Navigator - [Kousik](https://github.com/RajKousik/GenSparkTraining)
 
 ![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/08980279-394a-49b1-9435-c605f1fdbaab)
 
