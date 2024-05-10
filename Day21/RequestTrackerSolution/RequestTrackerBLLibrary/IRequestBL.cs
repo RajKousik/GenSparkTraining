@@ -18,5 +18,7 @@ namespace RequestTrackerBLLibrary
 
         Task<IList<Request>> GetAllRequests();
 
+        Task<IList<Request>> GetAllRequestsById(int requestRaisedBy);
+
     }
 }

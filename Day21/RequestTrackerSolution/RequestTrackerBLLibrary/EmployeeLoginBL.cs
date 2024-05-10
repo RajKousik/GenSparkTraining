@@ -8,19 +8,19 @@ namespace RequestTrackerBLLibrary
         private readonly IRepository<int, Employee> _repository;
         public EmployeeLoginBL()
         {
-            IRepository<int, Employee> repo = new EmployeeRepository(new RequestTrackerContext());
+            IRepository<int, Employee> repo = new EmployeeRequestRepository(new RequestTrackerContext());
             _repository = repo;
         }
 
-        public async Task<bool> Login(Employee employee)
+        public async Task<Employee> Login(Employee employee)
         {
             var emp = await _repository.Get(employee.Id);
             if (emp != null)
             {
                 if (emp.Password == employee.Password)
-                    return true;
+                    return emp;
             }
-            return false;
+            return null;
         }
 
         public async Task<Employee> Register(Employee employee)

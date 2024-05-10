@@ -27,6 +27,8 @@ namespace RequestTrackerModelLibrary
 
         public Employee RequestClosedByEmployee { get; set; }
 
+        public ICollection<RequestSolution> RequestSolutions { get; set; }
+
         public override string ToString()
         {
             string result = "";

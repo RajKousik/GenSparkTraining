@@ -5,7 +5,7 @@ namespace RequestTrackerDALLibrary
 {
     public class EmployeeRepository : IRepository<int, Employee>
     {
-        private readonly RequestTrackerContext _context;
+        protected readonly RequestTrackerContext _context;
 
         public EmployeeRepository(RequestTrackerContext context)
         {
@@ -29,13 +29,13 @@ namespace RequestTrackerDALLibrary
             return employee;
         }
 
-        public async Task<Employee> Get(int key)
+        public async virtual Task<Employee> Get(int key)
         {
             var employee = _context.Employees.SingleOrDefault(e => e.Id == key);
             return employee;
         }
 
-        public async Task<IList<Employee>> GetAll()
+        public async virtual Task<IList<Employee>> GetAll()
         {
             return await _context.Employees.ToListAsync();
         }

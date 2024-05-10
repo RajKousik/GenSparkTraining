@@ -32,6 +32,16 @@ namespace RequestTrackerBLLibrary
             return request;
         }
 
+        public async Task<IList<Request>> GetAllRequestsById(int requestRaisedBy)
+        {
+            var requests = (await _repository.GetAll()).ToList().FindAll(r=>r.RequestRaisedBy == requestRaisedBy);
+            if (requests.Count == 0)
+            {
+                return null;
+            }
+            return requests;
+        }
+
         public async Task<IList<Request>> GetAllRequests()
         {
             IList<Request> requests = await _repository.GetAll();
