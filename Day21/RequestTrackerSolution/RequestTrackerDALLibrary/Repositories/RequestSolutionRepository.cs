@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RequestTrackerDALLibrary;
 using RequestTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestTrackerDALLibrary
+namespace RequestTrackerDALLibrary.Repositories
 {
     public class RequestSolutionRepository : IRepository<int, RequestSolution>
     {
@@ -43,16 +42,16 @@ namespace RequestTrackerDALLibrary
 
         public async Task<IList<RequestSolution>> GetAll()
         {
-            return await _context.RequestSolutions.Include(rs=>rs.SolvedByEmployee).ToListAsync();
+            return await _context.RequestSolutions.Include(rs => rs.SolvedByEmployee).ToListAsync();
         }
 
         public async Task<RequestSolution> Update(RequestSolution entity)
         {
             var requestSolution = await Get(entity.SolutionId);
             if (requestSolution != null)
-            { 
+            {
                 _context.RequestSolutions.Update(entity);
-                int id =  _context.SaveChanges();
+                int id = _context.SaveChanges();
             }
             else
             {

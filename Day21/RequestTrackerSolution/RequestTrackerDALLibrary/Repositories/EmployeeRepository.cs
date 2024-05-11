@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RequestTrackerModelLibrary;
 
-namespace RequestTrackerDALLibrary
+namespace RequestTrackerDALLibrary.Repositories
 {
     public class EmployeeRepository : IRepository<int, Employee>
     {
@@ -45,7 +45,7 @@ namespace RequestTrackerDALLibrary
             var employee = await Get(entity.Id);
             if (employee != null)
             {
-                _context.Entry<Employee>(employee).State = EntityState.Modified;
+                _context.Entry(employee).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             return employee;

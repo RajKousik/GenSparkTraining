@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestTrackerBLLibrary
+namespace RequestTrackerBLLibrary.Interfaces
 {
     public interface ISolutionFeedbackBL
     {

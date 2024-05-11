@@ -1,4 +1,6 @@
-﻿using RequestTrackerDALLibrary;
+﻿using RequestTrackerBLLibrary.Interfaces;
+using RequestTrackerDALLibrary.Repositories;
+using RequestTrackerDALLibrary;
 using RequestTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
@@ -6,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestTrackerBLLibrary
+namespace RequestTrackerBLLibrary.BL
 {
     public class RequestBL : IRequestBL
     {
@@ -17,7 +19,7 @@ namespace RequestTrackerBLLibrary
             _repository = repo;
         }
 
-        
+
 
         public async Task<int> OpenRequest(Request request)
         {
@@ -34,7 +36,7 @@ namespace RequestTrackerBLLibrary
 
         public async Task<IList<Request>> GetAllRequestsById(int requestRaisedBy)
         {
-            var requests = (await _repository.GetAll()).ToList().FindAll(r=>r.RequestRaisedBy == requestRaisedBy);
+            var requests = (await _repository.GetAll()).ToList().FindAll(r => r.RequestRaisedBy == requestRaisedBy);
             if (requests.Count == 0)
             {
                 return null;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestTrackerDALLibrary
+namespace RequestTrackerDALLibrary.Repositories
 {
     public class RequestRepository : IRepository<int, Request>
     {
@@ -51,7 +51,7 @@ namespace RequestTrackerDALLibrary
             var request = await Get(entity.RequestNumber);
             if (request != null)
             {
-                _context.Entry<Request>(request).State = EntityState.Modified;
+                _context.Entry(request).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             return request;

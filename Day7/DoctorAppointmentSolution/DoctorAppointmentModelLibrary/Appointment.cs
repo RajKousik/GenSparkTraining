@@ -22,6 +22,7 @@ namespace DoctorAppointmentModelLibrary
             DateTime = dateTime;
         }
 
+
         public override string ToString()
         {
             return "Appointment ID : " + Id

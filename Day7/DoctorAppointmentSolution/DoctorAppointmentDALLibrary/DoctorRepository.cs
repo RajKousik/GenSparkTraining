@@ -1,54 +1,79 @@
-﻿using DoctorAppointmentModelLibrary;
+﻿//using DoctorAppointmentModelLibrary;
+
+using DoctorAppointmentDALLibrary.Model;
 
 namespace DoctorAppointmentDALLibrary
 {
     public class DoctorRepository : IRepository<int, Doctor>
     {
 
-        private readonly Dictionary<int, Doctor> _doctors = new Dictionary<int, Doctor>();
+        dbDoctorAppointmentContext context = new dbDoctorAppointmentContext();
+        private List<Doctor> _doctors;
+
+        public DoctorRepository()
+        {
+            _doctors = context.Doctors.ToList();
+        }
 
         public Doctor Add(Doctor item)
         {
-            if (_doctors.ContainsValue(item))
-            {
-                return null!;
-            }
-
-            int id = GenerateId();
-            item.Id = id;
-            _doctors.Add(id, item);
-            return item;
+            context.Doctors.Add(item);
+            context.SaveChanges();
+            _doctors = context.Doctors.ToList();
+            if (_doctors.Contains(item))
+                return item;
+            return null;
         }
 
         public Doctor Delete(int key)
         {
-            if (_doctors.ContainsKey(key))
+            var department = _doctors.SingleOrDefault(d => d.Id == key);
+            if (department != null)
             {
-                var doctor = _doctors[key];
-                _doctors.Remove(key);
-                return doctor;
+                context.Doctors.Remove(department);
+                context.SaveChanges();
+                _doctors = context.Doctors.ToList();
+                return department;
             }
             return null!;
         }
 
-        public Doctor Get(int key) => _doctors.ContainsKey(key) ? _doctors[key] : null!;
+        public Doctor Get(int key) {
 
-        public List<Doctor> GetAll() => _doctors.Values.ToList();
+            var doctor = _doctors.SingleOrDefault(d => d.Id == key);
+            if (doctor != null)
+            {
+                return doctor;
+            }
+            return null;
+
+        } 
+
+        public List<Doctor> GetAll() {
+            var list = context.Doctors.ToList();
+            if (list.Count == 0)
+                return null;
+
+            return list;
+        } 
 
         public Doctor Update(Doctor item)
         {
-            if (_doctors.ContainsKey(item.Id))
+            var doctor = _doctors.SingleOrDefault(d => d.Id == item.Id);
+            if (doctor != null)
             {
-                _doctors[item.Id] = item;
-                return item;
+                doctor = item;
+                context.Doctors.Update(doctor);
+                context.SaveChanges();
+                return doctor;
             }
-            return null!;
+            return null;
         }
 
-        private int GenerateId()
-        {
-            return _doctors.Count == 0 ? 1 : _doctors.Keys.Max() + 1;
-        }
+        //private int GenerateId()
+        //{
+        //    return _doctors.Count == 0 ? 1 : _doctors.Keys.Max() + 1;
+        //}
 
     }
 }

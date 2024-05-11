@@ -18,6 +18,8 @@ The work done on these topics can be found in the following repositories
 
 This work done can be found in this [repository](https://github.com/RajKousik/GenSparkTraining/tree/master/Day7/RequestTrackerSolution)
 
+The work done on Doctor Appointment Application (Database First Approach) can be found [here](https://github.com/RajKousik/GenSparkTraining/tree/unit-testing/Day7/DoctorAppointmentSolution)
+
 # Entity Framework Core 
 
 Entity Framework Core and how to use it to interact with a SQL database in a .NET application. We scaffolded a SQL database into a request tracker application.

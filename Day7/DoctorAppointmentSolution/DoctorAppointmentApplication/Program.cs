@@ -1,5 +1,6 @@
 ﻿using DoctorAppointmentBLLibrary;
-using DoctorAppointmentModelLibrary;
+using DoctorAppointmentDALLibrary.Model;
+//using DoctorAppointmentModelLibrary;
 
 namespace DoctorAppointmentApplication
 {
@@ -117,7 +118,7 @@ namespace DoctorAppointmentApplication
             Console.Write("Enter contact: ");
             string? contact = Console.ReadLine();
 
-            
+
 
             Doctor doctor = new Doctor
             (name: name, specialty: specialty, contact: contact);
@@ -175,7 +176,7 @@ namespace DoctorAppointmentApplication
 
             if (!string.IsNullOrEmpty(specialty))
             {
-                existingDoctor.Specialty = specialty;
+                existingDoctor.Speciality = specialty;
             }
 
             if (!string.IsNullOrEmpty(contact))
@@ -461,7 +462,10 @@ namespace DoctorAppointmentApplication
                 return;
             }
 
-            Appointment appointment = new Appointment(doctorId, patientId, appointmentDateTime);
+            Appointment appointment = new Appointment();
+            appointment.PatientId = patientId;
+            appointment.DoctorId = doctorId;
+            appointment.DateTime = appointmentDateTime;
 
             int appointmentId = _appointmentService.AddAppointment(appointment);
             Console.WriteLine($"Appointment added with ID: {appointmentId}");

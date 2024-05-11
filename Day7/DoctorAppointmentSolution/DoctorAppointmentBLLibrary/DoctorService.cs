@@ -1,6 +1,7 @@
 ﻿using DoctorAppointmentBLLibrary.Exceptions;
 using DoctorAppointmentDALLibrary;
-using DoctorAppointmentModelLibrary;
+using DoctorAppointmentDALLibrary.Model;
+//using DoctorAppointmentModelLibrary;
 
 namespace DoctorAppointmentBLLibrary
 {

@@ -1,4 +1,5 @@
-﻿using DoctorAppointmentModelLibrary;
+﻿//using DoctorAppointmentModelLibrary;
+using DoctorAppointmentDALLibrary.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,45 +10,73 @@ namespace DoctorAppointmentDALLibrary
 {
     public class AppointmentRepository : IRepository<int, Appointment>
     {
-        private readonly Dictionary<int, Appointment> _appointments = new Dictionary<int, Appointment>();
+        dbDoctorAppointmentContext context = new dbDoctorAppointmentContext();
+        private List<Appointment> _appointments;
+        public AppointmentRepository()
+        {
+            _appointments = context.Appointments.ToList();
+        }
 
         public Appointment Add(Appointment item)
         {
-            int id = GenerateId();
-            item.Id = id;
-            _appointments.Add(id, item);
-            return item;
+            context.Appointments.Add(item);
+            context.SaveChanges();
+            _appointments = context.Appointments.ToList();
+            if (_appointments.Contains(item)) return item;
+            return null;
         }
 
         public Appointment Delete(int key)
         {
-            if (_appointments.ContainsKey(key))
+            _appointments = context.Appointments.ToList();
+            var appointment = _appointments.SingleOrDefault(d => d.Id == key);
+            if (appointment != null)
             {
-                var appointment = _appointments[key];
-                _appointments.Remove(key);
+                context.Appointments.Remove(appointment);
+                context.SaveChanges();
+                _appointments = context.Appointments.ToList();
                 return appointment;
             }
-            return null!;
+            return null;
         }
 
-        public Appointment Get(int key) => _appointments.ContainsKey(key) ? _appointments[key] : null!;
+        public List<Appointment> GetAll()
+        {
+            if (_appointments.Count == 0)
+                return null;
+            return _appointments;
+        }
 
-        public List<Appointment> GetAll() => _appointments.Values.ToList();
+        public Appointment Get(int key)
+        {
+            var appointment = _appointments.SingleOrDefault(d => d.Id == key);
+            if (appointment != null)
+            {
+                return appointment;
+            }
+            return null;
+        }
 
         public Appointment Update(Appointment item)
         {
-            if (_appointments.ContainsKey(item.Id))
+            _appointments = context.Appointments.ToList();
+            var appointment = _appointments.SingleOrDefault(d => d.Id == item.Id);
+            if (appointment != null)
             {
-                _appointments[item.Id] = item;
-                return item;
+                appointment = item;
+                context.Appointments.Update(appointment);
+                context.SaveChanges();
+                _appointments = context.Appointments.ToList();
+                return appointment;
             }
-            return null!;
+            return null;
         }
 
-        private int GenerateId()
-        {
-            return _appointments.Count == 0 ? 1 : _appointments.Keys.Max() + 1;
-        }
+
+        //private int GenerateId()
+        //{
+        //    return _appointments.Count == 0 ? 1 : _appointments.Keys.Max() + 1;
+        //}
     }
 
 }

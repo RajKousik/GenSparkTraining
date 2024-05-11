@@ -1,5 +1,7 @@
 ﻿using DoctorAppointmentDALLibrary;
-using DoctorAppointmentModelLibrary;
+using DoctorAppointmentDALLibrary.Model;
+
+//using DoctorAppointmentModelLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;

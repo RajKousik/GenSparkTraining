@@ -1,7 +1,9 @@
-﻿using RequestTrackerDALLibrary;
+﻿using RequestTrackerBLLibrary.Interfaces;
+using RequestTrackerDALLibrary;
+using RequestTrackerDALLibrary.Repositories;
 using RequestTrackerModelLibrary;
 
-namespace RequestTrackerBLLibrary
+namespace RequestTrackerBLLibrary.BL
 {
     public class EmployeeLoginBL : IEmployeeLoginBL
     {

@@ -1,4 +1,5 @@
-﻿using RequestTrackerDALLibrary;
+﻿using RequestTrackerBLLibrary.Interfaces;
+using RequestTrackerDALLibrary;
 using RequestTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestTrackerBLLibrary
+namespace RequestTrackerBLLibrary.BL
 {
     public class SolutionFeedbackBL : ISolutionFeedbackBL
     {
@@ -49,7 +50,7 @@ namespace RequestTrackerBLLibrary
         {
             var feedback = await _solutionFeedbackRepository.Get(feedbackId);
             return feedback;
-            
+
         }
     }
 }

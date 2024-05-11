@@ -1,4 +1,7 @@
-﻿using RequestTrackerDALLibrary;
+﻿using RequestTrackerBLLibrary.Interfaces;
+using RequestTrackerBLLibrary.BL;
+using RequestTrackerDALLibrary;
+using RequestTrackerDALLibrary.Repositories;
 using RequestTrackerModelLibrary;
 using System;
 using System.Collections.Generic;
@@ -6,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RequestTrackerBLLibrary
+namespace RequestTrackerBLLibrary.BL
 {
     public class RequestSolutionBL : IRequestSolutionBL
     {
@@ -55,7 +58,7 @@ namespace RequestTrackerBLLibrary
 
         public async Task<IList<RequestSolution>> GetAllRequestSolutionByRequestId(int requestId)
         {
-            var requestSolution = (await _requestSolutionRepository.GetAll()).ToList().FindAll(rs=>rs.RequestId == requestId);
+            var requestSolution = (await _requestSolutionRepository.GetAll()).ToList().FindAll(rs => rs.RequestId == requestId);
 
             return requestSolution;
         }
@@ -102,13 +105,13 @@ namespace RequestTrackerBLLibrary
         }
 
 
-        
+
 
         public async Task<RequestSolution> RespondToSolution(int requestSolutionId, string comment)
         {
             var requestSolution = await _requestSolutionRepository.Get(requestSolutionId);
 
-            if(requestSolution == null)
+            if (requestSolution == null)
             {
                 Console.Out.WriteLine("Error Happened...Try again");
                 return null;
