@@ -36,13 +36,13 @@ namespace RequestTrackerDALLibrary
 
         public async virtual Task<SolutionFeedback> Get(int key)
         {
-            var solutionFeedback = _context.SolutionFeedbacks.SingleOrDefault(s => s.FeedbackId == key);
+            var solutionFeedback = _context.SolutionFeedbacks.Include(f=>f.FeedbackByEmployee).SingleOrDefault(s => s.FeedbackId == key);
             return solutionFeedback;
         }
 
         public async virtual Task<IList<SolutionFeedback>> GetAll()
         {
-            return await _context.SolutionFeedbacks.ToListAsync();
+            return await _context.SolutionFeedbacks.Include(f => f.FeedbackByEmployee).ToListAsync();
         }
 
         public async Task<SolutionFeedback> Update(SolutionFeedback entity)

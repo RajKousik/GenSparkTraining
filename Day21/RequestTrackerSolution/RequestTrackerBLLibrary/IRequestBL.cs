@@ -20,5 +20,9 @@ namespace RequestTrackerBLLibrary
 
         Task<IList<Request>> GetAllRequestsById(int requestRaisedBy);
 
+        public Task<IList<Request>> GetAllOpenRequests();
+
+        public Task<IList<Request>> GetAllRequestsExcludeCurrentUser(int employeeId);
+
     }
 }

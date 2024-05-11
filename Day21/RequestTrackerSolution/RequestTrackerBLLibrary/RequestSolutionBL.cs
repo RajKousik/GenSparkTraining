@@ -34,6 +34,17 @@ namespace RequestTrackerBLLibrary
             return result.SolutionId;
         }
 
+        public async Task<RequestSolution> UpdateSolutionAsSolved(int solutionId)
+        {
+            var reqSolution = await _requestSolutionRepository.Get(solutionId);
+
+            if (reqSolution != null)
+            {
+                reqSolution.IsSolved = true;
+                await _requestSolutionRepository.Update(reqSolution);
+            }
+            return reqSolution;
+        }
 
         public Task<RequestSolution> GetRequestSolution(int id)
         {
@@ -42,7 +53,20 @@ namespace RequestTrackerBLLibrary
             return requestSolution;
         }
 
-        
+        public async Task<IList<RequestSolution>> GetAllRequestSolutionByRequestId(int requestId)
+        {
+            var requestSolution = (await _requestSolutionRepository.GetAll()).ToList().FindAll(rs=>rs.RequestId == requestId);
+
+            return requestSolution;
+        }
+
+
+        public async Task<IList<RequestSolution>> GetSolutionsSolvedByEmployeeId(int employeeId)
+        {
+            var requestSolution = (await _requestSolutionRepository.GetAll()).ToList().FindAll(rs => rs.SolvedBy == employeeId);
+            return requestSolution;
+        }
+
 
         public async Task<IList<RequestSolution>> GetAllAdminRequestSolutions()
         {
@@ -53,6 +77,8 @@ namespace RequestTrackerBLLibrary
             }
             return requests;
         }
+
+
 
         public async Task<IList<RequestSolution>> GetAllUserRequestSolutions(int userEmployee, int requestId)
         {

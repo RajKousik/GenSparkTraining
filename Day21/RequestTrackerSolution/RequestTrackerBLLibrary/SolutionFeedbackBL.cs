@@ -34,6 +34,17 @@ namespace RequestTrackerBLLibrary
             return feedbacks;
         }
 
+        public async Task<IList<SolutionFeedback>> GetFeedbackBySolutionId(int solutionId)
+        {
+            var allFeedbacks = await _solutionFeedbackRepository.GetAll();
+
+            var feedbacks = allFeedbacks
+                                    .Where(f => f.SolutionId == solutionId)
+                                    .ToList();
+
+            return feedbacks;
+        }
+
         public async Task<SolutionFeedback> GetFeedbackByFeedbackId(int feedbackId)
         {
             var feedback = await _solutionFeedbackRepository.Get(feedbackId);

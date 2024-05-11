@@ -41,7 +41,9 @@ namespace RequestTrackerDALLibrary
 
         public async Task<IList<Request>> GetAll()
         {
-            return await _context.Requests.Include(r => r.RequestSolutions).ToListAsync();
+            return await _context.Requests.Include(r => r.RequestSolutions)
+                                          .Include(r => r.RaisedByEmployee)
+                                          .ToListAsync();
         }
 
         public async Task<Request> Update(Request entity)

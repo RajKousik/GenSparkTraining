@@ -43,7 +43,7 @@ namespace RequestTrackerDALLibrary
 
         public async Task<IList<RequestSolution>> GetAll()
         {
-            return await _context.RequestSolutions.ToListAsync();
+            return await _context.RequestSolutions.Include(rs=>rs.SolvedByEmployee).ToListAsync();
         }
 
         public async Task<RequestSolution> Update(RequestSolution entity)

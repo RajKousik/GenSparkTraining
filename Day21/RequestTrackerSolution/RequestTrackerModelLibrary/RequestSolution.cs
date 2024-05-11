@@ -34,10 +34,16 @@ namespace RequestTrackerModelLibrary
             sb.AppendLine($"Solution ID: {SolutionId}");
             sb.AppendLine($"Request ID: {RequestId}");
             sb.AppendLine($"Solution Description: {SolutionDescription}");
-            sb.AppendLine($"Solved By Employee ID: {SolvedBy}");
-            sb.AppendLine($"Solved Date: {SolvedDate}");
+
+            if(SolvedByEmployee != null) 
+                sb.AppendLine($"Solution Provided By : {SolvedBy} - {SolvedByEmployee.Name}");
+
+            sb.AppendLine($"Solution Provided On : {SolvedDate}");
             sb.AppendLine($"Is Solved: {IsSolved}");
-            sb.AppendLine($"Request Raiser Comment: {RequestRaiserComment ?? "N/A"}");
+
+
+            if(RequestRaiserComment != null)
+                sb.AppendLine($"Request Raiser Comment: {RequestRaiserComment}");
 
             // Add logic to handle Feedbacks collection if needed
 

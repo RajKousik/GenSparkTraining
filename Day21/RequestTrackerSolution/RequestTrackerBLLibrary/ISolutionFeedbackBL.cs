@@ -15,6 +15,8 @@ namespace RequestTrackerBLLibrary
 
         Task<SolutionFeedback> GetFeedbackByFeedbackId(int userId);
 
+        public Task<IList<SolutionFeedback>> GetFeedbackBySolutionId(int solutionId);
+
 
     }
 }

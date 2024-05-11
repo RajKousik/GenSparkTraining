@@ -35,10 +35,16 @@ namespace RequestTrackerModelLibrary
             result += $"Request Number: {RequestNumber}\n";
             result += $"Request Message: {RequestMessage}\n";
             result += $"Request Date: {RequestDate}\n";
+
             if (ClosedDate != null)
                 result += $"Closed Date: {ClosedDate}\n";
+
             result += $"Request Status: {RequestStatus}\n";
-            result += $"Raised By Employee Id: {RequestRaisedBy}\n";
+            result += $"Raised By Employee : {RequestRaisedBy}";
+
+            if(RaisedByEmployee != null)
+                result += $" - {RaisedByEmployee.Name}\n";
+
             if (RequestClosedBy != null)
                 result += $"Closed By Employee Id: {RequestClosedBy}\n";
 

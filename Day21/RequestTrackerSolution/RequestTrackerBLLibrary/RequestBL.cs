@@ -52,6 +52,32 @@ namespace RequestTrackerBLLibrary
             return requests;
         }
 
+        public async Task<IList<Request>> GetAllOpenRequests()
+        {
+            IList<Request> requests = (await _repository.GetAll())
+                                        .Where(r => r.RequestStatus.ToLower() != "closed").ToList();
+            if (requests.Count == 0)
+            {
+                return null;
+            }
+            return requests;
+        }
+
+        public async Task<IList<Request>> GetAllRequestsExcludeCurrentUser(int employeeId)
+        {
+            IList<Request> requests = (await _repository.GetAll())
+                                        .Where(r => r.RequestStatus.ToLower() != "closed")
+                                        .Where(r => r.RequestRaisedBy != employeeId)
+                                        .ToList();
+            if (requests.Count == 0)
+            {
+                return null;
+            }
+            return requests;
+        }
+
+
+
         public async Task<bool> CloseRequest(int RequestId, Employee employee)
         {
             Request validRequest = await _repository.Get(RequestId);
