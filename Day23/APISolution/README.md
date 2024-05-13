@@ -1,0 +1,9 @@
+# DAY 23
+
+## Topics
+
+- Worked on SQL Queries
+
+- DOT NET WEB ASP FRAMEWORK INTRODUCTION
+
+- ASSESSMENT ON SQL SERVER (HackerRank)
