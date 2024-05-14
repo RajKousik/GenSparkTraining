@@ -13,7 +13,11 @@
 
 ## Work
 
-### ClinicAPI
+- 1. ClinicAPI
+
+- 2. SQL Queries
+
+### 1. ClinicAPI
 
 To Implement a ClinicAPI, a web API that provides endpoints for managing doctors in a clinic. The API allows clients to list doctors, update a doctor's experience, and list doctors based on their specialty.
 
@@ -131,3 +135,32 @@ namespace ClinicManagementAPI.Controllers
 
 
 ```
+
+### 2. SQL Queries
+
+- **Higher Than 75 Marks**
+```sql
+SELECT Name
+FROM STUDENTS 
+WHERE Marks > 75
+ORDER BY RIGHT(Name, 3), Id;
+```
+Problem Statement can be found [here](https://www.hackerrank.com/challenges/more-than-75-marks/problem?isFullScreen=true)
+
+- **Contest Leaderboard**
+```
+with cte_data AS
+(
+    SELECT hacker_id, challenge_id, MAX(score) AS max_score 
+    FROM Submissions 
+    GROUP BY hacker_id, challenge_id
+    HAVING MAX(score) > 0
+)
+
+SELECT h.hacker_id, h.name, SUM(c.max_score) AS total_max_score
+FROM Hackers h 
+JOIN cte_data c ON h.hacker_id = c.hacker_id
+GROUP BY h.hacker_id, h.name
+ORDER BY total_max_score DESC, h.hacker_id ASC;
+```
+Problem Statement can be found [here](https://www.hackerrank.com/challenges/contest-leaderboard/problem?isFullScreen=true)
