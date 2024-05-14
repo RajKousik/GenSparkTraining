@@ -148,7 +148,7 @@ ORDER BY RIGHT(Name, 3), Id;
 Problem Statement can be found [here](https://www.hackerrank.com/challenges/more-than-75-marks/problem?isFullScreen=true)
 
 - **Contest Leaderboard**
-```
+```sql
 with cte_data AS
 (
     SELECT hacker_id, challenge_id, MAX(score) AS max_score 
