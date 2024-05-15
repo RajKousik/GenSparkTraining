@@ -3,22 +3,19 @@
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class NoSuchOrderException : Exception
+    public class NoSuchOrderException : Exception
     {
+        private string message;
         public NoSuchOrderException()
         {
+            message = "Order given the detail not Found in the Database";
         }
 
-        public NoSuchOrderException(string? message) : base(message)
+        public NoSuchOrderException(String message)
         {
+            this.message = message;
         }
 
-        public NoSuchOrderException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected NoSuchOrderException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public override string Message => message;
     }
 }

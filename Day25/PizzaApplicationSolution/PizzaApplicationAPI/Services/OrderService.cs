@@ -13,17 +13,16 @@ namespace PizzaApplicationAPI.Services
         {
             _repository = repository;
         }
-        public async Task<OrderDTO> AddOrder(OrderDTO orderDTO)
+        public async Task<Order> AddOrder(Order order)
         {
             try
             {
-                var order = MapOrderDTOToOrder(orderDTO);
                 order = await _repository.Add(order);
                 if (order == null)
                 {
                     throw new UnableToPlaceOrderException("Not able to place order at this moment");
                 }
-                return orderDTO;
+                return order;
             }
             catch (Exception ex)
             {
@@ -31,19 +30,19 @@ namespace PizzaApplicationAPI.Services
             }
         }
 
-        private Order MapOrderDTOToOrder(OrderDTO orderDTO)
-        {
-            Order order = new Order()
-            {
-                UserId = orderDTO.UserId,
-                PizzaId = orderDTO.PizzaId,
-                Quantity = orderDTO.Quantity,
-            };
+        //private Order MapOrderDTOToOrder(OrderDTO order)
+        //{
+        //    Order order = new Order()
+        //    {
+        //        UserId = orderDTO.UserId,
+        //        PizzaId = orderDTO.PizzaId,
+        //        Quantity = orderDTO.Quantity,
+        //    };
 
-            return order;
-        }
+        //    return order;
+        //}
 
-        public async Task<IEnumerable<OrderDTO>> GetOrders()
+        public async Task<IEnumerable<Order>> GetOrders()
         {
             try
             {
@@ -52,13 +51,7 @@ namespace PizzaApplicationAPI.Services
                 {
                     throw new NoSuchOrderException();
                 }
-                IList<OrderDTO> orderDTOs = new List<OrderDTO>();
-                foreach (Order order in orders)
-                {
-                    orderDTOs.Add(MapOrderToOrderDTO(order));
-                }
-
-                return orderDTOs;
+                return orders;
             }
             catch (Exception ex)
             {
@@ -66,16 +59,16 @@ namespace PizzaApplicationAPI.Services
             }
         }
 
-        private OrderDTO MapOrderToOrderDTO(Order order)
-        {
-            OrderDTO orderDTO = new OrderDTO()
-            {
-                UserId = order.UserId,
-                PizzaId = order.PizzaId,
-                Quantity = order.Quantity
-            };
-            return orderDTO;
-        }
+        //private OrderDTO MapOrderToOrderDTO(Order order)
+        //{
+        //    OrderDTO orderDTO = new OrderDTO()
+        //    {
+        //        UserId = order.UserId,
+        //        PizzaId = order.PizzaId,
+        //        Quantity = order.Quantity
+        //    };
+        //    return orderDTO;
+        //}
     }
 
 }

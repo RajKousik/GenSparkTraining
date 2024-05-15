@@ -40,6 +40,10 @@ namespace PizzaApplicationAPI
             builder.Services.AddScoped<IOrderService, OrderService>();
             #endregion
 
+            #region AutoMapper
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
+            #endregion
+
 
 
 

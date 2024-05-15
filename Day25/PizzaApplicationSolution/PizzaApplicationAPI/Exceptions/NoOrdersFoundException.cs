@@ -3,22 +3,16 @@
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class NoOrdersFoundException : Exception
+    public class NoOrdersFoundException : Exception
     {
+        private string message;
         public NoOrdersFoundException()
         {
+            message = "No Order Found in the Database";
         }
 
-        public NoOrdersFoundException(string? message) : base(message)
-        {
-        }
+        public override string Message => message;
 
-        public NoOrdersFoundException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
 
-        protected NoOrdersFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

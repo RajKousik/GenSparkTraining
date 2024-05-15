@@ -3,22 +3,19 @@
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class UnableToRegisterException : Exception
+    public class UnableToRegisterException : Exception
     {
+        private string message;
         public UnableToRegisterException()
         {
+            message = "Unable to register!";
         }
 
-        public UnableToRegisterException(string? message) : base(message)
+        public UnableToRegisterException(string message)
         {
+           this.message = message;
         }
 
-        public UnableToRegisterException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected UnableToRegisterException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public override string Message => message;
     }
 }

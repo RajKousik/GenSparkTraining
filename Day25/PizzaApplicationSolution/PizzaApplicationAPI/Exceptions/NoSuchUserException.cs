@@ -3,22 +3,14 @@
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class NoSuchUserException : Exception
+    public class NoSuchUserException : Exception
     {
+        private string message;
         public NoSuchUserException()
         {
+            message = "User with the given detail Not Found in the Database";
         }
 
-        public NoSuchUserException(string? message) : base(message)
-        {
-        }
-
-        public NoSuchUserException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected NoSuchUserException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public override string Message => message;
     }
 }

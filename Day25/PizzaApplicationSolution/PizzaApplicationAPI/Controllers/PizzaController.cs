@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaApplicationAPI.Exceptions;
 using PizzaApplicationAPI.Interfaces;
@@ -13,76 +14,82 @@ namespace PizzaApplicationAPI.Controllers
     public class PizzaController : ControllerBase
     {
         private readonly IPizzaService _pizzaService;
+        private readonly IMapper _mapper;
 
-        public PizzaController(IPizzaService pizzaService)
+        public PizzaController(IPizzaService pizzaService, IMapper mapper)
         {
             _pizzaService = pizzaService;
+            _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IList<PizzaDTO>>> Get()
         {
             try
             {
+                Pizza dummyPizza = new Pizza();
                 var pizzas = await _pizzaService.GetAll();
+                var pizzaDto = _mapper.Map<IList<PizzaDTO>>(pizzas);
                 return Ok(pizzas.ToList());
             }
             catch (NoPizzasFoundException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound($"Unable to Fetch Pizza : {ex.Message}");
             }
         }
 
         [HttpPost]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
 
-        public async Task<ActionResult<IList<PizzaDTO>>> AddPizza([FromBody] PizzaDTO pizza)
+        public async Task<ActionResult<PizzaDTO>> AddPizza([FromBody] PizzaDTO pizzaDTO)
         {
             try
             {
+                var pizza = _mapper.Map<Pizza>(pizzaDTO);
                 var result = await _pizzaService.AddPizza(pizza);
-                return Ok(result);
+                var resultDTO = _mapper.Map<PizzaDTO>(result);
+                return Ok(resultDTO);
             }
             catch (NoPizzasFoundException ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest($"Unable to Add Pizza : {ex.Message}");
             }
         }
 
 
         [HttpPut]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<PizzaDTO>> UpdateStock(int id, [FromBody] int stock)
         {
             try
             {
                 var pizza = await _pizzaService.UpdateStock(id, stock);
-                return Ok(pizza);
+                return Ok(_mapper.Map<PizzaDTO>(pizza));
             }
             catch (NoSuchPizzaException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound($"Unable to update Stock : {ex.Message}");
             }
         }
 
         [HttpGet]
         [Route("GetPizzaByName")]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         public async Task<ActionResult<IList<PizzaDTO>>> GetBySpeciality(string name)
         {
             try
             {
                 var pizzas = await _pizzaService.GetPizzaByName(name);
-                return Ok(pizzas);
+                return Ok(_mapper.Map<IList<PizzaDTO>>(pizzas));
             }
             catch (NoPizzasFoundException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound($"Unable to Fetch Pizzas: {ex.Message}");
             }
         }
 

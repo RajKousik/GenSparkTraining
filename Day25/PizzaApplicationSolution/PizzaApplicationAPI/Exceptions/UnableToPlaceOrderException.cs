@@ -1,24 +1,22 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Globalization;
+using System.Runtime.Serialization;
 
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class UnableToPlaceOrderException : Exception
+    public class UnableToPlaceOrderException : Exception
     {
+        private string message;
         public UnableToPlaceOrderException()
         {
+            message = "Something went wrong! Not able to place the order ";
         }
 
-        public UnableToPlaceOrderException(string? message) : base(message)
+        public UnableToPlaceOrderException(String message)
         {
+            this.message = message;
         }
 
-        public UnableToPlaceOrderException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected UnableToPlaceOrderException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public override string Message => message;
     }
 }

@@ -3,22 +3,19 @@
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class UnauthorizedUserException : Exception
+    public class UnauthorizedUserException : Exception
     {
+        private string message;
         public UnauthorizedUserException()
         {
+            message = "UnAuthorized User Exception";
+        }
+        public UnauthorizedUserException(String message)
+        {
+            this.message = message;
         }
 
-        public UnauthorizedUserException(string? message) : base(message)
-        {
-        }
 
-        public UnauthorizedUserException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected UnauthorizedUserException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public override string Message => message;
     }
 }

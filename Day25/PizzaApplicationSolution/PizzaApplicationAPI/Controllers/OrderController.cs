@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaApplicationAPI.Interfaces;
+using PizzaApplicationAPI.Models;
 using PizzaApplicationAPI.Models.DTOs;
 
 namespace PizzaApplicationAPI.Controllers
@@ -10,21 +12,24 @@ namespace PizzaApplicationAPI.Controllers
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
+        private readonly IMapper _mapper;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IMapper mapper)
         {
             _orderService = orderService;
+            _mapper = mapper;
         }
 
         [HttpPost("Place Order")]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<OrderDTO>> Add(OrderDTO orderDTO)
         {
             try
             {
-                var result = await _orderService.AddOrder(orderDTO);
-                return Ok(result);
+                var order = _mapper.Map<Order>(orderDTO);
+                var result = await _orderService.AddOrder(order);
+                return Ok(_mapper.Map<OrderDTO>(result));
             }
             catch (Exception ex)
             {
@@ -39,13 +44,15 @@ namespace PizzaApplicationAPI.Controllers
 
         [HttpGet("Get Orders")]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<OrderDTO>> Get()
+        [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
+        public async Task<ActionResult<IList<OrderDTO>>> Get()
         {
             try
             {
-                var result = await _orderService.GetOrders();
-                return Ok(result);
+                var orders = await _orderService.GetOrders();
+
+                var ordersDTO = _mapper.Map<IList<OrderDTO>>(orders);
+                return Ok(ordersDTO);
             }
             catch (Exception ex)
             {

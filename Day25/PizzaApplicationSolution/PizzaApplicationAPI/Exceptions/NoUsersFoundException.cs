@@ -3,22 +3,14 @@
 namespace PizzaApplicationAPI.Exceptions
 {
     [Serializable]
-    internal class NoUsersFoundException : Exception
+    public class NoUsersFoundException : Exception
     {
+        private string message;
         public NoUsersFoundException()
         {
+            message = "No Users Found in the Database";
         }
 
-        public NoUsersFoundException(string? message) : base(message)
-        {
-        }
-
-        public NoUsersFoundException(string? message, Exception? innerException) : base(message, innerException)
-        {
-        }
-
-        protected NoUsersFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        public override string Message => message;
     }
 }

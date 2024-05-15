@@ -4,7 +4,6 @@ using PizzaApplicationAPI.Models;
 using System.Security.Cryptography;
 using System.Text;
 using PizzaApplicationAPI.Exceptions;
-using System.Collections;
 
 namespace PizzaApplicationAPI.Services
 {
