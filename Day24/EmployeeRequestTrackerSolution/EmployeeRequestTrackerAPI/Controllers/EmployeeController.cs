@@ -18,6 +18,9 @@ namespace EmployeeRequestTrackerAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(IList<Employee>),StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<IList<Employee>>> Get()
         {
             try
@@ -27,13 +30,16 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (NoEmployeesFoundException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new ErrorModel(404, ex.Message));
             }
         }
 
         [Route("GetEmployeeByPhone")]
         [HttpGet]
-        
+        [ProducesResponseType(typeof(Employee), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
+
         public async Task<ActionResult<Employee>> GetByPhone(string phone)
         {
             try
@@ -43,11 +49,14 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (NoSuchEmployeeException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new ErrorModel(404, ex.Message));
             }
         }
 
         [HttpPut]
+        [ProducesResponseType(typeof(Employee), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
+        [ProducesErrorResponseType(typeof(ErrorModel))]
         public async Task<ActionResult<Employee>> UpdatePhoneNumber(int id, string phone)
         {
             try
@@ -57,12 +66,13 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
             catch (NoSuchEmployeeException ex)
             {
-                return NotFound(ex.Message);
+                return NotFound(new ErrorModel(404, ex.Message));
             }
         }
 
         // Get By Phone Number but getting it from request body instead of Request URL
         [HttpPost]
+
         public async Task<ActionResult<Employee>> Get([FromBody] string phone)
         {
             try

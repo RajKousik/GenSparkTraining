@@ -25,8 +25,8 @@ namespace EmployeeRequestTrackerAPI.Repositories
             var employee = await Get(key);
             if (employee != null)
             {
-                _context.Remove(employee);
-                await _context.SaveChangesAsync(true);
+                var removedEmployee = _context.Remove(employee);
+                _context.SaveChanges();
                 return employee;
             }
             throw new NoSuchEmployeeException();
@@ -51,7 +51,7 @@ namespace EmployeeRequestTrackerAPI.Repositories
             if (employee != null)
             {
                 _context.Update(item);
-                await _context.SaveChangesAsync(true);
+                await _context.SaveChangesAsync();
                 return employee;
             }
             throw new NoSuchEmployeeException();

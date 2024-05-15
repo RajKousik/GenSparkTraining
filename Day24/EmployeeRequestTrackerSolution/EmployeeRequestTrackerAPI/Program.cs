@@ -20,24 +20,34 @@ namespace EmployeeRequestTrackerAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            #region DbContexts
 
             builder.Services.AddDbContext<RequestTrackerContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
                 );
 
+            #endregion
+
+            #region Repositories
             builder.Services.AddScoped<IRepository<int, Employee>, EmployeeRepository>();
+            builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
+            #endregion
 
+            #region Services
             builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-
+            builder.Services.AddScoped<IUserService, UserService>();
+            #endregion
 
             var app = builder.Build();
 
+            #region Developement Configuration & Swagger
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            #endregion
 
             app.UseAuthorization();
 
