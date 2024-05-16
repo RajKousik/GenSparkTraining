@@ -9,7 +9,7 @@ namespace PizzaApplicationAPI.Models
         {
             CreateMap<Pizza, PizzaDTO>().ReverseMap();
             CreateMap<Order, OrderDTO>().ReverseMap();
-            //CreateMap<Pizza, PizzaDTO>().ReverseMap();
+            CreateMap<User, LoginReturnDTO>().ReverseMap();
         }
     }
 }

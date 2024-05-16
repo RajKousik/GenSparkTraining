@@ -2,6 +2,8 @@
 using PizzaApplicationAPI.Interfaces;
 using PizzaApplicationAPI.Models.DTOs;
 using PizzaApplicationAPI.Models;
+using PizzaApplicationAPI.Exceptions.CommonExceptions;
+using PizzaApplicationAPI.Exceptions.OrderExceptions;
 
 namespace PizzaApplicationAPI.Services
 {

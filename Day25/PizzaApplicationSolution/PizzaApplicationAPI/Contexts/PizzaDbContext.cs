@@ -9,9 +9,11 @@ namespace PizzaApplicationAPI.Contexts
         {
 
         }
+        #region DbSets
         public DbSet<Pizza> Pizzas { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Order> Orders { get; set; }
+        #endregion
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pizza>().HasData(

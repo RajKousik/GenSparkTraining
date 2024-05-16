@@ -41,3 +41,10 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
+
+appsettings.Production.json
+appsettings.Development.json
+*appsettings.json
+appsettings.json
+**/*appsettings.json

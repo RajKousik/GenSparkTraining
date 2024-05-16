@@ -4,20 +4,28 @@ using PizzaApplicationAPI.Models;
 using System.Security.Cryptography;
 using System.Text;
 using PizzaApplicationAPI.Exceptions;
+using PizzaApplicationAPI.Exceptions.CommonExceptions;
+using AutoMapper;
+
 
 namespace PizzaApplicationAPI.Services
 {
     public class UserService : IUserService
     {
         private readonly IRepository<int, User> _userRepo;
+        private readonly IMapper _mapper;
+        private readonly ITokenService _tokenService;
 
-        public UserService(IRepository<int, User> userRepo)
+        public UserService(IRepository<int, User> userRepo, IMapper mapper, ITokenService tokenService)
         {
             _userRepo = userRepo;
+            _mapper = mapper;
+            _tokenService = tokenService;
         }
-        public async Task<UserLoginDTO> Login(UserLoginDTO loginDTO)
+        public async Task<LoginReturnDTO> Login(UserLoginDTO loginDTO)
         {
-            var userDB = await _userRepo.Get(loginDTO.Id);
+            var userDB = (await _userRepo.GetAll()).SingleOrDefault(u => u.Username == loginDTO.Username);
+            //var userDB = await _userRepo.Get(users.Id);
             if (userDB == null)
             {
                 throw new UnauthorizedUserException("Invalid username or password");
@@ -28,10 +36,20 @@ namespace PizzaApplicationAPI.Services
             bool isPasswordSame = ComparePassword(encrypterPass, userDB.PasswordHash);
             if (isPasswordSame)
             {
-                loginDTO.Password = Encoding.UTF8.GetString(userDB.PasswordHash);
-                return loginDTO;
+                var loginReturnDTO = MapUserToLoginReturnDTO(userDB);
+                loginReturnDTO.Token = _tokenService.GenerateToken(userDB);
+                return loginReturnDTO;
             }
             throw new UnauthorizedUserException("Invalid username or password");
+        }
+
+        private LoginReturnDTO MapUserToLoginReturnDTO(User userDB)
+        {
+            LoginReturnDTO result = new LoginReturnDTO();
+            result.UserId = userDB.Id;
+            result.Username = userDB.Username;
+            result.Token = _tokenService.GenerateToken(userDB);
+            return result;
         }
 
         private bool ComparePassword(byte[] encrypterPass, byte[] password)

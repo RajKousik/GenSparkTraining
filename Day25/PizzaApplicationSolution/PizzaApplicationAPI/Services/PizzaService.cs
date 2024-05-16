@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using PizzaApplicationAPI.Exceptions;
+using PizzaApplicationAPI.Exceptions.PizzaExceptions;
 using PizzaApplicationAPI.Interfaces;
 using PizzaApplicationAPI.Models;
 using PizzaApplicationAPI.Models.DTOs;

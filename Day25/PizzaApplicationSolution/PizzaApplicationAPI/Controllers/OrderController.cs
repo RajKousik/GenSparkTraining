@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaApplicationAPI.Interfaces;
@@ -9,6 +10,7 @@ namespace PizzaApplicationAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly IOrderService _orderService;
@@ -20,6 +22,7 @@ namespace PizzaApplicationAPI.Controllers
             _mapper = mapper;
         }
 
+        #region POST
         [HttpPost("Place Order")]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(object), StatusCodes.Status400BadRequest)]
@@ -40,8 +43,9 @@ namespace PizzaApplicationAPI.Controllers
                 });
             }
         }
+        #endregion
 
-
+        #region GET
         [HttpGet("Get Orders")]
         [ProducesResponseType(typeof(OrderDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(object), StatusCodes.Status404NotFound)]
@@ -63,6 +67,7 @@ namespace PizzaApplicationAPI.Controllers
                 });
             }
         }
+        #endregion
     }
 
 }

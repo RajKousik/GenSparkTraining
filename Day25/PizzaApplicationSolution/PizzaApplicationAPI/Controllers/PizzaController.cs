@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PizzaApplicationAPI.Exceptions;
+using PizzaApplicationAPI.Exceptions.PizzaExceptions;
 using PizzaApplicationAPI.Interfaces;
 using PizzaApplicationAPI.Models;
 using PizzaApplicationAPI.Models.DTOs;
@@ -11,6 +12,7 @@ namespace PizzaApplicationAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PizzaController : ControllerBase
     {
         private readonly IPizzaService _pizzaService;
@@ -22,6 +24,7 @@ namespace PizzaApplicationAPI.Controllers
             _mapper = mapper;
         }
 
+        
         [HttpGet]
         [ProducesResponseType(typeof(PizzaDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PizzaApplicationAPI.Contexts;
 using PizzaApplicationAPI.Exceptions;
+using PizzaApplicationAPI.Exceptions.PizzaExceptions;
 using PizzaApplicationAPI.Interfaces;
 using PizzaApplicationAPI.Models;
 

@@ -1,6 +1,7 @@
 ﻿using EmployeeRequestTrackerAPI.Exceptions;
 using EmployeeRequestTrackerAPI.Interfaces;
 using EmployeeRequestTrackerAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace EmployeeRequestTrackerAPI.Controllers
             _employeeService = employeeService;
         }
 
+        [Authorize]
         [HttpGet]
         [ProducesResponseType(typeof(IList<Employee>),StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status404NotFound)]
