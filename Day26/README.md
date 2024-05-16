@@ -1,5 +1,4 @@
-# Day 25
-
+# Day 26
 ## Topics Covered
 
 - ASP .Net Web API application
@@ -39,3 +38,24 @@ The repository for the assignment work can be found [here](../Day25/PizzaApplica
 ### DEMO
 
 ![](./day26.gif)
+
+
+## Hacker Rank
+
+### A very Big Sum
+
+In this challenge, you are required to calculate and print the sum of the elements in an array, keeping in mind that some of those integers may be quite large.
+
+```c#
+public static long aVeryBigSum(List<long> ar)
+{
+    long result = 0;
+    foreach(var element in ar)
+    {
+        result += element;
+    }
+    return result;
+}
+```
+
+You can find the Problem Statement [here](https://www.hackerrank.com/challenges/a-very-big-sum/problem?isFullScreen=true)
