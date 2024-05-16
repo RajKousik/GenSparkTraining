@@ -22,6 +22,7 @@ namespace PizzaApplicationAPI.Services
             string token = string.Empty;
             var claims = new List<Claim>(){
                 new Claim("Eid", user.Id.ToString()),
+                new Claim("Email", user.Email),
                 new Claim("Role", user.Username??"No Name"),
             };
             var credentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);

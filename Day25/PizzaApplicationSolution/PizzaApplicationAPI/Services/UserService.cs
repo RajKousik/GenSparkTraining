@@ -24,7 +24,7 @@ namespace PizzaApplicationAPI.Services
         }
         public async Task<LoginReturnDTO> Login(UserLoginDTO loginDTO)
         {
-            var userDB = (await _userRepo.GetAll()).SingleOrDefault(u => u.Username == loginDTO.Username);
+            var userDB = (await _userRepo.GetAll()).SingleOrDefault(u => u.Email == loginDTO.Email);
             //var userDB = await _userRepo.Get(users.Id);
             if (userDB == null)
             {
@@ -48,6 +48,7 @@ namespace PizzaApplicationAPI.Services
             LoginReturnDTO result = new LoginReturnDTO();
             result.UserId = userDB.Id;
             result.Username = userDB.Username;
+            result.Email = userDB.Email;
             result.Token = _tokenService.GenerateToken(userDB);
             return result;
         }
@@ -89,6 +90,7 @@ namespace PizzaApplicationAPI.Services
         {
             User user = new User();
             user.Username = regiserDTO.Username;
+            user.Email = regiserDTO.Email;
             HMACSHA512 hMACSHA = new HMACSHA512();
             user.PasswordHashKey = hMACSHA.Key;
             user.PasswordHash = hMACSHA.ComputeHash(Encoding.UTF8.GetBytes(regiserDTO.Password));
