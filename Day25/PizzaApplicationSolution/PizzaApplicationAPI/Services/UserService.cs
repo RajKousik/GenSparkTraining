@@ -1,12 +1,13 @@
-﻿using PizzaApplicationAPI.Interfaces;
-using PizzaApplicationAPI.Models.DTOs;
+﻿using AutoMapper;
+using Easy_Password_Validator;
+using PizzaApplicationAPI.Exceptions.CommonExceptions;
+using PizzaApplicationAPI.Exceptions.UserExceptions;
+using PizzaApplicationAPI.Interfaces;
 using PizzaApplicationAPI.Models;
+using PizzaApplicationAPI.Models.DTOs;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
-using PizzaApplicationAPI.Exceptions;
-using PizzaApplicationAPI.Exceptions.CommonExceptions;
-using AutoMapper;
-using PizzaApplicationAPI.Exceptions.UserExceptions;
 
 
 namespace PizzaApplicationAPI.Services
@@ -16,13 +17,16 @@ namespace PizzaApplicationAPI.Services
         private readonly IRepository<int, User> _userRepo;
         private readonly IMapper _mapper;
         private readonly ITokenService _tokenService;
+        private readonly PasswordValidatorService _passwordValidatorService;
 
-        public UserService(IRepository<int, User> userRepo, IMapper mapper, ITokenService tokenService)
+        public UserService(IRepository<int, User> userRepo, IMapper mapper, ITokenService tokenService, PasswordValidatorService passwordValidatorService)
         {
             _userRepo = userRepo;
             _mapper = mapper;
             _tokenService = tokenService;
+            _passwordValidatorService = passwordValidatorService;
         }
+
         public async Task<LoginReturnDTO> Login(UserLoginDTO loginDTO)
         {
             var userDB = (await _userRepo.GetAll()).SingleOrDefault(u => u.Email == loginDTO.Email);
@@ -44,7 +48,7 @@ namespace PizzaApplicationAPI.Services
             }
 
             throw new UnauthorizedUserException("Invalid username or password");
-        
+
         }
 
         private LoginReturnDTO MapUserToLoginReturnDTO(User userDB)
@@ -69,31 +73,41 @@ namespace PizzaApplicationAPI.Services
             return true;
         }
 
-        public async Task<UserRegisterDTO> Register(UserRegisterDTO regiserDTO)
+        public async Task<UserRegisterDTO> Register(UserRegisterDTO registerDTO)
         {
             User user = null;
             try
             {
-                var isEmailIdExists = (await _userRepo.GetAll()).SingleOrDefault(u => u.Email == regiserDTO.Email);
+                var isEmailIdExists = (await _userRepo.GetAll()).SingleOrDefault(u => u.Email == registerDTO.Email);
 
-                if(isEmailIdExists != null)
+                if (isEmailIdExists != null)
                 {
                     throw new DuplicateUserException();
                 }
 
-                user = MapRegiserDTOToUser(regiserDTO);
+                var isPasswordValid = _passwordValidatorService.TestAndScore(registerDTO.Password);
+
+                if (!isPasswordValid)
+                {
+                    Debug.WriteLine("isPasswordValid", isPasswordValid);
+                    throw new InvalidPasswordException();
+                }
+
+
+                user = MapRegiserDTOToUser(registerDTO);
                 user = await _userRepo.Add(user);
-                if(user == null)
+                if (user == null)
                 {
                     throw new UnableToRegisterException("Not able to register at this moment");
                 }
-                regiserDTO.Password = Encoding.UTF8.GetString(user.PasswordHash);
-                return regiserDTO;
+                registerDTO.Password = Encoding.UTF8.GetString(user.PasswordHash);
+                return registerDTO;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new UnableToRegisterException($"{ex.Message}");
             }
-            
+
         }
 
 

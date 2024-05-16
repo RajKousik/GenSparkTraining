@@ -1,3 +1,5 @@
+using Easy_Password_Validator.Models;
+using Easy_Password_Validator;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -61,6 +63,7 @@ namespace PizzaApplicationAPI
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Pizza>, PizzaRepository>();
             builder.Services.AddScoped<IRepository<int, Order>, OrderRepository>();
+            
             #endregion
 
             #region Services
@@ -68,6 +71,7 @@ namespace PizzaApplicationAPI
             builder.Services.AddScoped<IPizzaService, PizzaService>();
             builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddScoped<ITokenService, TokenService>();
+            builder.Services.AddTransient(service => new PasswordValidatorService(new PasswordRequirements()));
             #endregion
 
             #region AutoMapper

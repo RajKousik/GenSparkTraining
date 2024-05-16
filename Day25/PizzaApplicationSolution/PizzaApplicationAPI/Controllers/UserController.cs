@@ -47,7 +47,7 @@ namespace PizzaApplicationAPI.Controllers
             {
                 return BadRequest(new
                 {
-                    StatusCode = StatusCodes.Status500InternalServerError,
+                    StatusCode = StatusCodes.Status400BadRequest,
                     Message = $"Something went wrong! {ex.Message}"
                 });
             }
