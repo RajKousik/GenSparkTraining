@@ -6,6 +6,7 @@ using System.Text;
 using PizzaApplicationAPI.Exceptions;
 using PizzaApplicationAPI.Exceptions.CommonExceptions;
 using AutoMapper;
+using PizzaApplicationAPI.Exceptions.UserExceptions;
 
 
 namespace PizzaApplicationAPI.Services
@@ -34,13 +35,16 @@ namespace PizzaApplicationAPI.Services
             HMACSHA512 hMACSHA = new HMACSHA512(userDB.PasswordHashKey);
             var encrypterPass = hMACSHA.ComputeHash(Encoding.UTF8.GetBytes(loginDTO.Password));
             bool isPasswordSame = ComparePassword(encrypterPass, userDB.PasswordHash);
+
             if (isPasswordSame)
             {
                 var loginReturnDTO = MapUserToLoginReturnDTO(userDB);
                 loginReturnDTO.Token = _tokenService.GenerateToken(userDB);
                 return loginReturnDTO;
             }
+
             throw new UnauthorizedUserException("Invalid username or password");
+        
         }
 
         private LoginReturnDTO MapUserToLoginReturnDTO(User userDB)
@@ -70,6 +74,13 @@ namespace PizzaApplicationAPI.Services
             User user = null;
             try
             {
+                var isEmailIdExists = (await _userRepo.GetAll()).SingleOrDefault(u => u.Email == regiserDTO.Email);
+
+                if(isEmailIdExists != null)
+                {
+                    throw new DuplicateUserException();
+                }
+
                 user = MapRegiserDTOToUser(regiserDTO);
                 user = await _userRepo.Add(user);
                 if(user == null)
@@ -80,7 +91,7 @@ namespace PizzaApplicationAPI.Services
                 return regiserDTO;
             }
             catch (Exception ex) {
-                throw new UnableToRegisterException($"Not able to register at this moment : {ex.Message}");
+                throw new UnableToRegisterException($"{ex.Message}");
             }
             
         }
@@ -91,6 +102,7 @@ namespace PizzaApplicationAPI.Services
             User user = new User();
             user.Username = regiserDTO.Username;
             user.Email = regiserDTO.Email;
+            user.Age = regiserDTO.Age;
             HMACSHA512 hMACSHA = new HMACSHA512();
             user.PasswordHashKey = hMACSHA.Key;
             user.PasswordHash = hMACSHA.ComputeHash(Encoding.UTF8.GetBytes(regiserDTO.Password));
