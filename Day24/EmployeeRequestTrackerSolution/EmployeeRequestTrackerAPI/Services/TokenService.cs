@@ -21,8 +21,8 @@ namespace EmployeeRequestTrackerAPI.Services
         {
             string token = string.Empty;
             var claims = new List<Claim>(){
-                new Claim("Eid", employee.Id.ToString()),
-                new Claim("Role", employee.Role ?? "User"),
+                new Claim(ClaimTypes.Name, employee.Id.ToString()),
+                new Claim(ClaimTypes.Role, employee.Role.ToString()),
             };
             var credentials = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
             var myToken = new JwtSecurityToken(null, null, claims, expires: DateTime.Now.AddDays(2), signingCredentials: credentials);

@@ -3,6 +3,7 @@ using EmployeeRequestTrackerAPI.Models.DTOs;
 using EmployeeRequestTrackerAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeRequestTrackerAPI.Controllers
 {
@@ -45,5 +46,24 @@ namespace EmployeeRequestTrackerAPI.Controllers
                 return BadRequest(new ErrorModel(501, ex.Message));
             }
         }
+
+        [Authorize(Roles ="Admin")]
+        [HttpPut("Activate")]
+        [ProducesResponseType(typeof(UserStatusDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<Employee>> ActivateUser(int employeeId)
+        {
+            try
+            {
+                var result = await _userService.ActivateUser(employeeId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new ErrorModel(401, ex.Message));
+            }
+        }
+
+
     }
 }
