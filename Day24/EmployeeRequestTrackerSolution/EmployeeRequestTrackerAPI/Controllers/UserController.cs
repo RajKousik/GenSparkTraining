@@ -32,13 +32,14 @@ namespace EmployeeRequestTrackerAPI.Controllers
             }
         }
         [HttpPost("Register")]
-        [ProducesResponseType(typeof(Employee), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(EmployeeUserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<Employee>> Register(EmployeeUserDTO userDTO)
+        public async Task<ActionResult<EmployeeUserDTO>> Register(EmployeeUserDTO userDTO)
         {
             try
             {
-                Employee result = await _userService.Register(userDTO);
+                var result = await _userService.Register(userDTO);
+
                 return Ok(result);
             }
             catch (Exception ex)

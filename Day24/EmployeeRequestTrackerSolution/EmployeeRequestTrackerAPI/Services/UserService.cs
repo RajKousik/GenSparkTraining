@@ -55,20 +55,21 @@ namespace EmployeeRequestTrackerAPI.Services
             return true;
         }
 
-        public async Task<Employee> Register(EmployeeUserDTO employeeDTO)
+        public async Task<EmployeeUserDTO> Register(EmployeeUserDTO employeeDTO)
         {
             Employee employee = null;
             User user = null;
             try
             {
-                employee = employeeDTO;
-                user = MapEmployeeUserDTOToUser(employeeDTO);
+                employee = MapEmployeeDtoToEmployee(employeeDTO);
                 employee = await _employeeRepo.Add(employee);
+
+                user = MapEmployeeUserDTOToUser(employeeDTO);
                 user.EmployeeId = employee.Id;
                 user = await _userRepo.Add(user);
-                ((EmployeeUserDTO)employee).Password = string.Empty;
 
-                return employee;
+                employeeDTO.Password = Encoding.UTF8.GetString(user.Password);
+                return employeeDTO;
             }
             catch (Exception) { }
             if (employee != null)
@@ -77,6 +78,18 @@ namespace EmployeeRequestTrackerAPI.Services
                 await RevertUserInsert(user);
             throw new UnableToRegisterException("Not able to register at this moment");
         }
+
+        private Employee MapEmployeeDtoToEmployee(EmployeeUserDTO employeeDTO)
+        {
+            Employee employee = new Employee();
+            employee.Name = employeeDTO.Name;
+            employee.DateOfBirth  = employeeDTO.DateOfBirth;
+            employee.Phone  = employeeDTO.Phone;
+            employee.Role = employeeDTO.Role;
+            employee.Image = employeeDTO.Image;
+            return employee;
+        }
+
 
         private LoginReturnDTO MapEmployeeToLoginReturn(Employee employee)
         {
@@ -101,7 +114,6 @@ namespace EmployeeRequestTrackerAPI.Services
         private User MapEmployeeUserDTOToUser(EmployeeUserDTO employeeDTO)
         {
             User user = new User();
-            user.EmployeeId = employeeDTO.Id;
             user.Status = "Disabled";
             HMACSHA512 hMACSHA = new HMACSHA512();
             user.PasswordHashKey = hMACSHA.Key;
