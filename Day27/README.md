@@ -38,10 +38,10 @@ The repository for the Pizza Shop API can be found [here](../Day25/PizzaApplicat
 
 ## Output
 
-### 1. Add Request and Get Requests
+### 1. Add Request and Get Requests [Find [here](./day27_output_1.gif)]
 
 ![](./day27_output_1.gif)
 
-### 2. Activating user accounts (Only By Admin)
+### 2. Activating user accounts (Only By Admin) [Find [here](./day27_output_2.gif)]
 
 ![](./day27_output_2.gif)
