@@ -50,6 +50,9 @@ namespace EmployeeRequestTrackerAPI
                 });
             });
 
+            #region Logging
+            builder.Services.AddLogging(l => l.AddLog4Net());
+            #endregion
 
             #region DbContexts
 

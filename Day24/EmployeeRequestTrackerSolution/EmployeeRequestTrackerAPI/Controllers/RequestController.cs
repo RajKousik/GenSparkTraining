@@ -69,15 +69,18 @@ namespace EmployeeRequestTrackerAPI.Controllers
 
         [Authorize(Roles = "Admin,User")]
         [HttpPost]
-        [ProducesResponseType(typeof(IList<AddRequestDTO>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IList<AddReturnRequestDTO>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorModel), StatusCodes.Status400BadRequest)]
         [ProducesErrorResponseType(typeof(ErrorModel))]
 
-        public async Task<ActionResult<Employee>> Get(AddRequestDTO requestDTO)
+        public async Task<ActionResult<AddReturnRequestDTO>> Add(AddRequestDTO requestDTO)
         {
             try
             {
-                var request = await _requestService.AddRequest(requestDTO);
+                var employeeClaimId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+                var employeeId = Convert.ToInt32(employeeClaimId);
+                AddReturnRequestDTO returnRequestDTO = new AddReturnRequestDTO();
+                var request = await _requestService.AddRequest(requestDTO, employeeId);
                 return Ok(request);
             }
             catch (UnableToAddRequestException ex)

@@ -2,6 +2,7 @@
 using EmployeeRequestTrackerAPI.Interfaces;
 using EmployeeRequestTrackerAPI.Models;
 using EmployeeRequestTrackerAPI.Models.DTOs;
+using System.Security.Claims;
 
 namespace EmployeeRequestTrackerAPI.Services
 {
@@ -13,7 +14,7 @@ namespace EmployeeRequestTrackerAPI.Services
         {
             _repository = reposiroty;
         }
-        public async Task<AddRequestDTO> AddRequest(AddRequestDTO requestDto)
+        public async Task<AddReturnRequestDTO> AddRequest(AddRequestDTO requestDto, int employeeId)
         {
             if(requestDto == null)
             {
@@ -22,22 +23,29 @@ namespace EmployeeRequestTrackerAPI.Services
             try
             {
                 Request request = MapRequestDtoToRequest(requestDto);
+                request.RequestRaisedBy = employeeId;
                 var result = await _repository.Add(request);
-                if(result != null)
-                    return requestDto;
+                AddReturnRequestDTO returnRequestDTO;
+                if (result != null)
+                {
+                    returnRequestDTO = new AddReturnRequestDTO() { 
+                                                RequestDescription = requestDto.RequestDescription,
+                                                RequestRaisedBy = employeeId
+                                                                };
+                    return returnRequestDTO;
+                }
             }
             catch(Exception ex)
             {
                 throw new UnableToAddRequestException();
             }
-            return requestDto;
+            throw new UnableToAddRequestException();
         }
 
         private Request MapRequestDtoToRequest(AddRequestDTO requestDto)
         {
             Request request = new Request();
             request.RequestDescription = requestDto.RequestDescription;
-            request.RequestRaisedBy = requestDto.RequestRaisedBy;
             request.RequestRaisedOn = DateTime.Now;
             request.isRequestSolved = false;
             return request;

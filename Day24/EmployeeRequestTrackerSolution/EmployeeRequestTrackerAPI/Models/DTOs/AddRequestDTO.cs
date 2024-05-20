@@ -6,6 +6,5 @@ namespace EmployeeRequestTrackerAPI.Models.DTOs
     {
         public string RequestDescription { get; set; }
 
-        public int RequestRaisedBy { get; set; }
     }
 }
