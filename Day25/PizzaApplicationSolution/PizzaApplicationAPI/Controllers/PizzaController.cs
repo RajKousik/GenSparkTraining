@@ -17,11 +17,13 @@ namespace PizzaApplicationAPI.Controllers
     {
         private readonly IPizzaService _pizzaService;
         private readonly IMapper _mapper;
+        private readonly ILogger<PizzaController> _logger;
 
-        public PizzaController(IPizzaService pizzaService, IMapper mapper)
+        public PizzaController(IPizzaService pizzaService, IMapper mapper, ILogger<PizzaController> logger)
         {
             _pizzaService = pizzaService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         
@@ -39,6 +41,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (NoPizzasFoundException ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound($"Unable to Fetch Pizza : {ex.Message}");
             }
         }
@@ -58,6 +61,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (NoPizzasFoundException ex)
             {
+                _logger.LogError(ex.Message);
                 return BadRequest($"Unable to Add Pizza : {ex.Message}");
             }
         }
@@ -75,6 +79,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (NoSuchPizzaException ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound($"Unable to update Stock : {ex.Message}");
             }
         }
@@ -92,6 +97,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (NoPizzasFoundException ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound($"Unable to Fetch Pizzas: {ex.Message}");
             }
         }

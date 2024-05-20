@@ -15,11 +15,13 @@ namespace PizzaApplicationAPI.Controllers
     {
         private readonly IOrderService _orderService;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
-        public OrderController(IOrderService orderService, IMapper mapper)
+        public OrderController(IOrderService orderService, IMapper mapper, ILogger logger)
         {
             _orderService = orderService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         #region POST
@@ -36,6 +38,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
@@ -60,6 +63,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex.Message);
                 return NotFound(new
                 {
                     StatusCode = StatusCodes.Status404NotFound,
