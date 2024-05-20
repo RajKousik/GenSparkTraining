@@ -51,6 +51,10 @@ namespace PizzaApplicationAPI
                 });
             });
 
+            #region Logging
+            builder.Services.AddLogging(l => l.AddLog4Net());
+            #endregion
+
             #region DbContexts
 
             builder.Services.AddDbContext<PizzaDbContext>(

@@ -10,10 +10,12 @@ namespace PizzaApplicationAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, ILogger<UserController> logger)
         {
+            _logger = logger;
             _userService = userService;
         }
 
@@ -29,6 +31,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogCritical(ex.Message);
                 return Unauthorized(new { StatusCode = StatusCodes.Status401Unauthorized, 
                                             Message = "Please Use Correct Credentials"});
             }
@@ -45,6 +48,7 @@ namespace PizzaApplicationAPI.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogCritical(ex.Message);
                 return BadRequest(new
                 {
                     StatusCode = StatusCodes.Status400BadRequest,
