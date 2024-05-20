@@ -10,7 +10,6 @@
 
 ## Work
 
-### Role-based Authentication
 
 - Worked on LINQ by trying out few problems 
 
