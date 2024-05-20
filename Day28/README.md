@@ -18,5 +18,9 @@
 
 - Worked on Logger 
 
-  You can find the repo link [here](../Day24/EmployeeRequestTrackerSolution)
+  You can find the repo links below 
+
+  - [Employee Request Tracker](../Day24/EmployeeRequestTrackerSolution)
+	
+  - [Pizza Application](../Day25/PizzaApplicationSolution)
 
