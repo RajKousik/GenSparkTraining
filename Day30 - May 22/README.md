@@ -1,3 +1,5 @@
+# BACKEND MINI PROJECT - END POINTS
+
 ### Student Endpoints
 
 1. **Register a new student**
