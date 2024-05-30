@@ -56,7 +56,7 @@
 - Password Hash Key
 - Hashed Password
 - Status
-- Role (Admin, faculty)
+- Role (Admin, Asst Prof, Assoc Prof, Head Of Dept)
 - Department Id (fk)
 
 ### 3. Department
@@ -65,8 +65,9 @@
 - Name (unique)
 - Head Id (fk)
 
-### 4. Course Id (pk)
+### 4. Course 
 
+- Course Id (pk)
 - Name (unique)
 - Description 
 - Faculty Id (fk)
@@ -418,13 +419,13 @@
 
 ### Student Attendance Endpoints
 
-1. **Create a new attendance record**
+1. **Mark Attendance for a student**
    - **POST** `/api/attendance`
    - **Description**: Adds a new attendance record for a student.
    - **Request Body**: `{ "studentRollNo": 1, "courseId": 1, "date": "2024-05-21", "attendanceStatus": "Present" }`
    - **Accessibility**: Only Faculty can access
 
-2. **Update an attendance record**
+2. **Modify the student attendance**
    - **PUT** `/api/attendance/{id}`
    - **Description**: Updates an existing attendance record.
    - **Request Body**: `{ "attendanceStatus": "Absent" }`
