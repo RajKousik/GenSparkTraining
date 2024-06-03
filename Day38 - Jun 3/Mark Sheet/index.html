@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MarkSheet Replica</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        width: 800px;
+        margin: 0 auto;
+        border: 7px solid red;
+        padding: 0 20px;
+        border-style: double;
+      }
+      .header {
+        text-align: center;
+        border-bottom: 2px solid #000;
+        padding-bottom: 20px;
+      }
+      .header img {
+        width: 80px;
+        display: block;
+        margin: 0 auto;
+      }
+      .header h1 {
+        font-size: 24px;
+        margin: 10px 0;
+      }
+      .header h2 {
+        font-size: 20px;
+        /* margin: 5px 0; */
+      }
+      .details {
+        width: 100%;
+        margin: 20px 0;
+        border: none;
+        border-collapse: collapse;
+      }
+      .marks {
+        width: 100%;
+        margin: 20px 0;
+        border-collapse: collapse;
+      }
+      .details th,
+      .details td {
+        padding: 8px;
+        text-align: left;
+      }
+      .marks th,
+      .marks td {
+        border: 1px solid #000;
+        padding: 8px;
+        text-align: left;
+      }
+      /* .marks th {
+        background-color: #f2f2f2;
+      } */
+      .footer {
+        text-align: left;
+        margin-top: 20px;
+      }
+      .signature {
+        text-align: right;
+        /* margin-top: 20px; */
+      }
+      .pass {
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div
+          class="logos"
+          style="display: flex; justify-content: space-between"
+        >
+          <div class="" style="margin-top: 30px">
+            <img
+              src="./assets/logo.png"
+              alt="University Logo"
+              width="100px"
+              height="100px"
+            />
+          </div>
+          <div class="" style="flex: 1; margin-top: 30px">
+            <img
+              src="./assets/university_logo.png"
+              alt="University Logo"
+              style="display: flex; flex: 1; width: max-content"
+            />
+          </div>
+          <div>
+            <p><b>Serial No:</b><i>SI20004462</i></p>
+            <img
+              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              title="Profile"
+              height="100px"
+              width="200px"
+              style="border-radius: 50%; object-fit: cover"
+              alt="Profile"
+            />
+          </div>
+        </div>
+        <h1 style="color: #6e6e9e">STATEMENT OF PRESIDIO</h1>
+        <h1 style="color: #0000ff">Associate Engineer</h1>
+      </div>
+      <table class="details" style="border: none">
+        <tr>
+          <th style="width: 25%">Name</th>
+          <td style="width: 25%">Kousik Raj</td>
+          <th style="width: 25%">Admission No</th>
+          <td style="width: 25%">20004462</td>
+        </tr>
+        <tr>
+          <th style="width: 25%">Father's Name</th>
+          <td style="width: 25%">Kabilan</td>
+          <th>Year</th>
+          <td>2024</td>
+        </tr>
+        <tr>
+          <th style="width: 25%">Reg No</th>
+          <td style="width: 25%">212220040076</td>
+          <th>Month & Year of Exam</th>
+          <td>JUNE 2024</td>
+        </tr>
+      </table>
+      <table class="marks">
+        <tr>
+          <th
+            colspan="5"
+            style="
+              background-color: rgba(226, 135, 67, 0.5);
+              text-align: center;
+            "
+          >
+            SEMESTER 1
+          </th>
+        </tr>
+        <tr style="background-color: rgba(255, 0, 0, 0.75); color: white">
+          <th style="text-align: center">Subject</th>
+          <th style="text-align: center">External Marks</th>
+          <th style="text-align: center">Internal Marks</th>
+          <th style="text-align: center">Total</th>
+          <th style="text-align: center">Result</th>
+        </tr>
+        <tr>
+          <td>Github</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>C#</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>Web API</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>SQL</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>Testing</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>Assessment</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2" style="text-align: right">
+            <b>Total Marks Obtained</b>: 570
+          </td>
+          <td colspan="2" style="text-align: right"><b>Out of:</b> 600</td>
+        </tr>
+
+        <!-- Add more rows as needed -->
+      </table>
+
+      <table class="marks">
+        <tr>
+          <th
+            colspan="5"
+            style="
+              background-color: rgba(226, 135, 67, 0.5);
+              text-align: center;
+            "
+          >
+            SEMESTER 2
+          </th>
+        </tr>
+        <tr
+          style="
+            background-color: rgba(255, 0, 0, 0.75);
+            color: white;
+            text-align: center;
+          "
+        >
+          <th style="text-align: center">Subject</th>
+          <th style="text-align: center">External Marks</th>
+          <th style="text-align: center">Internal Marks</th>
+          <th style="text-align: center">Total</th>
+          <th style="text-align: center">Result</th>
+        </tr>
+        <tr>
+          <td>HTML</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>CSS</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>JavaScript</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>Angular</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>React</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td>Assessment</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">25</td>
+          <td style="text-align: center">95</td>
+          <td style="text-align: center" class="pass">PASS</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td colspan="2" style="text-align: right">
+            <b>Total Marks Obtained:</b> 570
+          </td>
+          <td colspan="2" style="text-align: right"><b>Out of:</b> 600</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </table>
+      <div class="footer">
+        <p style="font-size: 18px">
+          <b>Result:</b> <span class="pass">Pass</span>
+        </p>
+        <p style="font-size: 16px"></p>
+      </div>
+      <table class="marks">
+        <tr>
+          <th style="text-align: center">Subject</th>
+          <th style="text-align: center">Semester I</th>
+          <th style="text-align: center">Semester II</th>
+        </tr>
+        <tr>
+          <td>Total Marks</td>
+          <td style="text-align: right">600</td>
+          <td style="text-align: right">600</td>
+        </tr>
+        <tr>
+          <td>Marks Obtained</td>
+          <td style="text-align: right">570</td>
+          <td style="text-align: right">570</td>
+        </tr>
+      </table>
+
+      <div class="footer" style="display: flex; justify-content: space-between">
+        <div>
+          <p><b>Date:</b> 03 JUNE 2024</p>
+          <p><b>Place:</b> Chennai</p>
+          <div
+            style="
+              width: 100%;
+              height: 30px;
+              background-color: rgba(226, 135, 67, 0.5);
+            "
+          ></div>
+        </div>
+        <div style="margin-top: 110px">
+          <p style="font-size: 20px">* 123456789 *</p>
+        </div>
+        <div class="signature">
+          <!-- <div> -->
+          <svg
+            style="position: relative; top: -80px; left: 50px"
+            width="80"
+            height="80"
+          >
+            <circle
+              cx="40"
+              cy="40"
+              r="38"
+              fill="green"
+              stroke="darkgreen"
+              stroke-width="3"
+            />
+            <text
+              x="65%"
+              y="35%"
+              dominant-baseline="middle"
+              text-anchor="middle"
+              font-size="25"
+              fill="black"
+              style="font-weight: bolder; transform: rotate(20deg)"
+              font-family="Arial, sans-serif"
+            >
+              PASS
+            </text>
+          </svg>
+          <!-- </div> -->
+          <img
+            src="assets/university_logo.png"
+            alt="University Logo"
+            width="100"
+            style="padding-right: 50px"
+          />
+          <p style="font-size: 16px; padding-right: 40px">Ragnar Lothbrok</p>
+          <p style="font-size: 16px"><b>Controller of Examinations</b></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
