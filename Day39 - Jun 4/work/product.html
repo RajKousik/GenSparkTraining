@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Home</title>
+    <meta lang="en-us" />
+  </head>
+  <body>
+    <header>
+      <h1>
+        <center>
+          <em>Add a new Product</em>
+        </center>
+      </h1>
+    </header>
+    <form action="table.html">
+      <table>
+        <tr>
+          <td><label>Name</label></td>
+          <td><input type="text" name="productName" required /></td>
+        </tr>
+        <tr>
+          <td><label>Price</label></td>
+          <td>
+            <input type="number" name="productPrice" min="1" max="1000" />
+          </td>
+        </tr>
+        <tr>
+          <td><label>Category</label></td>
+          <td>
+            <select>
+              <option value="1">Dairy</option>
+              <option value="2" selected>Stationary</option>
+              <option value="3">Eatables</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label>Availability</label></td>
+          <td>
+            <input type="radio" checked name="rbAvailability" />Available
+            <input type="radio" name="rbAvailability" />Unavailable
+          </td>
+        </tr>
+        <tr>
+          <td><label>Others</label></td>
+          <td>
+            <input type="checkbox" />Gift Pack
+            <input type="checkbox" checked />Wish Card
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" />
+          </td>
+          <td>
+            <input type="reset" />
+          </td>
+        </tr>
+      </table>
+    </form>
+    <footer>
+      <p>© Copyright, GFG</p>
+    </footer>
+  </body>
+</html>

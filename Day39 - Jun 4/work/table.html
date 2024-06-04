@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TABLE</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        background-image: linear-gradient(to right, #fdfcfb, #e2d1c3);
+      }
+      tr,
+      th,
+      table,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 10px;
+        text-align: center;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        flex-direction: column;
+      }
+
+      th {
+        background-color: aqua;
+      }
+      tr:nth-child(odd) {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: white;
+      }
+      td img {
+        height: 100px;
+        width: 100px;
+      }
+      button {
+        display: flex;
+        margin: 10px;
+        height: 30px;
+        width: 100px;
+        cursor: pointer;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+      }
+      button.add {
+        background-color: greenyellow;
+      }
+      button.remove {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>List of Products</h2>
+      <table>
+        <thead>
+          <th>S.No</th>
+          <th>Name</th>
+          <th>Price (in Rs)</th>
+          <th>Picture</th>
+          <th>Quantity in Hand</th>
+          <th>Actions</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>Mouse</td>
+            <td>2000.00</td>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1605773527852-c546a8584ea3?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Mouse"
+              />
+            </td>
+            <td class="quantity">10</td>
+            <td>
+              <button class="add">Add</button>
+              <button class="remove">Remove</button>
+            </td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>Dumbbells</td>
+            <td>1000.00</td>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Dumbbells"
+              />
+            </td>
+            <td class="quantity">5</td>
+            <td>
+              <button class="add">Add</button>
+              <button class="remove">Remove</button>
+            </td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td>Mobile</td>
+            <td>10000.00</td>
+            <td>
+              <img
+                src="https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=1781&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Mobile"
+              />
+            </td>
+            <td class="quantity">8</td>
+            <td>
+              <button class="add">Add</button>
+              <button class="remove">Remove</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script>
+      document.querySelectorAll("button.add").forEach((button) => {
+        button.addEventListener("click", function () {
+          let quantityCell = this.closest("tr").querySelector(".quantity");
+          quantityCell.textContent = parseInt(quantityCell.textContent) + 1;
+        });
+      });
+
+      document.querySelectorAll("button.remove").forEach((button) => {
+        button.addEventListener("click", function () {
+          let quantityCell = this.closest("tr").querySelector(".quantity");
+          let currentQuantity = parseInt(quantityCell.textContent);
+          if (currentQuantity > 0) {
+            quantityCell.textContent = currentQuantity - 1;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
