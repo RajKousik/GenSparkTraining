@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Complete Details</title>
+    <style>
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .employee {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        flex: 1 1 calc(50% - 20px);
+        box-sizing: border-box;
+        max-width: calc(50% - 20px);
+        transition: box-shadow 0.3s;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+      }
+
+      .employee:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+      }
+
+      .employee img {
+        display: block;
+        margin: 0 auto 10px;
+        border-radius: 50%;
+      }
+
+      .details {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .detail-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 5px 15px;
+      }
+
+      .detail-row strong {
+        width: 40%;
+        color: #666;
+      }
+
+      .detail-row span {
+        width: 60%;
+        color: #333;
+      }
+
+      @media screen and (max-width: 768px) {
+        .employee {
+          flex: 1 1 calc(100% - 20px);
+          max-width: calc(100% - 20px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="employee">
+        <h2>Employee Complete Details</h2>
+        <img
+          src="./media/images/employee1.jpg"
+          alt="Employee Picture"
+          width="150"
+        />
+        <div class="details">
+          <div class="detail-row">
+            <strong>Name:</strong> <span>John Doe</span>
+          </div>
+          <div class="detail-row">
+            <strong>Date of Birth:</strong> <span>January 1, 1990</span>
+          </div>
+          <div class="detail-row">
+            <strong>Phone:</strong> <span>123-456-7890</span>
+          </div>
+          <div class="detail-row">
+            <strong>Email:</strong> <span>john.doe@example.com</span>
+          </div>
+          <div class="detail-row">
+            <strong>Blood Group:</strong> <span>O+</span>
+          </div>
+          <div class="detail-row">
+            <strong>Address:</strong>
+            <span>1234 Elm Street, Springfield, IL 62704</span>
+          </div>
+          <div class="detail-row">
+            <strong>Position:</strong> <span>Software Engineer</span>
+          </div>
+          <div class="detail-row">
+            <strong>Department:</strong> <span>IT</span>
+          </div>
+          <div class="detail-row">
+            <strong>Date of Joining:</strong> <span>June 15, 2015</span>
+          </div>
+          <div class="detail-row">
+            <strong>Emergency Contact:</strong>
+            <span>Jane Doe (Spouse) - 987-654-3210</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="employee">
+        <h2>Employee Complete Details</h2>
+        <img
+          src="./media/images/employee2.jpg"
+          alt="Employee Picture"
+          width="150"
+        />
+        <div class="details">
+          <div class="detail-row">
+            <strong>Name:</strong> <span>Jane Smith</span>
+          </div>
+          <div class="detail-row">
+            <strong>Date of Birth:</strong> <span>February 2, 1985</span>
+          </div>
+          <div class="detail-row">
+            <strong>Phone:</strong> <span>098-765-4321</span>
+          </div>
+          <div class="detail-row">
+            <strong>Email:</strong> <span>jane.smith@example.com</span>
+          </div>
+          <div class="detail-row">
+            <strong>Blood Group:</strong> <span>A-</span>
+          </div>
+          <div class="detail-row">
+            <strong>Address:</strong>
+            <span>5678 Oak Avenue, Springfield, IL 62704</span>
+          </div>
+          <div class="detail-row">
+            <strong>Position:</strong> <span>Project Manager</span>
+          </div>
+          <div class="detail-row">
+            <strong>Department:</strong> <span>Management</span>
+          </div>
+          <div class="detail-row">
+            <strong>Date of Joining:</strong> <span>March 22, 2012</span>
+          </div>
+          <div class="detail-row">
+            <strong>Emergency Contact:</strong>
+            <span>John Smith (Husband) - 876-543-2109</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="employee">
+        <h2>Employee Complete Details</h2>
+        <img
+          src="./media/images/employee3.jpg"
+          alt="Employee Picture"
+          width="150"
+        />
+        <div class="details">
+          <div class="detail-row">
+            <strong>Name:</strong> <span>Alice Johnson</span>
+          </div>
+          <div class="detail-row">
+            <strong>Date of Birth:</strong> <span>March 3, 1978</span>
+          </div>
+          <div class="detail-row">
+            <strong>Phone:</strong> <span>555-123-4567</span>
+          </div>
+          <div class="detail-row">
+            <strong>Email:</strong> <span>alice.johnson@example.com</span>
+          </div>
+          <div class="detail-row">
+            <strong>Blood Group:</strong> <span>B+</span>
+          </div>
+          <div class="detail-row">
+            <strong>Address:</strong>
+            <span>9012 Maple Road, Springfield, IL 62704</span>
+          </div>
+          <div class="detail-row">
+            <strong>Position:</strong> <span>HR Specialist</span>
+          </div>
+          <div class="detail-row">
+            <strong>Department:</strong> <span>Human Resources</span>
+          </div>
+          <div class="detail-row">
+            <strong>Date of Joining:</strong> <span>September 5, 2010</span>
+          </div>
+          <div class="detail-row">
+            <strong>Emergency Contact:</strong>
+            <span>Robert Johnson (Brother) - 654-321-0987</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

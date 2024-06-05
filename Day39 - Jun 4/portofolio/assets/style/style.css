@@ -255,7 +255,7 @@ img {
   text-align: justify;
 }
 
-.about_img svg {
+.about_img img {
   width: 300px;
   border-radius: 0.5rem;
 }
@@ -414,6 +414,10 @@ img {
     margin: 0;
   }
 
+  .resume-btn {
+    display: none;
+  }
+
   .section {
     padding-top: 4rem;
     padding-bottom: 3rem;
@@ -458,7 +462,7 @@ img {
   }
   .home_social {
     padding-top: 0;
-    padding-bottom: 2.5rem;
+    padding-bottom: 2rem;
     flex-direction: row;
     align-self: flex-end;
   }
@@ -470,8 +474,8 @@ img {
 
   .home_img {
     width: 460px;
-    bottom: 15%;
-    right: 5%;
+    /* bottom: 15%;
+    right: 5%; */
   }
 
   .home_img img {
@@ -502,6 +506,8 @@ img {
     justify-items: center;
   }
 }
+
+/* FLIPPING CARDS */
 
 .card .front,
 .card .back {
@@ -537,6 +543,11 @@ img {
   background-color: whitesmoke;
   padding: 0px 10px 0px 10px;
   text-align: justify;
+  overflow: scroll;
+}
+
+.card .back::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
 }
 
 .card .back h4 {
@@ -558,6 +569,7 @@ img {
 
 .card-wrapper {
   border-radius: 0.5rem;
+  display: flex;
 }
 
 .card {
@@ -568,4 +580,70 @@ img {
   transition-duration: 1s;
   transition-timing-function: ease-in-out;
   transform-style: preserve-3d;
+}
+
+/* RESPONSIVENESS */
+@media screen and (max-width: 1120px) {
+  .home_title {
+    font-size: 40px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .section-title::after {
+    top: 2.5rem;
+  }
+
+  .nav_list {
+    display: none;
+  }
+
+  .about_img img {
+    width: 100%;
+  }
+
+  .home_social {
+    display: none;
+  }
+
+  .home_img img {
+    width: 100%;
+  }
+
+  .work_container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .home_img {
+    width: 300px;
+    bottom: 15%;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .home_img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 626px) {
+  .home_img {
+    display: none;
+  }
+  .work_container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    column-gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .home_social {
+    display: none;
+  }
 }

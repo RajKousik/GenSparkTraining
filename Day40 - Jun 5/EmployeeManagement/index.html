@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Home Page</title>
+    <style>
+      body {
+        height: 100%;
+        box-sizing: border-box;
+        margin: 0;
+        font-family: "Arial", sans-serif;
+        background-color: #f0f0f0;
+        color: #333;
+      }
+      header {
+        background-color: #0073e6;
+        color: white;
+        padding: 10px 0;
+      }
+      header h1 {
+        text-align: center;
+        margin: 0;
+        font-size: 2em;
+      }
+      nav {
+        display: flex;
+        background-color: #00bfff;
+        padding: 10px 0;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      nav span {
+        padding: 10px 20px;
+        /* margin: 0 5px; */
+        border-right: 2px solid #0073e6;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      nav span:last-child {
+        border-right: none;
+      }
+      nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        transition: color 0.3s;
+      }
+      nav a:hover {
+        color: #003366;
+      }
+      nav a:hover {
+        border-bottom: 2px solid white;
+      }
+      .active a {
+        color: #003366;
+        border-bottom: 2px solid #003366;
+      }
+      iframe {
+        display: block;
+        width: 100%;
+        height: 490px;
+        border: none;
+        margin: 20px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+      footer {
+        text-align: center;
+        padding: 10px 0;
+        background-color: #0073e6;
+        color: white;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+      footer p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <em>RK Company</em>
+      </h1>
+    </header>
+    <nav>
+      <span onclick="setActive(this)"
+        ><a href="Home.html" target="main">Home</a></span
+      >
+      <span onclick="setActive(this)"
+        ><a href="AddEmployee.html" target="main">Add Employee</a></span
+      >
+      <span onclick="setActive(this)"
+        ><a href="Employees.html" target="main">Employees</a></span
+      >
+      <span onclick="setActive(this)"
+        ><a href="EmployeeDetails.html" target="main">Employee Details</a></span
+      >
+    </nav>
+    <iframe name="main" src="Home.html"></iframe>
+    <footer>
+      <p>© Copyright, Raj Kousik</p>
+    </footer>
+    <script>
+      function setActive(element) {
+        var navItems = document.querySelectorAll("nav span");
+        navItems.forEach((item) => {
+          item.classList.remove("active");
+        });
+
+        element.classList.add("active");
+      }
+    </script>
+  </body>
+</html>
