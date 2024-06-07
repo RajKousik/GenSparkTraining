@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .table-container {
+        max-height: 500px; /* Adjust as needed */
+        overflow-y: auto;
+      }
+      ::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+      }
+    </style>
+  </head>
+  <body
+    class="bg-gray-100 min-h-[100vh] flex justify-center items-center m-auto"
+  >
+    <div
+      class="container w-[90%] m-auto bg-white border border-gray-300 rounded-md shadow-lg"
+    >
+      <!-- Top Bar -->
+      <div
+        class="flex bg-[#F4F7FC] flex-row justify-between py-3 px-5 gap-5 rounded-md"
+      >
+        <div class="flex flex-row gap-3 basis-4/12">
+          <button
+            class="bg-white h-8 w-10 border border-gray-300 rounded-md overflow-hidden"
+          >
+            <i class="text-[#464F60] fa-solid fa-filter"></i>
+          </button>
+          <div
+            class="flex items-center bg-white h-8 w-[100%] border border-gray-300 rounded-md overflow-hidden"
+          >
+            <i
+              class="pl-3 fa-solid fa-magnifying-glass fa-sm text-[#868FA0]"
+            ></i>
+            <input
+              class="pl-3 pr-2 h-full text-gray-700 outline-none border-0 w-full"
+              type="text"
+              placeholder="Search..."
+            />
+          </div>
+        </div>
+        <button
+          class="flex items-center bg-[#2264E5] px-3 gap-3 border border-blue-500 rounded-md text-white"
+        >
+          <i class="fa-solid fa-plus fa-sm text-white"></i>
+          <p>Add customer</p>
+        </button>
+      </div>
+      <!-- Table -->
+      <div class="table-container overflow-x-auto">
+        <table class="min-w-[50%] bg-white w-full">
+          <thead
+            class="bg-[#F4F7FC] text-gray-600 font-normal text-xs sticky top-0"
+          >
+            <tr>
+              <th class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </th>
+              <th class="py-2 px-2 border-b text-center">
+                # <i class="fa-solid fa-sort"></i>
+              </th>
+              <th class="py-2 px-4 border-b text-left">
+                NAME <i class="fa-solid fa-sort"></i>
+              </th>
+              <th class="py-2 px-4 border-b text-left w-1/4">DESCRIPTION</th>
+              <th class="py-2 px-4 border-b text-center">
+                STATUS <i class="fa-solid fa-sort"></i>
+              </th>
+              <th class="py-2 px-4 border-b text-right">RATE</th>
+              <th class="py-2 px-4 border-b text-right">BALANCE</th>
+              <th class="py-2 px-4 border-b text-right">DEPOSIT</th>
+              <th class="py-2 px-4 border-b text-right"></th>
+            </tr>
+          </thead>
+          <tbody class="text-gray-700">
+            <!-- Repeat for each row -->
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">1</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Ann Culhane</p>
+                <p class="font-normal text-[#687182]">5684236526</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#f0f1fa] px-3 py-1 rounded-2xl text-blue-600"
+                  >Open</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p>-$270.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">2</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Ahmad Rosser</p>
+                <p class="font-normal text-[#687182]">5684236527</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#E1FCEF] px-3 py-1 rounded-2xl text-[#14804A]"
+                  >Paid</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p class="text-[#14804A]">$270.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">3</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Zain Calzoni</p>
+                <p class="font-normal text-[#687182]">5684236528</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#f0f1fa] px-3 py-1 rounded-2xl text-blue-600"
+                  >Open</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p>-$20.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">4</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Leo Stanton</p>
+                <p class="font-normal text-[#687182]">5684236529</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#E9EDF5] px-3 py-1 rounded-2xl text-[#5A6376]"
+                  >Inactive</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p class="text-[#14804A]">$600.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$270.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">5</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Kaiya Vetrovs</p>
+                <p class="font-normal text-[#687182]">5684236530</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#f0f1fa] px-3 py-1 rounded-2xl text-blue-600"
+                  >Open</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p>-$350.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">6</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Ryan Westervelt</p>
+                <p class="font-normal text-[#687182]">5684236531</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#E1FCEF] px-3 py-1 rounded-2xl text-[#14804A]"
+                  >Paid</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p>-$270.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">7</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Corey Stanton</p>
+                <p class="font-normal text-[#687182]">5684236532</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#FAF0F3] px-3 py-1 rounded-2xl text-[#D12953]"
+                  >Due</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p class="text-[#14804A]">$30.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">8</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Adison Aminoff</p>
+                <p class="font-normal text-[#687182]">5684236533</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#f0f1fa] px-3 py-1 rounded-2xl text-blue-600"
+                  >Open</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p>-$270.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">9</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Alfredo Aminoff</p>
+                <p class="font-normal text-[#687182]">5684236534</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#E9EDF5] px-3 py-1 rounded-2xl text-[#5A6376]"
+                  >Inactive</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p class="text-[#14804A]">$460.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 odd:bg-white even:bg-[#F9FAFC]">
+              <td class="py-2 px-2 border-b text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td class="py-2 px-4 border-b text-center">10</td>
+              <td class="py-2 px-4 border-b">
+                <p class="font-medium text-black">Tom Cruise</p>
+                <p class="font-normal text-[#687182]">5684236535</p>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <p class="p-0">
+                  Lorem ipsum dolor sit amet, <br />
+                  consectetur adipiscing elit. Nulla...
+                </p>
+              </td>
+              <td class="py-2 px-4 border-b text-center">
+                <span class="bg-[#E9EDF5] px-3 py-1 rounded-2xl text-[#5A6376]"
+                  >Inactive</span
+                >
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$70.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-red-500">
+                <p class="text-[#14804A]">$460.00</p>
+                <p class="text-[#464F60]">CAD</p>
+              </td>
+              <td class="py-2 px-4 border-b text-right text-[#464F60]">
+                <p>$500.00</p>
+                <p>CAD</p>
+              </td>
+              <td class="border-b text-center">
+                <i
+                  class="py-2 px-4 cursor-pointer fa-solid fa-ellipsis-vertical"
+                ></i>
+              </td>
+            </tr>
+
+            <!-- Repeat similar blocks for other rows -->
+          </tbody>
+        </table>
+      </div>
+      <!-- Pagination -->
+      <div
+        class="flex justify-between items-center w-full bg-[#F4F7FC] py-2 border border-zinc px-4 text-[#687182] rounded-bl-md rounded-br-md"
+        style="opacity: 1"
+      >
+        <p>1-10 of 97</p>
+        <div class="flex flex-row gap-10">
+          <div class="flex flex-row items-center">
+            <p>Rows per page:</p>
+            <span class="ml-2">10</span>
+            <i class="ml-1 fa-solid fa-angle-down cursor-pointer"></i>
+          </div>
+          <div class="flex flex-row items-center gap-2">
+            <div
+              class="bg-[#F7F9FC] border border-zinc px-2 rounded-lg cursor-pointer"
+            >
+              <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <p>1/10</p>
+            <div
+              class="bg-[#F7F9FC] border border-zinc px-2 rounded-lg cursor-pointer"
+            >
+              <i class="fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
