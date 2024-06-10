@@ -1,0 +1,55 @@
+@import "colorVars";
+
+body {
+  box-sizing: border-box;
+}
+
+@mixin general-home($bgColor, $textColor, $type) {
+  background-color: $bgColor;
+  // color: $textColor;
+  color: if($type==error, red, $textColor);
+  border: if($type==error, red, $bgColor) 2px solid;
+}
+
+div {
+  @include general-home(rgb(0, 119, 128), white, normal);
+}
+
+@each $type, $bColor, $fColor in (danger, pink, red),
+  (primary, lightblue, royalblue), (success, lightgreen, green)
+{
+  .#{$type} {
+    background-color: $bColor;
+    color: $fColor;
+  }
+}
+
+@for $i from 1 to 5 {
+  .d#{$i} {
+    width: 100px;
+    position: relative;
+    margin-left: $i * 10px;
+    float: left;
+  }
+}
+
+section.normal {
+  @include general-home(rgb(0, 96, 128), white, normal);
+}
+section.error {
+  @include general-home(rgb(0, 96, 128), white, error);
+}
+
+nav {
+  background-color: bisque;
+  ul {
+    padding: 3px;
+  }
+  li {
+    padding: 10px;
+    display: inline-block;
+  }
+  a {
+    text-decoration: none;
+  }
+}
