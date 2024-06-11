@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Profile</title>
+    <link rel="stylesheet" href="./assets/css/profile.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid px-2">
+          <div class="d-flex align-items-center">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#sidebar"
+              aria-controls="sidebar"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onclick="toggleSideBar()"
+            >
+              <span class="navbar-toggler-icon" id="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand fw-medium text-truncate" href="#">
+              ABC Educational Institution
+            </a>
+          </div>
+          <div>
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item d-flex align-items-center">
+                <img
+                  src="./assets/svg/profile-user.svg"
+                  width="32px"
+                  height="32px"
+                  alt="Profile"
+                />
+                <span class="ms-2 fs-6 fw-medium">Kousik Raj</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="main d-flex">
+        <div
+          class="sidebar justify-content-center text-center bg-light p-3 text-align-center"
+          id="sidebar"
+        >
+          <div class="profile-name">
+            <img
+              src="./assets/svg/profile-user.svg"
+              width="50%"
+              height="30%"
+              alt="Profile"
+            />
+            <h2 class="my-2 fs-3 fw-normal">Kousik Raj</h2>
+          </div>
+          <ul class="nav flex-column mt-5">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                href="profile-content.html"
+                target="main-frame"
+                >Profile</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="try.html" target="main-frame"
+                >Departments</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Course Registrations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Exams</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Grade</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Attendances</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Logout</a>
+            </li>
+          </ul>
+        </div>
+        <div class="main-content flex-grow-1">
+          <iframe name="main-frame" width="100%" src="profile-content.html">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/profile/profile.js"></script>
+  </body>
+</html>

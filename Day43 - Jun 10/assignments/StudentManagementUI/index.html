@@ -12,28 +12,6 @@
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Sign in & Sign up Form</title>
-    <style>
-      .form-select option {
-        color: #333;
-      }
-      .form-select:invalid {
-        color: #aaa;
-      }
-      select.form-select {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-image: linear-gradient(45deg, transparent 50%, gray 50%),
-          linear-gradient(135deg, gray 50%, transparent 50%),
-          linear-gradient(to right, #ccc, #ccc);
-        background-position: calc(100% - 20px) calc(1em + 4px),
-          calc(100% - 15px) calc(1em + 4px), calc(100% - 2.5em) 0.8em;
-        background-size: 5px 5px, 5px 5px, 1px 1.5em;
-        background-repeat: no-repeat;
-      }
-    </style>
   </head>
   <body>
     <div class="container">
@@ -53,12 +31,6 @@
             <input type="submit" value="Login" class="btn solid" />
             <p class="social-text">Or Sign in with social platforms</p>
             <div class="social-media">
-              <!-- <a href="#" class="social-icon">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" class="social-icon">
-                <i class="fab fa-twitter"></i>
-              </a> -->
               <a href="#" class="social-icon">
                 <img
                   width="36"
@@ -68,9 +40,6 @@
                 />
                 Sign In With Google
               </a>
-              <!-- <a href="#" class="social-icon">
-                <i class="fab fa-linkedin-in"></i>
-              </a> -->
             </div>
           </form>
           <form action="#" class="sign-up-form" autocomplete="off">
@@ -100,15 +69,6 @@
                   autofill="off"
                 />
               </div>
-              <!-- <div class="input-field-signup">
-                <i class="fa-solid fa-venus-mars"></i>
-                <select autocomplete="off">
-                  <option value="" disabled selected hidden>Gender</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="other">Other</option>
-                </select>
-              </div> -->
               <div class="input-field-signup">
                 <i class="fa-solid fa-venus-mars"></i>
                 <select placeholder="Gender" class="form-select" required>

@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <script>
+      num1 = 90;
+      var greet = () => alert("Hello");
+      var understandingVariables = () => {
+        let num1 = 200;
+        window.num1 = 300; //the global variable
+        console.log("The value of num1 in Understanding Variables " + num1);
+      };
+      var anotherMethod = () => {
+        understandingVariables();
+        console.log(num1);
+      };
+      var understandingArray = () => {
+        const scores = [100, 90, 89, 67, 70];
+        for (let index = 0; index < scores.length; index++) {
+          console.log(scores[index]);
+        }
+        console.log(scores[5]); //undefined\
+      };
+      var understandingNoValues = () => {
+        var name = null;
+        var age;
+        if (age === name) console.log("yes");
+        else console.log("no");
+      };
+      var understandingBoolean = () => {
+        var name = null;
+        var age;
+        var result = false;
+        var num = 0;
+        if (!name) console.log("No name given");
+        if (!age) console.log("No age given");
+        if (!result) console.log("No result given");
+        if (!num) console.log("The number is false");
+        if (name == result) console.log("Name and result are same");
+        else console.log("not same");
+      };
+      var understandingObject = () => {
+        var employee = {
+          name: "Ramu",
+          age: 21,
+          phone: "9876543210",
+        };
+        employee.price = 10987;
+        console.log(employee["price"]);
+      };
+      var understandingMultiDimensionArray = () => {
+        const scores = [
+          [90, 89, 76],
+          [67, 92, 64],
+        ];
+        // for (let index = 0; index < scores.length; index++) {
+        //   console.log(scores[index]);
+        //   for (let i = 0; i < scores[index].length; i++)
+        //     console.log(scores[index][i]);
+        // }
+        var changedArray = scores.flat();
+        console.log(changedArray);
+      };
+      var understandingFilter = () => {
+        const scores = [100, 90, 89, 67, 70];
+        var topScores = scores.filter((n) => n > 75);
+        console.log(topScores);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Hello from JS</h1>
+    <button onclick="understandingMultiDimensionArray()">Click to call</button>
+  </body>
+</html>
