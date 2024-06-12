@@ -32,7 +32,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 .navbar {
-  background-color: #ffffff !important;
+  background-color: #caf0f8 !important;
   padding: 24px 8px 24px;
   height: 88px;
   border-bottom: 1px solid #ebedf0;

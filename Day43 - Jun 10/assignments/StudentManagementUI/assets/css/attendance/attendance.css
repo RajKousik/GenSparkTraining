@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper {
+  min-height: 90%;
+}
+
+.chart-container {
+  height: 400px; /* Adjust the height as needed */
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .chart-container {
+    height: 300px; /* Adjust the height for smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .chart-container {
+    height: 250px; /* Adjust the height for the smallest screens */
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
