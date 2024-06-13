@@ -19,6 +19,10 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/exam/exam.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
+    />
   </head>
   <body>
     <!-- <div class="container"> -->
@@ -27,7 +31,7 @@
         <div class="col-6 p-0 text-start">
           <h3 class="">Exams</h3>
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 mx-xs-0 text-end my-xs-2">
+        <!-- <div class="col-md-6 col-sm-6 col-xs-12 mx-xs-0 text-end my-xs-2">
           <div class="input-group rounded">
             <input
               type="search"
@@ -46,43 +50,40 @@
               <i class="fas fa-search"></i>
             </button>
           </div>
-        </div>
+        </div> -->
       </div>
-      <div class="row mx-auto p-0">
-        <div class="col-12 text-end filters">
-          <div class="form-check form-check-inline">
+      <div class="row mx-4 p-0">
+        <div class="col-12 text-end p-0">
+          <div class="form-check form-check-inline me-0 ms-2">
             <input
               class="form-check-input"
               type="checkbox"
               id="filterUpcomingExams"
               value="upcomingExams"
-              onclick="filterExams()"
             />
             <label class="form-check-label" for="filterUpcomingExams"
               >Upcoming Exams</label
             >
           </div>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline me-0 ms-2">
             <input
               class="form-check-input"
               type="checkbox"
               id="filterOnline"
               value="online"
               checked
-              onclick="filterExams()"
             />
             <label class="form-check-label" for="filterOnline"
               >Online Exams</label
             >
           </div>
-          <div class="form-check form-check-inline">
+          <div class="form-check form-check-inline me-0 ms-2">
             <input
               class="form-check-input"
               type="checkbox"
               id="filterOffline"
               value="offline"
               checked
-              onclick="filterExams()"
             />
             <label class="form-check-label" for="filterOffline"
               >Offline Exams</label
@@ -101,12 +102,24 @@
         >
           <thead data-aos="fade-up">
             <tr>
-              <th scope="col" width="10%">Sl.No</th>
-              <th scope="col" width="10%">Exam ID</th>
-              <th scope="col" width="10%">Course ID</th>
-              <th scope="col" width="20%">Exam Date</th>
-              <th scope="col" width="15%">Mode</th>
-              <th scope="col" width="15%">Action</th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Sl.No
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Exam ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Course ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Exam Date
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Mode
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody style="vertical-align: middle" data-aos="fade-up">
@@ -279,6 +292,14 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <!-- Data Table JS -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
     <script src="./assets/js/exam/exam.js"></script>
   </body>
 </html>

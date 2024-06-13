@@ -32,3 +32,36 @@ body {
     display: none;
   }
 } */
+
+#courseTable_wrapper {
+  width: 100%;
+}
+
+#courseTable_wrapper .row:first-child div:first-child {
+  padding: 0;
+}
+
+#courseTable_filter {
+  padding-top: 4px !important;
+  padding-right: 4px !important;
+}
+
+#courseTable_length {
+  padding-top: 4px !important;
+}
+
+@media (max-width: 768px) {
+  #courseTable_length,
+  #courseTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #courseTable_length,
+  #courseTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}

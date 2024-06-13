@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/auth/auth-style.css" />
+    <title>Sign in & Sign up Form</title>
+  </head>
+  <body>
+    <div class="container" style="min-width: 100vw">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <!-- <form action="#" class="sign-in-form">
+            <h2>Student Management System</h2>
+            <h2 class="title">Sign in</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" placeholder="Username" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" />
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Or Sign in with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <img
+                  width="36"
+                  height="36"
+                  src="https://img.icons8.com/color/48/google-logo.png"
+                  alt="google-logo"
+                />
+                Sign In With Google
+              </a>
+            </div>
+          </form> -->
+          <form class="row g-3 sign-in-form" action="#">
+            <h2 class="title text-primary text-center">
+              Student Management System
+            </h2>
+            <h2 class="title text-center">Sign In</h2>
+            <div class="col-md-9 col-sm-9 col-xs-3">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="form-floating">
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    class="form-control"
+                    id="floatingInput"
+                  />
+                  <label for="floatingInput">Email Address</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-3">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <div class="form-floating">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="floatingPassword"
+                    placeholder="Password"
+                  />
+                  <label for="floatingPassword">Password</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 p-0 text-center">
+              <button type="submit" class="btn btn-lg btn-primary">
+                Sign in
+              </button>
+            </div>
+          </form>
+
+          <!-- <form action="#" class="sign-up-form" autocomplete="off">
+            <h2>Student Management System</h2>
+            <h2 class="title">Sign up</h2>
+            <div class="form-body">
+              <div class="input-field-signup">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  placeholder="Username"
+                  autocomplete="nope"
+                  autofill="off"
+                  id="inputUsername"
+                />
+              </div>
+              <div class="input-field-signup">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" autocomplete="off" />
+              </div>
+              <div class="input-field-signup">
+                <i class="fa-solid fa-mobile"></i>
+                <input
+                  type="number"
+                  pattern="^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"
+                  placeholder="Mobile"
+                  autocomplete="off"
+                  autofill="off"
+                />
+              </div>
+              <div class="input-field-signup">
+                <i class="fa-solid fa-venus-mars"></i>
+                <select placeholder="Gender" class="form-select" required>
+                  <option value="" disabled selected hidden>Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="input-field-signup">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" autocomplete="off" />
+              </div>
+              <div class="input-field-signup">
+                <i class="fa-solid fa-calendar-days"></i>
+                <input type="date" placeholder="DOB" autocomplete="off" />
+              </div>
+              <div class="input-field-signup">
+                <i class="fa-solid fa-building"></i>
+                <select placeholder="Department" class="form-select" required>
+                  <option value="" disabled selected hidden>Department</option>
+                  <option value="cse">CSE</option>
+                  <option value="it">IT</option>
+                  <option value="ece">ECE</option>
+                  <option value="eee">EEE</option>
+                  <option value="mech">ME</option>
+                  <option value="civil">CE</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="input-field-signup">
+                <i class="fas fa-envelope"></i>
+                <input type="email" placeholder="Email" autocomplete="off" />
+              </div>
+              <div class="input-field-signup">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" placeholder="City" autocomplete="off" />
+              </div>
+              <div class="input-field-signup">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <input type="submit" class="btn" value="Sign up" />
+            <p class="social-text">Or Sign up with social platforms</p>
+            <div class="social-media">
+              <a href="#" class="social-icon">
+                <img
+                  width="36"
+                  height="36"
+                  src="https://img.icons8.com/color/48/google-logo.png"
+                  alt="google-logo"
+                />
+                Sign In With Google
+              </a>
+            </div>
+          </form> -->
+
+          <!-- Bootstrap Try Start-->
+
+          <form class="row g-3 sign-up-form m-1" action="#">
+            <h2 class="title text-primary text-center m-0 me-1">
+              Student Management System
+            </h2>
+            <h2 class="title text-center m-0">Sign up</h2>
+            <div class="col-md-6 col-sm-6">
+              <!-- <label for="inputEmail4" class="form-label">Email</label> -->
+              <div class="input-group">
+                <div class="input-group-text">@</div>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="autoSizingInputGroup"
+                  placeholder="Username"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <input
+                  type="email"
+                  autocomplete="off"
+                  autofill="off"
+                  placeholder="Email Id"
+                  class="form-control"
+                  id="inputPassword4"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fa-solid fa-mobile"></i>
+                </div>
+                <input
+                  type="number"
+                  pattern="^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"
+                  placeholder="Mobile"
+                  autocomplete="off"
+                  autofill="off"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-calendar-days"></i>
+                </div>
+                <input
+                  type="date"
+                  class="form-control"
+                  placeholder="DOB"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fa-solid fa-venus-mars"></i>
+                </div>
+                <select placeholder="Gender" class="form-select" required>
+                  <option value="" disabled selected hidden>Gender</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fa-solid fa-building"></i>
+                </div>
+                <select placeholder="Department" class="form-select" required>
+                  <option value="" disabled selected hidden>Department</option>
+                  <option value="cse">CSE</option>
+                  <option value="it">IT</option>
+                  <option value="ece">ECE</option>
+                  <option value="eee">EEE</option>
+                  <option value="mech">ME</option>
+                  <option value="civil">CE</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fa-solid fa-location-dot"></i>
+                </div>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="City"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fa-solid fa-mobile"></i>
+                </div>
+                <input
+                  type="number"
+                  pattern="^(\\+\\d{1,2}\\s?)?\\(?\\d{3}\\)?[\\s.-]?\\d{3}[\\s.-]?\\d{4}$"
+                  placeholder="Mobile"
+                  autocomplete="off"
+                  autofill="off"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  autocomplete="off"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-lock"></i>
+                </div>
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  autocomplete="off"
+                  class="form-control"
+                  required
+                />
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="gridCheck"
+                  required
+                />
+                <label class="form-check-label" for="gridCheck">
+                  I Agree to terms & Conditions
+                </label>
+              </div>
+            </div>
+            <div class="col-12 text-center">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+          </form>
+
+          <!-- Bootstrap Try end -->
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>New User?</h3>
+            <p>Provide Some details and get register yourself in!</p>
+            <button class="btn transparent text-white" id="sign-up-btn">
+              Sign up
+            </button>
+          </div>
+          <img src="./assets/svg/login.svg" class="image" alt="" />
+        </div>
+        <div class="panel right-panel">
+          <div class="content">
+            <h3>Already Signed in?</h3>
+            <p>Use your email address and password to login!</p>
+            <button class="btn transparent text-white" id="sign-in-btn">
+              Sign in
+            </button>
+          </div>
+          <img src="./assets/svg/register.svg" class="image" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/auth/auth-script.js"></script>
+  </body>
+</html>

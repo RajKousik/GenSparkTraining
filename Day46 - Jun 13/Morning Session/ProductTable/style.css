@@ -1,0 +1,65 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+.success {
+  color: green;
+}
+.error {
+  color: red;
+}
+
+.table-responsive {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border: 1px solid grey;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+thead tr {
+  position: sticky;
+  top: -1px;
+  overflow-y: auto;
+}
+
+.is-invalid {
+  border-color: red !important;
+}

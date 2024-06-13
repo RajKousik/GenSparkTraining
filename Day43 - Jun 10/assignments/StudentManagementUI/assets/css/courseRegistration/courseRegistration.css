@@ -60,3 +60,36 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+
+#courseRegistrationTable_wrapper {
+  width: 100%;
+}
+
+#courseRegistrationTable_wrapper .row:first-child div:first-child {
+  padding: 0;
+}
+
+#courseRegistrationTable_filter {
+  padding-top: 4px !important;
+  padding-right: 4px !important;
+}
+
+#courseRegistrationTable_length {
+  padding-top: 4px !important;
+}
+
+@media (max-width: 768px) {
+  #courseRegistrationTable_length,
+  #courseRegistrationTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #courseRegistrationTable_length,
+  #courseRegistrationTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}

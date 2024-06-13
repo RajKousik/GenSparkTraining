@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Data</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+    <script>
+      function understandingRestOperator() {
+        let numbers = [100, 45, 78, 90];
+        // let sum = calculate('add', 30,45,78,90);
+        // let product = calculate('multiply', 30,45,78,90);
+        // console.log('Sum:', sum);
+        // console.log('Product:', product);
+        var avg = Math.max(89, 67, 98, 76, 100, 175);
+        console.log("Maximum:", avg);
+      }
+      function calculate(operation, ...numbers) {
+        let result = 0;
+        if (operation === "add") {
+          for (let i = 0; i < numbers.length; i++) {
+            result += numbers[i];
+          }
+        } else if (operation === "multiply") {
+          result = 1;
+          for (let i = 0; i < numbers.length; i++) {
+            result *= numbers[i];
+          }
+        }
+        return result;
+      }
+      var understandingSpreadOperator = () => {
+        // var scores = [23,78,90,45];
+        // var otherScores = [56,77,...scores];
+        // console.log('Scores:', otherScores);
+        // var cart1 = ['Apple', 'Banana', 'Orange'];
+        // var cart2 = ['Mango', 'Grapes', 'Pineapple'];
+        // var cart = [...cart1, ...cart2];
+        // console.log('Cart:', cart);
+        var product = {
+          id: 1,
+          name: "Product 1",
+          price: 10.0,
+          quantity: 5,
+        };
+        console.log("Product:", product);
+        var newProduct = { ...product, quantity: 10 };
+        //var newProduct = {quantity:10};
+        console.log("New Product:", newProduct);
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Product Data</h1>
+    <div>
+      <button onclick="understandingRestOperator()">
+        Understanding Rest Operator
+      </button>
+    </div>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Product 1</td>
+        <td>$10.00</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Product 2</td>
+        <td>$15.00</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Product 3</td>
+        <td>$20.00</td>
+        <td>3</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -27,6 +27,39 @@ body {
   overflow-x: auto;
 }
 
+#examTable_wrapper {
+  width: 100%;
+}
+
+#examTable_wrapper .row:first-child div:first-child {
+  padding: 0;
+}
+
+#examTable_filter {
+  padding-top: 4px !important;
+  padding-right: 4px !important;
+}
+
+#examTable_length {
+  padding-top: 4px !important;
+}
+
+@media (max-width: 768px) {
+  #examTable_length,
+  #examTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #examTable_length,
+  #examTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}
+
 @media (max-width: 330px) {
   .filters {
     text-align: start !important;

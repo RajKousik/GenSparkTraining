@@ -39,6 +39,73 @@ function hideModal(modalId) {
   updateModal.hide();
 }
 
+$(document).ready(function () {
+  const table = $("#courseRegistrationTable").DataTable({
+    // Disable sorting on the last column
+    columnDefs: [{ orderable: false, targets: 4 }],
+    pagingType: "full_numbers",
+    columns: [null, null, null, null, { searchable: false }],
+    language: {
+      // Customize pagination prev and next buttons: use arrows instead of words
+
+      paginate: {
+        previous: '<span class="fa fa-chevron-left"></span>',
+        next: '<span class="fa fa-chevron-right"></span>',
+        first: '<span class="fa-solid fa-angles-left"></span>',
+        last: '<span class="fa-solid fa-angles-right"></span>',
+      },
+      pageLength: 5,
+      // Customize number of elements to be displayed
+      lengthMenu:
+        'Display <select class="form-control input-sm">' +
+        '<option value="3">3</option>' +
+        '<option value="5" selected>5</option>' + // Default selected value
+        '<option value="10">10</option>' +
+        '<option value="15">15</option>' +
+        '<option value="20">20</option>' +
+        '<option value="25">25</option>' +
+        '<option value="-1">All</option>' +
+        "</select> results",
+    },
+  });
+
+  // Custom filter function for the table
+  $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+    const filterApproved = $("#filterApproved").is(":checked");
+    const filterRejected = $("#filterRejected").is(":checked");
+    const filterPending = $("#filterPending").is(":checked");
+    const status = data[3].toLowerCase();
+
+    if (
+      (filterApproved && status.includes("approved")) ||
+      (filterRejected && status.includes("rejected")) ||
+      (filterPending && status.includes("pending"))
+    ) {
+      return true;
+    } else if (!filterApproved && !filterRejected && !filterPending) {
+      // Show all rows if no filter is selected
+      return true;
+    }
+    return false;
+  });
+
+  // Function to trigger the filtering
+  function filterTable() {
+    table.draw();
+  }
+
+  // Attach change event listeners to the filter checkboxes
+  $("#filterApproved, #filterRejected, #filterPending").on(
+    "change",
+    function () {
+      filterTable();
+    }
+  );
+
+  // Initial filter application
+  filterTable();
+});
+
 // function filterCourseRegistrations() {
 //   const approvedCheckbox = document.getElementById("filterApproved");
 //   const rejectedCheckbox = document.getElementById("filterRejected");
@@ -91,50 +158,50 @@ function hideModal(modalId) {
 //   }
 // }
 
-function filterCourseRegistrations() {
-  // Call searchCourseRegistrations to apply both search and filter
-  searchCourseRegistrations();
-}
+// function filterCourseRegistrations() {
+//   // Call searchCourseRegistrations to apply both search and filter
+//   searchCourseRegistrations();
+// }
 
-function searchCourseRegistrations() {
-  const approvedCheckbox = document.getElementById("filterApproved");
-  const rejectedCheckbox = document.getElementById("filterRejected");
-  const pendingCheckbox = document.getElementById("filterPending");
+// function searchCourseRegistrations() {
+//   const approvedCheckbox = document.getElementById("filterApproved");
+//   const rejectedCheckbox = document.getElementById("filterRejected");
+//   const pendingCheckbox = document.getElementById("filterPending");
 
-  const isApprovedChecked = approvedCheckbox.checked;
-  const isRejectedChecked = rejectedCheckbox.checked;
-  const isPendingChecked = pendingCheckbox.checked;
+//   const isApprovedChecked = approvedCheckbox.checked;
+//   const isRejectedChecked = rejectedCheckbox.checked;
+//   const isPendingChecked = pendingCheckbox.checked;
 
-  const input = document.getElementById("searchInput");
-  const filter = input.value.toLowerCase();
-  const table = document.getElementById("courseRegistrationTable");
-  const rows = table.getElementsByTagName("tr");
+//   const input = document.getElementById("searchInput");
+//   const filter = input.value.toLowerCase();
+//   const table = document.getElementById("courseRegistrationTable");
+//   const rows = table.getElementsByTagName("tr");
 
-  for (let i = 1; i < rows.length; i++) {
-    const cells = rows[i].getElementsByTagName("td");
-    const courseIdElement = cells[0];
-    const courseNameElement = cells[1];
-    const statusElement = cells[2];
-    const courseId = courseIdElement.innerText.toLowerCase();
-    const courseName = courseNameElement.innerText.toLowerCase();
-    const statusText = statusElement
-      ? statusElement.innerText.toLowerCase()
-      : "";
+//   for (let i = 1; i < rows.length; i++) {
+//     const cells = rows[i].getElementsByTagName("td");
+//     const courseIdElement = cells[0];
+//     const courseNameElement = cells[1];
+//     const statusElement = cells[2];
+//     const courseId = courseIdElement.innerText.toLowerCase();
+//     const courseName = courseNameElement.innerText.toLowerCase();
+//     const statusText = statusElement
+//       ? statusElement.innerText.toLowerCase()
+//       : "";
 
-    const matchesSearch =
-      courseId.includes(filter) || courseName.includes(filter);
+//     const matchesSearch =
+//       courseId.includes(filter) || courseName.includes(filter);
 
-    let matchesFilter = false;
-    if (
-      (isApprovedChecked && statusText.includes("approved")) ||
-      (isRejectedChecked && statusText.includes("rejected")) ||
-      (isPendingChecked && statusText.includes("pending"))
-    ) {
-      matchesFilter = true;
-    }
+//     let matchesFilter = false;
+//     if (
+//       (isApprovedChecked && statusText.includes("approved")) ||
+//       (isRejectedChecked && statusText.includes("rejected")) ||
+//       (isPendingChecked && statusText.includes("pending"))
+//     ) {
+//       matchesFilter = true;
+//     }
 
-    const shouldDisplayRow = matchesSearch && matchesFilter;
+//     const shouldDisplayRow = matchesSearch && matchesFilter;
 
-    rows[i].style.display = shouldDisplayRow ? "" : "none";
-  }
-}
+//     rows[i].style.display = shouldDisplayRow ? "" : "none";
+//   }
+// }
