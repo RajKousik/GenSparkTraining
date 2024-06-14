@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container my-5">
+      <h2 class="mb-4 text-center">Registration Form</h2>
+      <form id="registrationForm" onkeydown="return event.key != 'Enter';">
+        <!-- Personal Information Section -->
+        <div class="form-section">
+          <h3 class="mb-3">
+            <button
+              class="btn btn-link p-0"
+              type="button"
+              data-toggle="collapse"
+              data-target="#personalInfo"
+              aria-expanded="true"
+              aria-controls="personalInfo"
+            >
+              <span style="font-size: 1.5rem">Personal Information</span>
+            </button>
+          </h3>
+          <div id="personalInfo" class="collapse show">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="name">Name:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Enter name"
+                />
+                <span class="error-message" id="nameError"></span>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="phone">Phone:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  placeholder="Enter phone"
+                />
+                <span class="error-message" id="phoneError"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" class="form-control" id="dob" />
+                <span class="error-message" id="dobError"></span>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" readonly />
+                <span class="error-message" id="ageError"></span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Gender:</label><br />
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="gender"
+                    id="male"
+                    value="male"
+                  />
+                  <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    name="gender"
+                    id="female"
+                    value="female"
+                  />
+                  <label class="form-check-label" for="female">Female</label>
+                </div>
+                <br />
+                <span class="error-message" id="genderError"></span>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Qualification:</label><br />
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="qualification1"
+                    value="High School"
+                  />
+                  <label class="form-check-label" for="qualification1"
+                    >High School</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="qualification2"
+                    value="Bachelor's"
+                  />
+                  <label class="form-check-label" for="qualification2"
+                    >Bachelor's</label
+                  >
+                </div>
+                <div class="form-check">
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="qualification3"
+                    value="Master's"
+                  />
+                  <label class="form-check-label" for="qualification3"
+                    >Master's</label
+                  >
+                </div>
+                <span class="error-message" id="qualificationError"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Professional Information Section -->
+        <div class="form-section">
+          <h3 class="mb-3">
+            <button
+              class="btn btn-link collapsed p-0"
+              type="button"
+              data-toggle="collapse"
+              data-target="#professionalInfo"
+              aria-expanded="false"
+              aria-controls="professionalInfo"
+            >
+              <span style="font-size: 1.5rem">Professional Information</span>
+            </button>
+          </h3>
+          <div id="professionalInfo" class="collapse">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="profession">Profession:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="profession"
+                  list="professionList"
+                  placeholder="Enter profession"
+                />
+                <datalist id="professionList">
+                  <option value="Doctor"></option>
+                  <option value="Engineer"></option>
+                  <option value="Teacher"></option>
+                </datalist>
+                <span class="error-message" id="professionError"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+          <div class="error-message" id="formErrors"></div>
+        </div>
+      </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

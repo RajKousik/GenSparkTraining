@@ -44,6 +44,15 @@ select option {
   color: #aaa;
 }
 
+.password-icon {
+  z-index: 5;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* .form-select option {
   color: #333;
 }
@@ -495,9 +504,8 @@ h2 {
     padding: 0 1.5rem;
   }
 
-  .container {
-    min-height: 900px;
-    height: 100vh;
+  form#sign-up-form {
+    padding: 0 32px;
   }
 
   h2 {
@@ -515,7 +523,7 @@ h2 {
   }
 
   .container:before {
-    bottom: 75%;
+    bottom: 78%;
     left: 50%;
   }
 
@@ -531,5 +539,25 @@ h2 {
   .container.sign-up-mode {
     min-height: 1100px;
     height: 100vh;
+  }
+}
+
+@media (max-width: 360px) {
+  form#sign-in-form {
+    position: relative;
+    top: 10%;
+  }
+
+  input::placeholder,
+  select option,
+  date::placeholder,
+  input[type="date"]::-webkit-datetime-edit-text,
+  input[type="date"]::-webkit-datetime-edit-month-field,
+  input[type="date"]::-webkit-datetime-edit-day-field,
+  input[type="date"]::-webkit-datetime-edit-year-field,
+  input[type="date"]::-webkit-inner-spin-button,
+  input[type="date"]::-webkit-calendar-picker-indicator,
+  .form-select:invalid {
+    font-size: 0.8rem;
   }
 }
