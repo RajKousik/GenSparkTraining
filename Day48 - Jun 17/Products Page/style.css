@@ -1,0 +1,93 @@
+body {
+  background-color: #f8f9fa;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #343a40;
+  font-weight: bold;
+}
+
+.product-card {
+  margin-bottom: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.card-img-top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #007bff;
+}
+
+.card-text {
+  color: #6c757d;
+}
+
+.card-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+#add-product-btn {
+  background-color: #28a745;
+  border: none;
+  color: white;
+}
+
+#add-product-btn:hover,
+#add-product-btn:active,
+#add-product-btn:visited {
+  background-color: #218838;
+}
+
+.delete-btn {
+  position: absolute;
+  bottom: 26px;
+  right: 15px;
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.update-btn {
+  position: absolute;
+  bottom: 26px;
+  right: 90px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.update-btn:hover {
+  background-color: #0056b3;
+}

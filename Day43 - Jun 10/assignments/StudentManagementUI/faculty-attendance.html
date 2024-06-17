@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="./assets/css/attendance/faculty-attendance.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" id="add-attendance-nav"
+                >Add Attendance</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="update-attendance-nav"
+                >Update Attendance</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="delete-attendance-nav"
+                >Delete Attendance</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="view-all-attendance-nav"
+                >View All Attendance</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div id="add-attendance-form" class="attendance-form" data-aos="zoom-in">
+        <h3 class="mb-3">Add Attendance</h3>
+        <form id="addAttendanceForm">
+          <div class="mb-3 row">
+            <label for="studentRollNo" class="col-sm-2 col-form-label"
+              >Student Roll No</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="studentRollNo" required>
+                <option value="101">101</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="attendanceDate" class="col-sm-2 col-form-label"
+              >Attendance Date</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="date"
+                class="form-control"
+                id="attendanceDate"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="courseId" class="col-sm-2 col-form-label"
+              >Course ID</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="courseId" required>
+                <option value="C001">C001</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="attendanceStatus" class="col-sm-2 col-form-label"
+              >Attendance Status</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="attendanceStatus" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="OD">On Duty</option>
+              </select>
+            </div>
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-primary">
+              Add Attendance
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="update-attendance-form"
+        class="attendance-form d-none"
+        data-aos="zoom-in"
+      >
+        <h3 class="mb-3">Update Attendance</h3>
+        <form id="updateAttendanceForm">
+          <div class="mb-3 row">
+            <label for="attendanceId" class="col-sm-2 col-form-label"
+              >Attendance ID</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="attendanceId"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateAttendanceStatus" class="col-sm-2 col-form-label"
+              >Attendance Status</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="updateAttendanceStatus" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+                <option value="OD">On Duty</option>
+              </select>
+            </div>
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-primary">
+              Update Attendance
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="delete-attendance-form"
+        class="attendance-form d-none"
+        data-aos="zoom-in"
+      >
+        <h3 class="mb-3">Delete Attendance</h3>
+        <form id="deleteAttendanceForm">
+          <div class="mb-3">
+            <label for="deleteAttendanceId" class="form-label"
+              >Attendance ID</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="deleteAttendanceId"
+              required
+            />
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-danger">
+              Delete Attendance
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="view-all-attendance"
+        class="attendance-form d-none table-responsive overflow-scroll"
+        data-aos="zoom-in"
+      >
+        <h3 class="mb-3">View All Attendance</h3>
+        <table
+          class="table table-light text-center table-bordered border-primary table-striped table-hover"
+          id="attendanceTable"
+        >
+          <thead>
+            <tr>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Attendance ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Student Roll No
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Course ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Attendance Date
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Attendance Status
+              </th>
+            </tr>
+          </thead>
+          <tbody style="vertical-align: middle">
+            <tr>
+              <th scope="row">1</th>
+              <td>101</td>
+              <td>C001</td>
+              <td>2024-06-17</td>
+              <td id="present"><p>Present</p></td>
+            </tr>
+            <!-- Additional rows can be added dynamically or statically as per your data -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Attendance View Modal -->
+    <div
+      class="modal fade"
+      id="attendanceModal"
+      tabindex="-1"
+      aria-labelledby="attendanceModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="attendanceModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Modal content</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add your Bootstrap, AOS, and DataTables scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Data Table JS -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="./assets/js/attendance/faculty-attendance.js"></script>
+  </body>
+</html>

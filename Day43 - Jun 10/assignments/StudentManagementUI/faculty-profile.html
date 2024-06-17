@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Content</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      html {
+        width: 100%;
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      #togglePassword {
+        margin-left: -30px;
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 42px;
+      }
+      #cancelButton {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper m-4 border p-4 rounded w-100%">
+      <div
+        class="d-flex flex-row justify-content-between align-items-center lh-base"
+      >
+        <h3>Profile</h3>
+        <div>
+          <button
+            id="cancelButton"
+            class="btn btn-danger rounded px-2 border-none outline-none"
+          >
+            Cancel
+          </button>
+          <button
+            id="editButton"
+            class="btn btn-info rounded px-2 border-none outline-none"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+      <hr />
+      <form class="row g-3 mt-2">
+        <div class="col-md-6">
+          <label for="inputFacultyNo4" class="form-label">Faculty No</label>
+          <input
+            type="number"
+            class="form-control"
+            disabled
+            readonly
+            id="inputFacultyNo4"
+            value="101"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputName4" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control editable"
+            id="inputName4"
+            value="Kousik"
+            disabled
+            readonly
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control editable"
+            id="inputEmail4"
+            disabled
+            readonly
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputGender4" class="form-label">Gender</label>
+          <select
+            class="form-control form-select editable"
+            id="inputGender4"
+            disabled
+            readonly
+          >
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input
+            type="text"
+            class="form-control editable"
+            id="inputAddress"
+            disabled
+            readonly
+            placeholder="1234 Main St"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputDOB4" class="form-label">DOB</label>
+          <input
+            type="date"
+            class="form-control"
+            id="inputDOB4"
+            disabled
+            readonly
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputMobile4" class="form-label">Mobile</label>
+          <input
+            type="tel"
+            class="form-control editable"
+            id="inputMobile4"
+            disabled
+            readonly
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="inputDepartment4" class="form-label">Department</label>
+          <select id="inputDepartment4" class="form-select" disabled readonly>
+            <option selected value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="EIE">EIE</option>
+          </select>
+        </div>
+
+        <div class="col-md-6 position-relative">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input
+            type="password"
+            readonly
+            disabled
+            class="form-control"
+            id="inputPassword4"
+            value="123"
+          />
+          <i
+            class="fa-solid fa-eye-slash"
+            style="color: grey"
+            id="togglePassword"
+          ></i>
+        </div>
+        <div class="col-md-6">
+          <label for="inputRole4" class="form-label">Role</label>
+          <select id="inputRole4" class="form-select" disabled readonly>
+            <option selected value="professor">Professor</option>
+            <option value="assistant_professor">Associate Professor</option>
+            <option value="associate_professor">Assistant Professor</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./assets/js/profile/profile.js"></script>
+  </body>
+</html>

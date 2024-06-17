@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product List</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-center mb-0">Product List</h1>
+        <button id="add-product-btn" class="btn btn-primary">
+          Add New Product
+        </button>
+      </div>
+      <div id="product-list" class="row">
+        <!-- Products will be appended here -->
+      </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div
+      class="modal fade"
+      id="addProductModal"
+      tabindex="-1"
+      aria-labelledby="addProductModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addProductModalLabel">
+              Add New Product
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="add-product-form">
+              <div class="form-group">
+                <label for="productImage">Image URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="productImage"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="productTitle">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="productTitle"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="productDescription">Description</label>
+                <textarea
+                  class="form-control"
+                  id="productDescription"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="productPrice">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="productPrice"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary" id="save-product-btn">
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Update Product Modal -->
+    <div
+      class="modal fade"
+      id="updateProductModal"
+      tabindex="-1"
+      aria-labelledby="updateProductModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updateProductModalLabel">
+              Update Product
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="update-product-form">
+              <input type="hidden" id="updateProductId" />
+              <div class="form-group">
+                <label for="updateProductImage">Image URL</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updateProductImage"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="updateProductTitle">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updateProductTitle"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="updateProductDescription">Description</label>
+                <textarea
+                  class="form-control"
+                  id="updateProductDescription"
+                  rows="3"
+                  required
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label for="updateProductPrice">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="updateProductPrice"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="update-product-btn"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Fetch API to get products -->
+    <script src="script.js"></script>
+  </body>
+</html>

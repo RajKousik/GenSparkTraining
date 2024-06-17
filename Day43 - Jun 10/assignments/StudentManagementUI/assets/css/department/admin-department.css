@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.navbar {
+  background-color: #f8f9fa; /* Light grey background */
+  /* background-color: white !important; */
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #495057; /* Dark grey text */
+  font-weight: bold;
+  cursor: pointer;
+}
+.navbar-nav .nav-link.active {
+  border-bottom: 2px solid #007bff;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Blue text for active link */
+}
+
+.nav-link.active .navbar-item {
+  background: white !important;
+}
+
+.department-form {
+  margin-top: 20px;
+  padding: 2em 2rem !important;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn-right {
+  text-align: right;
+}
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0;
+  }
+}
+
+tbody tr td p {
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+.wrapper {
+  /* background-image: url("../../images/students.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; */
+  height: 100%;
+}
+
+#departmentTable_wrapper {
+  width: 100%;
+}
+
+#departmentTable_filter {
+  padding-top: 4px !important;
+  padding-right: 4px !important;
+}
+
+#departmentTable_length {
+  padding-top: 4px !important;
+}
+
+#departmentTable {
+  max-width: inherit;
+}
+
+@media (max-width: 768px) {
+  #departmentTable_length,
+  #departmentTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #departmentTable_length,
+  #departmentTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}

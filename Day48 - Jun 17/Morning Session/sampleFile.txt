@@ -1,0 +1,9 @@
+{
+    "product": {
+        "name": "Example Product",
+        "price": 19.99,
+        "description": "This is an example product.",
+        "category": "Electronics",
+        "in_stock": true
+    }
+}

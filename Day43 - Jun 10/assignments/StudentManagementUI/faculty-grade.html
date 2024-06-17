@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/grade/faculty-grade.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" id="add-grade-nav">Add Grade</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="update-grade-nav">Update Grade</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="delete-grade-nav">Delete Grade</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="view-all-grades-nav">View All Grades</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div id="add-grade-form" class="grade-form" data-aos="zoom-in">
+        <h3 class="mb-3">Add Grade</h3>
+        <form id="addGradeForm">
+          <div class="mb-3 row">
+            <label for="studentId" class="col-sm-2 col-form-label"
+              >Student ID</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="studentId" required>
+                <option value="101">101</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="examId" class="col-sm-2 col-form-label">Exam ID</label>
+            <div class="col-sm-10">
+              <select class="form-select" id="examId" required>
+                <option value="101">101</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="evaluatedBy" class="col-sm-2 col-form-label"
+              >Evaluated By</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="evaluatedBy" required>
+                <option value="101">101</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="marksScored" class="col-sm-2 col-form-label"
+              >Marks Scored</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="marksScored"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="comments" class="col-sm-2 col-form-label"
+              >Comments</label
+            >
+            <div class="col-sm-10">
+              <textarea class="form-control" id="comments" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-primary">Add Grade</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="update-grade-form" class="grade-form d-none" data-aos="zoom-in">
+        <h3 class="mb-3">Update Grade</h3>
+        <form id="updateGradeForm">
+          <div class="mb-3 row">
+            <label for="gradeId" class="col-sm-2 col-form-label"
+              >Grade ID</label
+            >
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="gradeId" required />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="evaluatedById" class="col-sm-2 col-form-label"
+              >Evaluated By</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="evaluatedById" required>
+                <option value="12">12</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateMarksScored" class="col-sm-2 col-form-label"
+              >Marks Scored</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="updateMarksScored"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateComments" class="col-sm-2 col-form-label"
+              >Comments</label
+            >
+            <div class="col-sm-10">
+              <textarea
+                class="form-control"
+                id="updateComments"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-primary">Update Grade</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="delete-grade-form" class="grade-form d-none" data-aos="zoom-in">
+        <h3 class="mb-3">Delete Grade</h3>
+        <form id="deleteGradeForm">
+          <div class="mb-3">
+            <label for="deleteGradeId" class="form-label">Grade ID</label>
+            <input
+              type="number"
+              class="form-control"
+              id="deleteGradeId"
+              required
+            />
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-danger">Delete Grade</button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="view-all-grades"
+        class="grade-form d-none table-responsive overflow-scroll"
+        data-aos="zoom-in"
+      >
+        <h3 class="mb-3">View All Grades</h3>
+        <table
+          class="table table-light text-center table-bordered border-primary table-striped table-hover"
+          id="gradeTable"
+          data-aos="fade-up"
+        >
+          <thead data-aos="fade-up">
+            <tr>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Grade Id
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Exam ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Course ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Grade
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Result
+              </th>
+              <th scope="col" class="text-center align-middle" width="25%">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody style="vertical-align: middle" data-aos="fade-up">
+            <tr>
+              <th scope="row">1</th>
+              <td>12</td>
+              <td>12</td>
+              <td>A+</td>
+              <td id="pass"><p>Pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <!-- Additional rows can be added dynamically or statically as per your data -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="gradeViewModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="gradeViewLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="gradeViewModalLabel">
+              Grade View Id - G011
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-0">
+            <div class="container">
+              <div class="row mb-2">
+                <div class="col-4">
+                  <strong>Student ID</strong>
+                  <p>14</p>
+                </div>
+                <div class="col-4">
+                  <strong>Course ID</strong>
+                  <p>C0001</p>
+                </div>
+                <div class="col-4">
+                  <strong>Course Name</strong>
+                  <p>MERN</p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-4">
+                  <strong>Exam ID</strong>
+                  <p>E0001</p>
+                </div>
+                <div class="col-4">
+                  <strong>Marks Scored</strong>
+                  <p>70</p>
+                </div>
+                <div class="col-4">
+                  <strong>Evaluated By</strong>
+                  <p>Ms. Johnson</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <strong>Percentage</strong>
+                  <p>90%</p>
+                </div>
+                <div class="col-4">
+                  <strong>Result</strong>
+                  <p>Pass</p>
+                </div>
+                <div class="col-12">
+                  <strong>Comments</strong>
+                  <p>Good! Improve it in upcoming exams!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="closeBtn"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="gradeModal"
+      tabindex="-1"
+      aria-labelledby="gradeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gradeModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Modal content</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <!-- Data Table JS -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="./assets/js/grade/faculty-grade.js"></script>
+  </body>
+</html>
