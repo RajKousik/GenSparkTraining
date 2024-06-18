@@ -60,14 +60,14 @@
       <hr />
       <form class="row g-3 mt-2">
         <div class="col-md-6">
-          <label for="inputRollNo4" class="form-label">Roll No</label>
+          <label for="inputFacultyNo4" class="form-label">Faculty No</label>
           <input
             type="number"
             class="form-control"
             disabled
             readonly
-            id="inputRollNo4"
-            value="212220040076"
+            id="inputFacultyNo4"
+            value="101"
           />
         </div>
         <div class="col-md-6">
@@ -163,15 +163,13 @@
           ></i>
         </div>
         <div class="col-md-6">
-          <label for="inputWallet4" class="form-label">EWallet</label>
-          <input
-            type="text"
-            disabled
-            readonly
-            value="10000.00"
-            class="form-control"
-            id="inputWallet4"
-          />
+          <label for="inputRole4" class="form-label">Role</label>
+          <select id="inputRole4" class="form-select" disabled readonly>
+            <option selected value="professor">Professor</option>
+            <option value="assistant_professor">Associate Professor</option>
+            <option value="associate_professor">Assistant Professor</option>
+            <option value="Admin">Admin</option>
+          </select>
         </div>
       </form>
     </div>
@@ -181,6 +179,6 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/js/profile/profile.js"></script>
+    <script src="../../../assets/js/profile/profile.js"></script>
   </body>
 </html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Faculty Course Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../assets/css/course/admin-course.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" id="add-course-nav">Add Course</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="update-course-nav">Update Course</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="view-all-courses-nav">View All Courses</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div id="add-course-form" class="course-form" data-aos="zoom-in">
+        <h3 class="mb-3">Add Course</h3>
+        <form id="addCourseForm">
+          <div class="mb-3 row">
+            <label for="courseName" class="col-sm-2 col-form-label"
+              >Course Name</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="courseName"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="courseDescription" class="col-sm-2 col-form-label"
+              >Description</label
+            >
+            <div class="col-sm-10">
+              <textarea
+                class="form-control"
+                id="courseDescription"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="facultyId" class="col-sm-2 col-form-label"
+              >Faculty ID</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="facultyId" required>
+                <option value="1">1</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="courseFees" class="col-sm-2 col-form-label"
+              >Course Fees</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="courseFees"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="vacancy" class="col-sm-2 col-form-label">Vacancy</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="vacancy" required />
+            </div>
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-primary">Add Course</button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="update-course-form"
+        class="course-form d-none"
+        data-aos="zoom-in"
+      >
+        <h3 class="mb-3">Update Course</h3>
+        <form id="updateCourseForm">
+          <div class="mb-3 row">
+            <label for="courseId" class="col-sm-2 col-form-label"
+              >Course ID</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="courseId"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateCourseName" class="col-sm-2 col-form-label"
+              >Course Name</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                id="updateCourseName"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateCourseDescription" class="col-sm-2 col-form-label"
+              >Description</label
+            >
+            <div class="col-sm-10">
+              <textarea
+                class="form-control"
+                id="updateCourseDescription"
+                rows="3"
+                required
+              ></textarea>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateFacultyId" class="col-sm-2 col-form-label"
+              >Faculty ID</label
+            >
+            <div class="col-sm-10">
+              <select class="form-select" id="updateFacultyId" required>
+                <option value="1">1</option>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateCourseFees" class="col-sm-2 col-form-label"
+              >Course Fees</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="updateCourseFees"
+                required
+              />
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="updateVacancy" class="col-sm-2 col-form-label"
+              >Vacancy</label
+            >
+            <div class="col-sm-10">
+              <input
+                type="number"
+                class="form-control"
+                id="updateVacancy"
+                required
+              />
+            </div>
+          </div>
+          <div class="submit-btn-right">
+            <button type="submit" class="btn btn-primary">Update Course</button>
+          </div>
+        </form>
+      </div>
+
+      <div
+        id="view-all-courses"
+        class="course-form d-none table-responsive overflow-scroll"
+        data-aos="zoom-in"
+      >
+        <h3 class="mb-3">View All Courses</h3>
+        <table
+          class="table table-light text-center table-bordered border-primary table-striped table-hover"
+          id="courseTable"
+          data-aos="fade-up"
+        >
+          <thead data-aos="fade-up">
+            <tr>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Course ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Course Name
+              </th>
+              <th scope="col" class="text-center align-middle" width="30%">
+                Description
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Faculty ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Course Fees
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Vacancy
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody style="vertical-align: middle" data-aos="fade-up">
+            <tr>
+              <th scope="row">1</th>
+              <td>Course Name</td>
+              <td>Description of the course</td>
+              <td>1</td>
+              <td>$100</td>
+              <td>10</td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#courseViewModal"
+                >
+                  View
+                </button>
+              </td>
+            </tr>
+            <!-- Additional rows can be added dynamically or statically as per your data -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="courseViewModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="courseViewLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="courseViewModalLabel">
+              Course View ID - C001
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-0">
+            <div class="container">
+              <div class="row mb-2">
+                <div class="col-4">
+                  <strong>Course ID</strong>
+                  <p>C001</p>
+                </div>
+                <div class="col-4">
+                  <strong>Course Name</strong>
+                  <p>Course Name</p>
+                </div>
+                <div class="col-4">
+                  <strong>Description</strong>
+                  <p>Description of the course</p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-4">
+                  <strong>Faculty ID</strong>
+                  <p>1</p>
+                </div>
+                <div class="col-4">
+                  <strong>Course Fees</strong>
+                  <p>$100</p>
+                </div>
+                <div class="col-4">
+                  <strong>Vacancy</strong>
+                  <p>10</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <strong>Comments</strong>
+                  <p>Additional details or comments about the course.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="closeBtn"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="courseModal"
+      tabindex="-1"
+      aria-labelledby="courseModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="courseModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Modal content</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="../../../assets/js/course/admin-course.js"></script>
+  </body>
+</html>

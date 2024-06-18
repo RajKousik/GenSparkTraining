@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/auth/auth-style.css" />
+    <link rel="stylesheet" href="../../assets/css/auth/auth-style.css" />
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -39,9 +39,28 @@
                     type="email"
                     placeholder="Email Address"
                     class="form-control"
-                    id="floatingInput"
+                    id="floatingEmail"
                   />
-                  <label for="floatingInput">Email Address</label>
+                  <label for="floatingEmail">Email Address</label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-9 col-sm-9 col-xs-3">
+              <div class="input-group">
+                <div class="input-group-text">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div class="form-floating">
+                  <select
+                    placeholder="Role"
+                    class="form-select"
+                    id="floatingRole"
+                    required
+                  >
+                    <option value="faculty">Faculty</option>
+                    <option value="students" selected>Student</option>
+                  </select>
+                  <label for="floatingRole">Role</label>
                 </div>
               </div>
             </div>
@@ -74,7 +93,11 @@
               ></div>
             </div>
             <div class="col-12 p-0 text-center">
-              <button type="submit" class="btn btn-lg btn-primary">
+              <button
+                type="submit"
+                id="login-submit"
+                class="btn btn-lg btn-primary"
+              >
                 Sign in
               </button>
             </div>
@@ -175,16 +198,16 @@
                   required
                 >
                   <option value="" disabled selected hidden>Role</option>
-                  <option value="admin">Admin</option>
                   <option value="student">Student</option>
+                  <option value="professor">Professor</option>
                   <option value="assistant_professor">
                     Assistant Professor
                   </option>
                   <option value="associate_professor">
                     Associate Professor
                   </option>
-                  <option value="professor">Professor</option>
                   <option value="head_of_department">Head Of Department</option>
+                  <option value="admin">Admin</option>
                 </select>
               </div>
             </div>
@@ -216,13 +239,7 @@
                   id="department"
                 >
                   <option value="" disabled selected hidden>Department</option>
-                  <option value="cse">CSE</option>
-                  <option value="it">IT</option>
-                  <option value="ece">ECE</option>
-                  <option value="eee">EEE</option>
-                  <option value="mech">ME</option>
-                  <option value="civil">CE</option>
-                  <option value="other">Other</option>
+                  <!-- Dynamically Fetched -->
                 </select>
               </div>
             </div>
@@ -362,6 +379,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <script src="./assets/js/auth/auth-script.js"></script>
+    <script src="../../assets/js/auth/auth-script.js"></script>
+    <script src="../../assets/js/configurations/config.js"></script>
   </body>
 </html>

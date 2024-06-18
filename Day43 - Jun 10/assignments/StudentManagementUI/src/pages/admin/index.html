@@ -9,8 +9,8 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <title>Profile</title>
-    <link rel="stylesheet" href="./assets/css/index/index.css" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../../../assets/css/index/index.css" />
   </head>
   <body>
     <div class="container-fluid">
@@ -37,7 +37,7 @@
             <ul class="navbar-nav ms-auto">
               <li class="nav-item d-flex align-items-center">
                 <img
-                  src="./assets/svg/profile-user.svg"
+                  src="../../../assets/svg/profile-user.svg"
                   width="32px"
                   height="32px"
                   alt="Profile"
@@ -55,7 +55,7 @@
         >
           <div class="profile-name">
             <img
-              src="./assets/svg/profile-user.svg"
+              src="../../../assets/svg/profile-user.svg"
               width="50%"
               height="30%"
               alt="Profile"
@@ -63,91 +63,94 @@
             <h2 class="my-2 fs-3 fw-normal">Kousik Raj</h2>
           </div>
           <ul class="nav flex-column mt-5">
-            <li class="nav-item nav-li-items" id="profile-item">
-              <a class="nav-link" href="profile.html" target="main-frame"
+            <li class="nav-item nav-li-items" id="faculty-profile-item">
+              <a
+                class="nav-link active"
+                href="../faculty/faculty-profile.html"
+                target="main-frame"
                 >Profile</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="profile-item">
+            <li class="nav-item nav-li-items" id="student-item">
               <a
                 class="nav-link"
-                href="faculty-profile.html"
+                href="../admin/admin-students.html"
                 target="main-frame"
-                >Faculty Profile</a
+                >Students</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="profile-item">
+            <li class="nav-item nav-li-items" id="faculty-item">
               <a
                 class="nav-link"
-                href="faculty-attendance.html"
+                href="../admin/admin-faculty.html"
                 target="main-frame"
-                >Faculty Attendance</a
+                >Faculties</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="departments-item">
-              <a class="nav-link" href="department.html" target="main-frame"
+
+            <li class="nav-item nav-li-items" id="admin-departments-item">
+              <a
+                class="nav-link"
+                href="../admin/admin-department.html"
+                target="main-frame"
                 >Departments</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="departments-item">
+            <li class="nav-item nav-li-items" id="admin-courses-item">
               <a
                 class="nav-link"
-                href="admin-department.html"
+                href="../admin/admin-course.html"
                 target="main-frame"
-                >Admin Departments</a
-              >
-            </li>
-            <li class="nav-item nav-li-items" id="courses-item">
-              <a class="nav-link" href="course.html" target="main-frame"
                 >Courses</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="courses-item">
-              <a class="nav-link" href="admin-course.html" target="main-frame"
-                >Admin Courses</a
-              >
-            </li>
-            <li class="nav-item nav-li-items" id="course-registrations-item">
+            <li
+              class="nav-item nav-li-items"
+              id="admin-course-registrations-item"
+            >
               <a
                 class="nav-link"
-                href="courseRegistration.html"
+                href="../admin/admin-courseRegistration.html"
                 target="main-frame"
                 >Course Registrations</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="exams-item">
-              <a class="nav-link" href="exam.html" target="main-frame">Exams</a>
+            <li class="nav-item nav-li-items" id="admin-exams-item">
+              <a
+                class="nav-link"
+                href="../admin/admin-exam.html"
+                target="main-frame"
+                >Exams</a
+              >
             </li>
-            <li class="nav-item nav-li-items" id="grade-item">
-              <a class="nav-link active" href="grade.html" target="main-frame"
+            <li class="nav-item nav-li-items" id="faculty-grade-item">
+              <a
+                class="nav-link"
+                href="../faculty/faculty-grade.html"
+                target="main-frame"
                 >Grade</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="grade-item">
+            <li class="nav-item nav-li-items" id="admin-attendance-item">
               <a
-                class="nav-link active"
-                href="faculty-grade.html"
+                class="nav-link"
+                href="../faculty/faculty-attendance.html"
                 target="main-frame"
-                >Faculty Grade</a
-              >
-            </li>
-            <li class="nav-item nav-li-items" id="attendances-item">
-              <a class="nav-link" href="attendance.html" target="main-frame"
-                >Attendances</a
-              >
-            </li>
-            <li class="nav-item nav-li-items" id="wallet-item">
-              <a class="nav-link" href="EWallet.html" target="main-frame"
-                >EWallet</a
+                >Attendance</a
               >
             </li>
             <li class="nav-item nav-li-items" id="logout-item">
-              <a class="nav-link" href="user-auth.html">Logout</a>
+              <a class="nav-link" href="../../auth/user-auth.html">Logout</a>
             </li>
           </ul>
         </div>
         <div class="main-content flex-grow-1">
-          <iframe name="main-frame" width="100%" src="grade.html"> </iframe>
+          <iframe
+            name="main-frame"
+            width="100%"
+            src="../faculty/faculty-profile.html"
+          >
+          </iframe>
         </div>
       </div>
     </div>
@@ -156,6 +159,6 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/js/index/index.js"></script>
+    <script src="../../../assets/js/index/index.js"></script>
   </body>
 </html>

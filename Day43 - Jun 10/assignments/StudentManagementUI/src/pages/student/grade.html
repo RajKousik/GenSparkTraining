@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../assets/css/grade/grade.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
+    />
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <div class="row mt-4 mx-4 p-0">
+        <div class="col-6 p-0 text-start">
+          <h3 class="">Your Grade Lists</h3>
+        </div>
+      </div>
+
+      <div
+        class="d-flex align-content-center justify-content-center table-responsive mx-4 my-2 overflow-auto"
+      >
+        <table
+          class="table table-light text-center table-bordered border-primary table-striped table-hover"
+          id="gradeTable"
+          data-aos="fade-up"
+        >
+          <thead data-aos="fade-up">
+            <tr>
+              <th scope="col" class="text-center align-middle" width="10%">
+                Sl.No
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Exam ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Course ID
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Grade
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Result
+              </th>
+              <th scope="col" class="text-center align-middle" width="25%">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody style="vertical-align: middle" data-aos="fade-up">
+            <tr>
+              <th scope="row">1</th>
+              <td>12</td>
+              <td>12</td>
+              <td>A+</td>
+              <td id="pass"><p>Pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>13</td>
+              <td>13</td>
+              <td>A</td>
+              <td id="pass"><p>Pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#examViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>14</td>
+              <td>14</td>
+              <td>F</td>
+              <td id="fail"><p>Fail</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>15</td>
+              <td>15</td>
+              <td>B+</td>
+              <td id="pass"><p>Pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>16</td>
+              <td>16</td>
+              <td>B</td>
+              <td id="pass"><p>Pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>17</td>
+              <td>17</td>
+              <td>F</td>
+              <td id="fail"><p>Fail</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>18</td>
+              <td>18</td>
+              <td>O</td>
+              <td id="pass"><p>pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>19</td>
+              <td>19</td>
+              <td>C</td>
+              <td id="pass"><p>pass</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>20</td>
+              <td>20</td>
+              <td>UA</td>
+              <td id="fail"><p>fail</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>21</td>
+              <td>21</td>
+              <td>RA</td>
+              <td id="fail"><p>fail</p></td>
+              <td>
+                <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#gradeViewModal"
+                >
+                  View Exam Details
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="gradeViewModal"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="gradeViewLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="gradeViewModalLabel">
+              Grade View Id - G011
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-0">
+            <div class="container">
+              <div class="row mb-2">
+                <div class="col-4">
+                  <strong>Student ID</strong>
+                  <p>14</p>
+                </div>
+                <div class="col-4">
+                  <strong>Course ID</strong>
+                  <p>C0001</p>
+                </div>
+                <div class="col-4">
+                  <strong>Course Name</strong>
+                  <p>MERN</p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-4">
+                  <strong>Exam ID</strong>
+                  <p>E0001</p>
+                </div>
+                <div class="col-4">
+                  <strong>Marks Scored</strong>
+                  <p>70</p>
+                </div>
+                <div class="col-4">
+                  <strong>Evaluated By</strong>
+                  <p>Ms. Johnson</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-4">
+                  <strong>Percentage</strong>
+                  <p>90%</p>
+                </div>
+                <div class="col-4">
+                  <strong>Result</strong>
+                  <p>Pass</p>
+                </div>
+                <div class="col-12">
+                  <strong>Comments</strong>
+                  <p>Good! Improve it in upcoming exams!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              id="closeBtn"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+     </div> 
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+    <!-- Data Table JS -->
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="../../../assets/js/grade/grade.js"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(() => {
+        $("#divTodo").click(() => {
+          alert("Div Clicked");
+        });
+        $(".clsData").click(() => {
+          $(".clsData").css("background-color", "yellow");
+          $(".clsData").html("<h2>Changed</h2>");
+        });
+      });
+      const clickButton = () => {
+        // alert("Button Clicked");
+        const txtUid = document.getElementById("txtUid").value;
+        const txtPass = document.getElementById("txtPass").value;
+        fetch("http://localhost:5089/api/v1/faculty/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: txtUid,
+            password: txtPass,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            getCourseRegistrationsFromAPI();
+          });
+      };
+      var getCourseRegistrationsFromAPI = () => {
+        fetch("http://localhost:5089/api/v1/course-registrations", {
+          method: "GET",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("data :>> ", data);
+            const divBody = document.getElementById("divMessage");
+            data.forEach((d) => {
+              const divCard = document.createElement("div");
+              divCard.innerHTML = `<div class='flex     card'>
+                <p>${d.registrationId}</p>
+                <p>${d.studentId}</p>
+                <p>${d.courseId}</p>
+                <p>${d.isApproved}</p>
+                <p>${d.comments}</p>
+                </div>`;
+              divBody.appendChild(divCard);
+            });
+          });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Product Details</h1>
+    <input type="file" id="fileInput" name="fileInput" />
+    <input class="form-control" type="text" id="txtUid" placeholder="000" />
+    <input
+      class="form-control"
+      type="password"
+      id="txtPass"
+      placeholder="xxx"
+    />
+    <button class="btn btn-success" onclick="clickButton()">Login</button>
+    <div id="divTodo">click me to see what happens</div>
+    <div class="clsData">
+      <h2>Todo List</h2>
+      <ul>
+        <li>Task 1</li>
+        <li>Task 2</li>
+        <li>Task 3</li>
+        <li>Task 4</li>
+        <li>Task 5</li>
+      </ul>
+    </div>
+    <div id="divMessage"></div>
+  </body>
+</html>

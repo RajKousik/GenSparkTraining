@@ -38,8 +38,6 @@ The repository can be found [here](./Products%20Page/)
 
 ![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/d24c76c0-13fb-4bc9-a6a2-e1a272925a67)
 
-
-
 ### TASK
 
 - Continued working on the Frontend design for the previously created Backend API

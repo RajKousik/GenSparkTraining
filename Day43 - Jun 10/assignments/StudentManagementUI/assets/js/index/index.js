@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", () => {});
+
 function toggleSideBar() {
   var sidebar = document.getElementById("sidebar");
   var togglerIcon = document.getElementById("navbar-toggler-icon");
@@ -12,6 +14,7 @@ function toggleSideBar() {
     togglerIcon.classList.add("navbar-toggler-icon");
   }
 }
+
 function checkWindowSize() {
   var sidebar = document.getElementById("sidebar");
   var togglerIcon = document.getElementById("navbar-toggler-icon");

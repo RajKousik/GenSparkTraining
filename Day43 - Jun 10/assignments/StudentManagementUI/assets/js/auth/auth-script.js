@@ -25,6 +25,29 @@ sign_in_btn.addEventListener("click", () => {
 // Initial call to set up the form correctly
 handleRoleChange();
 
+document.addEventListener("DOMContentLoaded", function () {
+  populateDepartments();
+});
+
+function populateDepartments() {
+  fetch(`${config.API_URL}/departments`)
+    .then((response) => response.json())
+    .then((data) => {
+      const departmentSelect = document.getElementById("department");
+      data.forEach((department) => {
+        if (department.name.toLowerCase() !== "admin") {
+          const option = document.createElement("option");
+          option.value = department.deptId;
+          option.textContent = department.name;
+          departmentSelect.appendChild(option);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching departments:", error);
+    });
+}
+
 // Event listener to handle form submission for login
 signInForm.addEventListener("submit", handleLoginFormSubmission);
 // Event listener to handle form submission for register
@@ -116,52 +139,170 @@ function handleRegisterFormSubmission(e) {
     );
     return;
   }
+  if (mobile.length != 10) {
+    displayErrorMessage(
+      "Mobile No. Should be of length 10",
+      errorSignUpMessageDiv
+    );
+    return;
+  }
   if (password !== confirmPassword) {
     displayErrorMessage("Passwords do not match.", errorSignUpMessageDiv);
     return;
   }
 
-  displayErrorMessage(
-    "You have successfully registered!",
-    errorSignUpMessageDiv,
-    true
-  );
+  // displayErrorMessage(
+  //   "You have successfully registered!",
+  //   errorSignUpMessageDiv,
+  //   true
+  // );
+  let endpoint;
+  // console.log("role.toLowerCase() :>> ", role.toLowerCase().trim());
+  switch (role.toLowerCase().trim()) {
+    case "professor":
+      endpoint = "/faculty/prof/register";
+      break;
+    case "assistant_professor":
+      endpoint = "/faculty/assistant-prof/register";
+      break;
+    case "associate_professor":
+      endpoint = "/faculty/associate-prof/register";
+      break;
+    case "admin":
+      endpoint = "/faculty/admin/register";
+      break;
+    case "student":
+      endpoint = "/students/register";
+      break;
+    default:
+      displayErrorMessage("Invalid role selected.", errorSignUpMessageDiv);
+      return;
+  }
+  // console.log("endpoint :>> ", endpoint);
+  // Make the API call
+  fetch(`${config.API_URL}${endpoint}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: username,
+      email: email,
+      mobile: mobile,
+      dob: dob,
+      gender: gender,
+      address: city,
+      departmentId: role.toLowerCase().trim() !== "admin" ? department : null,
+      password: password,
+    }),
+  })
+    .then(async (response) => {
+      if (response.ok) {
+        displayErrorMessage(
+          "Successfully Registered....!",
+          errorMessageSignInDiv,
+          true
+        );
+        return response.json();
+      } else {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to Register");
+      }
+    })
+    .then((data) => {
+      if (data) {
+        displayErrorMessage(
+          "Successfully registered! Redirecting to login page...",
+          errorSignUpMessageDiv,
+          true
+        );
+        const registerSubmitBtn = document.querySelector("#submitSignUpForm");
+        registerSubmitBtn.setAttribute("disabled", true);
+        sign_in_btn.setAttribute("disabled", true);
+        setTimeout(() => {
+          window.location.href = "../../../user-auth.html";
+        }, 5000);
+      } else {
+        displayErrorMessage(
+          data.message || "Registration failed.",
+          errorSignUpMessageDiv
+        );
+      }
+    })
+    .catch((error) => {
+      // console.error("Error during registration:", error);
+      displayErrorMessage(error.message, errorSignUpMessageDiv);
+    });
 }
 
 // Function to handle form submission for login
 function handleLoginFormSubmission(e) {
   e.preventDefault(); // Prevent default form submission
   clearErrorMessage();
-  const floatingInput = document.getElementById("floatingInput");
+  const floatingInput = document.getElementById("floatingEmail");
   const floatingPassword = document.getElementById("floatingPassword");
+  const floatingRole = document.getElementById("floatingRole");
   const email = floatingInput.value.trim();
   const password = floatingPassword.value;
+  const role = floatingRole.value;
 
   if (!validateLoginForm(email, password)) {
     return;
   }
 
-  // Simulate API call and response
-  const API_RESPONSE = false; // Simulate API response
-  const STATUS_NOT_ACTIVATED = true; // Simulate another API response condition
+  fetch(`${config.API_URL}/${role}/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  })
+    .then(async (response) => {
+      if (response.ok) {
+        displayErrorMessage(
+          "Successfully logged in! Redirecting....",
+          errorMessageSignInDiv,
+          true
+        );
+        return response.json();
+      } else {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to login");
+      }
+    })
+    .then(async (data) => {
+      if (data.token) {
+        const loginSubmitBtn = document.querySelector("#login-submit");
+        loginSubmitBtn.setAttribute("disabled", true);
+        sign_up_btn.setAttribute("disabled", true);
 
-  if (API_RESPONSE) {
-    displayErrorMessage(
-      "You have successfully logged in!",
-      errorMessageSignInDiv,
-      true
-    );
-  } else if (STATUS_NOT_ACTIVATED) {
-    displayErrorMessage(
-      "Your Account is not activated yet!",
-      errorMessageSignInDiv
-    );
-  } else {
-    displayErrorMessage(
-      "Invalid email or password. Please try again.",
-      errorMessageSignInDiv
-    );
-  }
+        localStorage.setItem("token", data.token);
+
+        setTimeout(() => {
+          if (data.role.toLowerCase() === "student") {
+            window.location.href = "../../../src/pages/student/index.html";
+          } else if (data.role.toLowerCase() === "admin") {
+            window.location.href = "../../../src/pages/admin/index.html";
+          } else {
+            window.location.href = "../../../src/pages/faculty/index.html";
+          }
+          loginSubmitBtn.setAttribute("disabled", false);
+          sign_up_btn.setAttribute("disabled", false);
+          signInForm.reset();
+        }, 3000);
+      } else {
+        displayErrorMessage(
+          "Something Went Wrong! Please try Again Later",
+          errorMessageSignInDiv
+        );
+      }
+    })
+    .catch((error) => {
+      displayErrorMessage(error.message, errorMessageSignInDiv);
+    });
 }
 
 function togglePasswordVisibility(event) {

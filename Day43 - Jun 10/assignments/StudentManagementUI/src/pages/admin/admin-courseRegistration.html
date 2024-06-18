@@ -20,7 +20,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       rel="stylesheet"
-      href="./assets/css/courseRegistration/courseRegistration.css"
+      href="../../../assets/css/courseRegistration/admin-courseRegistration.css"
     />
     <link
       rel="stylesheet"
@@ -34,22 +34,6 @@
         <div class="col-6 p-0 text-start">
           <h3 class="">List of Registered Courses</h3>
         </div>
-        <!-- <div class="col-md-6 col-sm-6 col-xs-12 mx-xs-0 text-end my-xs-2">
-          <div class="input-group rounded">
-            <input
-              type="search"
-              class="form-control rounded"
-              placeholder="Search"
-              aria-label="Search"
-              aria-describedby="search-addon"
-              onkeyup="searchCourseRegistrations()"
-              id="searchInput"
-            />
-            <span class="input-group-text border-0 bg-white" id="search-addon">
-              <i class="fas fa-search"></i>
-            </span>
-          </div>
-        </div> -->
       </div>
 
       <div class="row mx-4 p-0">
@@ -104,10 +88,13 @@
               <th scope="col" class="text-center align-middle" width="10%">
                 Sl.No
               </th>
-              <th scope="col" class="text-center align-middle" width="15%">
+              <th scope="col" class="text-center align-middle" width="10%">
+                Student Id
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
                 Course ID
               </th>
-              <th scope="col" class="text-center align-middle" width="30%">
+              <th scope="col" class="text-center align-middle" width="25%">
                 Course Name
               </th>
               <th scope="col" class="text-center align-middle" width="20%">
@@ -121,6 +108,7 @@
           <tbody style="vertical-align: middle" data-aos="fade-up">
             <tr>
               <th scope="row">1</th>
+              <td>1001</td>
               <td>12</td>
               <td>C Sharp</td>
               <td id="approved"><p>Approved</p></td>
@@ -136,6 +124,7 @@
             </tr>
             <tr>
               <th scope="row">2</th>
+              <td>1002</td>
               <td>13</td>
               <td>Java</td>
               <td id="rejected"><p>Rejected</p></td>
@@ -151,6 +140,7 @@
             </tr>
             <tr>
               <th scope="row">3</th>
+              <td>1003</td>
               <td>14</td>
               <td>MERN</td>
               <td id="pending"><p>Pending</p></td>
@@ -166,6 +156,7 @@
             </tr>
             <tr>
               <th scope="row">3</th>
+              <td>1004</td>
               <td>14</td>
               <td>MERN</td>
               <td id="pending"><p>Pending</p></td>
@@ -181,6 +172,7 @@
             </tr>
             <tr>
               <th scope="row">3</th>
+              <td>1005</td>
               <td>14</td>
               <td>MERN</td>
               <td id="rejected"><p>Rejected</p></td>
@@ -196,6 +188,7 @@
             </tr>
             <tr>
               <th scope="row">3</th>
+              <td>1006</td>
               <td>14</td>
               <td>MERN</td>
               <td id="approved"><p>Approved</p></td>
@@ -249,7 +242,11 @@
                 </div>
               </div>
               <div class="row mb-2">
-                <div class="col-4">
+                <div class="col-6">
+                  <strong>Student Id</strong>
+                  <p>1001</p>
+                </div>
+                <div class="col-6">
                   <strong>Approval Status</strong>
                   <p>Pending</p>
                 </div>
@@ -263,21 +260,11 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-danger"
-              id="deleteBtn"
-              onclick="DeleteCourseRegistration()"
-            >
-              Delete
+            <button type="button" class="btn btn-success" id="approveBtn">
+              Approve
             </button>
-            <button
-              type="button"
-              class="btn btn-info"
-              data-bs-target="#updateCourseRegistrationModal"
-              data-bs-toggle="modal"
-            >
-              Update
+            <button type="button" class="btn btn-danger" id="rejectBtn">
+              Reject
             </button>
           </div>
         </div>
@@ -286,17 +273,17 @@
 
     <div
       class="modal fade"
-      id="responseSuccessModal"
-      aria-hidden="true"
-      aria-labelledby="responseSuccessModalLabel"
+      id="registrationResponseModal"
       tabindex="-1"
+      aria-labelledby="registrationResponseModalLabel"
+      aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header bg-success">
-            <h1 class="modal-title fs-5" id="responseSuccessModalLabel">
-              Success
-            </h1>
+          <div class="modal-header">
+            <h5 class="modal-title" id="registrationResponseModalLabel">
+              Modal title
+            </h5>
             <button
               type="button"
               class="btn-close"
@@ -304,7 +291,7 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body fw-medium">Course Registration Deleted!</div>
+          <div class="modal-body">Modal content</div>
           <div class="modal-footer">
             <button
               type="button"
@@ -312,90 +299,6 @@
               data-bs-dismiss="modal"
             >
               Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="responseFailureModal"
-      aria-hidden="true"
-      aria-labelledby="responseFailureModalLabel"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-danger">
-            <h1 class="modal-title fs-5" id="responseFailureModalLabel">
-              Failure
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body fw-medium">
-            Something went wrong while deleting the course registration!
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      class="modal fade"
-      id="updateCourseRegistrationModal"
-      aria-hidden="true"
-      aria-labelledby="updateCourseRegistrationModalLabel"
-      tabindex="-1"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-info">
-            <h1
-              class="modal-title fs-5"
-              id="updateCourseRegistrationModalLabel"
-            >
-              Update Course Registration
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body fw-medium">
-            <div class="col-12">
-              <label for="newCourseId">Enter the New Course ID:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="newCourseId"
-                required
-              />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="submit"
-              class="btn btn-info"
-              id="updateBtn"
-              onclick="UpdateCourseRegistration()"
-            >
-              Update
             </button>
           </div>
         </div>
@@ -418,6 +321,6 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <script src="./assets/js/courseRegistration/courseRegistration.js"></script>
+    <script src="../../../assets/js/courseRegistration/admin-courseRegistration.js"></script>
   </body>
 </html>

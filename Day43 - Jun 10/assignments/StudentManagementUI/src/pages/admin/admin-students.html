@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Course</title>
+    <title>Students</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -18,75 +18,42 @@
       referrerpolicy="no-referrer"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./assets/css/exam/exam.css" />
     <link
       rel="stylesheet"
       href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css"
     />
+    <link rel="stylesheet" href="../../../assets/css/student/student.css" />
   </head>
   <body>
-    <!-- <div class="container"> -->
     <div class="wrapper">
       <div class="row mt-4 mx-4 p-0">
         <div class="col-6 p-0 text-start">
-          <h3 class="">Exams</h3>
+          <h3 class="">List of Students</h3>
         </div>
-        <!-- <div class="col-md-6 col-sm-6 col-xs-12 mx-xs-0 text-end my-xs-2">
-          <div class="input-group rounded">
-            <input
-              type="search"
-              class="form-control rounded-top-start"
-              placeholder="Search by exam Id or Course Id"
-              aria-label="Search"
-              aria-describedby="search-addon"
-              onkeyup="searchExams()"
-              id="searchInput"
-            />
-            <button
-              class="btn btn-secondary rounded-top-end"
-              type="button"
-              id="search-addon"
-            >
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div> -->
       </div>
+
       <div class="row mx-4 p-0">
         <div class="col-12 text-end p-0">
           <div class="form-check form-check-inline me-0 ms-2">
             <input
               class="form-check-input"
               type="checkbox"
-              id="filterUpcomingExams"
-              value="upcomingExams"
+              id="filterActive"
+              value="active"
+              checked
             />
-            <label class="form-check-label" for="filterUpcomingExams"
-              >Upcoming Exams</label
-            >
+            <label class="form-check-label" for="filterActive">Active</label>
           </div>
           <div class="form-check form-check-inline me-0 ms-2">
             <input
               class="form-check-input"
               type="checkbox"
-              id="filterOnline"
-              value="online"
+              id="filterInactive"
+              value="inactive"
               checked
             />
-            <label class="form-check-label" for="filterOnline"
-              >Online Exams</label
-            >
-          </div>
-          <div class="form-check form-check-inline me-0 ms-2">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              id="filterOffline"
-              value="offline"
-              checked
-            />
-            <label class="form-check-label" for="filterOffline"
-              >Offline Exams</label
+            <label class="form-check-label" for="filterInactive"
+              >Inactive</label
             >
           </div>
         </div>
@@ -98,24 +65,27 @@
         <table
           class="table table-light text-center table-bordered border-primary table-striped table-hover"
           data-aos="fade-up"
-          id="examTable"
+          id="studentTable"
         >
           <thead data-aos="fade-up">
             <tr>
-              <th scope="col" class="text-center align-middle" width="10%">
+              <th scope="col" class="text-center align-middle" width="5%">
                 Sl.No
               </th>
-              <th scope="col" class="text-center align-middle" width="10%">
-                Exam ID
-              </th>
-              <th scope="col" class="text-center align-middle" width="10%">
-                Course ID
-              </th>
-              <th scope="col" class="text-center align-middle" width="20%">
-                Exam Date
+              <th scope="col" class="text-center align-middle" width="15%">
+                Roll No
               </th>
               <th scope="col" class="text-center align-middle" width="15%">
-                Mode
+                Name
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Email
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                Department
+              </th>
+              <th scope="col" class="text-center align-middle" width="10%">
+                status
               </th>
               <th scope="col" class="text-center align-middle" width="15%">
                 Action
@@ -125,103 +95,59 @@
           <tbody style="vertical-align: middle" data-aos="fade-up">
             <tr>
               <th scope="row">1</th>
-              <td>12</td>
-              <td>C0001</td>
-              <td>12-04-2005</td>
-              <td>Online</td>
+              <td>202002</td>
+              <td>John Doe</td>
+              <td>john.doe@example.com</td>
+              <td>Computer Science</td>
+              <td id="active"><p>Active</p></td>
               <td>
                 <button
                   class="btn btn-primary"
                   data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
+                  data-bs-target="#studentViewModal"
                 >
-                  View Exam
+                  View
                 </button>
               </td>
             </tr>
             <tr>
               <th scope="row">2</th>
-              <td>12</td>
-              <td>C0002</td>
-              <td>12-04-2025</td>
-              <td>Offline</td>
+              <td>202003</td>
+              <td>Matt Smith</td>
+              <td>math.smith@example.com</td>
+              <td>Electrical</td>
+              <td id="inactive"><p>InActive</p></td>
               <td>
                 <button
                   class="btn btn-primary"
                   data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
+                  data-bs-target="#studentViewModal"
                 >
-                  View Exam
+                  View
                 </button>
               </td>
             </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>13</td>
-              <td>C0003</td>
-              <td>12-04-2024</td>
-              <td>Online</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>14</td>
-              <td>C0004</td>
-              <td>12-04-2025</td>
-              <td>Offline</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>15</td>
-              <td>C0005</td>
-              <td>12-04-2015</td>
-              <td>Offline</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
+            <!-- Add more student rows as needed -->
           </tbody>
         </table>
       </div>
     </div>
 
+    <!-- Student View Modal -->
     <div
       class="modal fade"
-      id="examViewModal"
+      id="studentViewModal"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
       tabindex="-1"
-      aria-labelledby="examViewLabel"
+      aria-labelledby="studentViewModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header bg-info">
-            <h1 class="modal-title fs-5" id="examViewModalLabel">
-              Exam Details
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="studentViewModalLabel">
+              Student Details
             </h1>
             <button
               type="button"
@@ -234,43 +160,102 @@
             <div class="container">
               <div class="row mb-2">
                 <div class="col-4">
-                  <strong>Exam ID</strong>
-                  <p>14</p>
+                  <strong>Roll No:</strong>
+                  <p id="studentRollNo">202001</p>
                 </div>
                 <div class="col-4">
-                  <strong>Exam Mode</strong>
-                  <p>Online</p>
+                  <strong>Name:</strong>
+                  <p id="studentName">John Doe</p>
                 </div>
                 <div class="col-4">
-                  <strong>Total Marks</strong>
-                  <p>100</p>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-4">
-                  <strong>Course Id</strong>
-                  <p>C0001</p>
-                </div>
-                <div class="col-4">
-                  <strong>Course Name</strong>
-                  <p>MERN</p>
+                  <strong>Gender:</strong>
+                  <p id="studentGender">Male</p>
                 </div>
               </div>
               <div class="row mb-2">
-                <div class="col-4">
-                  <strong>Exam Date</strong>
-                  <p>12-04-2005</p>
+                <div class="col-6">
+                  <strong>Email:</strong>
+                  <p id="studentEmail">john.doe@example.com</p>
                 </div>
-                <div class="col-4">
-                  <strong>Start Time</strong>
-                  <p>10:00:00 AM</p>
+                <div class="col-6">
+                  <strong>Department:</strong>
+                  <p id="studentDepartment">Computer Science</p>
                 </div>
-                <div class="col-4">
-                  <strong>End Time</strong>
-                  <p>01:00:00 PM</p>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6">
+                  <strong>Address:</strong>
+                  <p id="studentAddress">123 Main St, NewYork, Canada</p>
+                </div>
+                <div class="col-6">
+                  <strong>Date of Birth:</strong>
+                  <p id="studentDob">01/01/2000</p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6">
+                  <strong>Status:</strong>
+                  <p id="studentStatus">Active</p>
+                </div>
+                <div class="col-6">
+                  <strong>E-wallet:</strong>
+                  <p id="studentEwallet">$100.00</p>
                 </div>
               </div>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-success"
+              id="activeBtn"
+              data-bs-dismiss="modal"
+            >
+              Active
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              id="rejectBtn"
+            >
+              Reject
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="closeBtn"
+              data-bs-dismiss="modal"
+              style="display: none"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Response Modal -->
+    <div
+      class="modal fade"
+      id="responseModal"
+      aria-hidden="true"
+      aria-labelledby="responseModalLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="responseModalLabel">Response</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="responseMessage">
+            <!-- Success or failure message will be inserted here -->
           </div>
           <div class="modal-footer">
             <button
@@ -285,21 +270,19 @@
       </div>
     </div>
 
-    <!-- </div> -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-
     <!-- Data Table JS -->
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
-    <script src="./assets/js/exam/exam.js"></script>
+    <script src="../../../assets/js/student/student.js"></script>
   </body>
 </html>
