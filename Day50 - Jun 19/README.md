@@ -13,7 +13,7 @@ The repository can be found [here](./Quotes/)
 ### Home Page
 ![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/75de7ab9-cf6e-47f9-8693-f4ee9ac316b7)
 
-### QUotes Page with Pagination
+### Quotes Page with Pagination
 ![image](https://github.com/RajKousik/GenSparkTraining/assets/91744323/dccd8141-1e6a-4e66-885c-39278df77a79)
 
 ### Searching
