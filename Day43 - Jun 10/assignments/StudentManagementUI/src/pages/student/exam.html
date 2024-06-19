@@ -31,26 +31,6 @@
         <div class="col-6 p-0 text-start">
           <h3 class="">Exams</h3>
         </div>
-        <!-- <div class="col-md-6 col-sm-6 col-xs-12 mx-xs-0 text-end my-xs-2">
-          <div class="input-group rounded">
-            <input
-              type="search"
-              class="form-control rounded-top-start"
-              placeholder="Search by exam Id or Course Id"
-              aria-label="Search"
-              aria-describedby="search-addon"
-              onkeyup="searchExams()"
-              id="searchInput"
-            />
-            <button
-              class="btn btn-secondary rounded-top-end"
-              type="button"
-              id="search-addon"
-            >
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div> -->
       </div>
       <div class="row mx-4 p-0">
         <div class="col-12 text-end p-0">
@@ -122,88 +102,7 @@
               </th>
             </tr>
           </thead>
-          <tbody style="vertical-align: middle" data-aos="fade-up">
-            <tr>
-              <th scope="row">1</th>
-              <td>12</td>
-              <td>C0001</td>
-              <td>12-04-2005</td>
-              <td>Online</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>12</td>
-              <td>C0002</td>
-              <td>12-04-2025</td>
-              <td>Offline</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>13</td>
-              <td>C0003</td>
-              <td>12-04-2024</td>
-              <td>Online</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>14</td>
-              <td>C0004</td>
-              <td>12-04-2025</td>
-              <td>Offline</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>15</td>
-              <td>C0005</td>
-              <td>12-04-2015</td>
-              <td>Offline</td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#examViewModal"
-                >
-                  View Exam
-                </button>
-              </td>
-            </tr>
-          </tbody>
+          <tbody style="vertical-align: middle" data-aos="fade-up"></tbody>
         </table>
       </div>
     </div>
@@ -235,39 +134,39 @@
               <div class="row mb-2">
                 <div class="col-4">
                   <strong>Exam ID</strong>
-                  <p>14</p>
+                  <p id="examIdView"></p>
                 </div>
                 <div class="col-4">
                   <strong>Exam Mode</strong>
-                  <p>Online</p>
+                  <p id="examTypeView"></p>
                 </div>
                 <div class="col-4">
                   <strong>Total Marks</strong>
-                  <p>100</p>
+                  <p id="totalMarkView"></p>
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-4">
                   <strong>Course Id</strong>
-                  <p>C0001</p>
+                  <p id="courseIdView"></p>
                 </div>
                 <div class="col-4">
                   <strong>Course Name</strong>
-                  <p>MERN</p>
+                  <p id="courseNameView"></p>
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-4">
                   <strong>Exam Date</strong>
-                  <p>12-04-2005</p>
+                  <p id="examDateView"></p>
                 </div>
                 <div class="col-4">
                   <strong>Start Time</strong>
-                  <p>10:00:00 AM</p>
+                  <p id="startTimeView"></p>
                 </div>
                 <div class="col-4">
                   <strong>End Time</strong>
-                  <p>01:00:00 PM</p>
+                  <p id="endTimeView"></p>
                 </div>
               </div>
             </div>
@@ -300,6 +199,8 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
+    <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/exam/exam.js"></script>
   </body>
 </html>

@@ -27,16 +27,32 @@
           <h3 class="mb-0">EWallet Recharge</h3>
         </div>
         <div class="card-body">
+          <div class="mb-3">
+            <label for="amount" class="form-label">Current Amount:</label>
+            <div class="input-group">
+              <span class="input-group-text">$</span>
+              <input
+                type="number"
+                class="form-control"
+                id="current_amount"
+                disabled
+                readonly
+                value="10000.00"
+              />
+            </div>
+          </div>
           <form id="rechargeForm">
             <div class="mb-3">
-              <label for="amount" class="form-label">Enter Amount</label>
+              <label for="amount" class="form-label"
+                >Amount to be Recharged:</label
+              >
               <div class="input-group">
                 <span class="input-group-text">$</span>
                 <input
                   type="number"
                   class="form-control"
                   id="amount"
-                  placeholder="Enter amount"
+                  placeholder="Amount"
                   required
                 />
               </div>

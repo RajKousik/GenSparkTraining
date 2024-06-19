@@ -1,0 +1,92 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.navbar-brand {
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  color: #ffffff !important;
+}
+
+.navbar-brand:hover {
+  color: #ffffff;
+}
+
+.nav-link {
+  font-size: 1.1rem !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+.nav-link:hover {
+  color: #ffc107 !important;
+}
+
+.nav-link.active {
+  color: #ffc107 !important;
+}
+
+#home {
+  background-color: #e9ecef !important;
+}
+
+.card-title {
+  color: #343a40 !important;
+}
+
+#quotes .quote-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+#quotes .quote-card p {
+  font-size: 1.2rem !important;
+}
+
+#quotes .quote-card .author {
+  text-align: right;
+  font-style: italic;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+#pageNumber {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Optional CSS styles */
+.modal-content {
+  background-color: #f8f9fa;
+  border-radius: 10px;
+}
+
+.modal-header {
+  border-bottom: none;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body p {
+  font-size: 1.2rem;
+}
+
+.modal-body .text-end {
+  font-style: italic;
+}

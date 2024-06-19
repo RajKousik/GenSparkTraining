@@ -180,7 +180,7 @@ function handleRegisterFormSubmission(e) {
   }
   // console.log("endpoint :>> ", endpoint);
   // Make the API call
-  fetch(`${config.API_URL}${endpoint}`, {
+  fetch(`${config.API_URLs}${endpoint}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

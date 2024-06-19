@@ -31,7 +31,8 @@
         right: 15px;
         top: 42px;
       }
-      #cancelButton {
+      #cancelButton,
+      #saveButton {
         display: none;
       }
     </style>
@@ -54,6 +55,12 @@
             class="btn btn-info rounded px-2 border-none outline-none"
           >
             Edit
+          </button>
+          <button
+            id="saveButton"
+            class="btn btn-success rounded px-2 border-none outline-none"
+          >
+            Save
           </button>
         </div>
       </div>
@@ -85,7 +92,7 @@
           <label for="inputEmail4" class="form-label">Email</label>
           <input
             type="email"
-            class="form-control editable"
+            class="form-control"
             id="inputEmail4"
             disabled
             readonly
@@ -119,7 +126,7 @@
           <label for="inputDOB4" class="form-label">DOB</label>
           <input
             type="date"
-            class="form-control"
+            class="form-control editable"
             id="inputDOB4"
             disabled
             readonly
@@ -136,17 +143,13 @@
           />
         </div>
         <div class="col-md-6">
-          <label for="inputDepartment4" class="form-label">Department</label>
-          <select id="inputDepartment4" class="form-select" disabled readonly>
-            <option selected value="CSE">CSE</option>
-            <option value="IT">IT</option>
-            <option value="ECE">ECE</option>
-            <option value="EEE">EEE</option>
-            <option value="EIE">EIE</option>
+          <label for="inputDepartment" class="form-label">Department</label>
+          <select id="inputDepartment" class="form-select" disabled readonly>
+            <!-- Fetched Dynamically -->
           </select>
         </div>
 
-        <div class="col-md-6 position-relative">
+        <!-- <div class="col-md-6 position-relative">
           <label for="inputPassword4" class="form-label">Password</label>
           <input
             type="password"
@@ -172,8 +175,42 @@
             class="form-control"
             id="inputWallet4"
           />
-        </div>
+        </div> -->
       </form>
+    </div>
+
+    <div
+      class="modal fade"
+      id="responseModal"
+      aria-hidden="true"
+      aria-labelledby="responseModalLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="responseModalLabel">Response</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="responseMessage">
+            <!-- Success or failure message will be inserted here -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script
@@ -181,6 +218,8 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+    <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/profile/profile.js"></script>
+    <script src="../../../assets/js/profile/student-profile.js"></script>
   </body>
 </html>

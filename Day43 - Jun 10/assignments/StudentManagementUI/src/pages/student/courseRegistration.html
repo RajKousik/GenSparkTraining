@@ -85,8 +85,11 @@
         >
           <thead data-aos="fade-up">
             <tr>
-              <th scope="col" class="text-center align-middle" width="10%">
+              <th scope="col" class="text-center align-middle" width="5%">
                 Sl.No
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
+                Course Registration ID
               </th>
               <th scope="col" class="text-center align-middle" width="15%">
                 Course ID
@@ -94,105 +97,20 @@
               <th scope="col" class="text-center align-middle" width="30%">
                 Course Name
               </th>
-              <th scope="col" class="text-center align-middle" width="20%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Status
               </th>
-              <th scope="col" class="text-center align-middle" width="25%">
+              <th scope="col" class="text-center align-middle" width="20%">
                 Action
               </th>
             </tr>
           </thead>
-          <tbody style="vertical-align: middle" data-aos="fade-up">
-            <tr>
-              <th scope="row">1</th>
-              <td>12</td>
-              <td>C Sharp</td>
-              <td id="approved"><p>Approved</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#courseRegistrationViewModal"
-                >
-                  View Details
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>13</td>
-              <td>Java</td>
-              <td id="rejected"><p>Rejected</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#courseRegistrationViewModal"
-                >
-                  View Details
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>14</td>
-              <td>MERN</td>
-              <td id="pending"><p>Pending</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#courseRegistrationViewModal"
-                >
-                  View Details
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>14</td>
-              <td>MERN</td>
-              <td id="pending"><p>Pending</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#courseRegistrationViewModal"
-                >
-                  View Details
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>14</td>
-              <td>MERN</td>
-              <td id="rejected"><p>Rejected</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#courseRegistrationViewModal"
-                >
-                  View Details
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>14</td>
-              <td>MERN</td>
-              <td id="approved"><p>Approved</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#courseRegistrationViewModal"
-                >
-                  View Details
-                </button>
-              </td>
-            </tr>
+          <tbody
+            style="vertical-align: middle"
+            data-aos="fade-up"
+            id="courseRegistrationTableBody"
+          >
+            <!-- Dynamic Insert   -->
           </tbody>
         </table>
       </div>
@@ -209,10 +127,11 @@
     >
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="courseRegistrationViewModalLabel">
-              Course Registration Id - CR011
-            </h1>
+          <div class="modal-header bg-info">
+            <h1
+              class="modal-title fs-5"
+              id="courseRegistrationViewModalLabel"
+            ></h1>
             <button
               type="button"
               class="btn-close"
@@ -225,23 +144,28 @@
               <div class="row mb-2">
                 <div class="col-6">
                   <strong>Course ID:</strong>
-                  <p>14</p>
+                  <p id="courseIdView"></p>
                 </div>
                 <div class="col-6">
                   <strong>Course Name:</strong>
-                  <p>MERN</p>
+                  <p id="courseNameView">MERN</p>
                 </div>
               </div>
               <div class="row mb-2">
-                <div class="col-4">
+                <div class="col-6">
                   <strong>Approval Status</strong>
-                  <p>Pending</p>
+                  <p id="approvalStatusView">Pending</p>
+                </div>
+                <div class="col-6">
+                  <strong>Faculty Id</strong>
+                  <p id="facultyIdView">102</p>
                 </div>
               </div>
+
               <div class="row mb-2">
                 <div class="col-12">
                   <strong>Comments</strong>
-                  <p>Registration done! Wait for approval!</p>
+                  <p id="commentsView">Registration done! Wait for approval!</p>
                 </div>
               </div>
             </div>
@@ -402,6 +326,8 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
+    <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/courseRegistration/courseRegistration.js"></script>
   </body>
 </html>

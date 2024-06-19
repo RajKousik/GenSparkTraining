@@ -1,207 +1,304 @@
+// Initialize Animation on Scroll library
 AOS.init({ duration: 1000 });
 
-function DeleteCourseRegistration() {
-  let IS_API_CALL_SUCCESS = true;
-  hideModal("courseRegistrationViewModal");
+let selectedCourseRegistrationId = null; // Global variable to store selected course registration ID
 
-  if (IS_API_CALL_SUCCESS) {
-    showModal("responseSuccessModal");
-  } else {
-    showModal("responseFailureModal");
-  }
+// Function to update the selected course registration ID
+function setSelectedCourseRegistrationId(registrationId) {
+  selectedCourseRegistrationId = registrationId;
 }
 
+// Function to update course registration
 function UpdateCourseRegistration() {
-  const newCourseId = document.getElementById("newCourseId").value;
-
-  if (!newCourseId) {
-    alert("Please enter a new Course ID.");
+  const newCourseId = document.getElementById("newCourseId").value.trim();
+  document.getElementById("newCourseId").value = "";
+  if (!selectedCourseRegistrationId) {
+    console.error("No course registration ID selected.");
     return;
   }
-  let IS_API_CALL_SUCCESS = true;
-  hideModal("updateCourseRegistrationModal");
 
-  if (IS_API_CALL_SUCCESS) {
-    showModal("responseSuccessModal");
-  } else {
-    showModal("responseFailureModal");
+  if (!newCourseId) {
+    console.error("New Course ID cannot be empty.");
+    return;
+  }
+
+  const apiUrl = `${config.API_URL}/course-registrations/update?courseRegistrationId=${selectedCourseRegistrationId}&courseId=${newCourseId}`;
+
+  fetch(apiUrl, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      // Add any additional headers if required
+    },
+    // body: JSON.stringify({ courseId: newCourseId }), // If body payload is needed
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+      return response.json(); // Assuming the API returns JSON response
+    })
+    .then((data) => {
+      // Show success modal
+      hideModal("updateCourseRegistrationModal");
+      showModal(
+        "responseSuccessModal",
+        "Update Success",
+        `Successfully Updated the Course Registration to Course Id ${newCourseId}!`
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    })
+    .catch((error) => {
+      // Show failure modal
+      hideModal("updateCourseRegistrationModal");
+      showModal("responseFailureModal", "Update Failed", error.message);
+      console.error("Error updating course registration:", error);
+    });
+}
+
+// Function to delete course registration
+function DeleteCourseRegistration() {
+  if (!selectedCourseRegistrationId) {
+    console.error("No course registration ID selected.");
+    return;
+  }
+
+  const apiUrl = `${config.API_URL}/course-registrations?courseRegistrationId=${selectedCourseRegistrationId}`;
+
+  fetch(apiUrl, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      // Add any additional headers if required
+    },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+      return response.json(); // Assuming the API returns JSON response
+    })
+    .then((data) => {
+      // Show success modal or handle success as per your application flow
+      hideModal("courseRegistrationViewModal");
+      showModal(
+        "responseSuccessModal",
+        "Delete Success",
+        `Successfully Deleted Course Registration with ID ${selectedCourseRegistrationId}!`
+      );
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    })
+    .catch((error) => {
+      // Show failure modal or handle failure as per your application flow
+      hideModal("courseRegistrationViewModal");
+      showModal("responseFailureModal", "Delete Failed", `${error.message}`);
+      console.error("Error deleting course registration:", error);
+    });
+}
+
+function showModal(modalId, title, body) {
+  const modalElement = document.getElementById(modalId);
+  modalElement.querySelector(".modal-title").textContent = title;
+  modalElement.querySelector(".modal-body").textContent = body;
+  const modalInstance = new bootstrap.Modal(modalElement);
+  modalInstance.show();
+}
+
+function hideModal(modalId) {
+  const modalElement = document.getElementById(modalId);
+  const modalInstance = bootstrap.Modal.getInstance(modalElement);
+  modalInstance.hide();
+}
+
+// Function to fetch course details and display modal
+async function viewCourseDetails(
+  courseRegistrationId,
+  courseId,
+  courseName,
+  approvalStatus,
+  comments
+) {
+  setSelectedCourseRegistrationId(courseRegistrationId);
+  fetch(`${config.API_URL}/courses/${courseId}`)
+    .then((response) => response.json())
+    .then((courseDetails) => {
+      const { facultyId } = courseDetails;
+      viewCourseModal(
+        courseId,
+        courseName,
+        facultyId,
+        getStatusText(approvalStatus),
+        comments
+      );
+    })
+    .catch((error) => console.error("Error fetching course details:", error));
+}
+
+// Function to display modal with course details
+function viewCourseModal(
+  courseId,
+  courseName,
+  facultyId,
+  approvalStatus,
+  comments
+) {
+  document.getElementById(
+    "courseRegistrationViewModalLabel"
+  ).textContent = `Course Registration Details`;
+  document.getElementById("courseIdView").textContent = courseId;
+  document.getElementById("courseNameView").textContent = courseName;
+  document.getElementById("approvalStatusView").textContent = approvalStatus;
+  document.getElementById("commentsView").textContent = comments;
+  document.getElementById("facultyIdView").textContent = facultyId;
+
+  showModalById("courseRegistrationViewModal");
+}
+
+// Function to get status text based on approval status code
+function getStatusText(status) {
+  switch (status) {
+    case 1:
+      return "Approved";
+    case -1:
+      return "Rejected";
+    case 0:
+      return "Pending";
+    default:
+      return "Unknown";
   }
 }
 
-function showModal(modalId) {
+// Function to show modal by ID
+function showModalById(modalId) {
   const modalElement = new bootstrap.Modal(document.getElementById(modalId));
   modalElement.show();
 }
 
-function hideModal(modalId) {
-  const updateModalElement = document.getElementById(modalId);
-  const updateModal = bootstrap.Modal.getInstance(updateModalElement);
-  updateModal.hide();
-}
+// Fetch course registrations and populate table
+document.addEventListener("DOMContentLoaded", function () {
+  const studentId = getStudentRollNo();
+  if (!studentId) {
+    console.error("Something went wrong! Log in again");
+    return;
+  }
 
-$(document).ready(function () {
-  const table = $("#courseRegistrationTable").DataTable({
-    // Disable sorting on the last column
-    columnDefs: [{ orderable: false, targets: 4 }],
-    pagingType: "full_numbers",
-    columns: [null, null, null, null, { searchable: false }],
-    language: {
-      // Customize pagination prev and next buttons: use arrows instead of words
+  const apiUrl = `${config.API_URL}/course-registrations/student?studentId=${studentId}`;
 
-      paginate: {
-        previous: '<span class="fa fa-chevron-left"></span>',
-        next: '<span class="fa fa-chevron-right"></span>',
-        first: '<span class="fa-solid fa-angles-left"></span>',
-        last: '<span class="fa-solid fa-angles-right"></span>',
-      },
-      pageLength: 5,
-      // Customize number of elements to be displayed
-      lengthMenu:
-        'Display <select class="form-control input-sm">' +
-        '<option value="3">3</option>' +
-        '<option value="5" selected>5</option>' + // Default selected value
-        '<option value="10">10</option>' +
-        '<option value="15">15</option>' +
-        '<option value="20">20</option>' +
-        '<option value="25">25</option>' +
-        '<option value="-1">All</option>' +
-        "</select> results",
-    },
-  });
+  fetch(apiUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      populateCourseTable(data);
+    })
+    .catch((error) =>
+      console.error("Error fetching course registrations:", error)
+    );
 
-  // Custom filter function for the table
-  $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
-    const filterApproved = $("#filterApproved").is(":checked");
-    const filterRejected = $("#filterRejected").is(":checked");
-    const filterPending = $("#filterPending").is(":checked");
-    const status = data[3].toLowerCase();
+  // Populate course registration table with data
+  async function populateCourseTable(data) {
+    const tableBody = document.querySelector("#courseRegistrationTable tbody");
+    tableBody.innerHTML = "";
 
-    if (
-      (filterApproved && status.includes("approved")) ||
-      (filterRejected && status.includes("rejected")) ||
-      (filterPending && status.includes("pending"))
-    ) {
-      return true;
-    } else if (!filterApproved && !filterRejected && !filterPending) {
-      // Show all rows if no filter is selected
-      return true;
+    for (let index = 0; index < data.length; index++) {
+      const registration = data[index];
+      const statusText = getStatusText(registration.approvalStatus);
+      const courseName = await getCourseNameById(registration.courseId);
+
+      const row = `
+        <tr data-registration-id="${registration.registrationId}">
+          <th scope="row">${index + 1}</th>
+          <td>${registration.registrationId}</td>
+          <td>${registration.courseId}</td>
+          <td>${courseName}</td>
+          <td id="${statusText.toLowerCase()}"><p>${statusText}</p></td>
+          <td>
+            <button class="btn btn-primary" onclick="viewCourseDetails(
+            ${registration.registrationId},
+            ${registration.courseId}, '${courseName}', ${
+        registration.approvalStatus
+      }, '${registration.comments}')">
+              View Details
+            </button>
+          </td>
+        </tr>
+      `;
+      tableBody.insertAdjacentHTML("beforeend", row);
     }
-    return false;
-  });
 
-  // Function to trigger the filtering
-  function filterTable() {
+    // Initialize DataTable
+    const table = $("#courseRegistrationTable").DataTable({
+      columnDefs: [{ orderable: false, targets: 5 }],
+      pagingType: "full_numbers",
+      columns: [null, null, null, null, null, { searchable: false }],
+      language: {
+        paginate: {
+          previous: '<span class="fa fa-chevron-left"></span>',
+          next: '<span class="fa fa-chevron-right"></span>',
+          first: '<span class="fa-solid fa-angles-left"></span>',
+          last: '<span class="fa-solid fa-angles-right"></span>',
+        },
+        pageLength: 5,
+        lengthMenu:
+          'Display <select class="form-control input-sm">' +
+          '<option value="3">3</option>' +
+          '<option value="5" selected>5</option>' +
+          '<option value="10">10</option>' +
+          '<option value="15">15</option>' +
+          '<option value="20">20</option>' +
+          '<option value="25">25</option>' +
+          '<option value="-1">All</option>' +
+          "</select> results",
+      },
+    });
+
+    // Initialize filter event handlers and apply initial filtering
+    $("#filterApproved, #filterRejected, #filterPending").on(
+      "change",
+      function () {
+        table.draw();
+      }
+    );
+
+    // Custom filter function for DataTable
+    $.fn.dataTable.ext.search.push(function (settings, data, dataIndex) {
+      const filterApproved = $("#filterApproved").is(":checked");
+      const filterRejected = $("#filterRejected").is(":checked");
+      const filterPending = $("#filterPending").is(":checked");
+      const status = data[4].toLowerCase();
+
+      if (
+        (filterApproved && status.includes("approved")) ||
+        (filterRejected && status.includes("rejected")) ||
+        (filterPending && status.includes("pending"))
+      ) {
+        return true;
+      }
+      return false;
+    });
+
+    // Apply initial filter
     table.draw();
   }
 
-  // Attach change event listeners to the filter checkboxes
-  $("#filterApproved, #filterRejected, #filterPending").on(
-    "change",
-    function () {
-      filterTable();
+  // Function to fetch course name based on courseId
+  async function getCourseNameById(courseId) {
+    try {
+      const response = await fetch(`${config.API_URL}/courses/${courseId}`);
+      const courseData = await response.json();
+      return courseData.name;
+    } catch (error) {
+      console.error(
+        `Error fetching course name for courseId ${courseId}:`,
+        error
+      );
+      return "Unknown Course";
     }
-  );
+  }
 
-  // Initial filter application
-  filterTable();
+  // Function to hide modal by ID
 });
-
-// function filterCourseRegistrations() {
-//   const approvedCheckbox = document.getElementById("filterApproved");
-//   const rejectedCheckbox = document.getElementById("filterRejected");
-//   const pendingCheckbox = document.getElementById("filterPending");
-
-//   const isApprovedChecked = approvedCheckbox.checked;
-//   const isRejectedChecked = rejectedCheckbox.checked;
-//   const isPendingChecked = pendingCheckbox.checked;
-
-//   const table = document.getElementById("courseRegistrationTable");
-//   const rows = table.getElementsByTagName("tr");
-
-//   for (let i = 1; i < rows.length; i++) {
-//     const statusCell = rows[i].getElementsByTagName("td")[2];
-//     const statusText = statusCell ? statusCell.innerText.toLowerCase() : "";
-
-//     let shouldDisplayRow = true;
-
-//     if (
-//       (isApprovedChecked && statusText.includes("approved")) ||
-//       (isRejectedChecked && statusText.includes("rejected")) ||
-//       (isPendingChecked && statusText.includes("pending"))
-//     ) {
-//       shouldDisplayRow = true;
-//     } else if (!isApprovedChecked && !isRejectedChecked && !isPendingChecked) {
-//       shouldDisplayRow = true;
-//     } else {
-//       shouldDisplayRow = false;
-//     }
-
-//     rows[i].style.display = shouldDisplayRow ? "" : "none";
-//   }
-// }
-
-// function searchCourseRegistrations() {
-//   const input = document.getElementById("searchInput");
-//   const filter = input.value.toLowerCase();
-//   const table = document.getElementById("courseRegistrationTable");
-//   const rows = table.getElementsByTagName("tr");
-
-//   for (let i = 1; i < rows.length; i++) {
-//     const cells = rows[i].getElementsByTagName("td");
-//     const courseIdElement = cells[0];
-//     const courseNameElement = cells[1];
-//     const courseId = courseIdElement.innerText.toLowerCase();
-//     const courseName = courseNameElement.innerText.toLowerCase();
-//     console.log("courseName :>> ", courseName);
-//     const isVisible = courseId.includes(filter) || courseName.includes(filter);
-//     rows[i].style.display = isVisible ? "" : "none";
-//   }
-// }
-
-// function filterCourseRegistrations() {
-//   // Call searchCourseRegistrations to apply both search and filter
-//   searchCourseRegistrations();
-// }
-
-// function searchCourseRegistrations() {
-//   const approvedCheckbox = document.getElementById("filterApproved");
-//   const rejectedCheckbox = document.getElementById("filterRejected");
-//   const pendingCheckbox = document.getElementById("filterPending");
-
-//   const isApprovedChecked = approvedCheckbox.checked;
-//   const isRejectedChecked = rejectedCheckbox.checked;
-//   const isPendingChecked = pendingCheckbox.checked;
-
-//   const input = document.getElementById("searchInput");
-//   const filter = input.value.toLowerCase();
-//   const table = document.getElementById("courseRegistrationTable");
-//   const rows = table.getElementsByTagName("tr");
-
-//   for (let i = 1; i < rows.length; i++) {
-//     const cells = rows[i].getElementsByTagName("td");
-//     const courseIdElement = cells[0];
-//     const courseNameElement = cells[1];
-//     const statusElement = cells[2];
-//     const courseId = courseIdElement.innerText.toLowerCase();
-//     const courseName = courseNameElement.innerText.toLowerCase();
-//     const statusText = statusElement
-//       ? statusElement.innerText.toLowerCase()
-//       : "";
-
-//     const matchesSearch =
-//       courseId.includes(filter) || courseName.includes(filter);
-
-//     let matchesFilter = false;
-//     if (
-//       (isApprovedChecked && statusText.includes("approved")) ||
-//       (isRejectedChecked && statusText.includes("rejected")) ||
-//       (isPendingChecked && statusText.includes("pending"))
-//     ) {
-//       matchesFilter = true;
-//     }
-
-//     const shouldDisplayRow = matchesSearch && matchesFilter;
-
-//     rows[i].style.display = shouldDisplayRow ? "" : "none";
-//   }
-// }
