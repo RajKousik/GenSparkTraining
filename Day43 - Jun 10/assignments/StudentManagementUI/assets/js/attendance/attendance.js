@@ -1,36 +1,29 @@
 AOS.init({ duration: 1000 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
   // Function to fetch data from the API
   async function fetchData() {
-    return [
-      {
-        courseId: 5,
-        attendancePercentage: 66.66666666666666,
-      },
-      {
-        courseId: 10,
-        attendancePercentage: 91.88888888888888,
-      },
-      {
-        courseId: 12,
-        attendancePercentage: 61.88888888888888,
-      },
-      {
-        courseId: 13,
-        attendancePercentage: 70.88888888888888,
-      },
-      {
-        courseId: 14,
-        attendancePercentage: 80.88888888888888,
-      },
-    ];
+    const response = await fetch(
+      `${config.API_URL}/student-attendance/attendance-percentage/12`
+    );
+    console.log("response :>> ", response);
+    // return response;
+    let data;
+    if (response.ok) {
+      data = await response.json();
+    } else {
+      const error = await response.json();
+      console.error("Error while fetching the data", error.message);
+      return [];
+    }
+    return data;
   }
 
   // Function to create a chart for a given course
   function createChart(courseId, attendancePercentage) {
     const chartContainer = document.getElementById("chartContainer");
     const colDiv = document.createElement("div");
+    colDiv.setAttribute("data-aos", "fade-up");
     colDiv.className = "col-lg-6 col-md-12 d-flex align-items-stretch"; // Flexbox for equal height
 
     const cardDiv = document.createElement("div");
@@ -83,12 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
   async function updateCharts() {
     const data = await fetchData();
     if (data.length > 0) {
+      document.getElementById("message").innerText = null;
       data.forEach((course) => {
         createChart(course.courseId, course.attendancePercentage);
       });
+    } else {
+      document.getElementById("message").innerText =
+        "No Attendance Records Found As of Now!";
     }
   }
 
   // Call the function to update the charts when the page loads
-  updateCharts();
+  await updateCharts();
 });

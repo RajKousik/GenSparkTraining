@@ -29,6 +29,36 @@
     <body>
       <div class="container mt-4">
         <div id="chartContainer" class="row gx-4 gy-4"></div>
+        <div id="message"></div>
+      </div>
+
+      <div
+        class="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        id="notLoggedInModal"
+        tabindex="-1"
+        aria-labelledby="notLoggedInModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="notLoggedInModalLabel">
+                Not Logged In
+              </h5>
+            </div>
+            <div class="modal-body">
+              You are not logged in. Please Login to continue using our
+              services.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-dark" id="login-btn">
+                Login
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </body>
 
@@ -39,6 +69,8 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/attendance/attendance.js"></script>
   </body>
 </html>

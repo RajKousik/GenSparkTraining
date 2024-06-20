@@ -31,7 +31,8 @@
         right: 15px;
         top: 42px;
       }
-      #cancelButton {
+      #cancelButton,
+      #saveButton {
         display: none;
       }
     </style>
@@ -55,47 +56,53 @@
           >
             Edit
           </button>
+          <button
+            id="saveButton"
+            class="btn btn-success rounded px-2 border-none outline-none"
+          >
+            Save
+          </button>
         </div>
       </div>
       <hr />
       <form class="row g-3 mt-2">
         <div class="col-md-6">
-          <label for="inputFacultyNo4" class="form-label">Faculty No</label>
+          <label for="inputFacultyNo" class="form-label">Faculty No</label>
           <input
             type="number"
             class="form-control"
             disabled
             readonly
-            id="inputFacultyNo4"
-            value="101"
+            id="inputFacultyNo"
+            value=""
           />
         </div>
         <div class="col-md-6">
-          <label for="inputName4" class="form-label">Name</label>
+          <label for="inputName" class="form-label">Name</label>
           <input
             type="text"
             class="form-control editable"
-            id="inputName4"
-            value="Kousik"
+            id="inputName"
+            value=""
             disabled
             readonly
           />
         </div>
         <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
+          <label for="inputEmail" class="form-label">Email</label>
           <input
             type="email"
-            class="form-control editable"
-            id="inputEmail4"
+            class="form-control"
+            id="inputEmail"
             disabled
             readonly
           />
         </div>
         <div class="col-md-6">
-          <label for="inputGender4" class="form-label">Gender</label>
+          <label for="inputGender" class="form-label">Gender</label>
           <select
             class="form-control form-select editable"
-            id="inputGender4"
+            id="inputGender"
             disabled
             readonly
           >
@@ -104,7 +111,7 @@
             <option value="Other">Other</option>
           </select>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <label for="inputAddress" class="form-label">Address</label>
           <input
             type="text"
@@ -112,66 +119,84 @@
             id="inputAddress"
             disabled
             readonly
-            placeholder="1234 Main St"
+            placeholder=""
           />
         </div>
         <div class="col-md-6">
-          <label for="inputDOB4" class="form-label">DOB</label>
+          <label for="inputDOB" class="form-label">DOB</label>
           <input
             type="date"
-            class="form-control"
-            id="inputDOB4"
+            class="form-control editable"
+            id="inputDOB"
             disabled
             readonly
           />
         </div>
         <div class="col-md-6">
-          <label for="inputMobile4" class="form-label">Mobile</label>
+          <label for="inputMobile" class="form-label">Mobile</label>
           <input
             type="tel"
             class="form-control editable"
-            id="inputMobile4"
+            id="inputMobile"
             disabled
             readonly
           />
         </div>
         <div class="col-md-6">
-          <label for="inputDepartment4" class="form-label">Department</label>
-          <select id="inputDepartment4" class="form-select" disabled readonly>
-            <option selected value="CSE">CSE</option>
-            <option value="IT">IT</option>
-            <option value="ECE">ECE</option>
-            <option value="EEE">EEE</option>
-            <option value="EIE">EIE</option>
-          </select>
+          <label for="inputDepartment" class="form-label">Department</label>
+          <select
+            id="inputDepartment"
+            class="form-select"
+            disabled
+            readonly
+          ></select>
         </div>
 
-        <div class="col-md-6 position-relative">
-          <label for="inputPassword4" class="form-label">Password</label>
-          <input
-            type="password"
-            readonly
-            disabled
-            class="form-control"
-            id="inputPassword4"
-            value="123"
-          />
-          <i
-            class="fa-solid fa-eye-slash"
-            style="color: grey"
-            id="togglePassword"
-          ></i>
-        </div>
         <div class="col-md-6">
-          <label for="inputRole4" class="form-label">Role</label>
-          <select id="inputRole4" class="form-select" disabled readonly>
-            <option selected value="professor">Professor</option>
-            <option value="assistant_professor">Associate Professor</option>
-            <option value="associate_professor">Assistant Professor</option>
-            <option value="Admin">Admin</option>
+          <label for="inputRole" class="form-label">Role</label>
+          <select id="inputRole" class="form-select" disabled readonly>
+            <option value="4">Head Of Department</option>
+            <option value="3">Professor</option>
+            <option value="2">Associate Professor</option>
+            <option value="1">Assistant Professor</option>
+            <option value="0">Admin</option>
           </select>
         </div>
       </form>
+    </div>
+
+    <div
+      class="modal fade"
+      id="responseModal"
+      aria-hidden="true"
+      aria-labelledby="responseModalLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="responseModalLabel">Response</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body" id="responseMessage">
+            <!-- Success or failure message will be inserted here -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script
@@ -179,6 +204,9 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+    <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/token/token.js"></script>
+    <script src="../../../assets/js/profile/faculty-profile.js"></script>
     <script src="../../../assets/js/profile/profile.js"></script>
   </body>
 </html>

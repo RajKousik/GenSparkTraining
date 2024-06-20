@@ -213,12 +213,41 @@
       </div>
     </div>
 
+    <div
+      class="modal fade"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      id="notLoggedInModal"
+      tabindex="-1"
+      aria-labelledby="notLoggedInModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="notLoggedInModalLabel">
+              Not Logged In
+            </h5>
+          </div>
+          <div class="modal-body">
+            You are not logged in. Please Login to continue using our services.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" id="login-btn">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
     <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/profile/profile.js"></script>
     <script src="../../../assets/js/profile/student-profile.js"></script>
   </body>

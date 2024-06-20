@@ -1,38 +1,63 @@
 AOS.init({ duration: 1000 });
 
+async function getWalletAmount() {
+  var api_url = `${
+    config.API_URL
+  }/students/EWallet?studentRollNo=${getStudentRollNo()}`;
+
+  var response = await fetch(api_url);
+  let current_amount = 0;
+  if (response.ok) {
+    var data = await response.json();
+    current_amount = data;
+  } else {
+    const error = await response.json();
+    console.error("Error while fetching the data", error.message);
+    current_amount = 0;
+  }
+  document.getElementById("current_amount").value = current_amount;
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
+  getWalletAmount();
+});
+
 document
   .getElementById("rechargeForm")
-  .addEventListener("submit", function (event) {
+  .addEventListener("submit", async function (event) {
     event.preventDefault();
-    recharge();
+    await recharge();
   });
 
-function recharge() {
+async function recharge() {
   const amount = document.getElementById("amount").value;
-  const messageDiv = document.getElementById("message");
 
-  // Mock API call
-  fetch("https://dummyjson.com/products", {
-    method: "POST",
+  var api_url = `${config.API_URL}/students/recharge`;
+  const requestBody = {
+    studentId: getStudentRollNo(),
+    RechargeAmount: amount,
+  };
+  var response = await fetch(api_url, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    // body: JSON.stringify({ amount: amount }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("data :>> ", data);
-      if (data.products) {
-        showMessage("Recharge successful!", "alert-success");
-      } else {
-        showMessage("Recharge failed!", "alert-danger");
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      showMessage("Recharge failed!", "alert-danger");
-    });
+    body: JSON.stringify(requestBody),
+  });
+
+  if (response.ok) {
+    var data = await response.json();
+    getWalletAmount();
+    showMessage("Recharge successful!", "alert-success");
+  } else {
+    const error = await response.json();
+    console.error("Error while fetching the data", error.message);
+    showMessage(`Recharge failed! ${error.message}`, "alert-danger");
+    return 0;
+  }
 }
+
+async function updateWallet(amount) {}
 
 function showMessage(message, alertClass) {
   const messageDiv = document.getElementById("message");

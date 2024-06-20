@@ -1,3 +1,16 @@
+const token = getTokenFromLocalStorage();
+
+if (token == null) {
+  var notLoggedInModal = new bootstrap.Modal(
+    document.getElementById("notLoggedInModal")
+  );
+  console.log("notLoggedInModal :>> ", notLoggedInModal);
+  notLoggedInModal.show();
+  document.getElementById("login-btn").addEventListener("click", function () {
+    window.location.href = "../../../src/auth/user-auth.html";
+  });
+}
+
 function getTokenFromLocalStorage() {
   return localStorage.getItem("token");
 }
