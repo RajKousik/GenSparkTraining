@@ -116,8 +116,8 @@ function hideModal(modalId) {
   modalInstance.hide();
 }
 
-// Function to fetch course details and display modal
-async function viewCourseDetails(
+// Function to fetch course registration details and display modal
+async function viewCourseRegistrationDetails(
   courseRegistrationId,
   courseId,
   courseName,
@@ -129,7 +129,7 @@ async function viewCourseDetails(
     .then((response) => response.json())
     .then((courseDetails) => {
       const { facultyId } = courseDetails;
-      viewCourseModal(
+      viewCourseRegistrationModal(
         courseId,
         courseName,
         facultyId,
@@ -140,8 +140,8 @@ async function viewCourseDetails(
     .catch((error) => console.error("Error fetching course details:", error));
 }
 
-// Function to display modal with course details
-function viewCourseModal(
+// Function to display modal with course registration details
+function viewCourseRegistrationModal(
   courseId,
   courseName,
   facultyId,
@@ -182,7 +182,10 @@ function showModalById(modalId) {
 
 // Fetch course registrations and populate table
 document.addEventListener("DOMContentLoaded", function () {
-  const studentId = getStudentRollNo();
+  if (!checkToken()) {
+    return;
+  }
+  const studentId = getUserId();
   if (!studentId) {
     console.error("Something went wrong! Log in again");
     return;
@@ -193,14 +196,14 @@ document.addEventListener("DOMContentLoaded", function () {
   fetch(apiUrl)
     .then((response) => response.json())
     .then((data) => {
-      populateCourseTable(data);
+      populateCourseRegistrationTable(data);
     })
     .catch((error) =>
       console.error("Error fetching course registrations:", error)
     );
 
   // Populate course registration table with data
-  async function populateCourseTable(data) {
+  async function populateCourseRegistrationTable(data) {
     const tableBody = document.querySelector("#courseRegistrationTable tbody");
     tableBody.innerHTML = "";
 
@@ -217,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <td>${courseName}</td>
           <td id="${statusText.toLowerCase()}"><p>${statusText}</p></td>
           <td>
-            <button class="btn btn-primary" onclick="viewCourseDetails(
+            <button class="btn btn-primary" onclick="viewCourseRegistrationDetails(
             ${registration.registrationId},
             ${registration.courseId}, '${courseName}', ${
         registration.approvalStatus

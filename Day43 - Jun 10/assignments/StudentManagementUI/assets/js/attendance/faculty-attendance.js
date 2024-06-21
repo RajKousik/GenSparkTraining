@@ -68,7 +68,6 @@ function showModal(title, message, isSuccess) {
   modalTitle.textContent = title;
   modalBody.textContent = message;
 
-  console.log("object okay");
   // Change modal color based on success or failure
   if (isSuccess) {
     modalHeader.classList.remove("bg-danger");
@@ -83,6 +82,9 @@ function showModal(title, message, isSuccess) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   // Add Attendance Form Submission
   var addAttendanceForm = document.getElementById("addAttendanceForm");
   addAttendanceForm.addEventListener("submit", function (event) {

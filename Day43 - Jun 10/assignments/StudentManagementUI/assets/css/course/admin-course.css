@@ -47,6 +47,11 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #007bff; /* Blue text for active link */
 }
 
+.navbar-nav .nav-link.active {
+  /* border-bottom: 2px solid #007bff;   */
+  text-decoration: 2px solid underline #007bff;
+}
+
 .nav-link.active .navbar-item {
   background: white !important;
 }

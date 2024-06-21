@@ -34,6 +34,9 @@ function toggleEditMode(isDisabled) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   populateDepartments();
   populateStudentProfile();
   document.getElementById("saveButton").addEventListener("click", handleSave);
@@ -80,8 +83,6 @@ function handleSave(e) {
     email: email,
   };
 
-  console.log("requestBody :>> ", requestBody);
-
   fetch(`${config.API_URL}/students/update?email=${email}`, {
     method: "PUT",
     headers: {
@@ -90,8 +91,6 @@ function handleSave(e) {
     body: JSON.stringify(requestBody),
   })
     .then(async (response) => {
-      //   response.json();
-      //   console.log("response.json() :>> ", await response.json());
       if (response.ok) {
         return await response.json();
       } else {

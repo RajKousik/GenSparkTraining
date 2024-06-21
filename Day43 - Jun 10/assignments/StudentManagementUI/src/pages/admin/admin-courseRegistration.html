@@ -88,14 +88,14 @@
               <th scope="col" class="text-center align-middle" width="10%">
                 Sl.No
               </th>
-              <th scope="col" class="text-center align-middle" width="10%">
+              <th scope="col" class="text-center align-middle" width="15%">
+                Registration Id
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
                 Student Id
               </th>
-              <th scope="col" class="text-center align-middle" width="10%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Course ID
-              </th>
-              <th scope="col" class="text-center align-middle" width="25%">
-                Course Name
               </th>
               <th scope="col" class="text-center align-middle" width="20%">
                 Status
@@ -220,7 +220,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="courseRegistrationViewModalLabel">
-              Course Registration Id - CR011
+              Course Registration Details
             </h1>
             <button
               type="button"
@@ -232,29 +232,41 @@
           <div class="modal-body">
             <div class="container">
               <div class="row mb-2">
-                <div class="col-6">
+                <div class="col-4">
                   <strong>Course ID:</strong>
-                  <p>14</p>
+                  <p id="courseIdView"></p>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                   <strong>Course Name:</strong>
-                  <p>MERN</p>
+                  <p id="courseNameView"></p>
+                </div>
+                <div class="col-4">
+                  <strong>Student Id</strong>
+                  <p id="studentIdView">1001</p>
                 </div>
               </div>
               <div class="row mb-2">
-                <div class="col-6">
-                  <strong>Student Id</strong>
-                  <p>1001</p>
+                <div class="col-4">
+                  <strong>Student Name</strong>
+                  <p id="studentNameView">1001</p>
                 </div>
+                <div class="col-4">
+                  <strong>Faculty Id</strong>
+                  <p id="facultyIdView">Pending</p>
+                </div>
+                <div class="col-4">
+                  <strong>Faculty Name</strong>
+                  <p id="facultyNameView">Pending</p>
+                </div>
+              </div>
+              <div class="row mb-2">
                 <div class="col-6">
                   <strong>Approval Status</strong>
-                  <p>Pending</p>
+                  <p id="statusView">Registration done! Wait for approval!</p>
                 </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-12">
+                <div class="col-6">
                   <strong>Comments</strong>
-                  <p>Registration done! Wait for approval!</p>
+                  <p id="commentsView">Registration done! Wait for approval!</p>
                 </div>
               </div>
             </div>
@@ -265,6 +277,14 @@
             </button>
             <button type="button" class="btn btn-danger" id="rejectBtn">
               Reject
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              id="closeBtn"
+            >
+              Close
             </button>
           </div>
         </div>
@@ -305,6 +325,34 @@
       </div>
     </div>
 
+    <div
+      class="modal fade"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      id="notLoggedInModal"
+      tabindex="-1"
+      aria-labelledby="notLoggedInModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="notLoggedInModalLabel">
+              Not Logged In
+            </h5>
+          </div>
+          <div class="modal-body">
+            You are not logged in. Please Login to continue using our services.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" id="login-btn">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- </div> -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
@@ -321,6 +369,8 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
+    <script src="../../../assets/js/token/token.js"></script>
+    <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/courseRegistration/admin-courseRegistration.js"></script>
   </body>
 </html>

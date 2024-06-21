@@ -157,7 +157,6 @@ function handleRegisterFormSubmission(e) {
   //   true
   // );
   let endpoint;
-  // console.log("role.toLowerCase() :>> ", role.toLowerCase().trim());
   switch (role.toLowerCase().trim()) {
     case "professor":
       endpoint = "/faculty/prof/register";
@@ -178,7 +177,6 @@ function handleRegisterFormSubmission(e) {
       displayErrorMessage("Invalid role selected.", errorSignUpMessageDiv);
       return;
   }
-  // console.log("endpoint :>> ", endpoint);
   // Make the API call
   fetch(`${config.API_URLs}${endpoint}`, {
     method: "POST",

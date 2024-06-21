@@ -1,12 +1,14 @@
 AOS.init({ duration: 1000 });
 
 document.addEventListener("DOMContentLoaded", async function () {
+  if (!checkToken()) {
+    return;
+  }
   // Function to fetch data from the API
   async function fetchData() {
     const response = await fetch(
       `${config.API_URL}/student-attendance/attendance-percentage/12`
     );
-    console.log("response :>> ", response);
     // return response;
     let data;
     if (response.ok) {
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const chartContainer = document.getElementById("chartContainer");
     const colDiv = document.createElement("div");
     colDiv.setAttribute("data-aos", "fade-up");
-    colDiv.className = "col-lg-6 col-md-12 d-flex align-items-stretch"; // Flexbox for equal height
+    colDiv.className = "col-lg-6 col-md-12 d-flex align-items-stretch";
 
     const cardDiv = document.createElement("div");
     cardDiv.className = "card chart-container p-2 w-100"; // Ensure the chart container takes full width

@@ -1,4 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
+  if (!checkToken()) {
+    return;
+  }
+
+  function handleLogout() {
+    // Remove the token from localStorage
+    localStorage.removeItem("token");
+
+    // Redirect to the login page
+    window.top.location.href = "../../../src/auth/user-auth.html";
+  }
+
+  // Attach the logout function to the logout link
+  const logoutLink = document.getElementById("logout-link");
+  logoutLink.addEventListener("click", function (event) {
+    event.preventDefault();
+    handleLogout();
+  });
   // Function to decode JWT token
   function parseJwt(token) {
     try {

@@ -74,6 +74,9 @@ function showModalById(modalId) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   // Function to populate the DataTable with fetched exam data
   function populateExamTable(examData) {
     const tableBody = $("#examTable tbody");
@@ -165,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // API URL to fetch exam data
   const apiUrl = `${
     config.API_URL
-  }/exams/studentRollNo?studentRollNo=${getStudentRollNo()}`;
+  }/exams/studentRollNo?studentRollNo=${getUserId()}`;
 
   // Fetch exam data and populate the DataTable
   fetch(apiUrl)

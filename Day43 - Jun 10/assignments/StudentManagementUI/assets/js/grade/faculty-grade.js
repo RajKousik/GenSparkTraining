@@ -82,6 +82,9 @@ function showModal(title, message, isSuccess) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   // Add Grade Form Submission
   var addGradeForm = document.getElementById("addGradeForm");
   addGradeForm.addEventListener("submit", function (event) {

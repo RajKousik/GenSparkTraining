@@ -3,7 +3,7 @@ AOS.init({ duration: 1000 });
 async function getWalletAmount() {
   var api_url = `${
     config.API_URL
-  }/students/EWallet?studentRollNo=${getStudentRollNo()}`;
+  }/students/EWallet?studentRollNo=${getUserId()}`;
 
   var response = await fetch(api_url);
   let current_amount = 0;
@@ -19,6 +19,9 @@ async function getWalletAmount() {
 }
 
 document.addEventListener("DOMContentLoaded", async function () {
+  if (!checkToken()) {
+    return;
+  }
   getWalletAmount();
 });
 
@@ -34,7 +37,7 @@ async function recharge() {
 
   var api_url = `${config.API_URL}/students/recharge`;
   const requestBody = {
-    studentId: getStudentRollNo(),
+    studentId: getUserId(),
     RechargeAmount: amount,
   };
   var response = await fetch(api_url, {

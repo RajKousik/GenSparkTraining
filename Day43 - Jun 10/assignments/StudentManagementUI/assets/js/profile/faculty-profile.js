@@ -106,6 +106,9 @@ function hideModal(modalId) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   populateDepartments();
   populateFacultyProfile();
   document.getElementById("saveButton").addEventListener("click", handleSave);
@@ -123,7 +126,6 @@ function handleSave(e) {
   const address = document.getElementById("inputAddress").value.trim();
   const departmentId = document.getElementById("inputDepartment").value;
   const role = document.getElementById("inputRole").value;
-  console.log("role :>> ", role);
   // Construct the request body
   const requestBody = {
     name: name,
@@ -143,9 +145,6 @@ function handleSave(e) {
     body: JSON.stringify(requestBody),
   })
     .then(async (response) => {
-      //   console.log("response :>> ", await response.json());
-      //   response.json();
-      //   console.log("response.json() :>> ", await response.json());
       if (response.ok) {
         return await response.json();
       } else {

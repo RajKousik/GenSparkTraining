@@ -82,6 +82,9 @@ function showModal(title, message, isSuccess) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   // Add Exam Form Submission
   var addExamForm = document.getElementById("addExamForm");
   addExamForm.addEventListener("submit", function (event) {

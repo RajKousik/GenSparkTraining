@@ -68,6 +68,9 @@ async function viewGradeDetails(examId) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  if (!checkToken()) {
+    return;
+  }
   // Function to populate the DataTable with fetched grade data
   async function populateGradeTable(gradeData) {
     const tableBody = $("#gradeTable tbody");
@@ -157,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // API URL to fetch grade data
-  const apiUrl = `${config.API_URL}/grades/student/${getStudentRollNo()}`;
+  const apiUrl = `${config.API_URL}/grades/student/${getUserId()}`;
 
   // Fetch grade data and populate the DataTable
   fetch(apiUrl)

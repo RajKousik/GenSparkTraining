@@ -93,40 +93,6 @@
             </tr>
           </thead>
           <tbody style="vertical-align: middle" data-aos="fade-up">
-            <tr>
-              <th scope="row">1</th>
-              <td>202002</td>
-              <td>John Doe</td>
-              <td>john.doe@example.com</td>
-              <td>Computer Science</td>
-              <td id="active"><p>Active</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#studentViewModal"
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>202003</td>
-              <td>Matt Smith</td>
-              <td>math.smith@example.com</td>
-              <td>Electrical</td>
-              <td id="inactive"><p>InActive</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#studentViewModal"
-                >
-                  View
-                </button>
-              </td>
-            </tr>
             <!-- Add more student rows as needed -->
           </tbody>
         </table>
@@ -137,8 +103,6 @@
     <div
       class="modal fade"
       id="studentViewModal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
       tabindex="-1"
       aria-labelledby="studentViewModalLabel"
       aria-hidden="true"
@@ -161,47 +125,48 @@
               <div class="row mb-2">
                 <div class="col-4">
                   <strong>Roll No:</strong>
-                  <p id="studentRollNo">202001</p>
+                  <p id="studentRollNo"></p>
                 </div>
                 <div class="col-4">
                   <strong>Name:</strong>
-                  <p id="studentName">John Doe</p>
+                  <p id="studentName"></p>
                 </div>
                 <div class="col-4">
                   <strong>Gender:</strong>
-                  <p id="studentGender">Male</p>
+                  <p id="studentGender"></p>
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-6">
                   <strong>Email:</strong>
-                  <p id="studentEmail">john.doe@example.com</p>
+                  <p id="studentEmail"></p>
                 </div>
                 <div class="col-6">
                   <strong>Department:</strong>
-                  <p id="studentDepartment">Computer Science</p>
+                  <p id="studentDepartment"></p>
                 </div>
               </div>
               <div class="row mb-2">
-                <div class="col-6">
+                <div class="col-4">
                   <strong>Address:</strong>
-                  <p id="studentAddress">123 Main St, NewYork, Canada</p>
+                  <p id="studentAddress"></p>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                   <strong>Date of Birth:</strong>
-                  <p id="studentDob">01/01/2000</p>
+                  <p id="studentDob"></p>
+                </div>
+                <div class="col-4">
+                  <strong>Status:</strong>
+                  <p id="studentStatus"></p>
                 </div>
               </div>
-              <div class="row mb-2">
-                <div class="col-6">
-                  <strong>Status:</strong>
-                  <p id="studentStatus">Active</p>
-                </div>
-                <div class="col-6">
+              <!-- <div class="row mb-2"> -->
+
+              <!-- <div class="col-6">
                   <strong>E-wallet:</strong>
                   <p id="studentEwallet">$100.00</p>
-                </div>
-              </div>
+                </div> -->
+              <!-- </div> -->
             </div>
           </div>
           <div class="modal-footer">
@@ -270,6 +235,34 @@
       </div>
     </div>
 
+    <div
+      class="modal fade"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      id="notLoggedInModal"
+      tabindex="-1"
+      aria-labelledby="notLoggedInModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="notLoggedInModalLabel">
+              Not Logged In
+            </h5>
+          </div>
+          <div class="modal-body">
+            You are not logged in. Please Login to continue using our services.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" id="login-btn">
+              Login
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
@@ -283,6 +276,8 @@
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
 
+    <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/student/student.js"></script>
   </body>
 </html>

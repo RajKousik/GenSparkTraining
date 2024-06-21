@@ -1,4 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
+  if (!checkToken()) {
+    return;
+  }
   const token = getTokenFromLocalStorage();
   if (token) {
     const decodedToken = parseJwt(token);
@@ -10,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         decodedToken[
           "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
         ];
-      fetchStudentDepartment(rollNo);
+      await fetchUserDepartment(rollNo);
     } else {
       console.error("Failed to decode token.");
     }
@@ -21,18 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
   fetchDepartments(); // Fetch all departments
 });
 
-function fetchStudentDepartment(rollNo) {
-  fetch(`${config.API_URL}/students/id?studentRollNo=${rollNo}`)
+async function fetchUserDepartment(rollNo) {
+  let api_url = `${config.API_URL}/students/id?studentRollNo=${rollNo}`;
+
+  let role = await getUserRole();
+
+  if (role.toLowerCase() !== "student") {
+    api_url = `${config.API_URL}/faculty/${rollNo}`;
+  }
+
+  fetch(api_url)
     .then((response) => response.json())
     .then((data) => {
-      const studentDepartment = data.departmentId; // Assuming this is how you retrieve the department from the response
+      const userDepartment = data.departmentId; // Assuming this is how you retrieve the department from the response
       // Add 'user-department' class to the corresponding department card
       const departmentCards = document.querySelectorAll(".department-card");
       departmentCards.forEach((card) => {
         const departmentId = card
           .querySelector(".card-id")
           .textContent.split(": ")[1]; // Extract department ID from card text
-        if (departmentId == studentDepartment) {
+        if (departmentId == userDepartment) {
           card.classList.add("user-department");
         }
       });
@@ -40,7 +51,7 @@ function fetchStudentDepartment(rollNo) {
       AOS.refresh(); // Refresh AOS animations after dynamically adding elements
     })
     .catch((error) => {
-      console.error("Error fetching student department:", error);
+      console.error("Error fetching user department:", error);
     });
 }
 

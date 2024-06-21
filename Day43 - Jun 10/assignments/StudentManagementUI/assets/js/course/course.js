@@ -5,8 +5,7 @@ let selectedCourseId = null;
 
 // Function to register the course
 async function registerCourse() {
-  const studentId = getStudentRollNo();
-  // console.log("studentId, selectedCourseId :>> ", studentId, selectedCourseId);
+  const studentId = getUserId();
   if (!studentId) {
     showModal(
       "responseFailureModal",
@@ -32,7 +31,6 @@ async function registerCourse() {
     hideModal("courseViewModal");
     if (response.ok) {
       const responseData = await response.json();
-      // console.log("responseData :>> ", responseData);
       showModal(
         "responseSuccessModal",
         "Registration Successful",
@@ -46,7 +44,6 @@ async function registerCourse() {
       // Call the fetch function here
     } else {
       const responseData = await response.json();
-      // console.log("responseData failure :>> ", responseData);
       showModal(
         "responseFailureModal",
         "Registration Failed",
@@ -62,12 +59,10 @@ async function registerCourse() {
       "An unexpected error occurred. Please try again later."
     );
   }
-  // console.log("okay :>> ");
 }
 
 // Function to show a Bootstrap modal by ID with custom title and body content
 function showModal(modalId, title, body) {
-  // console.log("object :>> ", modalId, title, body);
   const modalElement = document.getElementById(modalId);
   modalElement.querySelector(".modal-title").textContent = title;
   modalElement.querySelector(".modal-body").textContent = body;
@@ -97,11 +92,9 @@ async function fetchAndPopulateCourses() {
     // Clear the table body
     const tableBody = $("#courseTable tbody");
     tableBody.empty();
-    // console.log("tableBody :>> ", tableBody);
 
     // Populate the table body with course data
     courses.forEach((course, index) => {
-      // console.log("course :>> ", course);
       tableBody.append(`
         <tr>
           <th scope="row">${index + 1}</th>
@@ -121,7 +114,7 @@ async function fetchAndPopulateCourses() {
       `);
     });
 
-    // console.log("object :>> too ");
+    // ("object :>> too ");
 
     // Reinitialize DataTable to apply to new data
     $("#courseTable").DataTable().destroy();
@@ -236,5 +229,8 @@ async function viewCourse(
 
 // Document ready function
 $(document).ready(function () {
+  if (!checkToken()) {
+    return;
+  }
   fetchAndPopulateCourses();
 });
