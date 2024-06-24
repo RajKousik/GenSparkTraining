@@ -30,7 +30,11 @@
             >
               <span class="navbar-toggler-icon" id="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand fw-medium text-truncate" href="#">
+            <a
+              class="navbar-brand fw-medium text-truncate"
+              href="#"
+              id="brand-name"
+            >
               ABC Educational Institution
             </a>
           </div>
@@ -38,10 +42,11 @@
             <ul class="navbar-nav ms-auto">
               <li class="nav-item d-flex align-items-center">
                 <img
-                  src="../../../assets/svg/profile-user.svg"
+                  src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   width="32px"
                   height="32px"
                   alt="Profile"
+                  class="rounded-circle"
                 />
                 <span class="ms-2 fs-6 fw-medium username"></span>
               </li>
@@ -56,10 +61,10 @@
         >
           <div class="profile-name">
             <img
-              src="../../../assets/svg/profile-user.svg"
-              width="50%"
-              height="30%"
+              src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              width="75%"
               alt="Profile"
+              class="rounded-circle"
             />
             <h2 class="my-2 fs-3 fw-normal username"></h2>
           </div>
@@ -189,6 +194,9 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/index/index.js"></script>
@@ -198,6 +206,18 @@
       if (role.toLowerCase() !== "admin") {
         history.back();
       }
+
+      // initialization of text animation (typing)
+      var typed = new Typed("#brand-name", {
+        strings: ["ABC Educational Institution"],
+        typeSpeed: 60,
+        // loop: true,
+        onComplete: function (self) {
+          self.cursor.remove();
+        },
+        // backSpeed: 25,
+        backDelay: 1500,
+      });
     </script>
   </body>
 </html>

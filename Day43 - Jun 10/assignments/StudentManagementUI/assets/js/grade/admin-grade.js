@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data.forEach((faculty) => {
           const option = document.createElement("option");
           option.value = faculty.facultyId;
-          option.textContent = faculty.name;
+          option.textContent = faculty.facultyId + " - " + faculty.name;
           facultySelect.appendChild(option);
         });
       })
@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
         data.forEach((student) => {
           const option = document.createElement("option");
           option.value = student.studentRollNo;
-          option.textContent = student.studentRollNo;
+          option.textContent = student.studentRollNo + " - " + student.name;
           studentSelect.appendChild(option);
         });
       })

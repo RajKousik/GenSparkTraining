@@ -17,6 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../../assets/css/course/admin-course.css" />
     <link
@@ -396,5 +397,21 @@
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/course/admin-course.js"></script>
+
+    <!-- <script src="jspdf.min.js"></script>
+    <script src="jspdf.plugin.autotable.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script>
+      function downloadPDF(table) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        doc.autoTable({ html: table });
+        const text = document.querySelector(".table-search").value;
+        const filename = text
+          ? `${text} - simplebank - transactions.pdf`
+          : "simplebank - transactions.pdf";
+        doc.save(filename);
+      }
+    </script> -->
   </body>
 </html>

@@ -92,6 +92,20 @@ function validateLoginForm(email, password) {
   return true;
 }
 
+function newToast(classBackground, message) {
+  const toastNotification = new bootstrap.Toast(
+    document.getElementById("toastNotification")
+  );
+  var toast = document.getElementById("toastNotification");
+  toast.className = "toast align-items-center text-white border-0";
+  toast.classList.add(`${classBackground}`);
+  var toastBody = document.querySelector(".toast-body");
+  if (toastBody) {
+    toastBody.innerHTML = `${message}`;
+  }
+  toastNotification.show();
+}
+
 // Function to handle form submission for register
 function handleRegisterFormSubmission(e) {
   e.preventDefault(); // Prevent default form submission
@@ -210,7 +224,10 @@ function handleRegisterFormSubmission(e) {
     .then((data) => {
       if (data) {
         displayErrorMessage(
-          "Successfully registered! Redirecting to login page...",
+          `<div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Successfully registered! Redirecting to login page...`,
           errorSignUpMessageDiv,
           true
         );
@@ -261,7 +278,10 @@ function handleLoginFormSubmission(e) {
     .then(async (response) => {
       if (response.ok) {
         displayErrorMessage(
-          "Successfully logged in! Redirecting....",
+          `<div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          Successfully logged in! Redirecting....`,
           errorMessageSignInDiv,
           true
         );
@@ -292,13 +312,15 @@ function handleLoginFormSubmission(e) {
           signInForm.reset();
         }, 3000);
       } else {
-        displayErrorMessage(
-          "Something Went Wrong! Please try Again Later",
-          errorMessageSignInDiv
-        );
+        // displayErrorMessage(
+        //   "Something Went Wrong! Please try Again Later",
+        //   errorMessageSignInDiv
+        // );
+        newToast("bg-red", "Something Went Wrong! Please try Again Later");
       }
     })
     .catch((error) => {
+      newToast("bg-danger", error.message);
       displayErrorMessage(error.message, errorMessageSignInDiv);
     });
 }
@@ -328,7 +350,7 @@ document.querySelectorAll(".password-icon").forEach((icon) => {
 // Function to display error message
 function displayErrorMessage(message, errorMessageDiv, isSuccess = false) {
   if (errorMessageDiv) {
-    errorMessageDiv.textContent = message;
+    errorMessageDiv.innerHTML = message;
     errorMessageDiv.classList.remove("d-none");
     if (isSuccess) {
       errorMessageDiv.classList.remove("text-danger");

@@ -30,7 +30,10 @@
             >
               <span class="navbar-toggler-icon" id="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand fw-medium text-truncate" href="#">
+            <a
+              class="navbar-brand fw-medium text-truncate"
+              href="./profile.html"
+            >
               ABC Educational Institution
             </a>
           </div>
@@ -38,10 +41,11 @@
             <ul class="navbar-nav ms-auto">
               <li class="nav-item d-flex align-items-center">
                 <img
-                  src="../../../assets/svg/profile-user.svg"
+                  src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                   width="32px"
                   height="32px"
                   alt="Profile"
+                  class="rounded-circle"
                 />
                 <span class="ms-2 fs-6 fw-medium username"></span>
               </li>
@@ -56,10 +60,10 @@
         >
           <div class="profile-name">
             <img
-              src="../../../assets/svg/profile-user.svg"
-              width="50%"
-              height="30%"
+              src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              width="75%"
               alt="Profile"
+              class="rounded-circle"
             />
             <h2 class="my-2 fs-3 fw-normal username"></h2>
           </div>
@@ -181,7 +185,7 @@
     <script src="../../../assets/js/index/index.js"></script>
     <script>
       const role = getUserRole();
-      if (role.toLowerCase() === "student" || role.toLowerCase() == 'admin') {
+      if (role.toLowerCase() === "student" || role.toLowerCase() == "admin") {
         history.back();
       }
     </script>
