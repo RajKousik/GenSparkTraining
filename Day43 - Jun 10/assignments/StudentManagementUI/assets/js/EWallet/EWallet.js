@@ -1,5 +1,10 @@
 AOS.init({ duration: 1000 });
 
+if (window.top === window.self) {
+  // If the page is not in an iframe, redirect to the main page or show an error
+  window.location.href = "../../../src/pages/admin/index.html";
+}
+
 async function getWalletAmount() {
   var api_url = `${
     config.API_URL

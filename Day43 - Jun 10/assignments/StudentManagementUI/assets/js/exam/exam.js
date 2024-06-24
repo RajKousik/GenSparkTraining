@@ -1,6 +1,11 @@
 // Initialize AOS library
 AOS.init({ duration: 1000 });
 
+if (window.top === window.self) {
+  // If the page is not in an iframe, redirect to the main page or show an error
+  window.location.href = "../../../src/pages/admin/index.html";
+}
+
 // Function to display exam details in the modal
 async function viewExamDetails(examId) {
   try {
@@ -165,13 +170,20 @@ document.addEventListener("DOMContentLoaded", function () {
     table.draw();
   }
 
-  // API URL to fetch exam data
-  const apiUrl = `${
-    config.API_URL
-  }/exams/studentRollNo?studentRollNo=${getUserId()}`;
+  const role = getUserRole();
+
+  let api_url = ``;
+
+  if (role.toLowerCase() === "student") {
+    api_url = `${
+      config.API_URL
+    }/exams/studentRollNo?studentRollNo=${getUserId()}`;
+  } else {
+    api_url = `${config.API_URL}/exams`;
+  }
 
   // Fetch exam data and populate the DataTable
-  fetch(apiUrl)
+  fetch(api_url)
     .then((response) => {
       if (!response.ok) {
         throw new Error("Failed to fetch exam data.");

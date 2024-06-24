@@ -13,80 +13,80 @@ document.addEventListener("DOMContentLoaded", function () {
   populateStudentId("studentRollNo");
   populateCourseId("courseId");
 
-  // populateAttendanceId("attendanceId");
+  populateAttendanceId("attendanceId");
 
-  // populateAttendanceId("deleteAttendanceId");
+  populateAttendanceId("deleteAttendanceId");
 
   const addAttendanceNav = document.getElementById("add-attendance-nav");
-  // const updateAttendanceNav = document.getElementById("update-attendance-nav");
-  // const deleteAttendanceNav = document.getElementById("delete-attendance-nav");
+  const updateAttendanceNav = document.getElementById("update-attendance-nav");
+  const deleteAttendanceNav = document.getElementById("delete-attendance-nav");
   const viewAllAttendanceNav = document.getElementById(
     "view-all-attendance-nav"
   );
 
   const addAttendanceView = document.getElementById("add-attendance-form");
-  // const updateAttendanceView = document.getElementById(
-  //   "update-attendance-form"
-  // );
-  // const deleteAttendanceView = document.getElementById(
-  //   "delete-attendance-form"
-  // );
+  const updateAttendanceView = document.getElementById(
+    "update-attendance-form"
+  );
+  const deleteAttendanceView = document.getElementById(
+    "delete-attendance-form"
+  );
   const viewAllAttendanceView = document.getElementById("view-all-attendance");
 
   addAttendanceNav.addEventListener("click", () => {
     addAttendanceView.classList.remove("d-none");
-    // updateAttendanceView.classList.add("d-none");
-    // deleteAttendanceView.classList.add("d-none");
+    updateAttendanceView.classList.add("d-none");
+    deleteAttendanceView.classList.add("d-none");
     viewAllAttendanceView.classList.add("d-none");
 
     populateStudentId("studentRollNo");
     populateCourseId("courseId");
 
     addAttendanceNav.classList.add("active");
-    // updateAttendanceNav.classList.remove("active");
-    // deleteAttendanceNav.classList.remove("active");
+    updateAttendanceNav.classList.remove("active");
+    deleteAttendanceNav.classList.remove("active");
     viewAllAttendanceNav.classList.remove("active");
   });
 
-  // updateAttendanceNav.addEventListener("click", () => {
-  //   addAttendanceView.classList.add("d-none");
-  //   updateAttendanceView.classList.remove("d-none");
-  //   deleteAttendanceView.classList.add("d-none");
-  //   viewAllAttendanceView.classList.add("d-none");
+  updateAttendanceNav.addEventListener("click", () => {
+    addAttendanceView.classList.add("d-none");
+    updateAttendanceView.classList.remove("d-none");
+    deleteAttendanceView.classList.add("d-none");
+    viewAllAttendanceView.classList.add("d-none");
 
-  //   populateAttendanceId("attendanceId");
+    populateAttendanceId("attendanceId");
 
-  //   addAttendanceNav.classList.remove("active");
-  //   updateAttendanceNav.classList.add("active");
-  //   deleteAttendanceNav.classList.remove("active");
-  //   viewAllAttendanceNav.classList.remove("active");
-  // });
+    addAttendanceNav.classList.remove("active");
+    updateAttendanceNav.classList.add("active");
+    deleteAttendanceNav.classList.remove("active");
+    viewAllAttendanceNav.classList.remove("active");
+  });
 
-  // deleteAttendanceNav.addEventListener("click", () => {
-  //   addAttendanceView.classList.add("d-none");
-  //   updateAttendanceView.classList.add("d-none");
-  //   deleteAttendanceView.classList.remove("d-none");
-  //   viewAllAttendanceView.classList.add("d-none");
+  deleteAttendanceNav.addEventListener("click", () => {
+    addAttendanceView.classList.add("d-none");
+    updateAttendanceView.classList.add("d-none");
+    deleteAttendanceView.classList.remove("d-none");
+    viewAllAttendanceView.classList.add("d-none");
 
-  //   populateAttendanceId("deleteAttendanceId");
+    populateAttendanceId("deleteAttendanceId");
 
-  //   addAttendanceNav.classList.remove("active");
-  //   updateAttendanceNav.classList.remove("active");
-  //   deleteAttendanceNav.classList.add("active");
-  //   viewAllAttendanceNav.classList.remove("active");
-  // });
+    addAttendanceNav.classList.remove("active");
+    updateAttendanceNav.classList.remove("active");
+    deleteAttendanceNav.classList.add("active");
+    viewAllAttendanceNav.classList.remove("active");
+  });
 
   viewAllAttendanceNav.addEventListener("click", () => {
     addAttendanceView.classList.add("d-none");
-    // updateAttendanceView.classList.add("d-none");
-    // deleteAttendanceView.classList.add("d-none");
+    updateAttendanceView.classList.add("d-none");
+    deleteAttendanceView.classList.add("d-none");
     viewAllAttendanceView.classList.remove("d-none");
 
     populateAttendanceTable();
 
     addAttendanceNav.classList.remove("active");
-    // updateAttendanceNav.classList.remove("active");
-    // deleteAttendanceNav.classList.remove("active");
+    updateAttendanceNav.classList.remove("active");
+    deleteAttendanceNav.classList.remove("active");
     viewAllAttendanceNav.classList.add("active");
   });
 
@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   }
+
   function populateCourseId(elementId, studentRollNo = "") {
     const apiUrl = studentRollNo
       ? `${config.API_URL}/course-registrations/students?studentId=${studentRollNo}&status=1`
@@ -267,79 +268,79 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Update Attendance Form Submission
-  // var updateAttendanceForm = document.getElementById("updateAttendanceForm");
-  // updateAttendanceForm.addEventListener("submit", function (event) {
-  //   event.preventDefault();
-  //   const attendanceId = document.getElementById("attendanceId").value;
-  //   const status = document.getElementById("updateAttendanceStatus").value;
+  var updateAttendanceForm = document.getElementById("updateAttendanceForm");
+  updateAttendanceForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const attendanceId = document.getElementById("attendanceId").value;
+    const status = document.getElementById("updateAttendanceStatus").value;
 
-  //   fetch(
-  //     `${config.API_URL}/student-attendance/${attendanceId}?attendanceStatus=${status}`,
-  //     {
-  //       method: "PUT",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     }
-  //   )
-  //     .then(async (response) => {
-  //       if (response.ok) {
-  //         return await response.json();
-  //       } else {
-  //         let data = await response.json();
-  //         throw new Error(data.message || Object.values(data.errors)[0]);
-  //       }
-  //     })
-  //     .then((data) => {
-  //       showModal("Success", "Attendance updated successfully!", true);
-  //     })
-  //     .catch((error) => {
-  //       showModal(
-  //         "Error",
-  //         `Failed to update Attendance: ${error.message}`,
-  //         false
-  //       );
-  //     });
-  //   updateAttendanceForm.reset();
-  // });
+    fetch(
+      `${config.API_URL}/student-attendance/${attendanceId}?attendanceStatus=${status}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then(async (response) => {
+        if (response.ok) {
+          return await response.json();
+        } else {
+          let data = await response.json();
+          throw new Error(data.message || Object.values(data.errors)[0]);
+        }
+      })
+      .then((data) => {
+        showModal("Success", "Attendance updated successfully!", true);
+      })
+      .catch((error) => {
+        showModal(
+          "Error",
+          `Failed to update Attendance: ${error.message}`,
+          false
+        );
+      });
+    updateAttendanceForm.reset();
+  });
 
-  // // Delete Attendance Form Submission
-  // var deleteAttendanceForm = document.getElementById("deleteAttendanceForm");
-  // deleteAttendanceForm.addEventListener("submit", function (event) {
-  //   event.preventDefault();
-  //   const deleteAttendanceId =
-  //     document.getElementById("deleteAttendanceId").value;
+  // Delete Attendance Form Submission
+  var deleteAttendanceForm = document.getElementById("deleteAttendanceForm");
+  deleteAttendanceForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const deleteAttendanceId =
+      document.getElementById("deleteAttendanceId").value;
 
-  //   let api_url = `${config.API_URL}/student-attendance/${deleteAttendanceId}`;
-  //   fetch(api_url, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-  //     .then(async (response) => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         let data = await response.json();
-  //         throw new Error(data.message || Object.values(data.errors)[0]);
-  //       }
-  //     })
-  //     .then((data) => {
-  //       showModal("Success", "Attendance deleted successfully!", true);
-  //       populateAttendanceId("deleteAttendanceId");
-  //     })
-  //     .catch((error) => {
-  //       showModal(
-  //         "Error",
-  //         `Failed to delete Attendance: ${error.message}`,
-  //         false
-  //       );
-  //     });
-  //   deleteAttendanceForm.reset();
-  // });
+    let api_url = `${config.API_URL}/student-attendance/${deleteAttendanceId}`;
+    fetch(api_url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          let data = await response.json();
+          throw new Error(data.message || Object.values(data.errors)[0]);
+        }
+      })
+      .then((data) => {
+        showModal("Success", "Attendance deleted successfully!", true);
+        populateAttendanceId("deleteAttendanceId");
+      })
+      .catch((error) => {
+        showModal(
+          "Error",
+          `Failed to delete Attendance: ${error.message}`,
+          false
+        );
+      });
+    deleteAttendanceForm.reset();
+  });
 
   async function populateAttendanceTable() {
     const tableBody = document.querySelector("#attendanceTable tbody");
@@ -434,3 +435,5 @@ document.addEventListener("DOMContentLoaded", function () {
     table.draw();
   }
 });
+
+$(document).ready(function () {});

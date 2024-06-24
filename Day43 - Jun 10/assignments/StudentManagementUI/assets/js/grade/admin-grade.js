@@ -73,10 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  if (!checkToken()) {
-    return;
-  }
-
   if (window.top === window.self) {
     // If the page is not in an iframe, redirect to the main page or show an error
     window.location.href = "../../../src/pages/admin/index.html";
@@ -87,14 +83,25 @@ document.addEventListener("DOMContentLoaded", function () {
   populateFaculty("evaluatedBy");
   populateExamId("examId");
 
+  populateFaculty("updateEvaluatedBy");
+  populateGrade("updateGradeId");
+
+  populateGrade("deleteGradeId");
+
   const addGradeNav = document.getElementById("add-grade-nav");
+  const updateGradeNav = document.getElementById("update-grade-nav");
+  const deleteGradeNav = document.getElementById("delete-grade-nav");
   const viewAllGradesNav = document.getElementById("view-all-grades-nav");
 
   const addGradeView = document.getElementById("add-grade-form");
+  const updateGradeView = document.getElementById("update-grade-form");
+  const deleteGradeView = document.getElementById("delete-grade-form");
   const viewAllGradesView = document.getElementById("view-all-grades");
 
   addGradeNav.addEventListener("click", () => {
     addGradeView.classList.remove("d-none");
+    updateGradeView.classList.add("d-none");
+    deleteGradeView.classList.add("d-none");
     viewAllGradesView.classList.add("d-none");
 
     populateStudentId("studentId");
@@ -102,16 +109,51 @@ document.addEventListener("DOMContentLoaded", function () {
     populateExamId("examId");
 
     addGradeNav.classList.add("active");
+    updateGradeNav.classList.remove("active");
+    deleteGradeNav.classList.remove("active");
+    viewAllGradesNav.classList.remove("active");
+  });
+
+  updateGradeNav.addEventListener("click", () => {
+    addGradeView.classList.add("d-none");
+    updateGradeView.classList.remove("d-none");
+    deleteGradeView.classList.add("d-none");
+    viewAllGradesView.classList.add("d-none");
+
+    populateFaculty("updateEvaluatedBy");
+    populateGrade("updateGradeId");
+
+    addGradeNav.classList.remove("active");
+    updateGradeNav.classList.add("active");
+    deleteGradeNav.classList.remove("active");
+    viewAllGradesNav.classList.remove("active");
+  });
+
+  deleteGradeNav.addEventListener("click", () => {
+    addGradeView.classList.add("d-none");
+    updateGradeView.classList.add("d-none");
+    deleteGradeView.classList.remove("d-none");
+    viewAllGradesView.classList.add("d-none");
+
+    populateGrade("deleteGradeId");
+
+    addGradeNav.classList.remove("active");
+    updateGradeNav.classList.remove("active");
+    deleteGradeNav.classList.add("active");
     viewAllGradesNav.classList.remove("active");
   });
 
   viewAllGradesNav.addEventListener("click", () => {
     addGradeView.classList.add("d-none");
+    updateGradeView.classList.add("d-none");
+    deleteGradeView.classList.add("d-none");
     viewAllGradesView.classList.remove("d-none");
 
     populateGradeTable();
 
     addGradeNav.classList.remove("active");
+    updateGradeNav.classList.remove("active");
+    deleteGradeNav.classList.remove("active");
     viewAllGradesNav.classList.add("active");
   });
 
@@ -319,6 +361,76 @@ document.addEventListener("DOMContentLoaded", function () {
         showModal("Error", `Failed to add grade: ${error.message}`, false);
       });
     addGradeForm.reset();
+  });
+
+  // Update Grade Form Submission
+  var updateGradeForm = document.getElementById("updateGradeForm");
+  updateGradeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const gradeId = document.getElementById("updateGradeId").value;
+    const evaluatedById = document.getElementById("updateEvaluatedBy").value;
+    const marksScored = document.getElementById("updateMarksScored").value;
+    const comments = document.getElementById("updateComments").value;
+
+    fetch(`${config.API_URL}/grades/${gradeId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        evaluatedById,
+        marksScored,
+        comments,
+      }),
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          return await response.json();
+        } else {
+          let data = await response.json();
+          throw new Error(data.message || Object.values(data.errors)[0]);
+        }
+      })
+      .then((data) => {
+        showModal("Success", "Grade updated successfully!", true);
+      })
+      .catch((error) => {
+        showModal("Error", `Failed to update grade: ${error.message}`, false);
+      });
+    updateGradeForm.reset();
+  });
+
+  // Delete Grade Form Submission
+  var deleteGradeForm = document.getElementById("deleteGradeForm");
+  deleteGradeForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const deleteGradeId = document.getElementById("deleteGradeId").value;
+
+    let api_url = `${config.API_URL}/grades/${deleteGradeId}`;
+    fetch(api_url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(async (response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          let data = await response.json();
+          throw new Error(data.message || Object.values(data.errors)[0]);
+        }
+      })
+      .then((data) => {
+        showModal("Success", "Grade deleted successfully!", true);
+        populateGrade("deleteGradeId");
+      })
+      .catch((error) => {
+        showModal("Error", `Failed to delete Grade: ${error.message}`, false);
+      });
+    deleteGradeForm.reset();
   });
 
   async function populateGradeTable() {

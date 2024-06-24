@@ -4,10 +4,18 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (!checkToken()) {
     return;
   }
+
+  if (window.top === window.self) {
+    // If the page is not in an iframe, redirect to the main page or show an error
+    window.location.href = "../../../src/pages/admin/index.html";
+  }
+
   // Function to fetch data from the API
   async function fetchData() {
     const response = await fetch(
-      `${config.API_URL}/student-attendance/attendance-percentage/12`
+      `${
+        config.API_URL
+      }/student-attendance/attendance-percentage/${getUserId()}`
     );
     // return response;
     let data;

@@ -1,5 +1,10 @@
 AOS.init({ duration: 1000 });
 
+if (window.top === window.self) {
+  // If the page is not in an iframe, redirect to the main page or show an error
+  window.location.href = "../../../src/pages/admin/index.html";
+}
+
 const approveBtn = document.getElementById("approveBtn");
 const rejectBtn = document.getElementById("rejectBtn");
 const closeBtn = document.getElementById("closeBtn");
@@ -207,10 +212,14 @@ async function viewCourseRegistrationModal(
   document.getElementById("statusView").textContent = approvalStatus;
   document.getElementById("commentsView").textContent = comments;
 
-  if ($("#studentStatus").text().toLowerCase() === "active") {
+  if (approvalStatus.toLowerCase() === "approved") {
     approveBtn.style.display = "none";
     rejectBtn.style.display = "none";
     closeBtn.style.display = "block";
+  } else {
+    approveBtn.style.display = "block";
+    rejectBtn.style.display = "block";
+    closeBtn.style.display = "none";
   }
 
   showModalById("courseRegistrationViewModal");

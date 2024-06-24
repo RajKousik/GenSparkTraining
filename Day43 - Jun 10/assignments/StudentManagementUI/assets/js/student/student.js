@@ -2,6 +2,11 @@ AOS.init({ duration: 1000 });
 
 let userEmail = null;
 
+if (window.top === window.self) {
+  // If the page is not in an iframe, redirect to the main page or show an error
+  window.location.href = "../../../src/pages/admin/index.html";
+}
+
 // Function to show modal by ID
 function showModalById(modalId) {
   const modalElement = new bootstrap.Modal(document.getElementById(modalId));

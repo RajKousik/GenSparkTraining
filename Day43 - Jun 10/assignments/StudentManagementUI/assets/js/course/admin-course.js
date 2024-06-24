@@ -1,6 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   AOS.init({ duration: 1000 });
 
+  if (!checkToken()) {
+    return;
+  }
+
+  if (window.top === window.self) {
+    // If the page is not in an iframe, redirect to the main page or show an error
+    window.location.href = "../../../src/pages/admin/index.html";
+  }
+
   const token = getTokenFromLocalStorage();
 
   populateFaculty("facultyId");

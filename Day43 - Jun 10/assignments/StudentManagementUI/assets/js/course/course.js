@@ -1,6 +1,11 @@
 // Initialize AOS with a duration of 1000ms
 AOS.init({ duration: 1000 });
 
+if (window.top === window.self) {
+  // If the page is not in an iframe, redirect to the main page or show an error
+  window.location.href = "../../../src/pages/admin/index.html";
+}
+
 let selectedCourseId = null;
 
 // Function to register the course

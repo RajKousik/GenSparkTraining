@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     />
     <title>Admin Dashboard</title>
+    <link rel="icon" type="image/png" href="../../../assets/svg/favicon.ico" />
     <link rel="stylesheet" href="../../../assets/css/index/index.css" />
   </head>
   <body>
@@ -123,10 +124,10 @@
                 >Exams</a
               >
             </li>
-            <li class="nav-item nav-li-items" id="faculty-grade-item">
+            <li class="nav-item nav-li-items" id="admin-grade-item">
               <a
                 class="nav-link"
-                href="../faculty/faculty-grade.html"
+                href="../admin/admin-grade.html"
                 target="main-frame"
                 >Grade</a
               >
@@ -134,7 +135,8 @@
             <li class="nav-item nav-li-items" id="admin-attendance-item">
               <a
                 class="nav-link"
-                href="../faculty/faculty-attendance.html"
+                href="../admin/admin-attendance.html"
+                `,m
                 target="main-frame"
                 >Attendance</a
               >
@@ -190,5 +192,12 @@
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/index/index.js"></script>
+
+    <script>
+      const role = getUserRole();
+      if (role.toLowerCase() !== "admin") {
+        history.back();
+      }
+    </script>
   </body>
 </html>

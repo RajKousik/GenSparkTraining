@@ -44,12 +44,6 @@
               <a class="nav-link active" id="add-grade-nav">Add Grade</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" id="update-grade-nav">Update Grade</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="delete-grade-nav">Delete Grade</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" id="view-all-grades-nav">View All Grades</a>
             </li>
           </ul>
@@ -57,46 +51,43 @@
       </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container m-4" style="min-width: 100%">
       <div id="add-grade-form" class="grade-form" data-aos="zoom-in">
         <h3 class="mb-3">Add Grade</h3>
         <form id="addGradeForm">
           <div class="mb-3 row">
-            <label for="studentId" class="col-sm-2 col-form-label"
+            <label for="studentId" class="col-sm-3 col-form-label"
               >Student ID</label
             >
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <select class="form-select" id="studentId" required>
-                <option value="101">101</option>
                 <!-- Options dynamically populated -->
               </select>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="examId" class="col-sm-2 col-form-label">Exam ID</label>
-            <div class="col-sm-10">
+            <label for="examId" class="col-sm-3 col-form-label">Exam ID</label>
+            <div class="col-sm-9">
               <select class="form-select" id="examId" required>
-                <option value="101">101</option>
                 <!-- Options dynamically populated -->
               </select>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="evaluatedBy" class="col-sm-2 col-form-label"
+            <label for="evaluatedBy" class="col-sm-3 col-form-label"
               >Evaluated By</label
             >
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <select class="form-select" id="evaluatedBy" required>
-                <option value="101">101</option>
                 <!-- Options dynamically populated -->
               </select>
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="marksScored" class="col-sm-2 col-form-label"
+            <label for="marksScored" class="col-sm-3 col-form-label"
               >Marks Scored</label
             >
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <input
                 type="number"
                 class="form-control"
@@ -106,86 +97,15 @@
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="comments" class="col-sm-2 col-form-label"
+            <label for="comments" class="col-sm-3 col-form-label"
               >Comments</label
             >
-            <div class="col-sm-10">
+            <div class="col-sm-9">
               <textarea class="form-control" id="comments" rows="3"></textarea>
             </div>
           </div>
           <div class="submit-btn-right">
             <button type="submit" class="btn btn-primary">Add Grade</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="update-grade-form" class="grade-form d-none" data-aos="zoom-in">
-        <h3 class="mb-3">Update Grade</h3>
-        <form id="updateGradeForm">
-          <div class="mb-3 row">
-            <label for="gradeId" class="col-sm-2 col-form-label"
-              >Grade ID</label
-            >
-            <div class="col-sm-10">
-              <input type="number" class="form-control" id="gradeId" required />
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="evaluatedById" class="col-sm-2 col-form-label"
-              >Evaluated By</label
-            >
-            <div class="col-sm-10">
-              <select class="form-select" id="evaluatedById" required>
-                <option value="12">12</option>
-                <!-- Options dynamically populated -->
-              </select>
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="updateMarksScored" class="col-sm-2 col-form-label"
-              >Marks Scored</label
-            >
-            <div class="col-sm-10">
-              <input
-                type="number"
-                class="form-control"
-                id="updateMarksScored"
-                required
-              />
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="updateComments" class="col-sm-2 col-form-label"
-              >Comments</label
-            >
-            <div class="col-sm-10">
-              <textarea
-                class="form-control"
-                id="updateComments"
-                rows="3"
-              ></textarea>
-            </div>
-          </div>
-          <div class="submit-btn-right">
-            <button type="submit" class="btn btn-primary">Update Grade</button>
-          </div>
-        </form>
-      </div>
-
-      <div id="delete-grade-form" class="grade-form d-none" data-aos="zoom-in">
-        <h3 class="mb-3">Delete Grade</h3>
-        <form id="deleteGradeForm">
-          <div class="mb-3">
-            <label for="deleteGradeId" class="form-label">Grade ID</label>
-            <input
-              type="number"
-              class="form-control"
-              id="deleteGradeId"
-              required
-            />
-          </div>
-          <div class="submit-btn-right">
-            <button type="submit" class="btn btn-danger">Delete Grade</button>
           </div>
         </form>
       </div>
@@ -204,42 +124,30 @@
           <thead data-aos="fade-up">
             <tr>
               <th scope="col" class="text-center align-middle" width="10%">
+                Sl. No
+              </th>
+              <th scope="col" class="text-center align-middle" width="15%">
                 Grade Id
               </th>
               <th scope="col" class="text-center align-middle" width="15%">
                 Exam ID
               </th>
+
               <th scope="col" class="text-center align-middle" width="15%">
-                Course ID
+                Student ID
               </th>
-              <th scope="col" class="text-center align-middle" width="20%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Grade
               </th>
               <th scope="col" class="text-center align-middle" width="15%">
                 Result
               </th>
-              <th scope="col" class="text-center align-middle" width="25%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Action
               </th>
             </tr>
           </thead>
           <tbody style="vertical-align: middle" data-aos="fade-up">
-            <tr>
-              <th scope="row">1</th>
-              <td>12</td>
-              <td>12</td>
-              <td>A+</td>
-              <td id="pass"><p>Pass</p></td>
-              <td>
-                <button
-                  class="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#gradeViewModal"
-                >
-                  View Exam Details
-                </button>
-              </td>
-            </tr>
             <!-- Additional rows can be added dynamically or statically as per your data -->
           </tbody>
         </table>
@@ -259,7 +167,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="gradeViewModalLabel">
-              Grade View Id - G011
+              Grade Details
             </h1>
             <button
               type="button"
@@ -273,43 +181,49 @@
               <div class="row mb-2">
                 <div class="col-4">
                   <strong>Student ID</strong>
-                  <p>14</p>
+                  <p id="studentIdModal"></p>
                 </div>
                 <div class="col-4">
                   <strong>Course ID</strong>
-                  <p>C0001</p>
+                  <p id="courseIdModal"></p>
                 </div>
                 <div class="col-4">
                   <strong>Course Name</strong>
-                  <p>MERN</p>
+                  <p id="courseNameModal"></p>
                 </div>
               </div>
               <div class="row mb-2">
                 <div class="col-4">
                   <strong>Exam ID</strong>
-                  <p>E0001</p>
+                  <p id="examIdModal"></p>
                 </div>
                 <div class="col-4">
                   <strong>Marks Scored</strong>
-                  <p>70</p>
+                  <p id="marksScoredModal"></p>
                 </div>
                 <div class="col-4">
                   <strong>Evaluated By</strong>
-                  <p>Ms. Johnson</p>
+                  <p id="evaluatedByModal"></p>
                 </div>
               </div>
               <div class="row">
                 <div class="col-4">
                   <strong>Percentage</strong>
-                  <p>90%</p>
+                  <p id="percentageModal"></p>
+                </div>
+                <div class="col-4">
+                  <strong>Grade</strong>
+                  <p id="studentGradeModal"></p>
                 </div>
                 <div class="col-4">
                   <strong>Result</strong>
-                  <p>Pass</p>
+                  <p id="resultModal"></p>
                 </div>
+              </div>
+              <div class="row">
                 <div class="col-12">
                   <strong>Comments</strong>
-                  <p>Good! Improve it in upcoming exams!</p>
+                  <p id="commentsModal">Good! Improve it in upcoming exams!</p>
                 </div>
               </div>
             </div>
@@ -399,6 +313,9 @@
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="../../../assets/js/token/token.js"></script>
+    <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/grade/faculty-grade.js"></script>
   </body>
 </html>

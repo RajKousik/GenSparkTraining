@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     />
     <title>Faculty Dashboard</title>
+    <link rel="icon" type="image/png" href="../../../assets/svg/favicon.ico" />
     <link rel="stylesheet" href="../../../assets/css/index/index.css" />
   </head>
   <body>
@@ -178,5 +179,11 @@
     ></script>
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/index/index.js"></script>
+    <script>
+      const role = getUserRole();
+      if (role.toLowerCase() === "student" || role.toLowerCase() == 'admin') {
+        history.back();
+      }
+    </script>
   </body>
 </html>
