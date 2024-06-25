@@ -285,6 +285,7 @@ function handleLoginFormSubmission(e) {
           errorMessageSignInDiv,
           true
         );
+        newToast("bg-success", "Successfully logged in! Redirecting....");
         return response.json();
       } else {
         const data = await response.json();

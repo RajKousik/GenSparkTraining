@@ -1,4 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("message", function (event) {
+  if (event.data === "iframeReloaded") {
+    location.reload(); // Reload the outer page
+  }
+});
+document.addEventListener("DOMContentLoaded", async () => {
   if (!checkToken()) {
     return;
   }
@@ -41,20 +46,46 @@ document.addEventListener("DOMContentLoaded", () => {
   // Get token from localStorage
   const token = localStorage.getItem("token");
 
-  if (token) {
-    // Parse the JWT token
-    const decodedToken = parseJwt(token);
+  // if (token) {
+  //   // Parse the JWT token
+  //   const decodedToken = parseJwt(token);
 
-    // Check if the FullName exists in the token
-    if (decodedToken && decodedToken.FullName) {
-      const fullName = decodedToken.FullName;
-      // Update all elements with the class 'username'
-      const usernameElements = document.querySelectorAll(".username");
-      usernameElements.forEach((element) => {
-        element.textContent = fullName;
-      });
-    }
+  //   // Check if the FullName exists in the token
+  //   if (decodedToken && decodedToken.FullName) {
+  //     const fullName = decodedToken.FullName;
+  //     // Update all elements with the class 'username'
+  //     const usernameElements = document.querySelectorAll(".username");
+  //     usernameElements.forEach((element) => {
+  //       element.textContent = fullName;
+  //     });
+  //   }
+  // }
+
+  // Update all elements with the class 'username'
+  const userRole = getUserRole();
+  let api_url = `${config.API_URL}/faculty/${getUserId()}`;
+  if (userRole.toLowerCase() === "student") {
+    api_url = `${config.API_URL}students/id?studentRollNo=${getUserId()}`;
   }
+
+  let response = await fetch(api_url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  let data;
+  if (response.ok) {
+    data = await response.json();
+  }
+  let fullName = data.name;
+  console.log("object :>> ", fullName);
+
+  const usernameElements = document.querySelectorAll(".username");
+  usernameElements.forEach((element) => {
+    element.textContent = fullName;
+  });
 });
 
 function toggleSideBar() {

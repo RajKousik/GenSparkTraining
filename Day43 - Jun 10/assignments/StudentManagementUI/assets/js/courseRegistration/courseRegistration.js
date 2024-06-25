@@ -6,6 +6,40 @@ if (window.top === window.self) {
   window.location.href = "../../../src/pages/admin/index.html";
 }
 
+populateCourseId("newCourseId");
+
+function populateCourseId(elementId) {
+  fetch(`${config.API_URL}/courses`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const courseSelect = document.getElementById(elementId);
+      courseSelect.innerHTML = "";
+
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "Select Course Id";
+      option.disabled = true;
+      option.selected = true;
+      courseSelect.appendChild(option);
+
+      data.forEach((course) => {
+        const option = document.createElement("option");
+        option.value = course.courseId;
+        option.textContent = course.courseId;
+        courseSelect.appendChild(option);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching courses:", error);
+    });
+}
+
 let selectedCourseRegistrationId = null; // Global variable to store selected course registration ID
 
 // Function to update the selected course registration ID
@@ -15,7 +49,7 @@ function setSelectedCourseRegistrationId(registrationId) {
 
 // Function to update course registration
 function UpdateCourseRegistration() {
-  const newCourseId = document.getElementById("newCourseId").value.trim();
+  const newCourseId = document.getElementById("newCourseId").value;
   document.getElementById("newCourseId").value = "";
   if (!selectedCourseRegistrationId) {
     console.error("No course registration ID selected.");

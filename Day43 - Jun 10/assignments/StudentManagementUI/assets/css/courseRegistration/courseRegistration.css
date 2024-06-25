@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -17,6 +18,8 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* TABLE */
 
 .table-bdr {
   border-radius: 6px;
@@ -61,6 +64,8 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* DATA TABLE */
+
 #courseRegistrationTable_wrapper {
   width: 100%;
 }
@@ -77,6 +82,8 @@ input[type="number"]::-webkit-outer-spin-button {
 #courseRegistrationTable_length {
   padding-top: 4px !important;
 }
+
+/* MEDIA QUERIES */
 
 @media (max-width: 768px) {
   #courseRegistrationTable_length,

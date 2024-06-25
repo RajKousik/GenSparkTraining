@@ -160,7 +160,10 @@ function handleSave(e) {
     .then((data) => {
       if (data) {
         showModal("Success!", "Successfully Updated the information!", true);
-        populateFacultyProfile();
+        setTimeout(() => {
+          parent.postMessage("iframeReloaded", "*");
+          populateFacultyProfile();
+        }, 2000);
       } else {
         showModal("Failed!", "Something Went wrong!", false);
       }

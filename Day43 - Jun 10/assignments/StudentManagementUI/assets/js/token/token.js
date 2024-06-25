@@ -1,3 +1,45 @@
+// const accessiblePages = [
+//   "src/auth/user-auth.html",
+//   "src/pages/admin/admin-attendance.html",
+//   "src/pages/admin/admin-course.html",
+//   "src/pages/admin/admin-courseRegistration.html",
+//   "src/pages/admin/admin-department.html",
+//   "src/pages/admin/admin-exam.html",
+//   "src/pages/admin/admin-faculty.html",
+//   "src/pages/admin/admin-grade.html",
+//   "src/pages/admin/admin-students.html",
+//   "src/pages/admin/index.html",
+//   "src/pages/faculty/faculty-attendance.html",
+//   "src/pages/faculty/faculty-grade.html",
+//   "src/pages/faculty/faculty-profile.html",
+//   "src/pages/faculty/index.html",
+//   "src/pages/student/attendance.html",
+//   "src/pages/student/course.html",
+//   "src/pages/student/courseRegistration.html",
+//   "src/pages/student/department.html",
+//   "src/pages/student/EWallet.html",
+//   "src/pages/student/exam.html",
+//   "src/pages/student/grade.html",
+//   "src/pages/student/index.html",
+//   "src/pages/student/profile.html",
+// ];
+
+// window.addEventListener("load", function () {
+//   const page = window.location.pathname + window.location.hash;
+//   loadContent(page);
+// });
+
+// function loadContent(page) {
+//
+//   if (!accessiblePages.includes(page)) {
+//     redirectTo404();
+//   }
+// }
+
+// function redirectTo404() {
+//   window.location.href = "../../../src/auth/error.html";
+// }
+
 const token = getTokenFromLocalStorage();
 
 function checkToken() {

@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // AOS Initialization
   AOS.init({ duration: 1000 });
+
+  // Token Validation
   if (!checkToken()) {
     return;
   }
@@ -105,6 +108,20 @@ document.addEventListener("DOMContentLoaded", function () {
     return `${day}-${month}-${year}`;
   }
 
+  async function getCourseNameById(courseId) {
+    try {
+      const response = await fetch(`${config.API_URL}/courses/${courseId}`);
+      const courseData = await response.json();
+      return courseData.name;
+    } catch (error) {
+      console.error(
+        `Error fetching course name for courseId ${courseId}:`,
+        error
+      );
+      return "Unknown Course";
+    }
+  }
+
   function populateCourseId(elementId, studentRollNo = "") {
     const apiUrl = studentRollNo
       ? `${config.API_URL}/course-registrations/students?studentId=${studentRollNo}&status=1`
@@ -129,10 +146,11 @@ document.addEventListener("DOMContentLoaded", function () {
         option.selected = true;
         courseSelect.appendChild(option);
 
-        data.forEach((course) => {
+        data.forEach(async (course) => {
+          let courseName = await getCourseNameById(course.courseId);
           const option = document.createElement("option");
           option.value = course.courseId;
-          option.textContent = course.courseId + " - " + course.name;
+          option.textContent = course.courseId + " - " + courseName;
           courseSelect.appendChild(option);
         });
       })

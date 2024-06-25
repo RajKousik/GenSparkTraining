@@ -232,10 +232,21 @@ async function viewCourse(
   }
 }
 
+function checkUser() {
+  let currentUserRole = getUserRole();
+
+  if (currentUserRole.toLowerCase() === "student") {
+    const registerBtn = document.getElementById("registerBtn");
+    registerBtn.classList.remove("d-none");
+    registerBtn.classList.add("d-block");
+  }
+}
+
 // Document ready function
 $(document).ready(function () {
   if (!checkToken()) {
     return;
   }
   fetchAndPopulateCourses();
+  checkUser();
 });

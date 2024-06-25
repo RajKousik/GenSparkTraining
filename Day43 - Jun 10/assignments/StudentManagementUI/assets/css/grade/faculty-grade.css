@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -27,9 +28,10 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* NAVBAR */
+
 .navbar {
   background-color: #f8f9fa; /*Light grey background */
-  /* background-color: white !important; */
 }
 
 .navbar-brand {
@@ -48,9 +50,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .navbar-nav .nav-link.active {
-  /* border-bottom: 2px solid #007bff;   */
   text-decoration: 2px solid underline #007bff;
 }
+
+/* FORM */
 
 .grade-form {
   margin-top: 20px;
@@ -63,12 +66,6 @@ input[type="number"]::-webkit-outer-spin-button {
   text-align: right;
 }
 
-@media (min-width: 992px) {
-  .container {
-    padding: 0;
-  }
-}
-
 .wrapper {
   /* background-image: url("../../images/students.png");
   background-repeat: no-repeat;
@@ -76,6 +73,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background-position: center; */
   height: 100%;
 }
+
+/* DATA TABLE */
 
 #gradeTable_wrapper {
   width: 100%;
@@ -92,6 +91,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #gradeTable {
   max-width: inherit;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0;
+  }
 }
 
 @media (max-width: 768px) {

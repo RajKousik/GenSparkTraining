@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +19,8 @@ body {
   display: none;
 }
 
+/* TABLE */
+
 .table-bdr {
   border-radius: 6px;
   overflow: hidden;
@@ -26,6 +29,8 @@ body {
 .table-responsive {
   overflow-x: auto;
 }
+
+/* DATA TABLE */
 
 #examTable_wrapper {
   width: 100%;
@@ -43,6 +48,8 @@ body {
 #examTable_length {
   padding-top: 4px !important;
 }
+
+/* MEDIA QUERIES */
 
 @media (max-width: 768px) {
   #examTable_length,

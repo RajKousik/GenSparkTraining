@@ -30,6 +30,18 @@ document.addEventListener("DOMContentLoaded", async function () {
   fetchDepartments(); // Fetch all departments
 });
 
+async function getFacultyName(facultyId) {
+  let api_url = `${config.API_URL}/faculty/${facultyId}`;
+
+  let response = await fetch(api_url);
+
+  if (response.ok) {
+    let data = await response.json();
+    return data.name;
+  } else {
+    return "Unknown";
+  }
+}
 async function fetchUserDepartment(rollNo) {
   let api_url = `${config.API_URL}/students/id?studentRollNo=${rollNo}`;
 
@@ -68,8 +80,8 @@ function fetchDepartments() {
       const departmentContainer = document.getElementById(
         "departmentContainer"
       );
-      data.forEach((department) => {
-        const departmentCard = createDepartmentCard(department);
+      data.forEach(async (department) => {
+        const departmentCard = await createDepartmentCard(department);
         departmentContainer.appendChild(departmentCard);
       });
       AOS.refresh(); // Refresh AOS animations after dynamically adding elements
@@ -79,7 +91,7 @@ function fetchDepartments() {
     });
 }
 
-function createDepartmentCard(department) {
+async function createDepartmentCard(department) {
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("department-card");
   cardDiv.setAttribute("data-aos", "fade-up");
@@ -101,7 +113,7 @@ function createDepartmentCard(department) {
 
   const cardText = document.createElement("p");
   cardText.classList.add("card-text");
-  cardText.textContent = department.headId; // Assuming headId is the name of the head. Adjust if necessary.
+  cardText.textContent = await getFacultyName(department.headId); // Assuming headId is the name of the head. Adjust if necessary.
 
   headContainer.appendChild(cardLabel);
   headContainer.appendChild(cardText);

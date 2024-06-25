@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +28,8 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* NAVBAR */
+
 .navbar {
   background-color: #f8f9fa; /*Light grey background */
   /* background-color: white !important; */
@@ -47,6 +50,8 @@ input[type="number"]::-webkit-outer-spin-button {
   color: #007bff; /* Blue text for active link */
 }
 
+/* FORM */
+
 .exam-form {
   margin-top: 20px;
   padding: 2em 2rem !important;
@@ -58,12 +63,6 @@ input[type="number"]::-webkit-outer-spin-button {
   text-align: right;
 }
 
-@media (min-width: 992px) {
-  .container {
-    padding: 0;
-  }
-}
-
 .wrapper {
   /* background-image: url("../../images/students.png");
   background-repeat: no-repeat;
@@ -71,6 +70,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background-position: center; */
   height: 100%;
 }
+
+/* DATA TABLE */
 
 #examTable_wrapper {
   width: 100%;
@@ -87,6 +88,13 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #examTable {
   max-width: inherit;
+}
+
+/* MEDIA QUERIES */
+@media (min-width: 992px) {
+  .container {
+    padding: 0;
+  }
 }
 
 @media (max-width: 768px) {

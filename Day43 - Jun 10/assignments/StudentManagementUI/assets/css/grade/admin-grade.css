@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -27,6 +28,8 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+/* NAVBAR */
+
 .navbar {
   background-color: #f8f9fa; /* Light grey background */
 }
@@ -51,6 +54,8 @@ input[type="number"]::-webkit-outer-spin-button {
   text-decoration: 2px solid underline #007bff;
 }
 
+/* FORM */
+
 .grade-form {
   margin-top: 20px;
   padding: 2em 2rem !important;
@@ -62,12 +67,6 @@ input[type="number"]::-webkit-outer-spin-button {
   text-align: right;
 }
 
-@media (min-width: 992px) {
-  .container {
-    padding: 0;
-  }
-}
-
 .wrapper {
   /* background-image: url("../../images/students.png");
   background-repeat: no-repeat;
@@ -75,6 +74,8 @@ input[type="number"]::-webkit-outer-spin-button {
   background-position: center; */
   height: 100%;
 }
+
+/* DATA TABLE */
 
 #gradeTable_wrapper {
   width: 100%;
@@ -91,22 +92,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #gradeTable {
   max-width: inherit;
-}
-
-@media (max-width: 768px) {
-  #gradeTable_length,
-  #gradeTable_filter {
-    float: right;
-    margin: 4px 0;
-  }
-}
-
-@media (max-width: 576px) {
-  #gradeTable_length,
-  #gradeTable_filter {
-    float: right;
-    margin: 4px 0;
-  }
 }
 
 tbody tr td p {
@@ -131,4 +116,28 @@ tbody tr td#fail p {
 
 .table-responsive {
   overflow-x: auto;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #gradeTable_length,
+  #gradeTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  #gradeTable_length,
+  #gradeTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
 }

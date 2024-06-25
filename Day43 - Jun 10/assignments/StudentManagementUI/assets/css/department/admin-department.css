@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +27,8 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+
+/* NAVBAR */
 
 .navbar {
   background-color: #f8f9fa; /* Light grey background */
@@ -66,11 +69,7 @@ input[type="number"]::-webkit-outer-spin-button {
   text-align: right;
 }
 
-@media (min-width: 992px) {
-  .container {
-    padding: 0;
-  }
-}
+/* TABLE */
 
 tbody tr td p {
   margin: auto;
@@ -105,6 +104,8 @@ th:nth-child(5) {
   height: 100%;
 }
 
+/* DATA TABLE */
+
 #departmentTable_wrapper {
   width: 100%;
 }
@@ -120,6 +121,14 @@ th:nth-child(5) {
 
 #departmentTable {
   max-width: inherit;
+}
+
+/* MEDIA QUERIES */
+
+@media (min-width: 992px) {
+  .container {
+    padding: 0;
+  }
 }
 
 @media (max-width: 768px) {

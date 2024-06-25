@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
     viewAllGradesView.classList.add("d-none");
 
     populateStudentId("studentId");
-    populateFaculty("evaluatedBy");
+    populateFaculty("evaluatedBy", true);
     populateExamId("examId");
 
     addGradeNav.classList.add("active");
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", function () {
     viewAllGradesNav.classList.add("active");
   });
 
-  function populateFaculty(elementId) {
+  function populateFaculty(elementId, currentUser = false) {
     fetch(`${config.API_URL}/faculty`, {
       method: "GET",
       headers: {
@@ -124,26 +124,24 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     })
       .then((response) => response.json())
-      .then((data) => {
+      .then(async (data) => {
         const facultySelect = document.getElementById(elementId);
         facultySelect.innerHTML = "";
 
-        const option = document.createElement("option");
-        option.value = "";
-        option.textContent = "Select Faculty";
-        option.disabled = true;
-        option.selected = true;
-        facultySelect.appendChild(option);
+        const currentUserId = await getUserId();
 
         data.forEach((faculty) => {
           const option = document.createElement("option");
+          if (currentUserId == faculty.facultyId) {
+            option.selected = true;
+          }
           option.value = faculty.facultyId;
           option.textContent = faculty.facultyId + " - " + faculty.name;
           facultySelect.appendChild(option);
         });
       })
       .catch((error) => {
-        console.error("Error fetching departments:", error);
+        console.error("Error fetching faculties:", error);
       });
   }
 

@@ -1,3 +1,4 @@
+/* ROOT */
 * {
   margin: 0;
   padding: 0;
@@ -30,6 +31,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   margin: 0;
   padding: 0;
 }
+
+/* NAVBAR */
 
 .navbar {
   background-color: #caf0f8 !important;
@@ -122,6 +125,8 @@ iframe {
   min-height: 100%;
   min-width: 100%;
 }
+
+/* MEDIA QUERIES */
 
 @media (max-width: 992px) {
   .navbar-brand,

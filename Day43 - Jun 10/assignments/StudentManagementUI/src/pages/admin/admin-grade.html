@@ -62,6 +62,14 @@
         <h3 class="mb-3">Add Grade</h3>
         <form id="addGradeForm">
           <div class="mb-3 row">
+            <label for="examId" class="col-sm-3 col-form-label">Exam ID</label>
+            <div class="col-sm-9">
+              <select class="form-select" id="examId" required>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
             <label for="studentId" class="col-sm-3 col-form-label"
               >Student ID</label
             >
@@ -71,14 +79,7 @@
               </select>
             </div>
           </div>
-          <div class="mb-3 row">
-            <label for="examId" class="col-sm-3 col-form-label">Exam ID</label>
-            <div class="col-sm-9">
-              <select class="form-select" id="examId" required>
-                <!-- Options dynamically populated -->
-              </select>
-            </div>
-          </div>
+
           <div class="mb-3 row">
             <label for="evaluatedBy" class="col-sm-3 col-form-label"
               >Evaluated By</label
@@ -232,8 +233,6 @@
     <div
       class="modal fade"
       id="gradeViewModal"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
       tabindex="-1"
       aria-labelledby="gradeViewLabel"
       aria-hidden="true"

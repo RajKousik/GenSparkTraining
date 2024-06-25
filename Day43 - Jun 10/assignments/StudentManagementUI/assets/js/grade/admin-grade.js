@@ -221,8 +221,12 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function populateStudentId(elementId) {
-    fetch(`${config.API_URL}/students/all`, {
+  function populateStudentId(elementId, examId = "") {
+    const apiUrl = examId
+      ? `${config.API_URL}/exams/examId?examId=${examId}`
+      : `${config.API_URL}/students/all`;
+
+    fetch(apiUrl, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -253,10 +257,16 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Event listener for student roll number selection
-  document.getElementById("studentId").addEventListener("change", function () {
-    const studentRollNo = this.value;
-    populateExamId("examId", studentRollNo);
+  // // Event listener for student roll number selection
+  // document.getElementById("studentId").addEventListener("change", function () {
+  //   const studentRollNo = this.value;
+  //   populateExamId("examId", studentRollNo);
+  // });
+
+  // Event listener for examId selection
+  document.getElementById("examId").addEventListener("change", function () {
+    const examId = this.value;
+    populateStudentId("studentId", examId);
   });
 
   function populateExamId(elementId, studentRollNo = "") {
