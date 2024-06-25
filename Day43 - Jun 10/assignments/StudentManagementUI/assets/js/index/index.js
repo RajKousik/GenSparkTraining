@@ -46,26 +46,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Get token from localStorage
   const token = localStorage.getItem("token");
 
-  // if (token) {
-  //   // Parse the JWT token
-  //   const decodedToken = parseJwt(token);
-
-  //   // Check if the FullName exists in the token
-  //   if (decodedToken && decodedToken.FullName) {
-  //     const fullName = decodedToken.FullName;
-  //     // Update all elements with the class 'username'
-  //     const usernameElements = document.querySelectorAll(".username");
-  //     usernameElements.forEach((element) => {
-  //       element.textContent = fullName;
-  //     });
-  //   }
-  // }
-
   // Update all elements with the class 'username'
   const userRole = getUserRole();
   let api_url = `${config.API_URL}/faculty/${getUserId()}`;
   if (userRole.toLowerCase() === "student") {
-    api_url = `${config.API_URL}students/id?studentRollNo=${getUserId()}`;
+    api_url = `${config.API_URL}/students/id?studentRollNo=${getUserId()}`;
   }
 
   let response = await fetch(api_url, {
@@ -80,7 +65,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     data = await response.json();
   }
   let fullName = data.name;
-  console.log("object :>> ", fullName);
 
   const usernameElements = document.querySelectorAll(".username");
   usernameElements.forEach((element) => {

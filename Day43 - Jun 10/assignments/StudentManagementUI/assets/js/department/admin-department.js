@@ -1,3 +1,26 @@
+const addDepartmentNav = document.getElementById("add-department-nav");
+const updateDepartmentNav = document.getElementById("update-department-nav");
+const viewAllDepartmentsNav = document.getElementById(
+  "view-all-departments-nav"
+);
+
+const addDepartmentView = document.getElementById("add-department-form");
+const updateDepartmentView = document.getElementById("update-department-form");
+const viewAllDepartmentsView = document.getElementById("view-all-departments");
+
+function viewUpdateModal(deptId, headId) {
+  addDepartmentView.classList.add("d-none");
+  updateDepartmentView.classList.remove("d-none");
+  viewAllDepartmentsView.classList.add("d-none");
+
+  addDepartmentNav.classList.remove("active");
+  updateDepartmentNav.classList.add("active");
+  viewAllDepartmentsNav.classList.remove("active");
+
+  document.getElementById("departmentId").value = deptId;
+  document.getElementById("updateHeadId").value = headId;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   AOS.init({ duration: 1000 });
 
@@ -11,20 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
   populateHeadID("headId");
   populateHeadID("updateHeadId");
   populateDepartments("departmentId");
-
-  const addDepartmentNav = document.getElementById("add-department-nav");
-  const updateDepartmentNav = document.getElementById("update-department-nav");
-  const viewAllDepartmentsNav = document.getElementById(
-    "view-all-departments-nav"
-  );
-
-  const addDepartmentView = document.getElementById("add-department-form");
-  const updateDepartmentView = document.getElementById(
-    "update-department-form"
-  );
-  const viewAllDepartmentsView = document.getElementById(
-    "view-all-departments"
-  );
 
   addDepartmentNav.addEventListener("click", () => {
     addDepartmentView.classList.remove("d-none");
@@ -111,22 +120,67 @@ document.addEventListener("DOMContentLoaded", function () {
     const response = await fetch(`${config.API_URL}/departments`);
     const departments = await response.json();
 
-    const table = $("#departmentTable").DataTable();
-    table.clear().draw();
+    const tableBody = document.querySelector("#departmentTable tbody");
+    tableBody.innerHTML = "";
 
     for (let index = 0; index < departments.length; index++) {
       const department = departments[index];
       const facultyName = await getFacultyName(department.headId);
-      table.row
-        .add([
-          index + 1, // Serial number
-          department.deptId,
-          department.name,
-          department.headId,
-          facultyName,
-        ])
-        .draw(false);
+
+      const isAdminDepartment =
+        department.name.toLowerCase() === "admin" ? true : false;
+      console.log("isAdminDepartment :>> ", isAdminDepartment);
+
+      const disabledAttribute = isAdminDepartment ? "disabled" : "";
+
+      const row = `
+        <tr>
+          <th scope="row">${index + 1}</th>
+          <td>${department.deptId}</td>
+          <td>${department.name}</td>
+          <td>${department.headId}</td>
+          <td>${facultyName}</td>
+          <td>
+            <button class="btn btn-primary"  onclick="viewUpdateModal
+            (${department.deptId}, ${department.headId})"
+            ${disabledAttribute}>
+              Update
+            </button>
+          </td>
+        </tr>
+      `;
+      tableBody.insertAdjacentHTML("beforeend", row);
     }
+    $("#departmentTable").DataTable().destroy();
+    $("#departmentTable").DataTable({
+      columns: [
+        null,
+        null,
+        null,
+        null,
+        null,
+        { searchable: false, orderable: false },
+      ],
+      pagingType: "full_numbers",
+      language: {
+        paginate: {
+          previous: '<span class="fa fa-chevron-left"></span>',
+          next: '<span class="fa fa-chevron-right"></span>',
+          first: '<span class="fa-solid fa-angles-left"></span>',
+          last: '<span class="fa-solid fa-angles-right"></span>',
+        },
+        lengthMenu:
+          'Display <select class="form-control input-sm">' +
+          '<option value="3">3</option>' +
+          '<option value="5">5</option>' +
+          '<option value="10">10</option>' +
+          '<option value="15">15</option>' +
+          '<option value="20">20</option>' +
+          '<option value="25">25</option>' +
+          '<option value="-1">All</option>' +
+          "</select> results",
+      },
+    });
   }
 
   function populateDepartments(elementId) {
@@ -253,33 +307,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     updateDepartmentForm.reset();
   });
+});
 
-  $(document).ready(function () {
-    if (!checkToken()) {
-      return;
-    }
-
-    $("#departmentTable").DataTable({
-      columns: [null, null, null, null, null],
-      pagingType: "full_numbers",
-      language: {
-        paginate: {
-          previous: '<span class="fa fa-chevron-left"></span>',
-          next: '<span class="fa fa-chevron-right"></span>',
-          first: '<span class="fa-solid fa-angles-left"></span>',
-          last: '<span class="fa-solid fa-angles-right"></span>',
-        },
-        lengthMenu:
-          'Display <select class="form-control input-sm">' +
-          '<option value="3">3</option>' +
-          '<option value="5">5</option>' +
-          '<option value="10">10</option>' +
-          '<option value="15">15</option>' +
-          '<option value="20">20</option>' +
-          '<option value="25">25</option>' +
-          '<option value="-1">All</option>' +
-          "</select> results",
-      },
-    });
-  });
+$(document).ready(function () {
+  if (!checkToken()) {
+    return;
+  }
 });

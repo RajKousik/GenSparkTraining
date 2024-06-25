@@ -65,6 +65,93 @@ async function viewExamDetails(examId) {
   }
 }
 
+const addExamNav = document.getElementById("add-exam-nav");
+const updateExamNav = document.getElementById("update-exam-nav");
+const deleteExamNav = document.getElementById("delete-exam-nav");
+const viewAllExamsNav = document.getElementById("view-all-exams-nav");
+
+const addExamView = document.getElementById("add-exam-form");
+const updateExamView = document.getElementById("update-exam-form");
+const deleteExamView = document.getElementById("delete-exam-form");
+const viewAllExamsView = document.getElementById("view-all-exams");
+
+document.getElementById("modalUpdateBtn").addEventListener("click", () => {
+  addExamView.classList.add("d-none");
+  updateExamView.classList.remove("d-none");
+  deleteExamView.classList.add("d-none");
+  viewAllExamsView.classList.add("d-none");
+
+  addExamNav.classList.remove("active");
+  updateExamNav.classList.add("active");
+  deleteExamNav.classList.remove("active");
+  viewAllExamsNav.classList.remove("active");
+
+  const examId = document.getElementById("examIdView").innerText;
+
+  populateUpdateForm(examId);
+});
+
+document.getElementById("modalDeleteBtn").addEventListener("click", () => {
+  addExamView.classList.add("d-none");
+  updateExamView.classList.add("d-none");
+  deleteExamView.classList.remove("d-none");
+  viewAllExamsView.classList.add("d-none");
+
+  addExamNav.classList.remove("active");
+  updateExamNav.classList.remove("active");
+  deleteExamNav.classList.add("active");
+  viewAllExamsNav.classList.remove("active");
+
+  const examId = document.getElementById("examIdView").innerText;
+  document.getElementById("deleteExamId").value = examId;
+});
+function convertTimeFormat(timeStr) {
+  timeStr = timeStr.split("T")[1];
+
+  // Extract the parts of the time string
+  const [time, modifier] = timeStr.split(" ");
+
+  // Split the time into hours and minutes
+  let [hours, minutes] = time.split(":");
+
+  // Convert hours to number
+  hours = parseInt(hours, 10);
+
+  // Adjust hours based on AM/PM modifier
+  if (modifier === "PM" && hours < 12) {
+    hours += 12;
+  } else if (modifier === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  // Ensure hours are two digits
+  hours = hours < 10 ? "0" + hours : hours;
+
+  // Return the formatted time string in "HH:mm" format
+  return `${hours}:${minutes}`;
+}
+
+async function populateUpdateForm(examId) {
+  let response = await fetch(`${config.API_URL}/exams/${examId}`);
+
+  let data;
+  if (response.ok) {
+    data = await response.json();
+  }
+
+  document.getElementById("examId").value = data.examId;
+  document.getElementById("updateCourseId").value = data.courseId;
+  document.getElementById("updateTotalMark").value = data.totalMark;
+  document.getElementById("updateExamDate").value = data.examDate.split("T")[0];
+  document.getElementById("updateExamType").value = data.examType.toLowerCase();
+  document.getElementById("updateStartTime").value = convertTimeFormat(
+    data.startTime
+  );
+  document.getElementById("updateEndTime").value = convertTimeFormat(
+    data.endTime
+  );
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   AOS.init({ duration: 1000 });
 
@@ -83,16 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
   populateCourseId("updateCourseId");
   populateExamId("examId");
   populateExamId("deleteExamId");
-
-  const addExamNav = document.getElementById("add-exam-nav");
-  const updateExamNav = document.getElementById("update-exam-nav");
-  const deleteExamNav = document.getElementById("delete-exam-nav");
-  const viewAllExamsNav = document.getElementById("view-all-exams-nav");
-
-  const addExamView = document.getElementById("add-exam-form");
-  const updateExamView = document.getElementById("update-exam-form");
-  const deleteExamView = document.getElementById("delete-exam-form");
-  const viewAllExamsView = document.getElementById("view-all-exams");
 
   addExamNav.addEventListener("click", () => {
     addExamView.classList.remove("d-none");

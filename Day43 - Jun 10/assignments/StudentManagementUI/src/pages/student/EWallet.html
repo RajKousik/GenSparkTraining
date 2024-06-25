@@ -57,8 +57,30 @@
                 />
               </div>
             </div>
+            <div class="mb-3">
+              <label for="amount" class="form-label">Password:</label>
+              <div class="input-group">
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-key"></i
+                ></span>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="password"
+                  required
+                />
+                <i
+                  class="fa-solid fa-eye-slash password-icon"
+                  style="color: grey"
+                  id="togglePassword"
+                ></i>
+              </div>
+            </div>
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary">Recharge</button>
+              <button type="submit" class="btn btn-primary" id="rechargeBtn">
+                Recharge
+              </button>
             </div>
           </form>
           <div

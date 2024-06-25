@@ -16,6 +16,15 @@ html {
   width: 100%;
 }
 
+.password-icon {
+  z-index: 5;
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 #message {
   padding: 0;
 }

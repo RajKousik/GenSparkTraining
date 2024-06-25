@@ -58,6 +58,7 @@ async function viewGradeDetails(gradeId) {
       document.getElementById("studentGradeModal").textContent = gradeDisplay;
       document.getElementById("resultModal").textContent = result;
       document.getElementById("commentsModal").textContent = data.comments;
+      document.getElementById("gradeViewIdModal").textContent = data.id;
       showModalById("gradeViewModal");
     } else {
       console.error(`Grade with ID ${data.id} not found.`);
@@ -65,6 +66,60 @@ async function viewGradeDetails(gradeId) {
   } catch (error) {
     console.error("Error fetching grade details:", error);
   }
+}
+
+const addGradeNav = document.getElementById("add-grade-nav");
+const updateGradeNav = document.getElementById("update-grade-nav");
+const deleteGradeNav = document.getElementById("delete-grade-nav");
+const viewAllGradesNav = document.getElementById("view-all-grades-nav");
+
+const addGradeView = document.getElementById("add-grade-form");
+const updateGradeView = document.getElementById("update-grade-form");
+const deleteGradeView = document.getElementById("delete-grade-form");
+const viewAllGradesView = document.getElementById("view-all-grades");
+
+document.getElementById("modalUpdateBtn").addEventListener("click", () => {
+  addGradeView.classList.add("d-none");
+  updateGradeView.classList.remove("d-none");
+  deleteGradeView.classList.add("d-none");
+  viewAllGradesView.classList.add("d-none");
+
+  addGradeNav.classList.remove("active");
+  updateGradeNav.classList.add("active");
+  deleteGradeNav.classList.remove("active");
+  viewAllGradesNav.classList.remove("active");
+
+  const gradeId = document.getElementById("gradeViewIdModal").innerText;
+
+  populateUpdateForm(gradeId);
+});
+
+document.getElementById("modalDeleteBtn").addEventListener("click", () => {
+  addGradeView.classList.add("d-none");
+  updateGradeView.classList.add("d-none");
+  deleteGradeView.classList.remove("d-none");
+  viewAllGradesView.classList.add("d-none");
+
+  addGradeNav.classList.remove("active");
+  updateGradeNav.classList.remove("active");
+  deleteGradeNav.classList.add("active");
+  viewAllGradesNav.classList.remove("active");
+
+  const gradeId = document.getElementById("gradeViewIdModal").innerText;
+  document.getElementById("deleteGradeId").value = gradeId;
+});
+async function populateUpdateForm(gradeId) {
+  let response = await fetch(`${config.API_URL}/grades/${gradeId}`);
+
+  let data;
+  if (response.ok) {
+    data = await response.json();
+  }
+
+  document.getElementById("updateGradeId").value = data.id;
+  document.getElementById("updateEvaluatedBy").value = data.evaluatedById;
+  document.getElementById("updateMarksScored").value = data.marksScored;
+  document.getElementById("updateComments").value = data.comments;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -87,16 +142,6 @@ document.addEventListener("DOMContentLoaded", function () {
   populateGrade("updateGradeId");
 
   populateGrade("deleteGradeId");
-
-  const addGradeNav = document.getElementById("add-grade-nav");
-  const updateGradeNav = document.getElementById("update-grade-nav");
-  const deleteGradeNav = document.getElementById("delete-grade-nav");
-  const viewAllGradesNav = document.getElementById("view-all-grades-nav");
-
-  const addGradeView = document.getElementById("add-grade-form");
-  const updateGradeView = document.getElementById("update-grade-form");
-  const deleteGradeView = document.getElementById("delete-grade-form");
-  const viewAllGradesView = document.getElementById("view-all-grades");
 
   addGradeNav.addEventListener("click", () => {
     addGradeView.classList.remove("d-none");

@@ -55,7 +55,7 @@
       </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container m-4" style="min-width: 95%">
       <div id="add-course-form" class="course-form" data-aos="zoom-in">
         <h3 class="mb-3">Add Course</h3>
         <form id="addCourseForm">
@@ -220,25 +220,19 @@
           <thead data-aos="fade-up">
             <tr>
               <th scope="col" class="text-center align-middle" width="10%">
-                Sl. No
+                Sl.No
               </th>
-              <th scope="col" class="text-center align-middle" width="10%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Course ID
               </th>
-              <th scope="col" class="text-center align-middle" width="20%">
+              <th scope="col" class="text-center align-middle" width="30%">
                 Course Name
               </th>
-              <th scope="col" class="text-center align-middle" width="30%">
-                Description
+              <th scope="col" class="text-center align-middle" width="20%">
+                Fee
               </th>
-              <th scope="col" class="text-center align-middle" width="10%">
-                Faculty ID
-              </th>
-              <th scope="col" class="text-center align-middle" width="10%">
-                Course Fees
-              </th>
-              <th scope="col" class="text-center align-middle" width="10%">
-                Vacancy
+              <th scope="col" class="text-center align-middle" width="25%">
+                Action
               </th>
             </tr>
           </thead>
@@ -271,49 +265,19 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body pb-0">
-            <div class="container">
-              <div class="row mb-2">
-                <div class="col-4">
-                  <strong>Course ID</strong>
-                  <p>C001</p>
-                </div>
-                <div class="col-4">
-                  <strong>Course Name</strong>
-                  <p>Course Name</p>
-                </div>
-                <div class="col-4">
-                  <strong>Description</strong>
-                  <p>Description of the course</p>
-                </div>
-              </div>
-              <div class="row mb-2">
-                <div class="col-4">
-                  <strong>Faculty ID</strong>
-                  <p>1</p>
-                </div>
-                <div class="col-4">
-                  <strong>Course Fees</strong>
-                  <p>$100</p>
-                </div>
-                <div class="col-4">
-                  <strong>Vacancy</strong>
-                  <p>10</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <strong>Comments</strong>
-                  <p>Additional details or comments about the course.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div class="modal-body pb-0" id="courseViewContent"></div>
           <div class="modal-footer">
             <button
               type="button"
+              class="btn btn-info"
+              data-bs-dismiss="modal"
+              id="modalUpdateBtn"
+            >
+              Update
+            </button>
+            <button
+              type="button"
               class="btn btn-danger"
-              id="closeBtn"
               data-bs-dismiss="modal"
             >
               Close

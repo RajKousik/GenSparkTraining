@@ -1,3 +1,131 @@
+const addAttendanceNav = document.getElementById("add-attendance-nav");
+const updateAttendanceNav = document.getElementById("update-attendance-nav");
+const deleteAttendanceNav = document.getElementById("delete-attendance-nav");
+const viewAllAttendanceNav = document.getElementById("view-all-attendance-nav");
+
+const addAttendanceView = document.getElementById("add-attendance-form");
+const updateAttendanceView = document.getElementById("update-attendance-form");
+const deleteAttendanceView = document.getElementById("delete-attendance-form");
+const viewAllAttendanceView = document.getElementById("view-all-attendance");
+
+function showModalById(modalId) {
+  const modalElement = document.getElementById(modalId);
+  const modalInstance = new bootstrap.Modal(modalElement);
+  modalInstance.show();
+}
+
+async function getStudentName(studentId) {
+  let api_url = `${config.API_URL}/students/id?studentRollNo=${studentId}`;
+
+  let response = await fetch(api_url);
+
+  if (response.ok) {
+    let data = await response.json();
+    return data.name;
+  } else {
+    return "Unknown";
+  }
+}
+
+async function getCourseNameById(courseId) {
+  try {
+    const response = await fetch(`${config.API_URL}/courses/${courseId}`);
+    const courseData = await response.json();
+    return courseData.name;
+  } catch (error) {
+    console.error(
+      `Error fetching course name for courseId ${courseId}:`,
+      error
+    );
+    return "Unknown Course";
+  }
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString.split("T")[0]);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+}
+
+async function viewAttendanceDetails(attendanceId) {
+  try {
+    const response = await fetch(
+      `${config.API_URL}/student-attendance/${attendanceId}`
+    );
+    const data = await response.json();
+
+    if (data) {
+      document.getElementById("studentIdModal").textContent =
+        data.studentRollNo;
+      document.getElementById("studentNameModal").textContent =
+        await getStudentName(data.studentRollNo);
+      document.getElementById("courseIdModal").textContent = data.courseId;
+      document.getElementById("courseNameModal").textContent =
+        await getCourseNameById(data.courseId);
+      document.getElementById("attendanceDateModal").textContent = formatDate(
+        data.date
+      );
+      document.getElementById("attendanceStatusModal").textContent =
+        data.attendanceStatus;
+      document.getElementById("AttendanceIdModal").textContent = data.id;
+
+      showModalById("attendanceViewModal");
+    } else {
+      console.error(`Attendance with ID ${data.id} not found.`);
+    }
+  } catch (error) {
+    console.error("Error fetching attendance details:", error);
+  }
+}
+
+document.getElementById("modalUpdateBtn").addEventListener("click", () => {
+  addAttendanceView.classList.add("d-none");
+  updateAttendanceView.classList.remove("d-none");
+  deleteAttendanceView.classList.add("d-none");
+  viewAllAttendanceView.classList.add("d-none");
+
+  addAttendanceNav.classList.remove("active");
+  updateAttendanceNav.classList.add("active");
+  deleteAttendanceNav.classList.remove("active");
+  viewAllAttendanceNav.classList.remove("active");
+
+  const attendanceId = document.getElementById("AttendanceIdModal").innerText;
+
+  populateUpdateForm(attendanceId);
+});
+
+document.getElementById("modalDeleteBtn").addEventListener("click", () => {
+  addAttendanceView.classList.add("d-none");
+  updateAttendanceView.classList.add("d-none");
+  deleteAttendanceView.classList.remove("d-none");
+  viewAllAttendanceView.classList.add("d-none");
+
+  addAttendanceNav.classList.remove("active");
+  updateAttendanceNav.classList.remove("active");
+  deleteAttendanceNav.classList.add("active");
+  viewAllAttendanceNav.classList.remove("active");
+
+  const attendanceId = document.getElementById("AttendanceIdModal").innerText;
+  document.getElementById("deleteAttendanceId").value = attendanceId;
+});
+
+async function populateUpdateForm(attendanceId) {
+  let response = await fetch(
+    `${config.API_URL}/student-attendance/${attendanceId}`
+  );
+
+  let data;
+  if (response.ok) {
+    data = await response.json();
+  }
+
+  document.getElementById("attendanceId").value = data.id;
+  document.getElementById("updateAttendanceStatus").value =
+    data.attendanceStatus;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // AOS Initialization
   AOS.init({ duration: 1000 });
@@ -19,22 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
   populateAttendanceId("attendanceId");
 
   populateAttendanceId("deleteAttendanceId");
-
-  const addAttendanceNav = document.getElementById("add-attendance-nav");
-  const updateAttendanceNav = document.getElementById("update-attendance-nav");
-  const deleteAttendanceNav = document.getElementById("delete-attendance-nav");
-  const viewAllAttendanceNav = document.getElementById(
-    "view-all-attendance-nav"
-  );
-
-  const addAttendanceView = document.getElementById("add-attendance-form");
-  const updateAttendanceView = document.getElementById(
-    "update-attendance-form"
-  );
-  const deleteAttendanceView = document.getElementById(
-    "delete-attendance-form"
-  );
-  const viewAllAttendanceView = document.getElementById("view-all-attendance");
 
   addAttendanceNav.addEventListener("click", () => {
     addAttendanceView.classList.remove("d-none");
@@ -99,28 +211,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const studentRollNo = this.value;
       populateCourseId("courseId", studentRollNo);
     });
-
-  function formatDate(dateString) {
-    const date = new Date(dateString.split("T")[0]);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  }
-
-  async function getCourseNameById(courseId) {
-    try {
-      const response = await fetch(`${config.API_URL}/courses/${courseId}`);
-      const courseData = await response.json();
-      return courseData.name;
-    } catch (error) {
-      console.error(
-        `Error fetching course name for courseId ${courseId}:`,
-        error
-      );
-      return "Unknown Course";
-    }
-  }
 
   function populateCourseId(elementId, studentRollNo = "") {
     const apiUrl = studentRollNo
@@ -395,6 +485,8 @@ document.addEventListener("DOMContentLoaded", function () {
           <td>${attendance.courseId}</td>
           <td>${date}</td>
           <td id="${attendance.attendanceStatus.toLowerCase()}"><p>${status}</p></td>
+          <td><button class="btn btn-primary" onclick="viewAttendanceDetails(
+            ${attendance.id})">View Details</button></td>
         </tr>
       `;
       tableBody.insertAdjacentHTML("beforeend", row);
@@ -403,8 +495,11 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#attendanceTable").DataTable().destroy();
 
     const table = $("#attendanceTable").DataTable({
-      // columnDefs: [{ orderable: false, targets: 5 }],
-      columns: [null, null, null, null, null, null],
+      columnDefs: [
+        { orderable: false, targets: 6 },
+        { searchable: false, targets: 6 },
+      ],
+      columns: [null, null, null, null, null, null, null],
       pagingType: "full_numbers",
       language: {
         paginate: {

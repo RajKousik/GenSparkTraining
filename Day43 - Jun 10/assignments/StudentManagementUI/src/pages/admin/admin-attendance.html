@@ -149,7 +149,7 @@
               <select class="form-select" id="updateAttendanceStatus" required>
                 <option value="Present">Present</option>
                 <option value="Absent">Absent</option>
-                <option value="OD">On Duty</option>
+                <option value="Od">On Duty</option>
               </select>
             </div>
           </div>
@@ -238,10 +238,10 @@
         >
           <thead>
             <tr>
-              <th scope="col" class="text-center align-middle" width="15%">
+              <th scope="col" class="text-center align-middle" width="5%">
                 Sl. No
               </th>
-              <th scope="col" class="text-center align-middle" width="15%">
+              <th scope="col" class="text-center align-middle" width="10%">
                 Attendance ID
               </th>
               <th scope="col" class="text-center align-middle" width="15%">
@@ -253,8 +253,11 @@
               <th scope="col" class="text-center align-middle" width="20%">
                 Attendance Date
               </th>
-              <th scope="col" class="text-center align-middle" width="20%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Attendance Status
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                View Details
               </th>
             </tr>
           </thead>
@@ -262,6 +265,86 @@
             <!-- Additional rows can be added dynamically or statically as per your data -->
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="attendanceViewModal"
+      tabindex="-1"
+      aria-labelledby="attendanceViewLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="attendanceViewModalLabel">
+              Attendance Details
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-0">
+            <div class="container">
+              <div class="row mb-2">
+                <div class="col-6">
+                  <strong>Student ID</strong>
+                  <p id="studentIdModal"></p>
+                </div>
+                <div class="col-6">
+                  <strong>Student Name</strong>
+                  <p id="studentNameModal"></p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6">
+                  <strong>Course ID</strong>
+                  <p id="courseIdModal"></p>
+                </div>
+                <div class="col-6">
+                  <strong>Course Name</strong>
+                  <p id="courseNameModal"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <strong>Attendance Date</strong>
+                  <p id="attendanceDateModal"></p>
+                </div>
+                <div class="col-6">
+                  <strong>Attendance Status</strong>
+                  <p id="attendanceStatusModal"></p>
+                </div>
+                <div class="col-12 d-none">
+                  <strong>Attendance ID</strong>
+                  <p id="AttendanceIdModal"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-info"
+              data-bs-dismiss="modal"
+              id="modalUpdateBtn"
+            >
+              Update
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              id="modalDeleteBtn"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 

@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   getWalletAmount();
 });
 
+const rechargeBtn = document.getElementById("rechargeBtn");
+
 document
   .getElementById("rechargeForm")
   .addEventListener("submit", async function (event) {
@@ -39,11 +41,13 @@ document
 
 async function recharge() {
   const amount = document.getElementById("amount").value;
+  const password = document.getElementById("password").value;
 
   var api_url = `${config.API_URL}/students/recharge`;
   const requestBody = {
     studentId: getUserId(),
     RechargeAmount: amount,
+    password: password,
   };
   var response = await fetch(api_url, {
     method: "PUT",
@@ -55,8 +59,16 @@ async function recharge() {
 
   if (response.ok) {
     var data = await response.json();
-    getWalletAmount();
-    showMessage("Recharge successful!", "alert-success");
+    rechargeBtn.innerHTML = `Recharging...
+    <div class="spinner-border spinner-border-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>`;
+    setTimeout(() => {
+      getWalletAmount();
+      showMessage("Recharge successful!", "alert-success");
+      rechargeBtn.innerHTML = `Recharge`;
+      document.getElementById("rechargeForm").reset();
+    }, 3000);
   } else {
     const error = await response.json();
     console.error("Error while fetching the data", error.message);
@@ -64,8 +76,6 @@ async function recharge() {
     return 0;
   }
 }
-
-async function updateWallet(amount) {}
 
 function showMessage(message, alertClass) {
   const messageDiv = document.getElementById("message");
@@ -76,4 +86,25 @@ function showMessage(message, alertClass) {
       messageDiv.innerHTML = "";
     }, 2000); // Matches the duration of the fade-out transition
   }, 3000); // Display the message for 3 seconds before starting fade out
+}
+
+document.querySelectorAll(".password-icon").forEach((icon) => {
+  icon.addEventListener("click", togglePasswordVisibility);
+});
+
+function togglePasswordVisibility(event) {
+  const icon = event.target;
+  const input =
+    this.previousElementSibling.tagName === "INPUT"
+      ? this.previousElementSibling
+      : this.previousElementSibling.querySelector("input");
+  if (input.type === "password") {
+    input.type = "text";
+    icon.classList.remove("fa-eye-slash");
+    icon.classList.add("fa-eye");
+  } else {
+    input.type = "password";
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  }
 }
