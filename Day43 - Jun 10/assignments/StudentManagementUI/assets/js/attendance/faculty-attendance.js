@@ -90,12 +90,10 @@ document.addEventListener("DOMContentLoaded", function () {
     viewAllAttendanceNav.classList.add("active");
   });
 
-  document
-    .getElementById("studentRollNo")
-    .addEventListener("change", function () {
-      const studentRollNo = this.value;
-      populateCourseId("courseId", studentRollNo);
-    });
+  document.getElementById("courseId").addEventListener("change", function () {
+    const courseId = this.value;
+    populateStudentId("studentRollNo", courseId);
+  });
 
   function formatDate(dateString) {
     const date = new Date(dateString.split("T")[0]);
@@ -104,10 +102,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   }
-  function populateCourseId(elementId, studentRollNo = "") {
-    const apiUrl = studentRollNo
-      ? `${config.API_URL}/course-registrations/students?studentId=${studentRollNo}&status=1`
-      : `${config.API_URL}/courses`;
+  function populateCourseId(elementId) {
+    const apiUrl = `${
+      config.API_URL
+    }/courses/facultyId?facultyId=${getUserId()}`;
 
     fetch(apiUrl, {
       method: "GET",
@@ -140,8 +138,11 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  function populateStudentId(elementId) {
-    fetch(`${config.API_URL}/students/all`, {
+  function populateStudentId(elementId, courseId = "") {
+    let api_url = courseId
+      ? `${config.API_URL}/course-registrations/approved-students?courseId=${courseId}`
+      : `${config.API_URL}/students/all`;
+    fetch(api_url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

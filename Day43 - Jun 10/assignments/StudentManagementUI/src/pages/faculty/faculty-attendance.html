@@ -56,8 +56,8 @@
             <li class="nav-item">
               <a class="nav-link" id="delete-attendance-nav"
                 >Delete Attendance</a
-              > -->
-            </li>
+              > 
+            </li>-->
             <li class="nav-item">
               <a class="nav-link" id="view-all-attendance-nav"
                 >View All Attendance</a
@@ -72,6 +72,16 @@
       <div id="add-attendance-form" class="attendance-form" data-aos="zoom-in">
         <h3 class="mb-3">Add Attendance</h3>
         <form id="addAttendanceForm">
+          <div class="mb-3 row">
+            <label for="courseId" class="col-sm-3 col-form-label"
+              >Course ID</label
+            >
+            <div class="col-sm-9">
+              <select class="form-select" id="courseId" required>
+                <!-- Options dynamically populated -->
+              </select>
+            </div>
+          </div>
           <div class="mb-3 row">
             <label for="studentRollNo" class="col-sm-3 col-form-label"
               >Student Roll No</label
@@ -95,16 +105,7 @@
               />
             </div>
           </div>
-          <div class="mb-3 row">
-            <label for="courseId" class="col-sm-3 col-form-label"
-              >Course ID</label
-            >
-            <div class="col-sm-9">
-              <select class="form-select" id="courseId" required>
-                <!-- Options dynamically populated -->
-              </select>
-            </div>
-          </div>
+
           <div class="mb-3 row">
             <label for="attendanceStatus" class="col-sm-3 col-form-label"
               >Attendance Status</label
@@ -229,7 +230,6 @@
                 >Absent</label
               >
             </div>
-            
           </div>
         </div>
         <table
@@ -261,7 +261,7 @@
           <tbody style="vertical-align: middle">
             <tr>
               <th scope="row">1</th>
-              <td>1</t>
+              <td>1</td>
               <td>101</td>
               <td>C001</td>
               <td>2024-06-17</td>
