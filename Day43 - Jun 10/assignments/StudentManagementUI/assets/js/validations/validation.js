@@ -27,9 +27,13 @@ document
   .querySelectorAll(".needs-validation .form-control")
   .forEach(function (input) {
     input.addEventListener("input", function () {
-      if (input.type === "password") {
+      if (input.classList.contains("password-field")) {
+        console.log("input :>> ", input);
+        input.classList.remove("is-invalid");
+        input.classList.remove("is-valid");
         return; // Skip validation for password fields
       }
+      // console.log("input :>> ", input);
       if (input.checkValidity()) {
         input.classList.remove("is-invalid");
         input.classList.add("is-valid");
@@ -39,6 +43,21 @@ document
       }
     });
   });
+
+document.querySelectorAll(".form-select").forEach(function (input) {
+  input.addEventListener("input", function () {
+    if (input.type === "password") {
+      return; // Skip validation for password fields
+    }
+    if (input.checkValidity()) {
+      input.classList.remove("is-invalid");
+      input.classList.add("is-valid");
+    } else {
+      input.classList.remove("is-valid");
+      input.classList.add("is-invalid");
+    }
+  });
+});
 
 // window.addEventListener("pagehide", function () {
 //   document

@@ -25,7 +25,11 @@
     <div class="container" style="min-width: 100vw">
       <div class="forms-container">
         <div class="signin-signup">
-          <form class="row g-3 sign-in-form" id="sign-in-form" action="#">
+          <form
+            class="row g-3 sign-in-form needs-validation"
+            id="sign-in-form"
+            action="#"
+          >
             <h2 class="title text-primary text-center m-0 me-1">
               Student Management System
             </h2>
@@ -41,6 +45,7 @@
                     placeholder="Email Address"
                     class="form-control"
                     id="floatingEmail"
+                    required
                   />
                   <label for="floatingEmail">Email Address</label>
                 </div>
@@ -73,9 +78,10 @@
                 <div class="form-floating position-relative">
                   <input
                     type="password"
-                    class="form-control"
+                    class="form-control password-field"
                     id="floatingPassword"
                     placeholder="Password"
+                    required
                   />
                   <label for="floatingPassword">Password</label>
                 </div>
@@ -104,7 +110,11 @@
             </div>
           </form>
 
-          <form class="row g-3 sign-up-form m-1" id="sign-up-form" action="#">
+          <form
+            class="row g-3 sign-up-form m-1 needs-validation"
+            id="sign-up-form"
+            action="#"
+          >
             <h2 class="title text-primary text-center m-0 me-1">
               Student Management System
             </h2>
@@ -254,7 +264,7 @@
                   id="signUpPassword"
                   placeholder="Password"
                   autocomplete="off"
-                  class="form-control"
+                  class="form-control password-field"
                   required
                 />
                 <i
@@ -274,7 +284,7 @@
                   id="signUpRePassword"
                   placeholder="Confirm Password"
                   autocomplete="off"
-                  class="form-control"
+                  class="form-control password-field"
                   required
                 />
                 <i
@@ -404,6 +414,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="../../assets/js/configurations/config.js"></script>
     <script src="../../assets/js/token/token.js"></script>
+    <script src="../../assets/js/validations/validation.js"></script>
     <script src="../../assets/js/auth/auth-script.js"></script>
   </body>
 </html>

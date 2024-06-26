@@ -3,6 +3,7 @@ var editButton = document.getElementById("editButton");
 var saveButton = document.getElementById("saveButton");
 var editableFields = document.querySelectorAll(".editable");
 var originalValues = {};
+var profileForm = document.getElementById("profileForm");
 
 if (window.top === window.self) {
   // If the page is not in an iframe, redirect to the main page or show an error
@@ -26,6 +27,7 @@ editButton.addEventListener("click", function () {
 });
 
 cancelButton.addEventListener("click", function () {
+  removeValidations(profileForm);
   restoreOriginalValues();
   toggleEditMode(true);
 });
@@ -177,6 +179,7 @@ function handleSave(e) {
   document.getElementById("cancelButton").style.display = "none";
 
   toggleEditMode(true);
+  removeValidations(profileForm);
 }
 
 function populateFacultyProfile() {
