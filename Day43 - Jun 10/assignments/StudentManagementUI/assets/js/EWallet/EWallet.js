@@ -36,7 +36,7 @@ document
   .getElementById("rechargeForm")
   .addEventListener("submit", async function (event) {
     event.preventDefault();
-    // console.log("object :>> ", object);
+    //
     await recharge();
   });
 

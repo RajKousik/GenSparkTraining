@@ -161,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
     addCourseForm.reset();
     removeValidations(addCourseForm);
 
-    console.log("addCourseForm :>> ", addCourseForm);
     populateFaculty("facultyId");
 
     addCourseNav.classList.add("active");

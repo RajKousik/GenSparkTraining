@@ -189,7 +189,7 @@ iframe {
     z-index: 1050;
     top: 88px;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 88px);
     overflow-y: auto;
     transform: translateX(-100%);
     transition: all 0.3s ease;

@@ -28,12 +28,11 @@ document
   .forEach(function (input) {
     input.addEventListener("input", function () {
       if (input.classList.contains("password-field")) {
-        console.log("input :>> ", input);
         input.classList.remove("is-invalid");
         input.classList.remove("is-valid");
         return; // Skip validation for password fields
       }
-      // console.log("input :>> ", input);
+      //
       if (input.checkValidity()) {
         input.classList.remove("is-invalid");
         input.classList.add("is-valid");

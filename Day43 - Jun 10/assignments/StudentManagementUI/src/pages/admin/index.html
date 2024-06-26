@@ -9,6 +9,16 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
+
+    <!-- FontAwesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <title>Admin Dashboard</title>
     <link rel="icon" type="image/png" href="../../../assets/svg/favicon.ico" />
     <link rel="stylesheet" href="../../../assets/css/index/index.css" />
@@ -74,23 +84,15 @@
                 class="nav-link active"
                 href="../faculty/faculty-profile.html"
                 target="main-frame"
-                >Profile</a
+                ><i class="fas fa-user"></i> Profile</a
               >
             </li>
-            <!-- <li class="nav-item nav-li-items" id="admin-new-attendance-item">
-              <a
-                class="nav-link active"
-                href="../admin/admin-new-attendance.html"
-                target="main-frame"
-                >New Attendance</a
-              >
-            </li> -->
             <li class="nav-item nav-li-items" id="student-item">
               <a
                 class="nav-link"
                 href="../admin/admin-students.html"
                 target="main-frame"
-                >Students</a
+                ><i class="fas fa-user"></i> Students</a
               >
             </li>
             <li class="nav-item nav-li-items" id="faculty-item">
@@ -98,7 +100,7 @@
                 class="nav-link"
                 href="../admin/admin-faculty.html"
                 target="main-frame"
-                >Faculties</a
+                ><i class="fas fa-chalkboard-teacher"></i> Faculties</a
               >
             </li>
 
@@ -107,7 +109,7 @@
                 class="nav-link"
                 href="../admin/admin-department.html"
                 target="main-frame"
-                >Departments</a
+                ><i class="fas fa-building"></i> Departments</a
               >
             </li>
             <li class="nav-item nav-li-items" id="admin-courses-item">
@@ -115,7 +117,7 @@
                 class="nav-link"
                 href="../admin/admin-course.html"
                 target="main-frame"
-                >Courses</a
+                ><i class="fas fa-book"></i> Courses</a
               >
             </li>
             <li
@@ -126,7 +128,7 @@
                 class="nav-link"
                 href="../admin/admin-courseRegistration.html"
                 target="main-frame"
-                >Course Registrations</a
+                ><i class="fas fa-clipboard-list"></i> Course Registrations</a
               >
             </li>
             <li class="nav-item nav-li-items" id="admin-exams-item">
@@ -134,7 +136,7 @@
                 class="nav-link"
                 href="../admin/admin-exam.html"
                 target="main-frame"
-                >Exams</a
+                ><i class="fas fa-file-alt"></i> Exams</a
               >
             </li>
             <li class="nav-item nav-li-items" id="admin-grade-item">
@@ -142,7 +144,7 @@
                 class="nav-link"
                 href="../admin/admin-grade.html"
                 target="main-frame"
-                >Grade</a
+                ><i class="fas fa-graduation-cap"></i> Grade</a
               >
             </li>
             <li class="nav-item nav-li-items" id="admin-attendance-item">
@@ -151,11 +153,13 @@
                 href="../admin/admin-new-attendance.html"
                 `,m
                 target="main-frame"
-                >Attendance</a
+                ><i class="fas fa-calendar-check"></i> Attendance</a
               >
             </li>
             <li class="nav-item nav-li-items" id="logout-item">
-              <a class="nav-link" href="#" id="logout-link">Logout</a>
+              <a class="nav-link" href="#" id="logout-link"
+                ><i class="fas fa-sign-out-alt"></i> Logout</a
+              >
             </li>
           </ul>
         </div>
