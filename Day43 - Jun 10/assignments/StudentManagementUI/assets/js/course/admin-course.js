@@ -158,6 +158,10 @@ document.addEventListener("DOMContentLoaded", function () {
     //   deleteCourseView.classList.add("d-none");
     viewAllCoursesView.classList.add("d-none");
 
+    addCourseForm.reset();
+    removeValidations(addCourseForm);
+
+    console.log("addCourseForm :>> ", addCourseForm);
     populateFaculty("facultyId");
 
     addCourseNav.classList.add("active");
@@ -171,6 +175,9 @@ document.addEventListener("DOMContentLoaded", function () {
     updateCourseView.classList.remove("d-none");
     //   deleteCourseView.classList.add("d-none");
     viewAllCoursesView.classList.add("d-none");
+
+    updateCourseForm.reset();
+    removeValidations(updateCourseForm);
 
     populateCourseId("courseId");
     populateFaculty("updateFacultyId");
@@ -421,6 +428,7 @@ document.addEventListener("DOMContentLoaded", function () {
         showModal("Error", `Failed to update course: ${error.message}`, false);
       });
     updateCourseForm.reset();
+    removeValidations(updateCourseForm);
   });
 });
 

@@ -58,7 +58,7 @@
     <div class="container m-4" style="min-width: 95%">
       <div id="add-course-form" class="course-form" data-aos="zoom-in">
         <h3 class="mb-3">Add Course</h3>
-        <form id="addCourseForm">
+        <form id="addCourseForm" class="needs-validation">
           <div class="mb-3 row">
             <label for="courseName" class="col-sm-3 col-form-label"
               >Course Name</label
@@ -126,7 +126,7 @@
         data-aos="zoom-in"
       >
         <h3 class="mb-3">Update Course</h3>
-        <form id="updateCourseForm">
+        <form id="updateCourseForm" class="needs-validation">
           <div class="mb-3 row">
             <label for="courseId" class="col-sm-3 col-form-label"
               >Course ID</label
@@ -360,22 +360,7 @@
 
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/validations/validation.js"></script>
     <script src="../../../assets/js/course/admin-course.js"></script>
-
-    <!-- <script src="jspdf.min.js"></script>
-    <script src="jspdf.plugin.autotable.min.js"></script>
-    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
-    <script>
-      function downloadPDF(table) {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        doc.autoTable({ html: table });
-        const text = document.querySelector(".table-search").value;
-        const filename = text
-          ? `${text} - simplebank - transactions.pdf`
-          : "simplebank - transactions.pdf";
-        doc.save(filename);
-      }
-    </script> -->
   </body>
 </html>

@@ -41,7 +41,7 @@
               />
             </div>
           </div>
-          <form id="rechargeForm">
+          <form id="rechargeForm" class="needs-validation">
             <div class="mb-3">
               <label for="amount" class="form-label"
                 >Amount to be Recharged:</label
@@ -53,9 +53,14 @@
                   class="form-control"
                   id="amount"
                   placeholder="Amount"
+                  min="1"
                   required
                 />
               </div>
+              <div class="invalid-feedback">
+                Please Enter the amount to be recharged
+              </div>
+              <div class="valid-feedback">Valid amount</div>
             </div>
             <div class="mb-3">
               <label for="amount" class="form-label">Password:</label>
@@ -130,6 +135,7 @@
 
     <script src="../../../assets/js/configurations/config.js"></script>
     <script src="../../../assets/js/token/token.js"></script>
+    <script src="../../../assets/js/validations/validation.js"></script>
     <script src="../../../assets/js/EWallet/EWallet.js"></script>
   </body>
 </html>

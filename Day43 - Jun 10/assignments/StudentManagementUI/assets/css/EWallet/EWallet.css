@@ -3,6 +3,7 @@ body,
 html {
   height: calc(100vh - 88px);
 }
+
 .container {
   margin: auto;
   padding: auto;

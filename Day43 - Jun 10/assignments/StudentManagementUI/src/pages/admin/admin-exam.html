@@ -60,7 +60,7 @@
     <div class="container m-4" style="min-width: 100%">
       <div id="add-exam-form" class="exam-form" data-aos="zoom-in">
         <h3 class="mb-3">Add Exam</h3>
-        <form id="addExamForm">
+        <form id="addExamForm" class="needs-validation">
           <div class="mb-3 row">
             <label for="courseId" class="col-sm-3 col-form-label"
               >Course ID</label
@@ -128,7 +128,7 @@
 
       <div id="update-exam-form" class="exam-form d-none" data-aos="zoom-in">
         <h3 class="mb-3">Update Exam</h3>
-        <form id="updateExamForm">
+        <form id="updateExamForm" class="needs-validation">
           <div class="mb-3 row">
             <label for="examId" class="col-sm-3 col-form-label">Exam ID</label>
             <div class="col-sm-9">
@@ -218,7 +218,7 @@
 
       <div id="delete-exam-form" class="exam-form d-none" data-aos="zoom-in">
         <h3 class="mb-3">Delete Exam</h3>
-        <form id="deleteExamForm">
+        <form id="deleteExamForm" class="needs-validation">
           <div class="mb-3">
             <label for="deleteExamId" class="form-label">Exam ID</label>
             <select class="form-select" id="deleteExamId" required>
@@ -473,6 +473,7 @@
 
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/validations/validation.js"></script>
     <script src="../../../assets/js/exam/admin-exam.js"></script>
   </body>
 </html>

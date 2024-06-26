@@ -66,7 +66,7 @@
     <div class="container m-4" style="min-width: 95%">
       <div id="add-department-form" class="department-form" data-aos="zoom-in">
         <h3 class="mb-3">Add Department</h3>
-        <form id="addDepartmentForm">
+        <form id="addDepartmentForm" class="needs-validation">
           <div class="mb-3 row">
             <label for="departmentName" class="col-sm-3 col-form-label"
               >Department Name</label
@@ -78,6 +78,9 @@
                 id="departmentName"
                 required
               />
+              <div class="invalid-feedback">
+                Please Enter the department name
+              </div>
             </div>
           </div>
           <div class="mb-3 row">
@@ -103,7 +106,7 @@
         data-aos="zoom-in"
       >
         <h3 class="mb-3">Update Department</h3>
-        <form id="updateDepartmentForm">
+        <form id="updateDepartmentForm" class="needs-validation">
           <div class="mb-3 row">
             <label for="departmentId" class="col-sm-3 col-form-label"
               >Department</label
@@ -270,6 +273,7 @@
 
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
+    <script src="../../../assets/js/validations/validation.js"></script>
     <script src="../../../assets/js/department/admin-department.js"></script>
   </body>
 </html>
