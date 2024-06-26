@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       const isAdminDepartment =
         department.name.toLowerCase() === "admin" ? true : false;
-      console.log("isAdminDepartment :>> ", isAdminDepartment);
 
       const disabledAttribute = isAdminDepartment ? "disabled" : "";
 

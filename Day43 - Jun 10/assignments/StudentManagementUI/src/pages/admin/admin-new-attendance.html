@@ -20,7 +20,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       rel="stylesheet"
-      href="../../../assets/css/attendance/faculty-attendance.css"
+      href="../../../assets/css/attendance/admin-new-attendance.css"
     />
     <link
       rel="stylesheet"
@@ -51,7 +51,7 @@
             <li class="nav-item">
               <a class="nav-link" id="add-attendance-nav">Add Attendance</a>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" id="update-attendance-nav"
                 >Update Attendance</a
               >
@@ -59,8 +59,8 @@
             <li class="nav-item">
               <a class="nav-link" id="delete-attendance-nav"
                 >Delete Attendance</a
-              > 
-            </li>-->
+              >
+            </li>
             <li class="nav-item">
               <a class="nav-link" id="view-all-attendance-nav"
                 >View All Attendance</a
@@ -71,14 +71,14 @@
       </div>
     </nav>
 
-    <div class="container m-4" style="min-width: 100%">
+    <div class="container m-4" style="min-width: 95%">
       <div id="manage-attendance" class="attendance-form" data-aos="zoom-in">
         <h3 class="mb-3">Manage Attendance</h3>
         <form id="attendance-form" class="form-group">
           <div id="course-list">
             <h4 class="course-label">Select a Course</h4>
             <ul class="list-group">
-              <!-- <li class="list-group-item course-item">
+              <li class="list-group-item course-item">
                 <button
                   type="button"
                   class="mark-attendance-btn btn w-100"
@@ -104,7 +104,7 @@
                 >
                   HIST301 - History
                 </button>
-              </li> -->
+              </li>
               <!-- Add more courses as needed -->
             </ul>
           </div>
@@ -201,7 +201,7 @@
         </form>
       </div>
 
-      <!-- <div
+      <div
         id="update-attendance-form"
         class="attendance-form d-none"
         data-aos="zoom-in"
@@ -224,7 +224,7 @@
               <select class="form-select" id="updateAttendanceStatus" required>
                 <option value="Present">Present</option>
                 <option value="Absent">Absent</option>
-                <option value="OD">On Duty</option>
+                <option value="Od">On Duty</option>
               </select>
             </div>
           </div>
@@ -259,7 +259,7 @@
             </button>
           </div>
         </form>
-      </div> -->
+      </div>
 
       <div
         id="view-all-attendance"
@@ -313,38 +313,113 @@
         >
           <thead>
             <tr>
-              <th scope="col" class="text-center align-middle" width="15%">
+              <th scope="col" class="text-center align-middle" width="5%">
                 Sl. No
               </th>
-              <th scope="col" class="text-center align-middle" width="15%">
+              <th scope="col" class="text-center align-middle" width="10%">
                 Attendance ID
               </th>
-              <th scope="col" class="text-center align-middle" width="20%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Student Roll No
               </th>
-              <th scope="col" class="text-center align-middle" width="0%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Course ID
               </th>
-              <th scope="col" class="text-center align-middle" width="25%">
+              <th scope="col" class="text-center align-middle" width="20%">
                 Attendance Date
               </th>
-              <th scope="col" class="text-center align-middle" width="25%">
+              <th scope="col" class="text-center align-middle" width="15%">
                 Attendance Status
+              </th>
+              <th scope="col" class="text-center align-middle" width="20%">
+                View Details
               </th>
             </tr>
           </thead>
           <tbody style="vertical-align: middle">
-            <tr>
-              <th scope="row">1</th>
-              <td>1</td>
-              <td>101</td>
-              <td>C001</td>
-              <td>2024-06-17</td>
-              <td id="present"><p>Present</p></td>
-            </tr>
             <!-- Additional rows can be added dynamically or statically as per your data -->
           </tbody>
         </table>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="attendanceViewModal"
+      tabindex="-1"
+      aria-labelledby="attendanceViewLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="attendanceViewModalLabel">
+              Attendance Details
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-0">
+            <div class="container">
+              <div class="row mb-2">
+                <div class="col-6">
+                  <strong>Student ID</strong>
+                  <p id="studentIdModal"></p>
+                </div>
+                <div class="col-6">
+                  <strong>Student Name</strong>
+                  <p id="studentNameModal"></p>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-6">
+                  <strong>Course ID</strong>
+                  <p id="courseIdModal"></p>
+                </div>
+                <div class="col-6">
+                  <strong>Course Name</strong>
+                  <p id="courseNameModal"></p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <strong>Attendance Date</strong>
+                  <p id="attendanceDateModal"></p>
+                </div>
+                <div class="col-6">
+                  <strong>Attendance Status</strong>
+                  <p id="attendanceStatusModal"></p>
+                </div>
+                <div class="col-12 d-none">
+                  <strong>Attendance ID</strong>
+                  <p id="AttendanceIdModal"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-info"
+              data-bs-dismiss="modal"
+              id="modalUpdateBtn"
+            >
+              Update
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              id="modalDeleteBtn"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -409,6 +484,7 @@
       </div>
     </div>
 
+    <!-- Toast Notification -->
     <div class="position-fixed top-0 end-0 p-3" style="z-index: 5">
       <div
         id="toastNotification"
@@ -445,6 +521,6 @@
 
     <script src="../../../assets/js/token/token.js"></script>
     <script src="../../../assets/js/configurations/config.js"></script>
-    <script src="../../../assets/js/attendance/faculty-attendance.js"></script>
+    <script src="../../../assets/js/attendance/admin-new-attendance.js"></script>
   </body>
 </html>

@@ -77,6 +77,14 @@
                 >Profile</a
               >
             </li>
+            <!-- <li class="nav-item nav-li-items" id="admin-new-attendance-item">
+              <a
+                class="nav-link active"
+                href="../admin/admin-new-attendance.html"
+                target="main-frame"
+                >New Attendance</a
+              >
+            </li> -->
             <li class="nav-item nav-li-items" id="student-item">
               <a
                 class="nav-link"
@@ -140,7 +148,7 @@
             <li class="nav-item nav-li-items" id="admin-attendance-item">
               <a
                 class="nav-link"
-                href="../admin/admin-attendance.html"
+                href="../admin/admin-new-attendance.html"
                 `,m
                 target="main-frame"
                 >Attendance</a
@@ -208,16 +216,14 @@
       }
 
       // initialization of text animation (typing)
-      // var typed = new Typed("#brand-name", {
-      //   strings: ["ABC Educational Institution"],
-      //   typeSpeed: 60,
-      //   // loop: true,
-      //   onComplete: function (self) {
-      //     self.cursor.remove();
-      //   },
-      //   // backSpeed: 25,
-      //   backDelay: 1500,
-      // });
+      var typed = new Typed("#brand-name", {
+        strings: ["ABC Educational Institution"],
+        typeSpeed: 60,
+        // loop: true,
+        cursorChar: "",
+        // backSpeed: 25,
+        backDelay: 1500,
+      });
     </script>
   </body>
 </html>

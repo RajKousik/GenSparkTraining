@@ -437,6 +437,13 @@ h2 {
   }
 }
 
+@media (max-width: 482px) {
+  form#sign-in-form {
+    position: relative;
+    top: 10%;
+  }
+}
+
 @media (max-width: 360px) {
   form#sign-in-form {
     position: relative;

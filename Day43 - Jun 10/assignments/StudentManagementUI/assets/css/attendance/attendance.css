@@ -34,17 +34,135 @@ body {
   position: relative;
 }
 
+.navbar {
+  background-color: #f8f9fa; /* Light grey background */
+  /* background-color: white !important; */
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: #495057; /* Dark grey text */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Blue text for active link */
+}
+
+.navbar-nav .nav-link.active {
+  /* border-bottom: 2px solid #007bff;   */
+  text-decoration: 2px solid underline #007bff;
+}
+
+.nav-link.active .navbar-item {
+  background: white !important;
+}
+
+.attendance-form {
+  /* margin-top: 20px; */
+  padding: 2em 2rem !important;
+  border-radius: 10px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  width: auto;
+  display: inline-block;
+}
+
+div.dataTables_wrapper div.dataTables_filter {
+  text-align: right;
+}
+div.dataTables_wrapper div.dataTables_filter label {
+  font-weight: normal;
+  white-space: nowrap;
+  text-align: left;
+}
+
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0.5em;
+  display: inline-block;
+  width: auto;
+}
+
+tbody tr td p {
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  padding: 2px 10px;
+  border-radius: 10px;
+}
+
+tbody tr td#present p {
+  background-color: rgb(25, 135, 84);
+  color: lightgreen;
+  border: 2px solid rgb(0, 66, 35);
+}
+
+tbody tr td#absent p {
+  background-color: #dc3545;
+  color: rgb(250, 193, 181);
+  border: 2px solid rgb(116, 20, 1);
+}
+
+tbody tr td#od p {
+  background-color: #fdb314;
+  color: rgb(255, 42, 0);
+  border: 2px solid rgb(255, 42, 0);
+}
+
+.wrapper {
+  height: 100%;
+}
+
+/* DATA TABLE */
+
+#attendanceTable_wrapper {
+  width: 100%;
+}
+
+#attendanceTable_filter {
+  padding-top: 4px !important;
+  padding-right: 4px !important;
+}
+
+#attendanceTable_length {
+  padding-top: 4px !important;
+}
+
+#attendanceTable {
+  max-width: inherit;
+  width: 100% !important;
+}
+
+/* NEWLY ADDED */
+
 /* MEDIA QUERIES */
 
 @media (max-width: 768px) {
   .chart-container {
     height: 300px; /* Adjust the height for smaller screens */
   }
+  #attendanceTable_length,
+  #attendanceTable_filter {
+    float: right;
+    margin: 4px 0;
+  }
 }
 
 @media (max-width: 576px) {
   .chart-container {
     height: 250px; /* Adjust the height for the smallest screens */
+  }
+  #attendanceTable_length,
+  #attendanceTable_filter {
+    float: right;
+    margin: 4px 0;
   }
 }
 

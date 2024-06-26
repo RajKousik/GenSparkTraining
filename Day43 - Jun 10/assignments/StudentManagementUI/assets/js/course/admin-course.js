@@ -58,8 +58,6 @@ async function populateUpdateForm(courseId) {
     data = await response.json();
   }
 
-  console.log("data.facultyId :>> ", data.facultyId);
-
   document.getElementById("courseId").value = data.courseId;
   document.getElementById("updateCourseName").value = data.name;
   document.getElementById("updateCourseDescription").value = data.description;

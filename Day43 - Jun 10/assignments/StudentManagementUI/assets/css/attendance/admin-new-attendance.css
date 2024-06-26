@@ -32,7 +32,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .navbar {
   background-color: #f8f9fa; /* Light grey background */
-  /* background-color: white !important; */
 }
 
 .navbar-brand {
@@ -73,6 +72,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* TABLE */
+
 tbody tr td p {
   margin: auto;
   width: fit-content;
@@ -100,10 +100,6 @@ tbody tr td#od p {
 }
 
 .wrapper {
-  /* background-image: url("../../images/students.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center; */
   height: 100%;
 }
 
@@ -125,6 +121,8 @@ tbody tr td#od p {
 #attendanceTable {
   max-width: inherit;
 }
+
+/* NEWLY ADDED */
 
 .attendance-form {
   border: 1px solid #ccc;

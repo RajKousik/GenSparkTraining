@@ -8,26 +8,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     window.location.href = "../../../src/pages/admin/index.html";
   }
 
-  const token = getTokenFromLocalStorage();
-  if (token) {
-    const decodedToken = parseJwt(token);
-    if (
-      decodedToken &&
-      decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]
-    ) {
-      const rollNo =
-        decodedToken[
-          "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
-        ];
-      await fetchUserDepartment(rollNo);
-    } else {
-      console.error("Failed to decode token.");
-    }
-  } else {
-    console.error("Token not found in localStorage.");
-  }
+  await fetchDepartments(); // Fetch all departments
 
-  fetchDepartments(); // Fetch all departments
+  fetchUserDepartment(getUserId());
 });
 
 async function getFacultyName(facultyId) {
@@ -52,15 +35,18 @@ async function fetchUserDepartment(rollNo) {
   }
 
   fetch(api_url)
-    .then((response) => response.json())
+    .then(async (response) => await response.json())
     .then((data) => {
       const userDepartment = data.departmentId; // Assuming this is how you retrieve the department from the response
       // Add 'user-department' class to the corresponding department card
+
       const departmentCards = document.querySelectorAll(".department-card");
+
       departmentCards.forEach((card) => {
         const departmentId = card
           .querySelector(".card-id")
           .textContent.split(": ")[1]; // Extract department ID from card text
+
         if (departmentId == userDepartment) {
           card.classList.add("user-department");
         }
@@ -73,8 +59,8 @@ async function fetchUserDepartment(rollNo) {
     });
 }
 
-function fetchDepartments() {
-  fetch(`${config.API_URL}/departments`)
+async function fetchDepartments() {
+  await fetch(`${config.API_URL}/departments`)
     .then((response) => response.json())
     .then((data) => {
       const departmentContainer = document.getElementById(
@@ -123,28 +109,4 @@ async function createDepartmentCard(department) {
   cardDiv.appendChild(headContainer);
 
   return cardDiv;
-}
-
-function getTokenFromLocalStorage() {
-  return localStorage.getItem("token");
-}
-
-function parseJwt(token) {
-  try {
-    const base64Url = token.split(".")[1];
-    const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-
-    return JSON.parse(jsonPayload);
-  } catch (e) {
-    console.error("Invalid token", e);
-    return null;
-  }
 }
