@@ -9,6 +9,9 @@ nupkg/
 # Visual Studio Code
 .vscode/
 
+#CSepll
+.cspell/
+
 # Rider
 .idea/
 
@@ -49,3 +52,4 @@ appsettings.Development.json
 *appsettings.json
 appsettings.json
 **/*appsettings.json
+.cspell
