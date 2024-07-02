@@ -53,3 +53,4 @@ appsettings.Development.json
 appsettings.json
 **/*appsettings.json
 .cspell
+cspell.json
