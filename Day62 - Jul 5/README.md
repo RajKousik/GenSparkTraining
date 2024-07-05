@@ -13,7 +13,7 @@ Creating a simple Docker image to execute a Python program that prints "Hello, W
 
 Here is the summary of the steps:
 
-1. Create `hello.py`:
+1. Create `index.py`:
 
    ```python
    print("Hello, World!")
