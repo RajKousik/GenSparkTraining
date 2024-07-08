@@ -2,7 +2,7 @@
 
 ## Work
 
-We worked further on docker compose of day 62
+We worked further on docker compose of [Day 62](../Day62%20-%20Jul%205/)
 
 ## Assignment
 
