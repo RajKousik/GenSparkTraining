@@ -1,5 +1,3 @@
-# Day 67
-
 # ATM Management
 
 ## Project Code
