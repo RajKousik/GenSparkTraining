@@ -19,6 +19,7 @@ You can view the live version [here](https://ashy-pebble-00e08851e.5.azurestatic
   - **Yellow** for correct letters in the wrong position.
   - **Gray** for incorrect letters.
 - **Keyboard**: A virtual keyboard is provided for easy input.
+- **DarkMode**: Dark Mode / Light Mode Toggle 
 
 ## Technologies Used
 
