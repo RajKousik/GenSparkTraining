@@ -1,0 +1,146 @@
+body {
+  background-color: #f0f0f0;
+}
+
+#game-board {
+  margin-top: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #000;
+  text-align: center;
+  line-height: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 2px;
+}
+
+.cell.correct {
+  background-color: #6aaa64 !important;
+  color: #fff;
+}
+
+.cell.present {
+  background-color: #c9b458 !important;
+  color: #fff;
+}
+
+.cell.absent {
+  background-color: #787c7e !important;
+  color: #fff;
+}
+
+#keyboard {
+  max-width: 600px;
+}
+
+.key-row {
+  display: flex;
+  justify-content: center;
+}
+
+.key {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #d3d6da;
+  color: #000;
+  text-align: center;
+  line-height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.key.large {
+  width: 100px;
+}
+
+.key:hover {
+  background-color: #a8a8a8;
+}
+
+.key.correct {
+  background-color: #6aaa64;
+  color: #fff;
+}
+
+.key.present {
+  background-color: #c9b458;
+  color: #fff;
+}
+
+.key.absent {
+  background-color: #787c7e;
+  color: #fff;
+}
+
+/* Dark mode styles */
+
+.dark-mode-container {
+  position: fixed;
+  top: 0%;
+  right: 10px;
+  /* transform: translateY(-10%); */
+  z-index: 1000;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.dark-mode .modal-content {
+  background-color: #212121;
+  color: #ffffff;
+}
+
+.dark-mode .modal-body {
+  background-color: #ffffff; /* Adjust as per your preference */
+  color: black;
+}
+
+.dark-mode .modal-footer {
+  background-color: #ffffff; /* Adjust as per your preference */
+  color: black;
+}
+
+/*.dark-mode .btn-secondary,
+.dark-mode .btn-danger {
+  background-color: bred; 
+  color: #ffffff;
+ } */
+
+.dark-mode .key {
+  background-color: #343a40; /* Adjust as per your preference */
+  color: #ffffff;
+}
+
+/* .dark-mode .key-row {
+  margin-bottom: 10px;
+} */
+
+.dark-mode .cell {
+  background-color: #343a40; /* Adjust as per your preference */
+  color: #ffffff;
+}
+
+.dark-mode #resultModalLabel {
+  color: #ffffff;
+}
+
+.dark-mode #modal-body {
+  color: #000000;
+}
+
+.dark-mode .not-valid-modal-title {
+  color: #ffffff;
+}
