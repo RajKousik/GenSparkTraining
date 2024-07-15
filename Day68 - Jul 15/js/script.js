@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       words = data.words;
-      //   wordToGuess = words[Math.floor(Math.random() * words.length)];
-      wordToGuess = "happy";
+      wordToGuess = words[Math.floor(Math.random() * words.length)];
+      // wordToGuess = "happy"; // Testing
       createBoard();
       createKeyboard();
       document.addEventListener("keydown", handlePhysicalKeyPress);
