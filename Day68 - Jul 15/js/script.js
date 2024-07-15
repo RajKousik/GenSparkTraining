@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       words = data.words;
-      wordToGuess = words[Math.floor(Math.random() * words.length)];
-      //   wordToGuess = "happy";
+      //   wordToGuess = words[Math.floor(Math.random() * words.length)];
+      wordToGuess = "happy";
       createBoard();
       createKeyboard();
       document.addEventListener("keydown", handlePhysicalKeyPress);
@@ -183,6 +183,7 @@ function submitGuess() {
     document.getElementById(
       "resultModalLabel"
     ).innerHTML = `Hard Luck Champ! Try Again <i class="fa-regular fa-hand-peace"></i>`;
+    document.getElementById("modal-header").classList.add("bg-danger");
     document.getElementById(
       "modal-body"
     ).textContent = `Game Over! The word was ${wordToGuess}`;
