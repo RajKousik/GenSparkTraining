@@ -10,12 +10,17 @@ using PizzaApplicationAPI.Models;
 using PizzaApplicationAPI.Repositories;
 using PizzaApplicationAPI.Services;
 using System.Text;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
+using System.Diagnostics;
+
+
 
 namespace PizzaApplicationAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -57,9 +62,34 @@ namespace PizzaApplicationAPI
 
             #region DbContexts
 
+            #region Azure Key-Vault
+
+            const string secretName = "connectionString";
+            var keyVaultName = "secretkeys-kousik";
+            var kvUri = $"https://{keyVaultName}.vault.azure.net";
+               
+            var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+
+            //Debug.WriteLine($"Retrieving your secret from {keyVaultName}.");
+            var secret = await client.GetSecretAsync(secretName);
+            //Debug.WriteLine($"Your secret is '{secret.Value.Value}'.");
+
+            #endregion
+
+            var connectionString = secret.Value.Value;
+
+            //Debug.WriteLine(builder.Configuration.GetConnectionString("defaultConnection"));
+            //Debug.WriteLine(connectionString);
+
+            //builder.Services.AddDbContext<PizzaDbContext>(
+            //    options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
+            //    );
+
             builder.Services.AddDbContext<PizzaDbContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection"))
+                options => options.UseSqlServer(connectionString)
                 );
+
+
 
             #endregion
 
