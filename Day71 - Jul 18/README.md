@@ -3,6 +3,7 @@
 ## Topics Covered
 
 - ARM Template
+
 - Created a Azure Storage Account using ARM Template
 
 ## Work
