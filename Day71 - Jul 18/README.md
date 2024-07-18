@@ -104,7 +104,7 @@ az deployment group create \
 
 **Screenshots**
 
-![alt text](Output1.jpg)
+![alt text](output1.jpg)
 
 ![alt text](output2.jpg)
 
@@ -197,6 +197,6 @@ This command will deploy the Azure Key Vault and store the SQL connection string
 
 **Screenshots**
 
-![alt text](Output3.jpg)
+![alt text](output3.jpg)
 
 ![alt text](output4.jpg)
