@@ -16,3 +16,6 @@ The Spelling Bee Game is a web-based application that challenges players to form
 - HTML
 - CSS
 - JavaScript
+
+## Screenshots
+![image](https://github.com/user-attachments/assets/b30fb9b5-4a79-4b4d-99d8-bdd082cbc8e8)
